@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wifither</string>
+    <string name="sw_wifi">Enable wifi</string>
 </resources>
