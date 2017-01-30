@@ -13,14 +13,14 @@ import java.net.InetAddress;
 
 public class Client extends AsyncTask<String, Void, Boolean> {
     @Override
-    public Boolean doInBackground(String... message) {
+    public Boolean doInBackground(String... data) {
         DatagramSocket ds = null;
 
         try
         {
             ds = new DatagramSocket();
             DatagramPacket dp;
-            dp = new DatagramPacket(message[0].getBytes(), message[0].length(), InetAddress.getByName("192.168.0.4"), 4848);
+            dp = new DatagramPacket(data[0].getBytes(), data[0].length(), InetAddress.getByName(data[1]), Integer.parseInt(data[2]));
             ds.setBroadcast(true);
             ds.send(dp);
         }
