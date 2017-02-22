@@ -3,4 +3,23 @@
     <string name="sw_wifi">Enable wifi</string>
     <string name="lbl_ip">IP Address</string>
     <string name="lbl_port">Port</string>
+    <string name="lbl_macfilter">MAC Filter</string>
+    <string name="sp_disabled">Disabled</string>
+    <string name="sp_deny">Deny</string>
+    <string name="sp_allow">Allow</string>
+
+    <string name="add_mac">Add MAC</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="edit_mac">Edit MAC</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
+    <string name="select_action">Select Action</string>
+
+    <string-array name="sp_macfilter">
+        <item>@string/sp_disabled</item>
+        <item>@string/sp_deny</item>
+        <item>@string/sp_allow</item>
+    </string-array>
+    <string name="title_activity_macs">MacsActivity</string>
 </resources>

@@ -13,16 +13,17 @@ import java.net.InetAddress;
 
 public class Client extends AsyncTask<String, Void, Boolean> {
     @Override
-    public Boolean doInBackground(String... data) {
-        DatagramSocket ds = null;
+    protected Boolean doInBackground(String... data) {
+        DatagramSocket datagramSocket = null;
 
         try
         {
-            ds = new DatagramSocket();
-            DatagramPacket dp;
-            dp = new DatagramPacket(data[0].getBytes(), data[0].length(), InetAddress.getByName(data[1]), Integer.parseInt(data[2]));
-            ds.setBroadcast(true);
-            ds.send(dp);
+            datagramSocket = new DatagramSocket(4848);
+
+            DatagramPacket datagramPacket;
+            datagramPacket = new DatagramPacket(data[0].getBytes(), data[0].length(), InetAddress.getByName(data[1]), Integer.parseInt(data[2]));
+
+            datagramSocket.send(datagramPacket);
         }
         catch (Exception e)
         {
@@ -30,16 +31,16 @@ public class Client extends AsyncTask<String, Void, Boolean> {
         }
         finally
         {
-            if (ds != null)
+            if (datagramSocket != null)
             {
-                ds.close();
+                datagramSocket.close();
             }
         }
         return null;
     }
 
     @Override
-    public void onPostExecute(Boolean result) {
+    protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
     }
 }

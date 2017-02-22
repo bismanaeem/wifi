@@ -21,7 +21,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_ip">
 
             <TextView
                 android:text="@string/lbl_ip"
@@ -43,7 +44,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_port">
 
             <TextView
                 android:text="@string/lbl_port"
@@ -60,12 +62,14 @@
                 android:ems="10"
                 android:id="@+id/et_port"
                 android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_wifi">
 
             <Switch
                 android:text="@string/sw_wifi"
@@ -73,7 +77,44 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/sw_wifi"
                 android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_macfilter"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="@string/lbl_macfilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_macfilter" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_macfilter"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/ll_update">
+
+            <Button
+                android:text="Update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_update"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
+
 </RelativeLayout>
