@@ -84,6 +84,7 @@ void process(char *port)
     struct sockaddr_in server;
     struct sockaddr_in from;
     char buf[1024];
+    char command[1024];
 
     sock=socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) error("Opening socket");
@@ -92,26 +93,51 @@ void process(char *port)
     server.sin_family=AF_INET;
     server.sin_addr.s_addr=INADDR_ANY;
     server.sin_port=htons(atoi(port));
-    if (bind(sock,(struct sockaddr *)&server,length)<0) 
+    if (bind(sock,(struct sockaddr *)&server,length)<0)
         error("binding");
     fromlen = sizeof(struct sockaddr_in);
     while (1) {
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
         switch(atoi(buf)) {
-            case 0:	
+            case 1:
+                //system("wifi off");
                 system("echo 0 > /sys/class/leds/VH4032N:blue:voice/brightness");
                 break;
-            case 1:
+
+            case 2:
+                //system("wifi on");
                 system("echo 1 > /sys/class/leds/VH4032N:blue:voice/brightness");
                 break;
-        }       
-        
+
+            case 3:
+                system("sed -i '/maclist\\|macfilter/d' /etc/config/wireless");
+                break;
+
+            case 4:
+                //If macfilter exists
+                //Sustitute old value with the new one (deny)
+                //Otherwise add a new line with it
+                system("sed -i '/option macfilter/{h;s/'\\''.*'\\''/'\\''deny'\\''/};${x;/^$/{s//\\toption macfilter '\\''deny'\\'' /;H};x}' /etc/config/wireless");
+                break;
+
+            case 5:
+                //If macfilter exists
+                //Sustitute old value with the new one (allow)
+                //Otherwise add a new line with it
+                system("sed -i '/option macfilter/{h;s/'\\''.*'\\''/'\\''allow'\\''/};${x;/^$/{s//\\toption macfilter '\\''allow'\\'' /;H};x}' /etc/config/wireless");
+                break;
+
+            default:
+                snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{d};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", buf, buf);
+                system(command);
+        }
+
         n = sendto(sock,"Got your message\n",17,
                     0,(struct sockaddr *)&from,fromlen);
         if (n  < 0) error("sendto");
     }
-}   
+}
 
 int main(int argc, char *argv[]) {
 
@@ -129,5 +155,5 @@ int main(int argc, char *argv[]) {
 
     //Close the log
     closelog ();
-    
+
 }
