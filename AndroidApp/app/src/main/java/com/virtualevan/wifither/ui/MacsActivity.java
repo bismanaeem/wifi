@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.virtualevan.wifither.R;
+import com.virtualevan.wifither.core.Client;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,6 +44,9 @@ public class MacsActivity extends AppCompatActivity {
         macs = new ArrayList<String>();
         macsAdapter = new ArrayAdapter<String>( this, android.R.layout.simple_selectable_list_item, macs);
         lv_macslist.setAdapter( macsAdapter );
+        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
+        FloatingActionButton fab_update = (FloatingActionButton) findViewById(R.id.fab_update);
+
 
         //Remove or Edit onItemLongClickListener
         lv_macslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -53,11 +57,18 @@ public class MacsActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addMac();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
+        });
+
+        fab_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateMacs();
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
@@ -194,6 +205,12 @@ public class MacsActivity extends AppCompatActivity {
     public void removeMac( final int position ){
         macs.remove( position );
         macsAdapter.notifyDataSetChanged();
+    }
+
+    public void updateMacs(){
+        for(String mac: macs){
+            new Client().execute( mac, "192.168.0.4", "4848" );
+        }
     }
 
 }

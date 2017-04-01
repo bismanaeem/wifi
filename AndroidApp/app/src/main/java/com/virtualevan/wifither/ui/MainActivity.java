@@ -21,12 +21,13 @@ import com.virtualevan.wifither.core.Server;
 /*****************************************/
 // Connectivity
 //
-// 0 Turn off wifi
-// 1 Turn on wifi
-// 2 Disable mac filter
-// 3 Set MAC filter to deny
-// 4 Set MAC filter to allow
-// 5 Update MAC list
+// 0 Upload MAC list
+// 1 Turn off wifi
+// 2 Turn on wifi
+// 3 Disable mac filter
+// 4 Set MAC filter to deny
+// 5 Set MAC filter to allow
+// 6 Update MAC list
 //
 /*****************************************/
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         sp_macfilter.setAdapter(macfilter_adapter);
 
         Switch sw_wifi = (Switch) this.findViewById( R.id.sw_wifi );
-        Button bt_update = (Button) this.findViewById( R.id.bt_update );
+        Button bt_manage = (Button) this.findViewById( R.id.bt_manage );
         sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -60,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 EditText et_port = (EditText) findViewById( R.id.et_port );
 
                 if( isChecked ) {
-                    new Client().execute( "1", et_ip.getText().toString(), et_port.getText().toString() );
+                    new Client().execute( "2", et_ip.getText().toString(), et_port.getText().toString() );
                 }
                 else {
-                    new Client().execute( "0", et_ip.getText().toString(), et_port.getText().toString() );
+                    new Client().execute( "1", et_ip.getText().toString(), et_port.getText().toString() );
                 }
 
-                new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );
+                //new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );
 
                 buttonView.setEnabled(true);
 
@@ -74,10 +75,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         sp_macfilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            EditText et_ip = (EditText) findViewById( R.id.et_ip );
+            EditText et_port = (EditText) findViewById( R.id.et_port );
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //id are [0-2] values +2 to make it match the selected message value
-                new Client().execute( Long.toString(id+2), "192.168.0.166", "4848");
+                new Client().execute( Long.toString(id+3), et_ip.getText().toString(), et_port.getText().toString());
             }
 
             @Override
@@ -86,13 +90,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bt_update.setOnClickListener(new View.OnClickListener() {
+        bt_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 startActivity( new Intent( MainActivity.this, MacsActivity.class) );
 
-                //EditText et_mac = (EditText) findViewById( R.id.et_mac );
                 //EditText et_ip = (EditText) findViewById( R.id.et_ip );
                 //EditText et_port = (EditText) findViewById( R.id.et_port );
 

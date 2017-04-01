@@ -98,6 +98,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/sp_macfilter"
                 android:layout_weight="1" />
+
+            <Button
+                android:text="+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_manage" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,12 +113,6 @@
             android:layout_weight="1"
             android:id="@+id/ll_update">
 
-            <Button
-                android:text="Update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bt_update"
-                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
