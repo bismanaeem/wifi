@@ -1,36 +1,35 @@
 package com.virtualevan.wifither.ui;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
+import com.virtualevan.wifither.core.DeviceModel;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 public class MacsActivity extends AppCompatActivity {
 
-    private ArrayList<String> macs;
-    private ArrayAdapter<String> macsAdapter;
+    private ArrayList<DeviceModel> macs;
+    private MacsAdapter macsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +40,19 @@ public class MacsActivity extends AppCompatActivity {
 
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
-        macs = new ArrayList<String>();
-        macsAdapter = new ArrayAdapter<String>( this, android.R.layout.simple_selectable_list_item, macs);
+        macs = new ArrayList<DeviceModel>();
+        macsAdapter = new MacsAdapter( this, macs );
         lv_macslist.setAdapter( macsAdapter );
-        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
-        FloatingActionButton fab_update = (FloatingActionButton) findViewById(R.id.fab_update);
 
+        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
+        FloatingActionButton fab_apply = (FloatingActionButton) findViewById(R.id.fab_apply);
 
         //Remove or Edit onItemLongClickListener
         lv_macslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 selectAction( position );
+                macsAdapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -61,19 +61,19 @@ public class MacsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addMac();
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                macsAdapter.notifyDataSetChanged();
             }
         });
 
-        fab_update.setOnClickListener(new View.OnClickListener() {
+        fab_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateMacs();
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                applyChanges();
+                //TODO:Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
-
+    /*
     @Override
     public void onPause(){
         super.onPause();
@@ -93,7 +93,7 @@ public class MacsActivity extends AppCompatActivity {
         macs.addAll( loaded_macs );
         macsAdapter.notifyDataSetChanged();
     }
-
+    */
     public void selectAction(final int position){
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final Resources res = getResources();
@@ -115,22 +115,30 @@ public class MacsActivity extends AppCompatActivity {
         dlgBuilder.create().show();
     }
 
+    public void addMac(String device, String mac){
+        macsAdapter.add( new DeviceModel( device, mac, false ) );
+    }
+
     public void addMac(){
-        final EditText et_mac = new EditText( this );
         final Resources res = getResources();
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final AlertDialog alertDialog;
+        LayoutInflater factory = LayoutInflater.from(this);
 
-        dlgBuilder.setTitle( res.getString( R.string.add_mac ) );
-        dlgBuilder.setView( et_mac );
+        /*Loading dialog layout*/
+        final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
+        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_device );
+        final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
+
+        dlgBuilder.setTitle( res.getString( R.string.new_device ) );
+        dlgBuilder.setView( dialogView );
         dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
-        dlgBuilder.setPositiveButton( res.getString( R.string.add ), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addMac( et_mac.getText().toString().toUpperCase() );
-            }
-        });
+        dlgBuilder.setPositiveButton( res.getString( R.string.add ), null);
         alertDialog = dlgBuilder.create();
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertDialog.show();
+        Button bt_add = (Button) alertDialog.getButton( AlertDialog.BUTTON_POSITIVE );
+        //bt_add.setEnabled( false );
 
         et_mac.addTextChangedListener(new TextWatcher() {
             @Override
@@ -149,34 +157,50 @@ public class MacsActivity extends AppCompatActivity {
             }
         });
 
-        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        alertDialog.show();
-        alertDialog.getButton( AlertDialog.BUTTON_POSITIVE ).setEnabled( false );
+        bt_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( et_device.getText().toString().trim().isEmpty() ){
+                    Toast.makeText( MacsActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+                }
+                else {
+                    addMac( et_device.getText().toString(), et_mac.getText().toString().toUpperCase() );
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+
     }
 
     public Boolean checkMac( String mac ) {
         return Pattern.compile("([0-9a-fA-F][0-9a-fA-F]:){5}[0-9a-fA-F][0-9a-fA-F]").matcher(mac).matches();
     }
 
-    public void addMac(String mac){
-        macsAdapter.add( mac );
-    }
-
     public void modifyMac( final int position ){
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
-        final EditText et_mac = new EditText( this );
         final Resources res = getResources();
         final AlertDialog alertDialog;
+        LayoutInflater factory = LayoutInflater.from(this);
 
-        dlgBuilder.setTitle( res.getString( R.string.edit_mac) );
-        et_mac.setText( macs.get( position ) );
-        et_mac.setSelection( et_mac.getText().length() );
-        dlgBuilder.setView( et_mac );
+        /*Loading dialog layout*/
+        final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
+        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_device );
+        final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
+
+        final DeviceModel device = macs.get( position );
+        dlgBuilder.setTitle( res.getString( R.string.edit_device) );
+        et_device.setText( device.getDevice() );
+        et_mac.setText( device.getMac() );
+        //TODO:et_mac.setSelection( et_mac.getText().length() );
+        dlgBuilder.setView( dialogView );
         dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
         dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                macs.set( position, et_mac.getText().toString().toUpperCase() );
+                device.setDevice(et_device.getText().toString());
+                device.setMac(et_mac.getText().toString().toUpperCase());
+                //TODO:macs.set( position, et_mac.getText().toString().toUpperCase() );
             }
         });
         alertDialog = dlgBuilder.create();
@@ -207,10 +231,8 @@ public class MacsActivity extends AppCompatActivity {
         macsAdapter.notifyDataSetChanged();
     }
 
-    public void updateMacs(){
-        for(String mac: macs){
-            new Client().execute( mac, "192.168.0.4", "4848" );
-        }
+    public void applyChanges(){
+        //TODO:wifi restart
     }
 
 }

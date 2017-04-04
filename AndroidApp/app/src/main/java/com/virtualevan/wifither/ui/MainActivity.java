@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         et_ip.setText( loader.getString( "ip", null ) );
         et_port.setText( loader.getString( "port", null ) );
         sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
-        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ));
+        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
 
     }
 }
