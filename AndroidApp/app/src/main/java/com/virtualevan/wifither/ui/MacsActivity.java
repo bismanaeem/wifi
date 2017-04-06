@@ -1,6 +1,8 @@
 package com.virtualevan.wifither.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,11 +21,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class MacsActivity extends AppCompatActivity {
@@ -35,8 +41,8 @@ public class MacsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_macs);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
@@ -73,13 +79,15 @@ public class MacsActivity extends AppCompatActivity {
             }
         });
     }
-    /*
+
     @Override
     public void onPause(){
         super.onPause();
         SharedPreferences.Editor saver = getPreferences( Context.MODE_PRIVATE ).edit();
+        Gson gson = new Gson();
 
-        saver.putStringSet( "mac_list", new HashSet<String>( macs ) );
+        String serialized_macs = gson.toJson( macs );
+        saver.putString( "mac_list", serialized_macs );
         saver.apply();
     }
 
@@ -87,13 +95,15 @@ public class MacsActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         SharedPreferences loader = this.getPreferences( Context.MODE_PRIVATE );
-        Set<String> loaded_macs = loader.getStringSet( "mac_list", new HashSet<String>( macs ) );
+        Gson gson = new Gson();
+
+        String serialized_macs = loader.getString( "mac_list", "[]" );
 
         macs.clear();
-        macs.addAll( loaded_macs );
+        macs.addAll( (ArrayList<DeviceModel>) gson.fromJson( serialized_macs, new TypeToken<ArrayList<DeviceModel>>(){}.getType() ) );
         macsAdapter.notifyDataSetChanged();
     }
-    */
+
     public void selectAction(final int position){
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final Resources res = getResources();
@@ -117,6 +127,7 @@ public class MacsActivity extends AppCompatActivity {
 
     public void addMac(String device, String mac){
         macsAdapter.add( new DeviceModel( device, mac, false ) );
+        macsAdapter.notifyDataSetChanged();
     }
 
     public void addMac(){
@@ -138,7 +149,7 @@ public class MacsActivity extends AppCompatActivity {
         alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         alertDialog.show();
         Button bt_add = (Button) alertDialog.getButton( AlertDialog.BUTTON_POSITIVE );
-        //bt_add.setEnabled( false );
+        bt_add.setEnabled( false );
 
         et_mac.addTextChangedListener(new TextWatcher() {
             @Override

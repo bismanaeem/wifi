@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Avoid the onCreate call for the selected item
+        sp_macfilter.setSelection(0,false);
+
         sp_macfilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             EditText et_ip = (EditText) findViewById( R.id.et_ip );
             EditText et_port = (EditText) findViewById( R.id.et_port );
