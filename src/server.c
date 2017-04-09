@@ -97,6 +97,8 @@ void process(char *port)
         error("binding");
     fromlen = sizeof(struct sockaddr_in);
     while (1) {
+	memset(buf, 0, sizeof(buf));
+        memset(command, 0, sizeof(command));
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
         switch(atoi(buf)) {
