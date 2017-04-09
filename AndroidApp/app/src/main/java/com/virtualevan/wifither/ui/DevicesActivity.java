@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,27 +26,25 @@ import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
 
-public class MacsActivity extends AppCompatActivity {
+public class DevicesActivity extends AppCompatActivity {
 
-    private ArrayList<DeviceModel> macs;
-    private MacsAdapter macsAdapter;
+    private ArrayList<DeviceModel> devices;
+    private DevicesAdapter devicesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_macs);
+        setContentView(R.layout.activity_devices);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
-        macs = new ArrayList<DeviceModel>();
-        macsAdapter = new MacsAdapter( this, macs );
-        lv_macslist.setAdapter( macsAdapter );
+        devices = new ArrayList<DeviceModel>();
+        devicesAdapter = new DevicesAdapter( this, devices, getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+        lv_macslist.setAdapter(devicesAdapter);
 
         FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
         FloatingActionButton fab_apply = (FloatingActionButton) findViewById(R.id.fab_apply);
@@ -58,7 +54,7 @@ public class MacsActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 selectAction( position );
-                macsAdapter.notifyDataSetChanged();
+                devicesAdapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -67,7 +63,7 @@ public class MacsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addMac();
-                macsAdapter.notifyDataSetChanged();
+                devicesAdapter.notifyDataSetChanged();
             }
         });
 
@@ -86,8 +82,8 @@ public class MacsActivity extends AppCompatActivity {
         SharedPreferences.Editor saver = getPreferences( Context.MODE_PRIVATE ).edit();
         Gson gson = new Gson();
 
-        String serialized_macs = gson.toJson( macs );
-        saver.putString( "mac_list", serialized_macs );
+        String serialized_macs = gson.toJson(devices);
+        saver.putString( "device_list", serialized_macs );
         saver.apply();
     }
 
@@ -97,11 +93,11 @@ public class MacsActivity extends AppCompatActivity {
         SharedPreferences loader = this.getPreferences( Context.MODE_PRIVATE );
         Gson gson = new Gson();
 
-        String serialized_macs = loader.getString( "mac_list", "[]" );
+        String serialized_macs = loader.getString( "device_list", "[]" );
 
-        macs.clear();
-        macs.addAll( (ArrayList<DeviceModel>) gson.fromJson( serialized_macs, new TypeToken<ArrayList<DeviceModel>>(){}.getType() ) );
-        macsAdapter.notifyDataSetChanged();
+        devices.clear();
+        devices.addAll( (ArrayList<DeviceModel>) gson.fromJson( serialized_macs, new TypeToken<ArrayList<DeviceModel>>(){}.getType() ) );
+        devicesAdapter.notifyDataSetChanged();
     }
 
     public void selectAction(final int position){
@@ -126,8 +122,8 @@ public class MacsActivity extends AppCompatActivity {
     }
 
     public void addMac(String device, String mac){
-        macsAdapter.add( new DeviceModel( device, mac, false ) );
-        macsAdapter.notifyDataSetChanged();
+        devicesAdapter.add( new DeviceModel( device, mac, false ) );
+        devicesAdapter.notifyDataSetChanged();
     }
 
     public void addMac(){
@@ -138,7 +134,7 @@ public class MacsActivity extends AppCompatActivity {
 
         /*Loading dialog layout*/
         final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
-        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_device );
+        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_name );
         final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
 
         dlgBuilder.setTitle( res.getString( R.string.new_device ) );
@@ -172,7 +168,7 @@ public class MacsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if( et_device.getText().toString().trim().isEmpty() ){
-                    Toast.makeText( MacsActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( DevicesActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
                 }
                 else {
                     addMac( et_device.getText().toString(), et_mac.getText().toString().toUpperCase() );
@@ -196,12 +192,12 @@ public class MacsActivity extends AppCompatActivity {
 
         /*Loading dialog layout*/
         final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
-        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_device );
+        final EditText et_name = (EditText) dialogView.findViewById( R.id.et_name );
         final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
 
-        final DeviceModel device = macs.get( position );
+        final DeviceModel device = devices.get( position );
         dlgBuilder.setTitle( res.getString( R.string.edit_device) );
-        et_device.setText( device.getDevice() );
+        et_name.setText( device.getName() );
         et_mac.setText( device.getMac() );
         //TODO:et_mac.setSelection( et_mac.getText().length() );
         dlgBuilder.setView( dialogView );
@@ -209,9 +205,9 @@ public class MacsActivity extends AppCompatActivity {
         dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                device.setDevice(et_device.getText().toString());
+                device.setDevice(et_name.getText().toString());
                 device.setMac(et_mac.getText().toString().toUpperCase());
-                //TODO:macs.set( position, et_mac.getText().toString().toUpperCase() );
+                //TODO:devices.set( position, et_mac.getText().toString().toUpperCase() );
             }
         });
         alertDialog = dlgBuilder.create();
@@ -238,12 +234,13 @@ public class MacsActivity extends AppCompatActivity {
     }
 
     public void removeMac( final int position ){
-        macs.remove( position );
-        macsAdapter.notifyDataSetChanged();
+        devices.remove( position );
+        devicesAdapter.notifyDataSetChanged();
     }
 
     public void applyChanges(){
         //TODO:wifi restart
+        new Client().execute( "99", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
     }
 
 }

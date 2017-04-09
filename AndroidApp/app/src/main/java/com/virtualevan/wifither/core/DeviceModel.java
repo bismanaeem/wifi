@@ -6,12 +6,12 @@ package com.virtualevan.wifither.core;
 
 public class DeviceModel {
     private String mac;
-    private String device;
+    private String name;
     private Boolean active; //switch
 
     /*CONSTRUCTOR*/
     public DeviceModel(String device, String mac, Boolean active){
-        this.device = device;
+        this.name = device;
         this.mac = mac;
         this.active = active;
     }
@@ -26,12 +26,12 @@ public class DeviceModel {
     }
 
     /*DEVICE*/
-    public String getDevice(){
-        return device;
+    public String getName(){
+        return name;
     }
 
-    public void setDevice(String device){
-        this.device = device;
+    public void setDevice(String name){
+        this.name = name;
     }
 
     /*DEVICE*/

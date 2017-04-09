@@ -16,18 +16,18 @@ import android.widget.Switch;
 
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
-import com.virtualevan.wifither.core.Server;
 
 /*****************************************/
 // Connectivity
 //
-// 0 Upload MAC list
+// 0 Wifi restart
 // 1 Turn off wifi
 // 2 Turn on wifi
 // 3 Disable mac filter
 // 4 Set MAC filter to deny
 // 5 Set MAC filter to allow
-// 6 Update MAC list
+// 6 Add MAC
+// 7 Remove MAC
 //
 /*****************************************/
 
@@ -55,16 +55,17 @@ public class MainActivity extends AppCompatActivity {
         sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //TODO: check this line
                 buttonView.setEnabled(false);
 
                 EditText et_ip = (EditText) findViewById( R.id.et_ip );
                 EditText et_port = (EditText) findViewById( R.id.et_port );
 
                 if( isChecked ) {
-                    new Client().execute( "2", et_ip.getText().toString(), et_port.getText().toString() );
+                    new Client().execute( "2", et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
                 }
                 else {
-                    new Client().execute( "1", et_ip.getText().toString(), et_port.getText().toString() );
+                    new Client().execute( "1", et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
                 }
 
                 //new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //id are [0-2] values +2 to make it match the selected message value
-                new Client().execute( Long.toString(id+3), et_ip.getText().toString(), et_port.getText().toString());
+                new Client().execute( Long.toString(id+3), et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
             }
 
             @Override
@@ -96,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
         bt_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Send ip and port to DevicesActivity
+                Intent macsActivity = new Intent( MainActivity.this, DevicesActivity.class);
+                macsActivity.putExtra( "ip", ((EditText) findViewById( R.id.et_ip )).getText().toString().trim() );
+                macsActivity.putExtra( "port", ((EditText) findViewById( R.id.et_port )).getText().toString().trim() );
 
-                startActivity( new Intent( MainActivity.this, MacsActivity.class) );
+                startActivity( macsActivity );
 
-                //EditText et_ip = (EditText) findViewById( R.id.et_ip );
-                //EditText et_port = (EditText) findViewById( R.id.et_port );
-
-                //new Client().execute( "01-00-5e-00-00-02,01-00-5e-00-00-16,01-00-5e-00-00-fb,01-00-5e-00-00-fc,01-00-5e-7f-ff-fa", et_ip.getText().toString(), et_port.getText().toString() );
             }
         });
     }
@@ -116,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
         Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
-        saver.putString( "ip", et_ip.getText().toString() );
-        saver.putString( "port", et_port.getText().toString() );
+        saver.putString( "ip", et_ip.getText().toString().trim() );
+        saver.putString( "port", et_port.getText().toString().trim() );
         saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
         saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
 
