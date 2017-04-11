@@ -240,7 +240,7 @@ public class DevicesActivity extends AppCompatActivity {
 
     public void applyChanges(){
         //TODO:wifi restart
-        new Client().execute( "99", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
     }
 
 }

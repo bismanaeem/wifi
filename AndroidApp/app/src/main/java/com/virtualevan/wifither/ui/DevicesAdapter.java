@@ -61,10 +61,10 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 DeviceModel device = getItem( (Integer) buttonView.getTag() );
                 if( isChecked ) {
-                    new Client().execute( device.getMac(), ip, port );
+                    new Client().execute( "6"+device.getMac(), ip, port );
                 }
                 else {
-                    new Client().execute( device.getName(), ip, port );
+                    new Client().execute( "7"+device.getMac(), ip, port );
                 }
 
                 //new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );

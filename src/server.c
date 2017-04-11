@@ -85,6 +85,7 @@ void process(char *port)
     struct sockaddr_in from;
     char buf[1024];
     char command[1024];
+    char mac[18] = {0};
 
     sock=socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) error("Opening socket");
@@ -97,42 +98,55 @@ void process(char *port)
         error("binding");
     fromlen = sizeof(struct sockaddr_in);
     while (1) {
-	memset(buf, 0, sizeof(buf));
-        memset(command, 0, sizeof(command));
+	    memset(buf, 0, sizeof(buf));
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
-        switch(atoi(buf)) {
-            case 1:
-                //system("wifi off");
-                system("echo 0 > /sys/class/leds/VH4032N:blue:voice/brightness");
+        switch(buf[0]) {
+            case '0':
+                system("wifi reload");
+                break;
+            
+            case '1':
+                system("wifi down");
                 break;
 
-            case 2:
-                //system("wifi on");
-                system("echo 1 > /sys/class/leds/VH4032N:blue:voice/brightness");
+            case '2':
+                system("wifi");
                 break;
 
-            case 3:
+            case '3':
                 system("sed -i '/maclist\\|macfilter/d' /etc/config/wireless");
                 break;
 
-            case 4:
+            case '4':
                 //If macfilter exists
                 //Sustitute old value with the new one (deny)
                 //Otherwise add a new line with it
                 system("sed -i '/option macfilter/{h;s/'\\''.*'\\''/'\\''deny'\\''/};${x;/^$/{s//\\toption macfilter '\\''deny'\\'' /;H};x}' /etc/config/wireless");
                 break;
 
-            case 5:
+            case '5':
                 //If macfilter exists
                 //Sustitute old value with the new one (allow)
                 //Otherwise add a new line with it
                 system("sed -i '/option macfilter/{h;s/'\\''.*'\\''/'\\''allow'\\''/};${x;/^$/{s//\\toption macfilter '\\''allow'\\'' /;H};x}' /etc/config/wireless");
                 break;
 
-            default:
-                snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{d};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", buf, buf);
+            case '6':
+                strncpy(mac, buf+1, 17);
+                snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{d};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", mac, mac);
                 system(command);
+                memset(command, 0, sizeof(command));
+                memset(mac, 0, sizeof(memset));
+                break;
+
+            case '7':
+                strncpy(mac, buf+1, 17);
+                snprintf(command, sizeof(command), "sed -i '/%s/d}' /etc/config/wireless", mac, mac);
+                system(command);
+                memset(command, 0, sizeof(command));
+                memset(mac, 0, sizeof(memset));
+                break;                
         }
 
         n = sendto(sock,"Got your message\n",17,
