@@ -15,6 +15,11 @@
 #include <syslog.h>
 
 
+//Crypto
+#include <openssl/bio.h>
+#include <openssl/evp.h>
+#include <openssl/des.h>
+
 void error(const char *msg)
 {
     perror(msg);
@@ -77,6 +82,24 @@ void demonize()
     close(STDERR_FILENO);
 }
 
+char *unbase64(unsigned char *input, int length)
+{
+    BIO *b64, *bmem;
+
+    char *buffer = (char *)malloc(length);
+    memset(buffer, 0, length);
+
+    b64 = BIO_new(BIO_f_base64());
+    bmem = BIO_new_mem_buf(input, length);
+    bmem = BIO_push(b64, bmem);
+
+    BIO_read(bmem, buffer, length);
+
+    BIO_free_all(bmem);
+
+    return buffer;
+}
+
 void process(char *port)
 {
     int sock, length, n;
@@ -86,6 +109,10 @@ void process(char *port)
     char buf[1024];
     char command[1024];
     char mac[18] = {0};
+
+    DES_cblock key;
+    DES_key_schedule schedule;
+    unsigned char *data;
 
     sock=socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) error("Opening socket");
@@ -99,13 +126,28 @@ void process(char *port)
     fromlen = sizeof(struct sockaddr_in);
     while (1) {
 	    memset(buf, 0, sizeof(buf));
+        memset(command, 0, sizeof(command));
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
-        switch(buf[0]) {
+        data = unbase64(buf, strlen(buf));
+        DES_set_key_unchecked((DES_cblock*) "00000000", &schedule);
+
+        /* TODO: COMPROBAR SI MERECE LA PENA
+        for(int i = 0; i < 17; i += 8) {
+            DES_ecb_encrypt((DES_cblock*) (data+i), (DES_cblock*) (data+i), &schedule, DES_DECRYPT);
+        }
+        */
+        DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
+        data += 8;
+        DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
+        data += 8;
+        DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
+        data -= 16;
+        switch(data[0]) {
             case '0':
                 system("wifi reload");
                 break;
-            
+
             case '1':
                 system("wifi down");
                 break;
@@ -133,20 +175,18 @@ void process(char *port)
                 break;
 
             case '6':
-                strncpy(mac, buf+1, 17);
+                strncpy(mac, data+1, 17);
                 snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{d};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", mac, mac);
                 system(command);
-                memset(command, 0, sizeof(command));
                 memset(mac, 0, sizeof(memset));
                 break;
 
             case '7':
-                strncpy(mac, buf+1, 17);
+                strncpy(mac, data+1, 17);
                 snprintf(command, sizeof(command), "sed -i '/%s/d}' /etc/config/wireless", mac, mac);
                 system(command);
-                memset(command, 0, sizeof(command));
                 memset(mac, 0, sizeof(memset));
-                break;                
+                break;
         }
 
         n = sendto(sock,"Got your message\n",17,
