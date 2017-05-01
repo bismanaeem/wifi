@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import android.widget.Switch;
 
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
+import com.virtualevan.wifither.core.Server;
 
 /*****************************************/
 // Connectivity
@@ -26,8 +28,8 @@ import com.virtualevan.wifither.core.Client;
 // 3 Disable mac filter
 // 4 Set MAC filter to deny
 // 5 Set MAC filter to allow
-// 6 Add MAC
-// 7 Remove MAC
+// 6 Add Device
+// 7 Remove Device
 //
 /*****************************************/
 
@@ -50,48 +52,71 @@ public class MainActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         sp_macfilter.setAdapter(macfilter_adapter);
 
-        Switch sw_wifi = (Switch) this.findViewById( R.id.sw_wifi );
-        Button bt_manage = (Button) this.findViewById( R.id.bt_manage );
-        sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
+        Button bt_manage = (Button) findViewById( R.id.bt_manage );
+
+        sw_wifi.setOnTouchListener(new View.OnTouchListener(){
+
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //TODO: check this line
-                buttonView.setEnabled(false);
+            public boolean onTouch(View v, MotionEvent event) {
+                final Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
+                final EditText et_ip = (EditText) findViewById( R.id.et_ip );
+                final EditText et_port = (EditText) findViewById( R.id.et_port );
 
-                EditText et_ip = (EditText) findViewById( R.id.et_ip );
-                EditText et_port = (EditText) findViewById( R.id.et_port );
+                sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    boolean firstTime = true;
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        //firstTime prevents the Switch from being triggered during the rollback
+                        if(firstTime) {
+                            if (isChecked) {
+                                new Client().execute("2", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            } else {
+                                new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            }
+                            firstTime = false;
+                            new Server( sw_wifi, isChecked? 0 : 1 ).execute( et_ip.getText().toString(), et_port.getText().toString() );
+                        }
 
-                if( isChecked ) {
-                    new Client().execute( "2", et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
-                }
-                else {
-                    new Client().execute( "1", et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
-                }
+                    }
+                });
 
-                //new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );
-
-                buttonView.setEnabled(true);
-
+                return false;
             }
+
         });
 
-        //Avoid the onCreate call for the selected item
-        sp_macfilter.setSelection(0,false);
-
-        sp_macfilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            EditText et_ip = (EditText) findViewById( R.id.et_ip );
-            EditText et_port = (EditText) findViewById( R.id.et_port );
+        sp_macfilter.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //id are [0-2] values +2 to make it match the selected message value
-                new Client().execute( Long.toString(id+3), et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
+            public boolean onTouch(View v, MotionEvent event) {
+                final Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
+                final int selectedItem = sp_macfilter.getSelectedItemPosition();
+
+                sp_macfilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    EditText et_ip = (EditText) findViewById( R.id.et_ip );
+                    EditText et_port = (EditText) findViewById( R.id.et_port );
+                    boolean firstTime = true;
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        //firstTime prevents the Spinner from being triggered during the rollback
+                        if (firstTime) {
+                            //id are [0-2] values +2 to make it match the selected message value
+                            new Client().execute(Long.toString(id + 3), et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            firstTime = false;
+                            new Server( sp_macfilter, selectedItem ).execute( et_ip.getText().toString(), et_port.getText().toString() );
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //Do nothing
+                    }
+                });
+
+                return false;
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Do nothing
-            }
         });
 
         bt_manage.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +163,5 @@ public class MainActivity extends AppCompatActivity {
         et_port.setText( loader.getString( "port", null ) );
         sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
         sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
-
     }
 }

@@ -7,7 +7,7 @@
     <string name="sp_disabled">Disabled</string>
     <string name="sp_deny">Deny</string>
     <string name="sp_allow">Allow</string>
-    <string name="port_error">ERROR: Incorrect port specification</string>
+
 
     <string name="new_device">New Device</string>
     <string name="edit_device">Edit device</string>
@@ -20,10 +20,24 @@
     <string name="mac_address">MAC Address</string>
     <string name="empty_device">Please insert a device name</string>
 
+
     <string-array name="sp_macfilter">
         <item>@string/sp_disabled</item>
         <item>@string/sp_deny</item>
         <item>@string/sp_allow</item>
     </string-array>
     <string name="title_activity_macs">MacsActivity</string>
+
+
+    <!-- NOTIFICATION MESSAGES -->
+    <string name="port_error">ERROR: Incorrect port specification</string>
+    <string name="timeout">ERROR: Request timeout</string>
+    <string name="wifi_restarted">Configuration has been applied</string>
+    <string name="wifi_enabled">Wi-Fi has been enabled</string>
+    <string name="wifi_disabled">Wi-Fi has been disabled</string>
+    <string name="mac_filter_disabled">MAC-Filter has been disabled</string>
+    <string name="mac_filter_deny">MAC-Filter has been set to deny</string>
+    <string name="mac_filter_allow">MAC-Filter has been set to allow</string>
+    <string name="device_added">Device successfully added</string>
+    <string name="device_removed">Device successfully removed</string>
 </resources>

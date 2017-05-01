@@ -2,6 +2,7 @@ package com.virtualevan.wifither.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
+import com.virtualevan.wifither.core.Server;
 
 import java.util.ArrayList;
 
@@ -52,26 +54,38 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         tv_mac.setText(device.getMac());
 
         // Lookup view for data population
-        Switch sw_mac = (Switch) convertView.findViewById(R.id.sw_mac);
+        final Switch sw_device = (Switch) convertView.findViewById(R.id.sw_device);
         // Cache row position inside the button using `setTag`
-        sw_mac.setTag(position);
+        sw_device.setTag(position);
         // Attach the click event handler
-        sw_mac.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sw_device.setOnTouchListener(new View.OnTouchListener(){
+
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                DeviceModel device = getItem( (Integer) buttonView.getTag() );
-                if( isChecked ) {
-                    new Client().execute( "6"+device.getMac(), ip, port );
-                }
-                else {
-                    new Client().execute( "7"+device.getMac(), ip, port );
-                }
+            public boolean onTouch(View v, MotionEvent event) {
 
-                //new Server().execute( et_ip.getText().toString(), et_port.getText().toString() );
+                sw_device.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    boolean firstTime = true;
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        //firstTime prevents the Switch from being triggered during the rollback
+                        if(firstTime) {
+                            DeviceModel device = getItem( (Integer) buttonView.getTag() );
+                            if( isChecked ) {
+                                new Client().execute( "6"+device.getMac(), ip, port );
+                            }
+                            else {
+                                new Client().execute( "7"+device.getMac(), ip, port );
+                            }
+                            firstTime = false;
+                            new Server( sw_device, isChecked? 0 : 1 ).execute( ip, port );
+                        }
 
-                buttonView.setEnabled(true);
+                    }
+                });
 
+                return false;
             }
+
         });
 
         // Return the completed view to render on screen
