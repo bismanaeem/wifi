@@ -39,10 +39,10 @@ public class Server extends AsyncTask<String, Void, Boolean> {
     @Override
     public Boolean doInBackground(String... data){
 
+        //TODO: BYTEARRAY length
         byte[] message = new byte[4096];
         DatagramPacket packet = new DatagramPacket(message, message.length);
         DatagramSocket socket = null;
-
 
         try
         {
@@ -54,11 +54,6 @@ public class Server extends AsyncTask<String, Void, Boolean> {
 
             messageString = new String(message, 0, packet.getLength());
                 Log.d("RECEIVED",messageString);
-            //Intent intent = new Intent();
-            //intent.setAction(Main.MESSAGE_RECEIVED);
-            //intent.putExtra(Main.MESSAGE_STRING, new String(message, 0, packet.getLength()));
-            //Main.MainContext.getApplicationContext().sendBroadcast(intent);
-
         }
         catch (SocketTimeoutException e)
         {

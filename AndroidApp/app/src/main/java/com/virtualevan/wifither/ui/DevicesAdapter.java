@@ -49,12 +49,14 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         // Lookup view for data population
         TextView tv_device = (TextView) convertView.findViewById(R.id.device);
         TextView tv_mac = (TextView) convertView.findViewById(R.id.mac);
+        final Switch sw_device = (Switch) convertView.findViewById(R.id.sw_device);
+
         // Populate the data into the template view using the data object
         tv_device.setText(device.getName());
         tv_mac.setText(device.getMac());
+        sw_device.setChecked(device.getSwitch());
 
-        // Lookup view for data population
-        final Switch sw_device = (Switch) convertView.findViewById(R.id.sw_device);
+
         // Cache row position inside the button using `setTag`
         sw_device.setTag(position);
         // Attach the click event handler
@@ -76,6 +78,7 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
                             else {
                                 new Client().execute( "7"+device.getMac(), ip, port );
                             }
+                            device.setSwitch( isChecked );
                             firstTime = false;
                             new Server( sw_device, isChecked? 0 : 1 ).execute( ip, port );
                         }
