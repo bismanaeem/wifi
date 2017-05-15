@@ -189,8 +189,7 @@ void process(char *port)
                 break;
         }
 
-        n = sendto(sock,"Got your message\n",17,
-                    0,(struct sockaddr *)&from,fromlen);
+        n = sendto(sock, &data[0], 1, 0,(struct sockaddr *)&from, fromlen);
         if (n  < 0) error("sendto");
     }
 }

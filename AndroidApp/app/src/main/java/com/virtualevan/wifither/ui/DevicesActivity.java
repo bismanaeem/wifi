@@ -8,15 +8,18 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -24,9 +27,13 @@ import com.google.gson.reflect.TypeToken;
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
+import com.virtualevan.wifither.core.Server;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class DevicesActivity extends AppCompatActivity {
 
@@ -38,8 +45,10 @@ public class DevicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
         //TODO: ELIMINAR ESTO? TAMBIEN EL XML CORRESPONDIENTE
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //TODO: Botón detrás de toolbar al deshabilitar
+        //TODO: Comprobar scroll de la actividad
 
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
@@ -47,8 +56,10 @@ public class DevicesActivity extends AppCompatActivity {
         devicesAdapter = new DevicesAdapter( this, devices, getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
         lv_macslist.setAdapter(devicesAdapter);
 
-        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
-        FloatingActionButton fab_apply = (FloatingActionButton) findViewById(R.id.fab_apply);
+        final FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
+
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
 
         //Remove or Edit onItemLongClickListener
         lv_macslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -60,19 +71,20 @@ public class DevicesActivity extends AppCompatActivity {
             }
         });
 
-        fab_add.setOnClickListener(new View.OnClickListener() {
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
-            public void onClick(View view) {
-                addMac();
-                devicesAdapter.notifyDataSetChanged();
-            }
-        });
-
-        fab_apply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                applyChanges();
-                //TODO:Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                switch( menuItem.getItemId() ) {
+                    case R.id.action_apply:
+                        applyChanges();
+                        new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+                        break;
+                    case R.id.action_add:
+                        addMac();
+                        devicesAdapter.notifyDataSetChanged();
+                        break;
+                }
+                return false;
             }
         });
     }

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -24,16 +25,19 @@ import java.net.SocketTimeoutException;
 public class Server extends AsyncTask<String, Void, Boolean> {
     private int rollback;
     private View object;
+    private ProgressBar progressBar;
     private String messageString="";
 
-    public Server( View v, int rollback ){
+    public Server( View v, int rollback, ProgressBar progressBar ){
         this.object = v;
         this.rollback = rollback;
+        this.progressBar = progressBar;
     }
 
     @Override
     public void onPreExecute(){
         object.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -116,11 +120,12 @@ public class Server extends AsyncTask<String, Void, Boolean> {
             if(object instanceof Switch){
                 ((Switch) object).setChecked( rollback!=0 );
             }
-            else{
+            else if(object instanceof Spinner){
                 ((Spinner) object).setSelection( rollback );
             }
             Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
+        progressBar.setVisibility(View.INVISIBLE);
         object.setEnabled(true);
     }
 

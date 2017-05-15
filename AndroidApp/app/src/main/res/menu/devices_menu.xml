@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_apply"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/apply" />
+    <item
+        android:id="@+id/action_add"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="@string/add"/>
+</menu>

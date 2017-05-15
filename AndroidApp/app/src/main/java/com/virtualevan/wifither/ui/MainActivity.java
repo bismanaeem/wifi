@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
                             }
                             firstTime = false;
-                            new Server( sw_wifi, isChecked? 0 : 1 ).execute( et_ip.getText().toString(), et_port.getText().toString() );
+                            new Server( sw_wifi, isChecked? 0 : 1, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
                         }
 
                     }
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             //id are [0-2] values +2 to make it match the selected message value
                             new Client().execute(Long.toString(id + 3), et_ip.getText().toString().trim(), et_port.getText().toString().trim());
                             firstTime = false;
-                            new Server( sp_macfilter, selectedItem ).execute( et_ip.getText().toString(), et_port.getText().toString() );
+                            new Server( sp_macfilter, selectedItem, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
                         }
                     }
 

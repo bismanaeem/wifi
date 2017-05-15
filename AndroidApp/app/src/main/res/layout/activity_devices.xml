@@ -44,25 +44,28 @@
             android:layout_alignParentStart="true"
             android:id="@+id/lv_macslist" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add"
+    <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:id="@+id/fab_speed_dial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:tint="#ffffff"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_apply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/toolbar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:fabDrawable="@drawable/fab_animation"
+        app:fabGravity="bottom_end"
+        app:fabMenu="@menu/devices_menu"
+        app:miniFabBackgroundTint="@android:color/white"
+        app:miniFabDrawableTint="?attr/colorPrimaryDark"
+        app:miniFabTitleTextColor="?attr/colorPrimaryDark"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -50,6 +51,8 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         TextView tv_device = (TextView) convertView.findViewById(R.id.device);
         TextView tv_mac = (TextView) convertView.findViewById(R.id.mac);
         final Switch sw_device = (Switch) convertView.findViewById(R.id.sw_device);
+        final ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.progress_bar);
+
 
         // Populate the data into the template view using the data object
         tv_device.setText(device.getName());
@@ -80,7 +83,7 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
                             }
                             device.setSwitch( isChecked );
                             firstTime = false;
-                            new Server( sw_device, isChecked? 0 : 1 ).execute( ip, port );
+                            new Server( sw_device, isChecked? 0 : 1, progressBar ).execute( ip, port );
                         }
 
                     }

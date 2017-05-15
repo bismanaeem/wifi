@@ -12,6 +12,7 @@
     <string name="new_device">New Device</string>
     <string name="edit_device">Edit device</string>
     <string name="add">Add</string>
+    <string name="apply">Apply</string>
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
     <string name="remove">Remove</string>
@@ -40,4 +41,5 @@
     <string name="mac_filter_allow">MAC-Filter has been set to allow</string>
     <string name="device_added">Device successfully added</string>
     <string name="device_removed">Device successfully removed</string>
+    <string name="title_activity_potato">Devices</string>
 </resources>
