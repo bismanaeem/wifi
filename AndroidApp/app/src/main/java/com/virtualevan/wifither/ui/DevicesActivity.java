@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,22 +43,19 @@ public class DevicesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
-        //TODO: ELIMINAR ESTO? TAMBIEN EL XML CORRESPONDIENTE
+
+        //Sets the toolbar name
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //TODO: Botón detrás de toolbar al deshabilitar
-        //TODO: Comprobar scroll de la actividad
 
+        //Load views and  create custom adapter
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
         devices = new ArrayList<DeviceModel>();
         devicesAdapter = new DevicesAdapter( this, devices, getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
         lv_macslist.setAdapter(devicesAdapter);
-
         final FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
-
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-
 
         //Remove or Edit onItemLongClickListener
         lv_macslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -80,7 +76,7 @@ public class DevicesActivity extends AppCompatActivity {
                         new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
                         break;
                     case R.id.action_add:
-                        addMac();
+                        addDevice();
                         devicesAdapter.notifyDataSetChanged();
                         break;
                 }
@@ -89,6 +85,7 @@ public class DevicesActivity extends AppCompatActivity {
         });
     }
 
+    //Save device objects using json
     @Override
     public void onPause(){
         super.onPause();
@@ -100,6 +97,7 @@ public class DevicesActivity extends AppCompatActivity {
         saver.apply();
     }
 
+    //Save device objects using json
     @Override
     public void onResume(){
         super.onResume();
@@ -113,6 +111,7 @@ public class DevicesActivity extends AppCompatActivity {
         devicesAdapter.notifyDataSetChanged();
     }
 
+    //Alertdialog for edit or delete
     public void selectAction(final int position){
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final Resources res = getResources();
@@ -122,24 +121,26 @@ public class DevicesActivity extends AppCompatActivity {
         dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                modifyMac( position );
+                modifyDevice( position );
             }
         });
         dlgBuilder.setNeutralButton(res.getString(R.string.remove), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                removeMac( position );
+                removeDevice( position );
             }
         });
         dlgBuilder.create().show();
     }
 
-    public void addMac(String device, String mac){
+    //Add a device to the devices adapter
+    public void addDevice(String device, String mac){
         devicesAdapter.add( new DeviceModel( device, mac, false ) );
         devicesAdapter.notifyDataSetChanged();
     }
 
-    public void addMac(){
+    //Alertdialog which obtains the info for the device creation
+    public void addDevice(){
         final Resources res = getResources();
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final AlertDialog alertDialog;
@@ -173,6 +174,7 @@ public class DevicesActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                //Disable button if the MAC does not match the pattern
                 alertDialog.getButton( AlertDialog.BUTTON_POSITIVE ).setEnabled( checkMac( et_mac.getText().toString() ) );
             }
         });
@@ -184,7 +186,7 @@ public class DevicesActivity extends AppCompatActivity {
                     Toast.makeText( DevicesActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
                 }
                 else {
-                    addMac( et_device.getText().toString(), et_mac.getText().toString().toUpperCase() );
+                    addDevice( et_device.getText().toString(), et_mac.getText().toString().toUpperCase() );
                     alertDialog.dismiss();
                 }
             }
@@ -193,11 +195,13 @@ public class DevicesActivity extends AppCompatActivity {
 
     }
 
+    //Pattern check for the MAC specified during device creations and edits
     public Boolean checkMac( String mac ) {
         return Pattern.compile("([0-9a-fA-F][0-9a-fA-F]:){5}[0-9a-fA-F][0-9a-fA-F]").matcher(mac).matches();
     }
 
-    public void modifyMac( final int position ){
+    //Alertdialog for device edits
+    public void modifyDevice( final int position ){
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
         final Resources res = getResources();
         final AlertDialog alertDialog;
@@ -212,7 +216,7 @@ public class DevicesActivity extends AppCompatActivity {
         dlgBuilder.setTitle( res.getString( R.string.edit_device) );
         et_name.setText( device.getName() );
         et_mac.setText( device.getMac() );
-        //TODO:et_mac.setSelection( et_mac.getText().length() );
+        et_name.setSelection( et_name.getText().length() );
         dlgBuilder.setView( dialogView );
         dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
         dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
@@ -220,7 +224,6 @@ public class DevicesActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 device.setDevice(et_name.getText().toString());
                 device.setMac(et_mac.getText().toString().toUpperCase());
-                //TODO:devices.set( position, et_mac.getText().toString().toUpperCase() );
             }
         });
         alertDialog = dlgBuilder.create();
@@ -238,6 +241,7 @@ public class DevicesActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                //Disable button if the MAC does not match the pattern
                 alertDialog.getButton( AlertDialog.BUTTON_POSITIVE ).setEnabled( checkMac( et_mac.getText().toString() ) );
             }
         });
@@ -246,13 +250,14 @@ public class DevicesActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void removeMac( final int position ){
+    //Remove devices from the adapter
+    public void removeDevice( final int position ){
         devices.remove( position );
         devicesAdapter.notifyDataSetChanged();
     }
 
+    //Restart the router
     public void applyChanges(){
-        //TODO:wifi restart
         new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
     }
 

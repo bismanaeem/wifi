@@ -3,7 +3,7 @@ package com.virtualevan.wifither.core;
 /**
  * Created by VirtualEvan on 01/04/2017.
  */
-
+//Custom element of the DevicesList/DevicesAdapter
 public class DeviceModel {
     private String mac;
     private String name;

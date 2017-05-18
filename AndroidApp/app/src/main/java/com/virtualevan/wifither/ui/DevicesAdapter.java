@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by VirtualEvan on 31/03/2017.
  */
-
+//A custom adapter which allows the list to have elements with their bound Switches asn progress bars
 public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements AdapterView.OnItemLongClickListener{
     private String ip;
     private String port;
@@ -33,12 +33,14 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         this.port = port;
     }
 
+    //Function bridging with DevicesActivity
     @Override
     public boolean onItemLongClick(AdapterView<?> l, View v, final int position, long id) {
         //Sitting here waiting to be overridden
         return true;
     }
 
+    //Function which load the view and returns it to be rendered
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position

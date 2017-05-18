@@ -1,6 +1,5 @@
 package com.virtualevan.wifither.core;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -11,11 +10,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.virtualevan.wifither.R;
-import com.virtualevan.wifither.ui.MainActivity;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
 /**
@@ -27,41 +24,51 @@ public class Server extends AsyncTask<String, Void, Boolean> {
     private View object;
     private ProgressBar progressBar;
     private String messageString="";
+    private boolean portError;
 
+    //Receives the pressed button/switch/spinner, its status and its bound progress bar, then puts them in a local variable
     public Server( View v, int rollback, ProgressBar progressBar ){
         this.object = v;
         this.rollback = rollback;
         this.progressBar = progressBar;
     }
 
+    //Disables the view to prevent the user interaction, and enables the progress bar
     @Override
     public void onPreExecute(){
         object.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    //Wait 10 seconds for a response or timeout
     @Override
     public Boolean doInBackground(String... data){
 
-        //TODO: BYTEARRAY length
+        //Prepare a packet to be received
         byte[] message = new byte[4096];
         DatagramPacket packet = new DatagramPacket(message, message.length);
         DatagramSocket socket = null;
 
         try
         {
+            //Create socket where the packet will be received
             socket = new DatagramSocket( Integer.parseInt(data[1]) );
-            //TODO: CHECKOUT TIME
-            socket.setSoTimeout(3000);
+            socket.setSoTimeout(10000);
 
+            //Listen for 10 seconds
             socket.receive(packet);
 
             messageString = new String(message, 0, packet.getLength());
                 Log.d("RECEIVED",messageString);
         }
-        catch (SocketTimeoutException e)
+        catch (SocketTimeoutException ste)
         {
             Log.d("TIMEOUT","TIMEOUT");
+            return false;
+        }
+        catch (NumberFormatException nfe)
+        {
+            portError = true;
             return false;
         }
         catch (Exception e)
@@ -75,6 +82,7 @@ public class Server extends AsyncTask<String, Void, Boolean> {
 
             if (socket != null)
             {
+                //Close socket when finished
                 socket.close();
             }
         }
@@ -83,6 +91,9 @@ public class Server extends AsyncTask<String, Void, Boolean> {
 
     }
 
+    //If a packet is received before 10 seconds, show a confirmation error,
+    //otherwise show an error message and do rollback to the previous position of the view.
+    //Other non related error also show an error message
     @Override
     public void onPostExecute( Boolean result ){
         if(result){
@@ -123,10 +134,17 @@ public class Server extends AsyncTask<String, Void, Boolean> {
             else if(object instanceof Spinner){
                 ((Spinner) object).setSelection( rollback );
             }
-            Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            if(portError){
+                Toast.makeText( object.getContext(), object.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
+            }
+            else{
+                Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            }
         }
+        //Disable the progress bar and enable de view
         progressBar.setVisibility(View.INVISIBLE);
         object.setEnabled(true);
+
     }
 
 }

@@ -34,24 +34,27 @@ public class Client extends AsyncTask<String, Void, Boolean> {
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] encrypted = Base64.encode(cipher.doFinal(data[0].getBytes("UTF8")), Base64.DEFAULT);
 
+            //Create a socket with the given port
             datagramSocket = new DatagramSocket(Integer.parseInt(data[2]));
 
+            //Create datagram to be sent
             DatagramPacket datagramPacket;
             datagramPacket = new DatagramPacket(encrypted, encrypted.length, InetAddress.getByName(data[1]), Integer.parseInt(data[2]));
 
+            //Send datagram
             datagramSocket.send(datagramPacket);
             Log.d("DES", new String(cipher.doFinal(data[0].getBytes("UTF8")), 0, cipher.doFinal(data[0].getBytes("UTF8")).length));
             Log.d("BASE64", new String(encrypted, 0, encrypted.length));
         }
         catch (Exception e)
         {
-            //TODO: ELIMINAR
             e.printStackTrace();
         }
         finally
         {
             if (datagramSocket != null)
             {
+                //Close socket when transmission finishes
                 datagramSocket.close();
             }
         }

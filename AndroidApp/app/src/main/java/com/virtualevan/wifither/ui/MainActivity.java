@@ -46,48 +46,49 @@ public class MainActivity extends AppCompatActivity {
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        //Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> macfilter_adapter = ArrayAdapter.createFromResource(this,
                 R.array.sp_macfilter, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        //Specify the layout to use when the list of choices appears
         macfilter_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
+        //Apply the adapter to the spinner
         sp_macfilter.setAdapter(macfilter_adapter);
 
-        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
-        Button bt_manage = (Button) findViewById( R.id.bt_manage );
+        //Load views
+        final Button bt_manage = (Button) findViewById( R.id.bt_manage );
+        final Button bt_config = (Button) findViewById( R.id.bt_config );
+        final Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
+        final EditText et_ip = (EditText) findViewById( R.id.et_ip );
+        final EditText et_port = (EditText) findViewById( R.id.et_port );
 
+        //Prevents the Switch from being triggered by a logical check
         sw_wifi.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
-                final EditText et_ip = (EditText) findViewById( R.id.et_ip );
-                final EditText et_port = (EditText) findViewById( R.id.et_port );
-
-                sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    boolean firstTime = true;
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        //firstTime prevents the Switch from being triggered during the rollback
-                        if(firstTime) {
-                            if (isChecked) {
-                                new Client().execute("2", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
-                            } else {
-                                new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
-                            }
-                            firstTime = false;
-                            new Server( sw_wifi, isChecked? 0 : 1, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
+            sw_wifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                boolean firstTime = true;
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    //firstTime prevents the Switch from being triggered during the rollback
+                    if(firstTime) {
+                        if (isChecked) {
+                            new Client().execute("2", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                        } else {
+                            new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
                         }
-
+                        firstTime = false;
+                        new Server( sw_wifi, isChecked? 0 : 1, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
                     }
-                });
+                }
+            });
 
-                return false;
+            return false;
             }
 
         });
 
+        //Prevents the Spinner from being triggered by a logical selection
         sp_macfilter.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
@@ -121,20 +122,45 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //Start the activity
         bt_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Send ip and port to DevicesActivity
+                //Sends ip and port to DevicesActivity
                 Intent macsActivity = new Intent( MainActivity.this, DevicesActivity.class);
                 macsActivity.putExtra( "ip", ((EditText) findViewById( R.id.et_ip )).getText().toString().trim() );
                 macsActivity.putExtra( "port", ((EditText) findViewById( R.id.et_port )).getText().toString().trim() );
 
                 startActivity( macsActivity );
+            }
+        });
 
+        //Enable the URI configuration
+        bt_config.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!et_ip.isEnabled()) {
+                    et_ip.setEnabled(true);
+                    et_port.setEnabled(true);
+                    bt_config.setText(getResources().getString( R.string.bt_config_confirm ));
+                }
+                else {
+                    et_ip.setEnabled(false);
+                    et_port.setEnabled(false);
+                    bt_config.setText(getResources().getString( R.string.bt_config ));
+
+                    //Saves the configuration when confirmed
+                    SharedPreferences.Editor saver = getPreferences( Context.MODE_PRIVATE ).edit();
+                    saver.putString( "ip", et_ip.getText().toString().trim() );
+                    saver.putString( "port", et_port.getText().toString().trim() );
+                    saver.apply();
+                }
             }
         });
     }
 
+
+    //Save the configuration
     @Override
     public void onPause(){
         super.onPause();
@@ -144,14 +170,17 @@ public class MainActivity extends AppCompatActivity {
         Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
-        saver.putString( "ip", et_ip.getText().toString().trim() );
-        saver.putString( "port", et_port.getText().toString().trim() );
+        if(!et_ip.isEnabled()){
+            saver.putString( "ip", et_ip.getText().toString().trim() );
+            saver.putString( "port", et_port.getText().toString().trim() );
+        }
         saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
         saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
 
         saver.apply();
     }
 
+    //Load the configuration
     @Override
     public void onResume(){
         super.onResume();

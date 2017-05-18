@@ -7,6 +7,10 @@
     <string name="sp_disabled">Disabled</string>
     <string name="sp_deny">Deny</string>
     <string name="sp_allow">Allow</string>
+    <string name="bt_config">Configure</string>
+    <string name="bt_config_confirm">Confirm</string>
+
+.    <string name="bt_manage">Manage devices</string>
 
 
     <string name="new_device">New Device</string>
