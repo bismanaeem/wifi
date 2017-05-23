@@ -26,11 +26,13 @@ import java.util.ArrayList;
 public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements AdapterView.OnItemLongClickListener{
     private String ip;
     private String port;
+    private String pass;
 
-    public DevicesAdapter(Context context, ArrayList<DeviceModel> macs, String ip, String port){
+    public DevicesAdapter(Context context, ArrayList<DeviceModel> macs, String ip, String port, String pass){
         super( context, 0, macs );
         this.ip = ip;
         this.port = port;
+        this.pass = pass;
     }
 
     //Function bridging with DevicesActivity
@@ -78,10 +80,10 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
                         if(firstTime) {
                             DeviceModel device = getItem( (Integer) buttonView.getTag() );
                             if( isChecked ) {
-                                new Client().execute( "6"+device.getMac(), ip, port );
+                                new Client().execute( "6"+device.getMac(), ip, port, pass );
                             }
                             else {
-                                new Client().execute( "7"+device.getMac(), ip, port );
+                                new Client().execute( "7"+device.getMac(), ip, port, pass );
                             }
                             device.setSwitch( isChecked );
                             firstTime = false;

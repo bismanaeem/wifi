@@ -52,7 +52,7 @@ public class DevicesActivity extends AppCompatActivity {
         ListView lv_macslist = (ListView) this.findViewById( R.id.lv_macslist );
         lv_macslist.setLongClickable( true );
         devices = new ArrayList<DeviceModel>();
-        devicesAdapter = new DevicesAdapter( this, devices, getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+        devicesAdapter = new DevicesAdapter( this, devices, getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
         lv_macslist.setAdapter(devicesAdapter);
         final FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -258,7 +258,7 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Restart the router
     public void applyChanges(){
-        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
     }
 
 }

@@ -25,7 +25,7 @@ public class Client extends AsyncTask<String, Void, Boolean> {
 
         try
         {
-            DESKeySpec keySpec = new DESKeySpec("00000000".getBytes("UTF8"));
+            DESKeySpec keySpec = new DESKeySpec(data[3].getBytes("UTF8"));
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             SecretKey key = keyFactory.generateSecret(keySpec);
 

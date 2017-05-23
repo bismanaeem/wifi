@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         final Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         final EditText et_ip = (EditText) findViewById( R.id.et_ip );
         final EditText et_port = (EditText) findViewById( R.id.et_port );
+        final EditText et_pass = (EditText) findViewById( R.id.et_pass );
 
         //Prevents the Switch from being triggered by a logical check
         sw_wifi.setOnTouchListener(new View.OnTouchListener(){
@@ -73,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                     //firstTime prevents the Switch from being triggered during the rollback
                     if(firstTime) {
                         if (isChecked) {
-                            new Client().execute("2", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            new Client().execute("2", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim());
                         } else {
-                            new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            new Client().execute("1", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim());
                         }
                         firstTime = false;
                         new Server( sw_wifi, isChecked? 0 : 1, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         //firstTime prevents the Spinner from being triggered during the rollback
                         if (firstTime) {
                             //id are [0-2] values +2 to make it match the selected message value
-                            new Client().execute(Long.toString(id + 3), et_ip.getText().toString().trim(), et_port.getText().toString().trim());
+                            new Client().execute(Long.toString(id + 3), et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim());
                             firstTime = false;
                             new Server( sp_macfilter, selectedItem, progressBar ).execute( et_ip.getText().toString(), et_port.getText().toString() );
                         }
@@ -127,11 +128,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Sends ip and port to DevicesActivity
-                Intent macsActivity = new Intent( MainActivity.this, DevicesActivity.class);
-                macsActivity.putExtra( "ip", ((EditText) findViewById( R.id.et_ip )).getText().toString().trim() );
-                macsActivity.putExtra( "port", ((EditText) findViewById( R.id.et_port )).getText().toString().trim() );
+                Intent devicesActivity = new Intent( MainActivity.this, DevicesActivity.class);
+                devicesActivity.putExtra( "ip", ((EditText) findViewById( R.id.et_ip )).getText().toString().trim() );
+                devicesActivity.putExtra( "port", ((EditText) findViewById( R.id.et_port )).getText().toString().trim() );
+                devicesActivity.putExtra( "pass", ((EditText) findViewById( R.id.et_pass )).getText().toString().trim() );
 
-                startActivity( macsActivity );
+                startActivity( devicesActivity );
             }
         });
 
@@ -142,11 +144,13 @@ public class MainActivity extends AppCompatActivity {
                 if(!et_ip.isEnabled()) {
                     et_ip.setEnabled(true);
                     et_port.setEnabled(true);
+                    et_pass.setEnabled(true);
                     bt_config.setText(getResources().getString( R.string.bt_config_confirm ));
                 }
                 else {
                     et_ip.setEnabled(false);
                     et_port.setEnabled(false);
+                    et_pass.setEnabled(false);
                     bt_config.setText(getResources().getString( R.string.bt_config ));
 
                     //Saves the configuration when confirmed
@@ -167,12 +171,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor saver = getPreferences( Context.MODE_PRIVATE ).edit();
         EditText et_ip = (EditText) findViewById( R.id.et_ip );
         EditText et_port = (EditText) findViewById( R.id.et_port );
+        EditText et_pass = (EditText) findViewById( R.id.et_pass );
         Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
         if(!et_ip.isEnabled()){
             saver.putString( "ip", et_ip.getText().toString().trim() );
             saver.putString( "port", et_port.getText().toString().trim() );
+            saver.putString( "pass", et_pass.getText().toString().trim() );
         }
         saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
         saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
@@ -187,11 +193,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences loader = getPreferences( Context.MODE_PRIVATE );
         EditText et_ip = (EditText) findViewById( R.id.et_ip );
         EditText et_port = (EditText) findViewById( R.id.et_port );
+        EditText et_pass = (EditText) findViewById( R.id.et_pass );
         Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
         et_ip.setText( loader.getString( "ip", null ) );
         et_port.setText( loader.getString( "port", null ) );
+        et_pass.setText( loader.getString( "pass", null ) );
         sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
         sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
     }

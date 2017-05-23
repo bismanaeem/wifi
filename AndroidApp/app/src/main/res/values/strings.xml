@@ -3,6 +3,7 @@
     <string name="sw_wifi">Enable wifi</string>
     <string name="lbl_ip">IP Address</string>
     <string name="lbl_port">Port</string>
+    <string name="lbl_pass">Password</string>
     <string name="lbl_macfilter">MAC Filter</string>
     <string name="sp_disabled">Disabled</string>
     <string name="sp_deny">Deny</string>
@@ -45,5 +46,5 @@
     <string name="mac_filter_allow">MAC-Filter has been set to allow</string>
     <string name="device_added">Device successfully added</string>
     <string name="device_removed">Device successfully removed</string>
-    <string name="title_activity_potato">Devices</string>
+    <string name="wrong_password">Incorrect password</string>
 </resources>

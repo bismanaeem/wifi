@@ -98,33 +98,45 @@ public class Server extends AsyncTask<String, Void, Boolean> {
     public void onPostExecute( Boolean result ){
         if(result){
             Log.d("CONNECTION","OK");
-            switch(Integer.parseInt(messageString)){
-                case 0:
-                    messageString = object.getResources().getString(R.string.wifi_restarted);
-                    break;
-                case 1:
-                    messageString = object.getResources().getString(R.string.wifi_disabled);
-                    break;
-                case 2:
-                    messageString = object.getResources().getString(R.string.wifi_enabled);
-                    break;
-                case 3:
-                    messageString = object.getResources().getString(R.string.mac_filter_disabled);
-                    break;
-                case 4:
-                    messageString = object.getResources().getString(R.string.mac_filter_deny);
-                    break;
-                case 5:
-                    messageString = object.getResources().getString(R.string.mac_filter_allow);
-                    break;
-                case 6:
-                    messageString = object.getResources().getString(R.string.device_added);
-                    break;
-                case 7:
-                    messageString = object.getResources().getString(R.string.device_removed);
-                    break;
+            try{
+                switch(Integer.parseInt(messageString)){
+                    case 0:
+                        messageString = object.getResources().getString(R.string.wifi_restarted);
+                        break;
+                    case 1:
+                        messageString = object.getResources().getString(R.string.wifi_disabled);
+                        break;
+                    case 2:
+                        messageString = object.getResources().getString(R.string.wifi_enabled);
+                        break;
+                    case 3:
+                        messageString = object.getResources().getString(R.string.mac_filter_disabled);
+                        break;
+                    case 4:
+                        messageString = object.getResources().getString(R.string.mac_filter_deny);
+                        break;
+                    case 5:
+                        messageString = object.getResources().getString(R.string.mac_filter_allow);
+                        break;
+                    case 6:
+                        messageString = object.getResources().getString(R.string.device_added);
+                        break;
+                    case 7:
+                        messageString = object.getResources().getString(R.string.device_removed);
+                        break;
+                }
+                //Used to print the message if an Exception is not thrown
+                result = false;
             }
-            Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
+            catch (NumberFormatException nfe){
+                Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            }
+            finally{
+                //messageString successfully built? print : dont
+                if(!result){
+                    Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
+                }
+            }
         }
         else{
             Log.d("CONNECTION","FAIL");
