@@ -70,18 +70,18 @@ public class DevicesActivity extends AppCompatActivity {
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
-                switch( menuItem.getItemId() ) {
-                    case R.id.action_apply:
-                        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+            switch( menuItem.getItemId() ) {
+                case R.id.action_apply:
+                    new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
 
-                        new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
-                        break;
-                    case R.id.action_add:
-                        addDevice();
-                        devicesAdapter.notifyDataSetChanged();
-                        break;
-                }
-                return false;
+                    new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+                    break;
+                case R.id.action_add:
+                    addDevice();
+                    devicesAdapter.notifyDataSetChanged();
+                    break;
+            }
+            return false;
             }
         });
     }
