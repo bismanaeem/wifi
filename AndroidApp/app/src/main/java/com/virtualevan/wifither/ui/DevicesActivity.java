@@ -72,7 +72,8 @@ public class DevicesActivity extends AppCompatActivity {
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 switch( menuItem.getItemId() ) {
                     case R.id.action_apply:
-                        applyChanges();
+                        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+
                         new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
                         break;
                     case R.id.action_add:
@@ -254,11 +255,6 @@ public class DevicesActivity extends AppCompatActivity {
     public void removeDevice( final int position ){
         devices.remove( position );
         devicesAdapter.notifyDataSetChanged();
-    }
-
-    //Restart the router
-    public void applyChanges(){
-        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
     }
 
 }

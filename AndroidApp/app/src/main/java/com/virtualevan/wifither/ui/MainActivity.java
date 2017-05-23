@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -202,5 +204,35 @@ public class MainActivity extends AppCompatActivity {
         et_pass.setText( loader.getString( "pass", null ) );
         sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
         sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu( menu );
+
+        this.getMenuInflater().inflate( R.menu.main_menu, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        final EditText et_ip = (EditText) findViewById( R.id.et_ip );
+        final EditText et_port = (EditText) findViewById( R.id.et_port );
+        final EditText et_pass = (EditText) findViewById( R.id.et_pass );
+
+        switch( menuItem.getItemId() ) {
+            case R.id.action_apply:
+                new Client().execute( "0", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+                new Server( progressBar, 0, progressBar ).execute( et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
+                break;
+            case R.id.action_sync:
+                //TODO: SYNC
+                new Client().execute( "0", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+                break;
+        }
+
+        return true;
     }
 }
