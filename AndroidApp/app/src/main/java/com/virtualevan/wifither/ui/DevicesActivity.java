@@ -1,5 +1,7 @@
 package com.virtualevan.wifither.ui;
 
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -142,24 +144,19 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Alertdialog which obtains the info for the device creation
     public void addDevice(){
+        //Create and show dialog fragment
         final Resources res = getResources();
-        AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
-        final AlertDialog alertDialog;
-        LayoutInflater factory = LayoutInflater.from(this);
+        FragmentManager fragmentManager = getFragmentManager();
+        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.new_device ), res.getString( R.string.add ) );
+        dialogFragment.show(fragmentManager, "Add device fragment");
+        fragmentManager.executePendingTransactions();
 
-        /*Loading dialog layout*/
-        final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
-        final EditText et_device = (EditText) dialogView.findViewById( R.id.et_name );
-        final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
+        //Load the view elements
+        final Dialog dialog = dialogFragment.getDialog();
 
-        dlgBuilder.setTitle( res.getString( R.string.new_device ) );
-        dlgBuilder.setView( dialogView );
-        dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
-        dlgBuilder.setPositiveButton( res.getString( R.string.add ), null);
-        alertDialog = dlgBuilder.create();
-        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        alertDialog.show();
-        Button bt_add = (Button) alertDialog.getButton( AlertDialog.BUTTON_POSITIVE );
+        final EditText et_name = (EditText) dialog.findViewById( R.id.et_name );
+        final Button bt_add = ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE);
+        final EditText et_mac = (EditText) dialog.findViewById( R.id.et_mac );
         bt_add.setEnabled( false );
 
         et_mac.addTextChangedListener(new TextWatcher() {
@@ -176,23 +173,22 @@ public class DevicesActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 //Disable button if the MAC does not match the pattern
-                alertDialog.getButton( AlertDialog.BUTTON_POSITIVE ).setEnabled( checkMac( et_mac.getText().toString() ) );
+                bt_add.setEnabled( checkMac( et_mac.getText().toString() ) );
             }
         });
 
         bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( et_device.getText().toString().trim().isEmpty() ){
-                    Toast.makeText( DevicesActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
-                }
-                else {
-                    addDevice( et_device.getText().toString(), et_mac.getText().toString().toUpperCase() );
-                    alertDialog.dismiss();
-                }
+            if( et_name.getText().toString().trim().isEmpty() ){
+                Toast.makeText( DevicesActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                addDevice( et_name.getText().toString(), et_mac.getText().toString().toUpperCase() );
+                dialogFragment.dismiss();
+            }
             }
         });
-
 
     }
 
@@ -203,52 +199,35 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Alertdialog for device edits
     public void modifyDevice( final int position ){
-        AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
-        final Resources res = getResources();
-        final AlertDialog alertDialog;
-        LayoutInflater factory = LayoutInflater.from(this);
-
-        /*Loading dialog layout*/
-        final View dialogView = factory.inflate(R.layout.custom_dialog_device, null);
-        final EditText et_name = (EditText) dialogView.findViewById( R.id.et_name );
-        final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
-
+        //Get current device
         final DeviceModel device = devices.get( position );
-        dlgBuilder.setTitle( res.getString( R.string.edit_device) );
-        et_name.setText( device.getName() );
-        et_mac.setText( device.getMac() );
-        et_name.setSelection( et_name.getText().length() );
-        dlgBuilder.setView( dialogView );
-        dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
-        dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
+
+        //Create and show dialog fragment
+        final Resources res = getResources();
+        FragmentManager fragmentManager = getFragmentManager();
+        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.edit_device ), res.getString( R.string.edit ), device.getName(), device.getMac() );
+        dialogFragment.show(fragmentManager, "Edit device fragment");
+        fragmentManager.executePendingTransactions();
+
+        final Dialog dialog = dialogFragment.getDialog();
+
+        final EditText et_name = (EditText) dialog.findViewById( R.id.et_name );
+        final Button bt_add = ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE);
+        final EditText et_mac = (EditText) dialog.findViewById( R.id.et_mac );
+
+        bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                device.setDevice(et_name.getText().toString());
-                device.setMac(et_mac.getText().toString().toUpperCase());
+            public void onClick(View v) {
+                if( et_name.getText().toString().trim().isEmpty() ){
+                    Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+                }
+                else {
+                    device.setDevice(et_name.getText().toString());
+                    device.setMac(et_mac.getText().toString().toUpperCase());
+                    dialog.dismiss();
+                }
             }
         });
-        alertDialog = dlgBuilder.create();
-
-        et_mac.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //Disable button if the MAC does not match the pattern
-                alertDialog.getButton( AlertDialog.BUTTON_POSITIVE ).setEnabled( checkMac( et_mac.getText().toString() ) );
-            }
-        });
-
-        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        alertDialog.show();
     }
 
     //Remove devices from the adapter

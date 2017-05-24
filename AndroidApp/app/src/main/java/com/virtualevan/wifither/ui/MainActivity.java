@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Toolbar tb_main = (Toolbar) findViewById(R.id.tb_main);
+//        setSupportActionBar(tb_main);
+
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
