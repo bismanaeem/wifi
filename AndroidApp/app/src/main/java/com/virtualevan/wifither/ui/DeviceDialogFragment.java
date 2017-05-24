@@ -45,7 +45,7 @@ public class DeviceDialogFragment extends DialogFragment {
     }
 
     //Used for Edit device
-    static DeviceDialogFragment newInstance(String title, String button, String name, String mac) {
+    static DeviceDialogFragment newInstance(String title, String button, String name, String mac, int position) {
         DeviceDialogFragment deviceDialog = new DeviceDialogFragment();
 
         // Supply num input as an argument.
@@ -54,6 +54,8 @@ public class DeviceDialogFragment extends DialogFragment {
         args.putString("button", button);
         args.putString("name", name);
         args.putString("mac", mac);
+        args.putInt("position", position);
+
         deviceDialog.setArguments(args);
 
         return deviceDialog;
@@ -71,8 +73,17 @@ public class DeviceDialogFragment extends DialogFragment {
         dlgBuilder.setTitle( getArguments().getString("title") );
         final EditText et_name = (EditText) dialogView.findViewById( R.id.et_name );
         final EditText et_mac = (EditText) dialogView.findViewById( R.id.et_mac );
-        et_name.setText( getArguments().getString("name") );
-        et_mac.setText( getArguments().getString("mac") );
+
+        if ( savedInstanceState == null ){
+            et_name.setText( getArguments().getString("name") );
+            et_mac.setText( getArguments().getString("mac") );
+        }
+        else {
+            et_name.setText( savedInstanceState.getString( "NAME" ) );
+            et_mac.setText( savedInstanceState.getString( "MAC" ) );
+        }
+
+        Log.d("AHORA", "VALOR: " +et_name.getText().toString());
 
         dlgBuilder.setView( dialogView );
         dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
@@ -103,7 +114,10 @@ public class DeviceDialogFragment extends DialogFragment {
         super.onStart();
 
         final Button bt_add = ((AlertDialog) this.getDialog()).getButton(Dialog.BUTTON_POSITIVE);
+        final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );
         final EditText et_mac = (EditText) this.getDialog().findViewById( R.id.et_mac );
+
+
 
         et_mac.addTextChangedListener(new TextWatcher() {
             @Override
@@ -122,7 +136,43 @@ public class DeviceDialogFragment extends DialogFragment {
                 bt_add.setEnabled( checkMac( et_mac.getText().toString() ) );
             }
         });
+
+        bt_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( getArguments().getString("name") != "") {
+                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac, getArguments().getInt("position"));
+                }
+                else {
+                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac);
+                }
+                dismiss();
+            }
+        });
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );
+        final EditText et_mac = (EditText) this.getDialog().findViewById( R.id.et_mac );
+
+        savedInstanceState.putString("NAME", et_name.getText().toString());
+        savedInstanceState.putString("MAC", et_mac.getText().toString());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//
+//        final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );
+//        final EditText et_mac = (EditText) this.getDialog().findViewById( R.id.et_mac );
+//
+//        et_name.setText( savedInstanceState.getString( "NAME" ) );
+//        et_mac.setText( savedInstanceState.getString( "MAC" ) );
+//
+//        super.onCreate(savedInstanceState);
+//    }
 
     //Pattern check for the MAC specified during device creations and edits
     private Boolean checkMac( String mac ) {

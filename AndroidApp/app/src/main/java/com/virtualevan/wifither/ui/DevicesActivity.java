@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,24 +117,15 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Alertdialog for edit or delete
     public void selectAction(final int position){
-        AlertDialog.Builder dlgBuilder = new AlertDialog.Builder( this );
-        final Resources res = getResources();
+        //Get current device
+        final DeviceModel device = devices.get( position );
 
-        dlgBuilder.setTitle( res.getString( R.string.select_action ) );
-        dlgBuilder.setNegativeButton( res.getString( R.string.cancel ), null );
-        dlgBuilder.setPositiveButton(res.getString(R.string.edit), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                modifyDevice( position );
-            }
-        });
-        dlgBuilder.setNeutralButton(res.getString(R.string.remove), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                removeDevice( position );
-            }
-        });
-        dlgBuilder.create().show();
+        //Create and show dialog fragment
+        final Resources res = getResources();
+        FragmentManager fragmentManager = getFragmentManager();
+        final ManageDialogFragment dialogFragment = ManageDialogFragment.newInstance( position );
+        dialogFragment.show(fragmentManager, "Manage device fragment");
+        fragmentManager.executePendingTransactions();
     }
 
     //Add a device to the devices adapter
@@ -150,51 +142,6 @@ public class DevicesActivity extends AppCompatActivity {
         final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.new_device ), res.getString( R.string.add ) );
         dialogFragment.show(fragmentManager, "Add device fragment");
         fragmentManager.executePendingTransactions();
-
-        //Load the view elements
-        final Dialog dialog = dialogFragment.getDialog();
-
-        final EditText et_name = (EditText) dialog.findViewById( R.id.et_name );
-        final Button bt_add = ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE);
-        final EditText et_mac = (EditText) dialog.findViewById( R.id.et_mac );
-        bt_add.setEnabled( false );
-
-        et_mac.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //Disable button if the MAC does not match the pattern
-                bt_add.setEnabled( checkMac( et_mac.getText().toString() ) );
-            }
-        });
-
-        bt_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            if( et_name.getText().toString().trim().isEmpty() ){
-                Toast.makeText( DevicesActivity.this, res.getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
-            }
-            else {
-                addDevice( et_name.getText().toString(), et_mac.getText().toString().toUpperCase() );
-                dialogFragment.dismiss();
-            }
-            }
-        });
-
-    }
-
-    //Pattern check for the MAC specified during device creations and edits
-    public Boolean checkMac( String mac ) {
-        return Pattern.compile("([0-9a-fA-F][0-9a-fA-F]:){5}[0-9a-fA-F][0-9a-fA-F]").matcher(mac).matches();
     }
 
     //Alertdialog for device edits
@@ -205,35 +152,40 @@ public class DevicesActivity extends AppCompatActivity {
         //Create and show dialog fragment
         final Resources res = getResources();
         FragmentManager fragmentManager = getFragmentManager();
-        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.edit_device ), res.getString( R.string.edit ), device.getName(), device.getMac() );
+        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.edit_device ), res.getString( R.string.edit ), device.getName(), device.getMac(), position );
         dialogFragment.show(fragmentManager, "Edit device fragment");
         fragmentManager.executePendingTransactions();
-
-        final Dialog dialog = dialogFragment.getDialog();
-
-        final EditText et_name = (EditText) dialog.findViewById( R.id.et_name );
-        final Button bt_add = ((AlertDialog) dialog).getButton(Dialog.BUTTON_POSITIVE);
-        final EditText et_mac = (EditText) dialog.findViewById( R.id.et_mac );
-
-        bt_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if( et_name.getText().toString().trim().isEmpty() ){
-                    Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
-                }
-                else {
-                    device.setDevice(et_name.getText().toString());
-                    device.setMac(et_mac.getText().toString().toUpperCase());
-                    dialog.dismiss();
-                }
-            }
-        });
     }
 
     //Remove devices from the adapter
     public void removeDevice( final int position ){
         devices.remove( position );
         devicesAdapter.notifyDataSetChanged();
+    }
+
+    //Crete de Add listener
+    public void setListener(EditText et_name, EditText et_mac){
+        if( et_name.getText().toString().trim().isEmpty() ){
+            Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+        }
+        else {
+            addDevice( et_name.getText().toString(), et_mac.getText().toString().toUpperCase() );
+        }
+    }
+
+    //Crete de Modify listener
+    public void setListener(EditText et_name, EditText et_mac, int position){
+        //Get current device
+        final DeviceModel device = devices.get( position );
+
+        if( et_name.getText().toString().trim().isEmpty() ){
+            Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
+        }
+        else {
+            device.setDevice(et_name.getText().toString());
+            device.setMac(et_mac.getText().toString().toUpperCase());
+            devicesAdapter.notifyDataSetChanged();
+        }
     }
 
 }
