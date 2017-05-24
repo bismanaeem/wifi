@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Default -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#58acfa</color>
+
+    <!-- Green -->
+    <color name="G_colorPrimary">#43A047</color>
+    <color name="G_colorPrimaryDark">#388E3C</color>
+    <color name="G_colorAccent">#00C853</color>
+
+    <!-- DarkBlue -->
+    <color name="DB_colorPrimary">#455a64</color>
+    <color name="DB_colorPrimaryDark">#37474f</color>
+    <color name="DB_colorAccent">#546e7a</color>
+
 </resources>

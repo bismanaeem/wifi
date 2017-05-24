@@ -34,6 +34,8 @@ import com.virtualevan.wifither.core.Server;
 // 5 Set MAC filter to allow
 // 6 Add Device
 // 7 Remove Device
+// 8 Load config
+// 9 Load devices
 //
 /*****************************************/
 
@@ -46,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar tb_main = (Toolbar) findViewById(R.id.tb_main);
-//        setSupportActionBar(tb_main);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_icon);
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 

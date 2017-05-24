@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -8,13 +7,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="Wifither" parent="AppTheme">
+        <item name="colorPrimary">@color/G_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/G_colorPrimaryDark</item>
+        <item name="colorAccent">@color/G_colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="GrayBlue" parent="AppTheme">
+        <item name="colorPrimary">@color/DB_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/DB_colorPrimaryDark</item>
+        <item name="colorAccent">@color/DB_colorAccent</item>
+    </style>
 
 </resources>

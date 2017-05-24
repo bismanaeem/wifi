@@ -33,7 +33,7 @@
         <item>@string/sp_deny</item>
         <item>@string/sp_allow</item>
     </string-array>
-    <string name="title_activity_macs">MacsActivity</string>
+    <string name="title_activity_macs">Manage devices</string>
 
 
     <!-- NOTIFICATION MESSAGES -->

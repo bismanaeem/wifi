@@ -8,7 +8,7 @@
         wifither:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_apply"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_save_black_24dp"
         android:title="@string/apply"
         wifither:showAsAction="ifRoom"/>
 </menu>
