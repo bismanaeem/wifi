@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wifither</string>
+    <string name="sw_wifi">Habilitar wifi</string>
+    <string name="lbl_ip">Dirección IP</string>
+    <string name="lbl_port">Puerto</string>
+    <string name="lbl_pass">Contraseña</string>
+    <string name="lbl_macfilter">Filtro MAC</string>
+    <string name="sp_disabled">Deshabilitado</string>
+    <string name="sp_deny">Denegar</string>
+    <string name="sp_allow">Permitir</string>
+    <string name="bt_config">Configurar</string>
+    <string name="bt_config_confirm">Confirmar</string>
+
+.    <string name="bt_manage">Administrar dispositivos</string>
+
+
+    <string name="new_device">Nuevo dispositivo</string>
+    <string name="edit_device">Editar dispositivo</string>
+    <string name="add">Añadir</string>
+    <string name="sync">Sincronizar</string>
+    <string name="apply">Aplicar</string>
+    <string name="edit">Editar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="remove">Eliminar</string>
+    <string name="select_action">Seleccionar acción</string>
+    <string name="device_name">Nombre de dispositivo</string>
+    <string name="mac_address">Dirección MAC</string>
+    <string name="empty_device">Por favor, inserte un nombre para el dispositivo</string>
+
+    <string-array name="sp_macfilter">
+        <item>@string/sp_disabled</item>
+        <item>@string/sp_deny</item>
+        <item>@string/sp_allow</item>
+    </string-array>
+    <string name="title_activity_macs">Administrar dispositivos</string>
+
+
+    <!-- NOTIFICATION MESSAGES -->
+    <string name="port_error">ERROR: Puerto especificado incorrecto</string>
+    <string name="timeout">ERROR: Tiempo de espera agotado</string>
+    <string name="wifi_restarted">La configuración ha sido aplicada</string>
+    <string name="wifi_enabled">Wi-Fi habilitado</string>
+    <string name="wifi_disabled">Wi-Fi deshabilitado</string>
+    <string name="mac_filter_disabled">Filtro MAC deshabilitado</string>
+    <string name="mac_filter_deny">Filtro mac configurado para denegar</string>
+    <string name="mac_filter_allow">Filtro mac configurado para permitir</string>
+    <string name="device_added">Dispositivo añadido correctamente</string>
+    <string name="device_removed">Dispositivo eliminado correctamente</string>
+    <string name="wrong_password">ERROR: Contraseña incorrecta</string>
+</resources>

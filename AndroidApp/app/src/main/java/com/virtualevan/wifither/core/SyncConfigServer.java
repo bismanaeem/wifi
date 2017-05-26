@@ -16,14 +16,15 @@ import java.net.DatagramSocket;
 import java.net.SocketTimeoutException;
 
 /**
- * Receives the most of the confirmation codes
- * from the router
+ * Receives actual config from the router
+ * and updates the view of the app
  *
- * Each code is used to print its correspondent
- * confirmation message
+ * 0 MAC filter disabled
+ * 1 MAC filter set to deny
+ * 2 MAC filter set to allow
  */
 
-public class Server extends AsyncTask<String, Void, Boolean> {
+public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
     private int rollback;
     private View object;
     private ProgressBar progressBar;
@@ -31,7 +32,7 @@ public class Server extends AsyncTask<String, Void, Boolean> {
     private boolean portError;
 
     //Receives the pressed button/switch/spinner, its status and its bound progress bar, then puts them in a local variable
-    public Server( View v, int rollback, ProgressBar progressBar ){
+    public SyncConfigServer(View v, int rollback, ProgressBar progressBar ){
         this.object = v;
         this.rollback = rollback;
         this.progressBar = progressBar;

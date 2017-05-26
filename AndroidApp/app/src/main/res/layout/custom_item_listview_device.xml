@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:longClickable="true">
+    android:clickable="true"
+    android:longClickable="true"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/device"

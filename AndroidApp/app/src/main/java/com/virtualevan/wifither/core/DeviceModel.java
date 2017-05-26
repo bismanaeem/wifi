@@ -1,19 +1,20 @@
 package com.virtualevan.wifither.core;
 
 /**
- * Created by VirtualEvan on 01/04/2017.
+ * Custom item of DevicesList
+ * TODO:Includes Name and MAC
  */
 //Custom element of the DevicesList/DevicesAdapter
 public class DeviceModel {
     private String mac;
     private String name;
-    private Boolean active; //switch
+    //TODO private Boolean active; //switch
 
-    /*CONSTRUCTOR*/
-    public DeviceModel(String device, String mac, Boolean active){
+    /*TODO CONSTRUCTOR*/
+    public DeviceModel(String device, String mac/*TODO, Boolean active*/){
         this.name = device;
         this.mac = mac;
-        this.active = active;
+        //this.active = active;
     }
 
     /*MAC*/
@@ -34,12 +35,12 @@ public class DeviceModel {
         this.name = name;
     }
 
-    /*DEVICE*/
+    /*TODO DEVICE
     public Boolean getSwitch(){
         return active;
     }
 
     public void setSwitch(Boolean active){
         this.active = active;
-    }
+    }*/
 }

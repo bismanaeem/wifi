@@ -1,27 +1,16 @@
 package com.virtualevan.wifither.ui;
 
-import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -32,10 +21,10 @@ import com.google.gson.reflect.TypeToken;
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
+import com.virtualevan.wifither.core.LanguageHandler;
 import com.virtualevan.wifither.core.Server;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
@@ -66,6 +55,9 @@ public class DevicesActivity extends AppCompatActivity {
         lv_macslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Animation animation1 = new AlphaAnimation(0.3f, 1.0f);
+                animation1.setDuration(4000);
+                view.startAnimation(animation1);
                 selectAction( position );
                 devicesAdapter.notifyDataSetChanged();
                 return false;
@@ -84,6 +76,12 @@ public class DevicesActivity extends AppCompatActivity {
                 case R.id.action_add:
                     addDevice();
                     devicesAdapter.notifyDataSetChanged();
+                    break;
+                case R.id.action_spanish:
+                    LanguageHandler.changeLocale(getResources(), "es");
+                    break;
+                case R.id.action_english:
+                    LanguageHandler.changeLocale(getResources(), "en");
                     break;
             }
             return false;
@@ -123,7 +121,6 @@ public class DevicesActivity extends AppCompatActivity {
         final DeviceModel device = devices.get( position );
 
         //Create and show dialog fragment
-        final Resources res = getResources();
         FragmentManager fragmentManager = getFragmentManager();
         final ManageDialogFragment dialogFragment = ManageDialogFragment.newInstance( position );
         dialogFragment.show(fragmentManager, "Manage device fragment");
@@ -132,7 +129,7 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Add a device to the devices adapter
     public void addDevice(String device, String mac){
-        devicesAdapter.add( new DeviceModel( device, mac, false ) );
+        devicesAdapter.add( new DeviceModel( device, mac/*TODO:, false*/ ) );
         devicesAdapter.notifyDataSetChanged();
     }
 
@@ -166,17 +163,18 @@ public class DevicesActivity extends AppCompatActivity {
     }
 
     //Crete de Add listener
-    public void setListener(EditText et_name, EditText et_mac){
+    public void setListener(EditText et_name, EditText et_mac, DeviceDialogFragment dialog){
         if( et_name.getText().toString().trim().isEmpty() ){
             Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();
         }
         else {
             addDevice( et_name.getText().toString(), et_mac.getText().toString().toUpperCase() );
+            dialog.dismiss();
         }
     }
 
     //Crete de Modify listener
-    public void setListener(EditText et_name, EditText et_mac, int position){
+    public void setListener(EditText et_name, EditText et_mac, int position, DeviceDialogFragment dialog){
         //Get current device
         final DeviceModel device = devices.get( position );
 
@@ -187,6 +185,7 @@ public class DevicesActivity extends AppCompatActivity {
             device.setDevice(et_name.getText().toString());
             device.setMac(et_mac.getText().toString().toUpperCase());
             devicesAdapter.notifyDataSetChanged();
+            dialog.dismiss();
         }
     }
 

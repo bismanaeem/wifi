@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wifither</string>
     <string name="sw_wifi">Enable wifi</string>
@@ -22,11 +23,13 @@
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
     <string name="remove">Remove</string>
-    <string name="select_action">Select Action</string>
+    <string name="select_action">Select action</string>
     <string name="device_name">Device name</string>
     <string name="mac_address">MAC Address</string>
     <string name="empty_device">Please insert a device name</string>
 
+    <string name="spanish">Español</string>
+    <string name="english">English</string>
 
     <string-array name="sp_macfilter">
         <item>@string/sp_disabled</item>

@@ -1,6 +1,5 @@
 package com.virtualevan.wifither.ui;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.res.Resources;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.virtualevan.wifither.R;
 
@@ -116,8 +113,7 @@ public class DeviceDialogFragment extends DialogFragment {
         final Button bt_add = ((AlertDialog) this.getDialog()).getButton(Dialog.BUTTON_POSITIVE);
         final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );
         final EditText et_mac = (EditText) this.getDialog().findViewById( R.id.et_mac );
-
-
+        bt_add.setEnabled( checkMac( et_mac.getText().toString() ) );
 
         et_mac.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,12 +137,11 @@ public class DeviceDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if( getArguments().getString("name") != "") {
-                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac, getArguments().getInt("position"));
+                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac, getArguments().getInt("position"), DeviceDialogFragment.this);
                 }
                 else {
-                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac);
+                    ((DevicesActivity)getActivity()).setListener(et_name, et_mac, DeviceDialogFragment.this);
                 }
-                dismiss();
             }
         });
     }
@@ -162,7 +157,7 @@ public class DeviceDialogFragment extends DialogFragment {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-//    @Override
+//    TODO:@Override
 //    public void onCreate(Bundle savedInstanceState) {
 //
 //        final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );

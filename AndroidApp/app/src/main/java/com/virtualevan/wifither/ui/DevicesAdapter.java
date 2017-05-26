@@ -20,7 +20,8 @@ import com.virtualevan.wifither.core.Server;
 import java.util.ArrayList;
 
 /**
- * Created by VirtualEvan on 31/03/2017.
+ * Custom adapter used to custom items as a list
+ * Shows Device, MAC, Switch and LoadBar of each item
  */
 //A custom adapter which allows the list to have elements with their bound Switches asn progress bars
 public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements AdapterView.OnItemLongClickListener{
@@ -61,7 +62,8 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         // Populate the data into the template view using the data object
         tv_device.setText(device.getName());
         tv_mac.setText(device.getMac());
-        sw_device.setChecked(device.getSwitch());
+        //TODO
+        //sw_device.setChecked(device.getSwitch());
 
 
         // Cache row position inside the button using `setTag`
@@ -85,7 +87,7 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
                             else {
                                 new Client().execute( "7"+device.getMac(), ip, port, pass );
                             }
-                            device.setSwitch( isChecked );
+                            //TODO: device.setSwitch( isChecked );
                             firstTime = false;
                             new Server( sw_device, isChecked? 0 : 1, progressBar ).execute( ip, port );
                         }

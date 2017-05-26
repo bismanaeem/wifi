@@ -189,8 +189,9 @@ public class MainActivity extends AppCompatActivity {
             saver.putString( "port", et_port.getText().toString().trim() );
             saver.putString( "pass", et_pass.getText().toString().trim() );
         }
-        saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
-        saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
+        //TODO : Eliminar carga de config
+        //saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
+        //saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
 
         saver.apply();
     }
@@ -203,14 +204,15 @@ public class MainActivity extends AppCompatActivity {
         EditText et_ip = (EditText) findViewById( R.id.et_ip );
         EditText et_port = (EditText) findViewById( R.id.et_port );
         EditText et_pass = (EditText) findViewById( R.id.et_pass );
-        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
-        Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
+//        TODO: Eliminar salva de switches
+//        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
+//        Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
         et_ip.setText( loader.getString( "ip", null ) );
         et_port.setText( loader.getString( "port", null ) );
         et_pass.setText( loader.getString( "pass", null ) );
-        sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
-        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
+//        sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
+//        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
     }
 
     @Override
@@ -236,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_sync:
                 //TODO: SYNC
-                new Client().execute( "0", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+                new Client().execute( "8", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
                 break;
         }
 
