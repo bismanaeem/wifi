@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_apply"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:title="@string/apply" />
+    <item
+        android:id="@+id/action_sync"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:title="@string/sync" />
+</menu>

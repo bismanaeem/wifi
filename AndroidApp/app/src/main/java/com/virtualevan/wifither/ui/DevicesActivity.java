@@ -2,10 +2,14 @@ package com.virtualevan.wifither.ui;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -25,6 +29,7 @@ import com.virtualevan.wifither.core.LanguageHandler;
 import com.virtualevan.wifither.core.Server;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
@@ -73,20 +78,66 @@ public class DevicesActivity extends AppCompatActivity {
 
                     new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
                     break;
+                case R.id.action_sync:
+                    //TODO: SYNC
+                    new Client().execute( "8", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+                    break;
                 case R.id.action_add:
                     addDevice();
                     devicesAdapter.notifyDataSetChanged();
-                    break;
-                case R.id.action_spanish:
-                    LanguageHandler.changeLocale(getResources(), "es");
-                    break;
-                case R.id.action_english:
-                    LanguageHandler.changeLocale(getResources(), "en");
                     break;
             }
             return false;
             }
         });
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        Locale locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = getResources().getConfiguration().getLocales().get(0);
+        }
+        else {
+            locale = getResources().getConfiguration().locale;
+        }
+
+        switch( locale.toString() ) {
+            case "es":
+                menu.findItem(R.id.action_spanish).setEnabled(false);
+                break;
+            case "en":
+                menu.findItem(R.id.action_english).setEnabled(false);
+                break;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu( menu );
+
+        this.getMenuInflater().inflate( R.menu.main_menu, menu );
+        return true;
+    }
+
+    //TODO: MIRAR QUE FUNCIONE BIEN EN DEVICES ACT Y HACERLO PERMANENTE(SALIR Y ENTRAR)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch( menuItem.getItemId() ) {
+            case R.id.action_spanish:
+                LanguageHandler.changeLocale(getResources(), "es");
+                break;
+            case R.id.action_english:
+                LanguageHandler.changeLocale(getResources(), "en");
+                break;
+        }
+        recreate();
+
+        return true;
     }
 
     //Save device objects using json
@@ -96,6 +147,9 @@ public class DevicesActivity extends AppCompatActivity {
         SharedPreferences.Editor saver = getPreferences( Context.MODE_PRIVATE ).edit();
         Gson gson = new Gson();
 
+        //Save locale
+        saver.putString( "locale", LanguageHandler.getLocale(getResources()) );
+
         String serialized_macs = gson.toJson(devices);
         saver.putString( "device_list", serialized_macs );
         saver.apply();
@@ -104,8 +158,12 @@ public class DevicesActivity extends AppCompatActivity {
     //Save device objects using json
     @Override
     public void onResume(){
+        SharedPreferences loader = getPreferences( Context.MODE_PRIVATE );
+
+        //Load locale before the rest for the activity
+        LanguageHandler.changeLocale( getResources(), loader.getString( "locale", "en" ));
+
         super.onResume();
-        SharedPreferences loader = this.getPreferences( Context.MODE_PRIVATE );
         Gson gson = new Gson();
 
         String serialized_macs = loader.getString( "device_list", "[]" );

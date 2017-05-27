@@ -157,18 +157,6 @@ public class DeviceDialogFragment extends DialogFragment {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-//    TODO:@Override
-//    public void onCreate(Bundle savedInstanceState) {
-//
-//        final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );
-//        final EditText et_mac = (EditText) this.getDialog().findViewById( R.id.et_mac );
-//
-//        et_name.setText( savedInstanceState.getString( "NAME" ) );
-//        et_mac.setText( savedInstanceState.getString( "MAC" ) );
-//
-//        super.onCreate(savedInstanceState);
-//    }
-
     //Pattern check for the MAC specified during device creations and edits
     private Boolean checkMac( String mac ) {
         return Pattern.compile("([0-9a-fA-F][0-9a-fA-F]:){5}[0-9a-fA-F][0-9a-fA-F]").matcher(mac).matches();

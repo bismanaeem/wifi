@@ -3,9 +3,13 @@ package com.virtualevan.wifither.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -21,7 +25,13 @@ import android.widget.Switch;
 
 import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
+import com.virtualevan.wifither.core.LanguageHandler;
 import com.virtualevan.wifither.core.Server;
+
+import java.util.Locale;
+
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 /*****************************************/
 // Connectivity
@@ -47,11 +57,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences loader = getPreferences( Context.MODE_PRIVATE );
+        //Load locale before the rest for the activity
+        LanguageHandler.changeLocale( getResources(), loader.getString( "locale", "en" ));
+
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_icon);
 
+        final FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
@@ -170,8 +186,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                switch( menuItem.getItemId() ) {
+                    case R.id.action_apply:
+                        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+
+                        new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+                        break;
+                    case R.id.action_sync:
+                        //TODO: SYNC
+                        new Client().execute( "8", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+                        break;
+                }
+                return false;
+            }
+        });
+    }
 
     //Save the configuration
     @Override
@@ -184,6 +217,10 @@ public class MainActivity extends AppCompatActivity {
         Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
         Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
+        //Save locale
+        saver.putString( "locale", LanguageHandler.getLocale(getResources()) );
+
+        //Save config if it's not being edited
         if(!et_ip.isEnabled()){
             saver.putString( "ip", et_ip.getText().toString().trim() );
             saver.putString( "port", et_port.getText().toString().trim() );
@@ -199,8 +236,14 @@ public class MainActivity extends AppCompatActivity {
     //Load the configuration
     @Override
     public void onResume(){
-        super.onResume();
         SharedPreferences loader = getPreferences( Context.MODE_PRIVATE );
+
+        //Load locale before the rest for the activity
+        LanguageHandler.changeLocale( getResources(), loader.getString( "locale", "en" ));
+
+        super.onResume();
+
+        //Set tha saved data
         EditText et_ip = (EditText) findViewById( R.id.et_ip );
         EditText et_port = (EditText) findViewById( R.id.et_port );
         EditText et_pass = (EditText) findViewById( R.id.et_pass );
@@ -208,11 +251,35 @@ public class MainActivity extends AppCompatActivity {
 //        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
 //        Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
+
         et_ip.setText( loader.getString( "ip", null ) );
         et_port.setText( loader.getString( "port", null ) );
         et_pass.setText( loader.getString( "pass", null ) );
 //        sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
 //        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        Locale locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = getResources().getConfiguration().getLocales().get(0);
+        }
+        else {
+            locale = getResources().getConfiguration().locale;
+        }
+
+        switch( locale.toString() ) {
+            case "es":
+                menu.findItem(R.id.action_spanish).setEnabled(false);
+                break;
+            case "en":
+                menu.findItem(R.id.action_english).setEnabled(false);
+                break;
+        }
+
+        return true;
     }
 
     @Override
@@ -226,21 +293,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        final EditText et_ip = (EditText) findViewById( R.id.et_ip );
-        final EditText et_port = (EditText) findViewById( R.id.et_port );
-        final EditText et_pass = (EditText) findViewById( R.id.et_pass );
-
         switch( menuItem.getItemId() ) {
-            case R.id.action_apply:
-                new Client().execute( "0", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
-                new Server( progressBar, 0, progressBar ).execute( et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
+            case R.id.action_spanish:
+                LanguageHandler.changeLocale(getResources(), "es");
                 break;
-            case R.id.action_sync:
-                //TODO: SYNC
-                new Client().execute( "8", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+            case R.id.action_english:
+                LanguageHandler.changeLocale(getResources(), "en");
                 break;
         }
+        recreate();
 
         return true;
     }

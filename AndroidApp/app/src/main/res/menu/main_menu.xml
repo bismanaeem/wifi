@@ -2,13 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:wifither="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_sync"
-        android:icon="@android:drawable/stat_notify_sync"
-        android:title="@string/sync"
+        android:id="@+id/action_spanish"
+        android:icon="@mipmap/ic_spain"
+        android:title="@string/spanish"
         wifither:showAsAction="ifRoom"/>
+
     <item
-        android:id="@+id/action_apply"
-        android:icon="@drawable/ic_save_black_24dp"
-        android:title="@string/apply"
+        android:id="@+id/action_english"
+        android:icon="@mipmap/ic_britain"
+        android:title="@string/english"
         wifither:showAsAction="ifRoom"/>
 </menu>

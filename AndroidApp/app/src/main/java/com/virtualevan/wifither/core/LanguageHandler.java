@@ -35,4 +35,18 @@ public class LanguageHandler {
 
         res.updateConfiguration( config, res.getDisplayMetrics() );
     }
+
+    public static String getLocale(Resources res) {
+        Locale locale;
+
+        //Save locale
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = res.getConfiguration().getLocales().get(0);
+        }
+        else {
+            locale = res.getConfiguration().locale;
+        }
+
+        return locale.toString();
+    }
 }
