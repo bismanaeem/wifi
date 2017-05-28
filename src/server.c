@@ -100,7 +100,7 @@ char *unbase64(unsigned char *input, int length)
     return buffer;
 }
 
-void process(char *port)
+void process(char *port, char *pass)
 {
     int sock, length, n;
     socklen_t fromlen;
@@ -130,13 +130,17 @@ void process(char *port)
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
         data = unbase64(buf, strlen(buf));
-        DES_set_key_unchecked((DES_cblock*) "00000000", &schedule);
+        DES_set_key_unchecked((DES_cblock*) pass, &schedule);
 
-        /* TODO: COMPROBAR SI MERECE LA PENA
+        /*
+        * Decrypt loop.
+        * Does the same, but in a less efficient way than the long version below
+        *
         for(int i = 0; i < 17; i += 8) {
             DES_ecb_encrypt((DES_cblock*) (data+i), (DES_cblock*) (data+i), &schedule, DES_DECRYPT);
         }
         */
+
         DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
         data += 8;
         DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
@@ -157,7 +161,7 @@ void process(char *port)
                 break;
 
             case '3':
-                system("sed -i '/maclist\\|macfilter/d' /etc/config/wireless");
+                system("sed -i '/macfilter/d' /etc/config/wireless");
                 break;
 
             case '4':
@@ -176,7 +180,7 @@ void process(char *port)
 
             case '6':
                 strncpy(mac, data+1, 17);
-                snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{d};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", mac, mac);
+                snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{h};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", mac, mac);
                 system(command);
                 memset(mac, 0, sizeof(memset));
                 break;
@@ -187,6 +191,7 @@ void process(char *port)
                 system(command);
                 memset(mac, 0, sizeof(memset));
                 break;
+                
         }
 
         n = sendto(sock, &data[0], 1, 0,(struct sockaddr *)&from, fromlen);
@@ -196,8 +201,13 @@ void process(char *port)
 
 int main(int argc, char *argv[]) {
 
-    if (argc < 2) {
-        fprintf(stderr,"ERROR, no port provided\n");
+    if (argc < 3) {
+        fprintf(stderr,"ERROR: Missing argument\nSintax: wifither [port] [password]\n");
+        exit(1);
+    }
+
+    if (strlen(argv[2]) < 8) {
+        fprintf(stderr,"ERROR: Password must be at leas 8 characters\n");
         exit(1);
     }
 
@@ -206,7 +216,7 @@ int main(int argc, char *argv[]) {
     //----------------
     //Main Process
     //----------------
-    process(argv[1]);    //Run our Process
+    process(argv[1], argv[2]);    //Run our Process
 
     //Close the log
     closelog ();
