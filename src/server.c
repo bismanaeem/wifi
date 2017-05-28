@@ -156,6 +156,7 @@ void process(char *port, char *pass)
                 break;
 
             case '1':
+                system("wifi off");
                 system("wifi down");
                 break;
 
