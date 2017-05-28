@@ -62,12 +62,12 @@ public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
 
             //Listen for 10 seconds until "done" message
             String messageString = "";
-            do {
+            while (!messageString.equals("done")) {
                 socket.receive(packet);
                 messageString = new String(message, 0, packet.getLength());
                 macsList.add(messageString);
                 Log.d("RECEIVED", messageString);
-            } while (!messageString.equals("done"));
+            }
         }
         catch (SocketTimeoutException ste)
         {

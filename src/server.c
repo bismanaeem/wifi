@@ -114,6 +114,9 @@ void process(char *port, char *pass)
     DES_key_schedule schedule;
     unsigned char *data;
 
+    FILE *fp;
+  	char filter[5];
+
     sock=socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) error("Opening socket");
     length = sizeof(server);
@@ -191,7 +194,54 @@ void process(char *port, char *pass)
                 system(command);
                 memset(mac, 0, sizeof(memset));
                 break;
-                
+
+            case '8':
+                /* Open the command for reading. */
+                fp = popen("sed -n -r 's/.*option macfilter '\\''(allow|deny)'\\''.*/\\1/p' /etc/config/wireless", "r");
+                if (fp == NULL) {
+                    printf("ERROR: Failed to fetch data\n" );
+                }
+
+                /* Read the output a line at a time - output it. */
+                if(fgets(filter, 5, fp) == NULL) {
+                    n = sendto(sock, "0", 1, 0,(struct sockaddr *)&from, fromlen);
+                    if (n  < 0) error("sendto");
+                }
+                else {
+                    if(strcmp(filter, "allo") == 0){
+                        n = sendto(sock, "2", 1, 0,(struct sockaddr *)&from, fromlen);
+                        if (n  < 0) error("sendto");
+
+                    }
+                    else if (strcmp(filter, "deny") == 0){
+                        n = sendto(sock, "1", 1, 0,(struct sockaddr *)&from, fromlen);
+                        if (n  < 0) error("sendto");
+                    }
+                }
+
+                /* Close stream */
+                pclose(fp);
+                break;
+
+            case '9':
+                /* Open the command for reading. */
+                fp = popen("sed -n -r 's/.*list maclist '\\''(([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))'\\''.*/\\1/p' /etc/config/wireless", "r");
+                if (fp == NULL) {
+                    printf("ERROR: Failed to fetch data\n" );
+                }
+
+                /* Read the output a line at a time - output it. */
+                while (fgets(mac, 18, fp) != NULL) {
+                    n = sendto(sock, &mac, strlen(mac), 0,(struct sockaddr *)&from, fromlen);
+                    if (n  < 0) error("sendto");
+                    memset(mac, 0, sizeof(mac));
+                }
+                n = sendto(sock, "done", 4, 0,(struct sockaddr *)&from, fromlen);
+                if (n  < 0) error("sendto");
+
+                /* close */
+                pclose(fp);
+                break;
         }
 
         n = sendto(sock, &data[0], 1, 0,(struct sockaddr *)&from, fromlen);
