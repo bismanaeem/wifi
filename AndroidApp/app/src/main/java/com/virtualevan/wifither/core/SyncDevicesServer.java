@@ -119,6 +119,7 @@ public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
                         }
                     }
                 }
+                Toast.makeText( progressBar.getContext(), progressBar.getResources().getString(R.string.sync_successful ), Toast.LENGTH_LONG ).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }

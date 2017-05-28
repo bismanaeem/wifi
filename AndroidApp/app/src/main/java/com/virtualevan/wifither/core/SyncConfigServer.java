@@ -25,23 +25,24 @@ import java.net.SocketTimeoutException;
  */
 
 public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
-    private int rollback;
-    private View object;
+    private Switch sw_wifi;
+    private Spinner mf_spinner;
     private ProgressBar progressBar;
     private String messageString="";
     private boolean portError;
 
     //Receives the pressed button/switch/spinner, its status and its bound progress bar, then puts them in a local variable
-    public SyncConfigServer(View v, int rollback, ProgressBar progressBar ){
-        this.object = v;
-        this.rollback = rollback;
+    public SyncConfigServer(Switch sw_wifi, Spinner mf_spinner, ProgressBar progressBar ){
+        this.sw_wifi = sw_wifi;
+        this.mf_spinner = mf_spinner;
         this.progressBar = progressBar;
     }
 
     //Disables the view to prevent the user interaction, and enables the progress bar
     @Override
     public void onPreExecute(){
-        object.setEnabled(false);
+        sw_wifi.setEnabled(false);
+        mf_spinner.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -50,7 +51,7 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
     public Boolean doInBackground(String... data){
 
         //Prepare a packet to be received
-        byte[] message = new byte[4096];
+        byte[] message = new byte[1024];
         DatagramPacket packet = new DatagramPacket(message, message.length);
         DatagramSocket socket = null;
 
@@ -104,63 +105,26 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
         if(result){
             Log.d("CONNECTION","OK");
             try{
-                switch(Integer.parseInt(messageString)){
-                    case 0:
-                        messageString = object.getResources().getString(R.string.wifi_restarted);
-                        break;
-                    case 1:
-                        messageString = object.getResources().getString(R.string.wifi_disabled);
-                        break;
-                    case 2:
-                        messageString = object.getResources().getString(R.string.wifi_enabled);
-                        break;
-                    case 3:
-                        messageString = object.getResources().getString(R.string.mac_filter_disabled);
-                        break;
-                    case 4:
-                        messageString = object.getResources().getString(R.string.mac_filter_deny);
-                        break;
-                    case 5:
-                        messageString = object.getResources().getString(R.string.mac_filter_allow);
-                        break;
-                    case 6:
-                        messageString = object.getResources().getString(R.string.device_added);
-                        break;
-                    case 7:
-                        messageString = object.getResources().getString(R.string.device_removed);
-                        break;
-                }
-                //Used to print the message if an Exception is not thrown
-                result = false;
+                mf_spinner.setSelection( Integer.parseInt(messageString) );
+                Toast.makeText(progressBar.getContext() , progressBar.getResources().getString(R.string.sync_successful), Toast.LENGTH_LONG).show();
             }
-            catch (NumberFormatException nfe){
-                Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-            }
-            finally{
-                //messageString successfully built? print : dont
-                if(!result){
-                    Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
-                }
+            catch (Exception e){
+                e.printStackTrace();
             }
         }
         else{
             Log.d("CONNECTION","FAIL");
-            if(object instanceof Switch){
-                ((Switch) object).setChecked( rollback!=0 );
-            }
-            else if(object instanceof Spinner){
-                ((Spinner) object).setSelection( rollback );
-            }
             if(portError){
-                Toast.makeText( object.getContext(), object.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
+                Toast.makeText( progressBar.getContext(), progressBar.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
             }
             else{
-                Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                Snackbar.make(progressBar , progressBar.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         }
         //Disable the progress bar and enable de view
         progressBar.setVisibility(View.INVISIBLE);
-        object.setEnabled(true);
+        sw_wifi.setEnabled(true);
+        mf_spinner.setEnabled(true);
 
     }
 

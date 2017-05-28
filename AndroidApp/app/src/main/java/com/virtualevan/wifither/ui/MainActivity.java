@@ -27,6 +27,7 @@ import com.virtualevan.wifither.R;
 import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.LanguageHandler;
 import com.virtualevan.wifither.core.Server;
+import com.virtualevan.wifither.core.SyncConfigServer;
 
 import java.util.Locale;
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         final FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
+        final Spinner sp_macfilter = (Spinner) findViewById(R.id.sp_macfilter);
         //Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> macfilter_adapter = ArrayAdapter.createFromResource(this,
                 R.array.sp_macfilter, android.R.layout.simple_spinner_item);
@@ -192,13 +193,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 switch( menuItem.getItemId() ) {
                     case R.id.action_apply:
-                        new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+                        new Client().execute( "0", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
 
-                        new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+                        new Server( fabSpeedDial, 0, progressBar ).execute( et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
                         break;
                     case R.id.action_sync:
-                        //TODO: SYNC
                         new Client().execute( "8", et_ip.getText().toString().trim(), et_port.getText().toString().trim(), et_pass.getText().toString().trim() );
+
+                        new SyncConfigServer( sw_wifi, sp_macfilter, progressBar).execute( et_ip.getText().toString().trim(), et_port.getText().toString().trim() );
                         break;
                 }
                 return false;
@@ -226,9 +228,9 @@ public class MainActivity extends AppCompatActivity {
             saver.putString( "port", et_port.getText().toString().trim() );
             saver.putString( "pass", et_pass.getText().toString().trim() );
         }
-        //TODO : Eliminar carga de config
-        //saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
-        //saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
+
+        saver.putBoolean( "wifi_status", sw_wifi.isChecked() );
+        saver.putInt( "mac_filter", sp_macfilter.getSelectedItemPosition() );
 
         saver.apply();
     }
@@ -247,16 +249,15 @@ public class MainActivity extends AppCompatActivity {
         EditText et_ip = (EditText) findViewById( R.id.et_ip );
         EditText et_port = (EditText) findViewById( R.id.et_port );
         EditText et_pass = (EditText) findViewById( R.id.et_pass );
-//        TODO: Eliminar salva de switches
-//        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
-//        Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
+        Switch sw_wifi = (Switch) findViewById( R.id.sw_wifi );
+        Spinner sp_macfilter = (Spinner) findViewById( R.id.sp_macfilter );
 
 
         et_ip.setText( loader.getString( "ip", null ) );
         et_port.setText( loader.getString( "port", null ) );
         et_pass.setText( loader.getString( "pass", null ) );
-//        sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
-//        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
+        sw_wifi.setChecked( loader.getBoolean( "wifi_status", false ) );
+        sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
     }
 
     @Override
