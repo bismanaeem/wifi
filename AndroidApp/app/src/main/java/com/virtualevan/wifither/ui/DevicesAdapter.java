@@ -47,7 +47,7 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        DeviceModel device = getItem(position);
+        final DeviceModel device = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.custom_item_listview_device, parent, false);
@@ -62,8 +62,7 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
         // Populate the data into the template view using the data object
         tv_device.setText(device.getName());
         tv_mac.setText(device.getMac());
-        //TODO
-        //sw_device.setChecked(device.getSwitch());
+        sw_device.setChecked(device.getSwitch());
 
 
         // Cache row position inside the button using `setTag`
@@ -73,31 +72,37 @@ public class DevicesAdapter extends ArrayAdapter<DeviceModel> implements Adapter
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                sw_device.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    boolean firstTime = true;
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        //firstTime prevents the Switch from being triggered during the rollback
-                        if(firstTime) {
-                            DeviceModel device = getItem( (Integer) buttonView.getTag() );
-                            if( isChecked ) {
-                                new Client().execute( "6"+device.getMac(), ip, port, pass );
-                            }
-                            else {
-                                new Client().execute( "7"+device.getMac(), ip, port, pass );
-                            }
-                            //TODO: device.setSwitch( isChecked );
-                            firstTime = false;
-                            new Server( sw_device, isChecked? 0 : 1, progressBar ).execute( ip, port );
+            sw_device.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                boolean firstTime = true;
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    //firstTime prevents the Switch from being triggered during the rollback
+                    if(firstTime) {
+                        DeviceModel device = getItem( (Integer) buttonView.getTag() );
+                        if( isChecked ) {
+                            new Client().execute( "6"+device.getMac(), ip, port, pass );
                         }
-
+                        else {
+                            new Client().execute( "7"+device.getMac(), ip, port, pass );
+                        }
+                        device.setSwitchPassive( isChecked );
+                        firstTime = false;
+                        new Server( sw_device, isChecked? 0 : 1, progressBar ).execute( ip, port );
                     }
-                });
 
-                return false;
+                }
+            });
+
+            return false;
             }
 
+        });
+
+        device.setOnSwitchChanged(new DeviceModel.OnSwitchChangedListener() {
+            @Override
+            public void onSwitchChanged() {
+                sw_device.setChecked( device.getSwitch() );
+            }
         });
 
         // Return the completed view to render on screen

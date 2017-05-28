@@ -27,6 +27,7 @@ import com.virtualevan.wifither.core.Client;
 import com.virtualevan.wifither.core.DeviceModel;
 import com.virtualevan.wifither.core.LanguageHandler;
 import com.virtualevan.wifither.core.Server;
+import com.virtualevan.wifither.core.SyncDevicesServer;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -77,10 +78,13 @@ public class DevicesActivity extends AppCompatActivity {
                     new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
 
                     new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+
                     break;
                 case R.id.action_sync:
                     //TODO: SYNC
-                    new Client().execute( "8", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+                    new Client().execute( "9", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
+
+                    new SyncDevicesServer( devices, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
                     break;
                 case R.id.action_add:
                     addDevice();
@@ -187,16 +191,23 @@ public class DevicesActivity extends AppCompatActivity {
 
     //Add a device to the devices adapter
     public void addDevice(String device, String mac){
-        devicesAdapter.add( new DeviceModel( device, mac/*TODO:, false*/ ) );
-        devicesAdapter.notifyDataSetChanged();
+        DeviceModel devToAdd = new DeviceModel( device, mac, false );
+
+        if (devices.contains(devToAdd)){
+            Toast.makeText( DevicesActivity.this, getResources().getString( R.string.device_exists ), Toast.LENGTH_SHORT ).show();
+        }
+        else {
+            devicesAdapter.add( devToAdd );
+            devicesAdapter.notifyDataSetChanged();
+        }
     }
 
     //Alertdialog which obtains the info for the device creation
     public void addDevice(){
         //Create and show dialog fragment
-        final Resources res = getResources();
+        Resources res = getResources();
         FragmentManager fragmentManager = getFragmentManager();
-        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.new_device ), res.getString( R.string.add ) );
+        DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.new_device ), res.getString( R.string.add ) );
         dialogFragment.show(fragmentManager, "Add device fragment");
         fragmentManager.executePendingTransactions();
     }
@@ -204,12 +215,12 @@ public class DevicesActivity extends AppCompatActivity {
     //Alertdialog for device edits
     public void modifyDevice( final int position ){
         //Get current device
-        final DeviceModel device = devices.get( position );
+        DeviceModel device = devices.get( position );
 
         //Create and show dialog fragment
-        final Resources res = getResources();
+        Resources res = getResources();
         FragmentManager fragmentManager = getFragmentManager();
-        final DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.edit_device ), res.getString( R.string.edit ), device.getName(), device.getMac(), position );
+        DeviceDialogFragment dialogFragment = DeviceDialogFragment.newInstance( res.getString( R.string.edit_device ), res.getString( R.string.edit ), device.getName(), device.getMac(), position );
         dialogFragment.show(fragmentManager, "Edit device fragment");
         fragmentManager.executePendingTransactions();
     }
@@ -234,7 +245,7 @@ public class DevicesActivity extends AppCompatActivity {
     //Crete de Modify listener
     public void setListener(EditText et_name, EditText et_mac, int position, DeviceDialogFragment dialog){
         //Get current device
-        final DeviceModel device = devices.get( position );
+        DeviceModel device = devices.get( position );
 
         if( et_name.getText().toString().trim().isEmpty() ){
             Toast.makeText( DevicesActivity.this, getResources().getString( R.string.empty_device ), Toast.LENGTH_SHORT ).show();

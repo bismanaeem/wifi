@@ -10,10 +10,14 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.virtualevan.wifither.R;
+import com.virtualevan.wifither.ui.DevicesAdapter;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Receives MAC addresses from the router
@@ -24,23 +28,20 @@ import java.net.SocketTimeoutException;
  */
 
 public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
-    private int rollback;
-    private View object;
+    private ArrayList<DeviceModel> devices;
     private ProgressBar progressBar;
-    private String messageString="";
+    private List<String> macsList= new ArrayList<String>();
     private boolean portError;
 
     //Receives the pressed button/switch/spinner, its status and its bound progress bar, then puts them in a local variable
-    public SyncDevicesServer(View v, int rollback, ProgressBar progressBar ){
-        this.object = v;
-        this.rollback = rollback;
+    public SyncDevicesServer(ArrayList<DeviceModel> devices, ProgressBar progressBar ){
+        this.devices = devices;
         this.progressBar = progressBar;
     }
 
     //Disables the view to prevent the user interaction, and enables the progress bar
     @Override
     public void onPreExecute(){
-        object.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -49,7 +50,7 @@ public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
     public Boolean doInBackground(String... data){
 
         //Prepare a packet to be received
-        byte[] message = new byte[4096];
+        byte[] message = new byte[1024];
         DatagramPacket packet = new DatagramPacket(message, message.length);
         DatagramSocket socket = null;
 
@@ -59,11 +60,14 @@ public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
             socket = new DatagramSocket( Integer.parseInt(data[1]) );
             socket.setSoTimeout(10000);
 
-            //Listen for 10 seconds
-            socket.receive(packet);
-
-            messageString = new String(message, 0, packet.getLength());
-                Log.d("RECEIVED",messageString);
+            //Listen for 10 seconds until "done" message
+            String messageString = "";
+            do {
+                socket.receive(packet);
+                messageString = new String(message, 0, packet.getLength());
+                macsList.add(messageString);
+                Log.d("RECEIVED", messageString);
+            } while (!messageString.equals("done"));
         }
         catch (SocketTimeoutException ste)
         {
@@ -100,67 +104,36 @@ public class SyncDevicesServer extends AsyncTask<String, Void, Boolean> {
     //Other non related error also show an error message
     @Override
     public void onPostExecute( Boolean result ){
-        if(result){
-            Log.d("CONNECTION","OK");
-            try{
-                switch(Integer.parseInt(messageString)){
-                    case 0:
-                        messageString = object.getResources().getString(R.string.wifi_restarted);
-                        break;
-                    case 1:
-                        messageString = object.getResources().getString(R.string.wifi_disabled);
-                        break;
-                    case 2:
-                        messageString = object.getResources().getString(R.string.wifi_enabled);
-                        break;
-                    case 3:
-                        messageString = object.getResources().getString(R.string.mac_filter_disabled);
-                        break;
-                    case 4:
-                        messageString = object.getResources().getString(R.string.mac_filter_deny);
-                        break;
-                    case 5:
-                        messageString = object.getResources().getString(R.string.mac_filter_allow);
-                        break;
-                    case 6:
-                        messageString = object.getResources().getString(R.string.device_added);
-                        break;
-                    case 7:
-                        messageString = object.getResources().getString(R.string.device_removed);
-                        break;
+        if(result) {
+            try {
+                //Turn switches off
+                for (DeviceModel device : devices) {
+                    device.setSwitch(false);
                 }
-                //Used to print the message if an Exception is not thrown
-                result = false;
-            }
-            catch (NumberFormatException nfe){
-                Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-            }
-            finally{
-                //messageString successfully built? print : dont
-                if(!result){
-                    Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
+
+                //Turn on switches of the received macs
+                for (String mac : macsList) {
+                    for (DeviceModel device : devices) {
+                        if (device.getMac().equals(mac)) {
+                            device.setSwitch(true);
+                        }
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        else{
-            Log.d("CONNECTION","FAIL");
-            if(object instanceof Switch){
-                ((Switch) object).setChecked( rollback!=0 );
-            }
-            else if(object instanceof Spinner){
-                ((Spinner) object).setSelection( rollback );
-            }
+        else {
             if(portError){
-                Toast.makeText( object.getContext(), object.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
+                Toast.makeText( progressBar.getContext(), progressBar.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
             }
-            else{
-                Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            else {
+                Snackbar.make( progressBar, progressBar.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         }
+
         //Disable the progress bar and enable de view
         progressBar.setVisibility(View.INVISIBLE);
-        object.setEnabled(true);
-
     }
 
 }

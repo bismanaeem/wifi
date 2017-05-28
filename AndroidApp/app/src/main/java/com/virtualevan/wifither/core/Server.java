@@ -129,17 +129,11 @@ public class Server extends AsyncTask<String, Void, Boolean> {
                         messageString = object.getResources().getString(R.string.device_removed);
                         break;
                 }
-                //Used to print the message if an Exception is not thrown
-                result = false;
+                //messageString successfully built? print : dont
+                Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
             }
             catch (NumberFormatException nfe){
-                Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-            }
-            finally{
-                //messageString successfully built? print : dont
-                if(!result){
-                    Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
-                }
+                Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
         else{
