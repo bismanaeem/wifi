@@ -5,8 +5,15 @@
 \usepackage{graphicx}
 \usepackage{imakeidx}
 \usepackage{caption}
+\usepackage{listings}
 
-
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%        EDICION        %%
@@ -28,12 +35,12 @@
 \begin{document}
 \maketitle
 
-\begin{figure}[h!]
-    \centering
-        \includegraphics[scale=0.2]{logo_uvigo.png}
-        \caption*{Universidad de Vigo}
-        \label{fig:uvigo}
-\end{figure}
+%\begin{figure}[h!]
+%    \centering
+%        \includegraphics[scale=0.2]{logo_uvigo.png}
+%        \caption*{Universidad de Vigo}
+%        \label{fig:uvigo}
+%\end{figure}
 
 \clearpage
 
@@ -60,6 +67,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo{preguntar Moncho dónde va la arquitectura y si la planificación va en la introducción y eso, comparado con la lógica y lo que tengo en el TFG de cacho}
 
 \section{Introducción}
 %haberá que incluír unha introdución ao problema e xustificación do
@@ -68,13 +76,15 @@
 %traballos e materias nesta sección.*/
 
 
-\section{Objetivos}
-% presentar o problema que se vai tratar, incluír o obxectivo principal e os
-% específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
+    \subsection{Objetivos}
+    \todo{debería ser subsection?}
+    % presentar o problema que se vai tratar, incluír o obxectivo principal e os
+    % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
 
-\section{Resumen de la solución propuesta}
-% indicarase a solución aportada para o problema
-% presentado. Deberase incluír aquí a metodoloxía empregada.
+    \subsection{Resumen de la solución propuesta}
+    \todo{debería ser subsection?}
+    % indicarase a solución aportada para o problema
+    % presentado. Deberase incluír aquí a metodoloxía empregada.
 
 \section{Planificación y seguimiento}
 % deberase incluír un diagrama de Gantt que amose tanto
@@ -654,10 +664,286 @@
 
 % garantir o correcto funcionamento do software ou do hardware.
 
-
+\todo{Requisitos mínimos}
 \section{Manual técnico}
+    \subsection{Requisitos mínimos}
+        Para poder utilizar el sistema \textbf{Wifither} se debe cumplir un conjunto de requisitos, los cuáles están especificados a continuación.
+
+        \todo{puntos}
+        Equipo con una distrubución GNU/Linux para compilar paquete. Ubuntu como subsistema de Windows, BSD o MacOS no están oficialmente soportados, aunque suelen dar buenos resultados. Cygwin no está soportado debido al sistema de archivos que utiliza, que no es capaz de distinguir entre mayúsculas y minúsculas.
+
+        Router con sistema operativo OpenWRT donde se ejecutará el servicio servidor.
+
+        Dispositivo móvil con sistema operativo Android donde se instalará la aplicación cliente.
+
+        Conexión a Internet tanto en el router como en el dispositivo móvil.
+
+    \subsection{Compilar el paquete Wifither para OpenWRT}
+        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} \todo{style + modificar dependiendo de la tabla}
+
+        \todo{debería poner toda la tabla? o quitar arch? o quitar todo?}
+        %\begin{table}
+            \begin{tabular}{|l|l|l|}
+                \hline
+                \textbf{Prerequisitos}  & \textbf{Debian}   & \textbf{Arch}             \\           
+                \hline
+                asciidoc                & asciidoc          & asciidoc                  \\
+                GNU Bash                & bash              & bash                      \\
+                GNU bc                  & bc                & bc                        \\
+                GNU Binutils            & binutils          & binutils                  \\
+                bzip2                   & bzip2             & bzip2                     \\
+                fastjar                 & fastjar           & fastjar                   \\
+                flex                    & flex              & flex                      \\
+                git                     & git-core          & git                       \\
+                GNU C++ Compiler        & g gcc-c           & -                         \\
+                GNU C Compiler          & gcc               & gcc                       \\
+                getopt                  & util-linux        & util-linux                \\
+                GNU awk                 & gawk              & gawk                      \\
+                gtk2.0-dev              & libgtk2.0-dev     & gtk2                      \\
+                intltool-update         & intltool          & intltool                  \\
+                jikes                   & jikespg           & -                         \\
+                libz, libz-dev          & zlib1g-dev        & zlib                      \\
+                Mercurial / hg          &                   & mercurial                 \\
+                make                    & make              & make                      \\
+                mkisofs                 & genisoimage       & cdrkit                    \\
+                ncurses                 & libncurses5-dev   & ncurses                   \\
+                openssl/ssl.h           & libssl-dev        & openssl                   \\
+                patch                   & patch             & patch                     \\
+                perl-ExtUtils-MakeMaker & perl-modules      & perl-extutils-makemaker   \\
+                python2.6-dev           & python2.6-dev     & python2                   \\
+                rsync                   & rsync             & rsync                     \\
+                ruby                    & ruby              & ruby                      \\
+                sdcc                    & sdcc              & sdcc                      \\
+                subversion              & subversion        & subversion                \\
+                unzip                   & unzip             & unzip                     \\
+                GNU Wget                & wget              & wget                      \\
+                xgettext                & gettext           & gettext                   \\
+                xsltproc                & xsltproc          & libxslt                   \\
+                zlib, zlib-static       & zlib1g-dev        & zlib                      \\
+                \hline
+            \end{tabular}
+        %\end{table}
+
+        Para instalar paquetes en distribuciones \textit{Debian-like} \todo{style} su utiliza el sieguiente comando.
+        Es necesario que el usuario desde el que se ejecute el comando de instalación cuente con los permisos necesarios para llevar a cabo dicha acción.
+
+        \todo{Estilos de estos códigos}
+        \begin{lstlisting}[language=bash]
+            $ apt-get install <paquete>
+        \end{lstlisting}
+
+        Varios paquetes pueden ser instalados a la vez utilizando el comando solo una vez.
+        Ejemplo:
+
+        \begin{lstlisting}[language=bash]
+            $ apt-get install libncurses5-dev subversion gawk
+        \end{lstlisting}
+
+        Para preparar la compilación cruzada, descargar desde la página web oficial de OpenWRT \url{https://downloads.openwrt.org} el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, descomprimir el archivo y se copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
+
+        \begin{lstlisting}[language=bash]
+            $ ./scripts/feeds update
+            $ ./scripts/feeds install uclibcxx
+            $ ./scripts/feeds install libopenssl
+        \end{lstlisting}
+
+        \todo{arreglar}
+        Una vez esté todo preparado, ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither_1_<modelo-router>.ipk}.
 
 
+    \subsection{Instalación del servicio servidor} \todo{este nombre? demonio? servicio demonio? en el router?}
+        En este apartado se explica cómo instalar el paquete \textit{.ipk} resultante de la compilación, en el router con OpwenWRT, cómo arrancar \todo{arrancar?} el servicio y cómo configurarlo para que inicie automáticamente cada vez que inicie el router.
+
+        Primeramente se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y equipo remoto al que se desea copiar, y la ruta donde se desea almacenar en ese equipo.
+
+        \begin{lstlisting}[language=bash]
+            $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
+        \end{lstlisting}
+
+        Un ejemplo de la ejecución del comando:
+        \begin{lstlisting}[language=bash]
+            $ scp bin/brcm63xx/packages/base/wifither_1_brcm63xx.ipk root@192.168.0.4:/root/wifither
+        \end{lstlisting}
+
+        Una vez el paquete está en el router, este podrá ser instalado utilizando el gestor de paquetes de OpenWRT \textit{opkg}
+        \begin{lstlisting}[language=bash]
+            $ opkg install <ruta-paquete>
+        \end{lstlisting}
+
+        Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos 8 caracteres.
+
+        Ejemplo:
+        \begin{lstlisting}[language=bash]
+            $ wifither 4848 Potato12
+        \end{lstlisting}
+
+        Para configurar el equipo, de forma que Wifither siempre se inicie al arrancar el sistema, se debe editar el archivo \textit{/etc/rc.local} añadiendo la ejecución del servicio antes de la línea \textit{exit 0}
+
+        \begin{lstlisting}[language=bash]
+            # Put your custom commands here that should be executed once
+            # the system init finished. By default this file does nothing.
+
+            wifither 4848 Potato12
+
+            exit 0
+        \end{lstlisting}
+
+
+    \subsection{Instalación de la aplicación móvil}
+        Para realizar la instalación de la aplicación en el móvil existen dos opciones, utilizar la aplicación ya compilada \textit{.apk} o compilarla e instalarla directamente desde \textit{Android Studio}
+
+        \subsubsection{Instalación del .apk}
+            Es necesario que el archivo \textit{.apk} debe estar almacenado en el dispositivo móvil, para esto se puede conectar el dispositivo directamente al ordenador utilizando un cable USB.
+
+            Para llevar a cabo la instalación debe estar activada la opción \textit{Fuentes desconocidas}, que se encuentra en el apartado \textit{Seguridad} de los ajustes del sistema Android. Esto hace que sea posible la instalación de aplicaciones que provengan de fuentes no oficiales.
+
+            Una vez realizados los pasos anteriores, ir hasta la ubicación del archivo \textit{.apk}, pulsar sobre él y aceptar la instalación.
+
+        \subsubsection{Compilar e instalar desde Android Studio}
+            Para pider instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajuste del sistema Android.
+            \textbf{NOTA:} Las opciones de desarrollador están deshabilitadas por defecto en la mayoría de dispositivos Android, para habilitarla es necesario pulsar diez (10) veces sobre el \textit{Número de compilación}, que se encuentra en el apartado \textit{Acerca del dispositivo} de los ajuste del sistema Android.
+
+            En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run 'app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
+            
+            \textbf{NOTA:} Es importante aceptar en el dispositivo la clave RSA, esto permite que Android Studio pueda conectarse al dispositivo.
+
+            Tras realizar los pasos anteriores, el código fuente debe haber quedado compilado, instalado y ejecutado en el dispositivo conectado.
+
+    \todo{ddns, segundo router o router principal?}
+
+    \subsection{Configuración de una VPN} \todo{cómo poner opcional?}
+        En este apartado se explica la creación y configuración de una VPN en modo tunel entre el router y el dispositivo móvil mediante la utilización de OpenVPN. Esto paso es totalmente opcional ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servido sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
+
+        \subsubsection{Creación de VPN en el router}
+            Inicialmente se debe comprobar que los repositorios desde los que descargan los paquetes y librerías estén bien configurados en el router. Esto se puede observar en el archivo de configutación \textit{/etc/opkg/dist-feeds.conf}. Las rutas a los diferentes repocitorios dependerán de la versión del sistema y el modelo del router.
+
+            Ejemplo:
+            \url{https://downloads.openwrt.org}
+
+            \begin{lstlisting}[language=bash]
+                src/gz designated_driver http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+                src/gz designated_base http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/base
+                src/gz designated_packages http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+                src/gz designated_luci http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/luci
+                src/gz designated_routing http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/routing
+                src/gz designated_telephony http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/telephony
+                src/gz designated_management http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/management
+            \end{lstlisting}
+            
+            Con los repositorios bien configurados, instalar \textit{openvpn-openssl} y \textit{openvpn-easy-rsa}
+            
+            \begin{lstlisting}[language=bash]
+                $ opkg update
+                $ opkg install openvpn-openssl openvpn-easy-rsa
+            \end{lstlisting}
+
+            \todo{Cómo funciona esto? Privado público?}
+            A continuación se deben crear los certificados de seguridad para cliente y servidor. El siguiente código crea un certificado servidor con el nombre \textit{my-server} y un ccertificado cliente con el nombre \textit{my-client}. Se peuden crear tantos certificados clientes como sean necesarios ejecutando el mismo comando de creación \textit{build-key-pkcs12} varias veces especificando diferentes nombres.
+
+            \begin{lstlisting}[language=bash]
+                $ build-ca
+                $ build-dh
+                $ build-key-server <nombre-clave-servidor>
+                $ build-key-pkcs12 <nombre-clave-cliente>
+            \end{lstlisting}
+
+            Una vez generadas las claves:
+            
+            \todo{punto}
+                Copiar las perteneciantes al servidor servidor en el directorio \textit{/etc/openvpn}
+            
+                \begin{lstlisting}[language=bash]
+                    $ cp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-servidor.* /etc/easy-rsa/keys/dh2048.pem /etc/openvpn
+                \end{lstlisting}
+
+                Copiar las pertenecientes al cliente en el dispositivo móvil mediante cualquier método disponible, puede ser a través de un dispositivo USB, un eMail, scp, etc.
+
+                Ejemplo: Copiar las claves al equipo desde el que se compiló el paquete y conectar allí el dispositivo móvil
+                \begin{lstlisting}[language=bash]
+                    $ scp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-cliente.* root@192.168.0.100:/etc/openvpn
+                \end{lstlisting}
+
+            A continuación se muestran los comandos a ejecutar para la creación y configuración de una nueva red en el router por la que se realizarán las conexiones de la VPN y la configuración del cortafuegos correspondiente.
+
+            \todo{enumerar}
+            Crear la nueva interfaz de la VPN con el nombre vpn0
+                
+            \begin{lstlisting}[language=bash]
+                $ uci set network.vpn0=interface
+                $ uci set network.vpn0.ifname=tun0
+                $ uci set network.vpn0.proto=none
+                $ uci set network.vpn0.auto=1        
+            \end{lstlisting}
+
+            Configurar el cortafuegos para permitir conexiones entrantes al puerto \textit{1194} (puerto por defecto).
+
+            \begin{lstlisting}[language=bash]
+                $ uci set firewall.Allow_OpenVPN_Inbound=rule
+                $ uci set firewall.Allow_OpenVPN_Inbound.target=ACCE  PT
+                $ uci set firewall.Allow_OpenVPN_Inbound.src=*
+                $ uci set firewall.Allow_OpenVPN_Inbound.proto=udp
+                $ uci set firewall.Allow_OpenVPN_Inbound.dest_port=1194    
+            \end{lstlisting}
+
+            Crear nueva zona nombrada \textit{vpn} para la red vpn0. Esto permitirá las conexiones relacionadas con el tunel VPN, tanto entrantes como salientes.
+
+            \begin{lstlisting}[language=bash]
+                $ uci set firewall.vpn=zone
+                $ uci set firewall.vpn.name=vpn
+                $ uci set firewall.vpn.network=vpn0
+                $ uci set firewall.vpn.input=ACCEPT
+                $ uci set firewall.vpn.forward=REJECT
+                $ uci set firewall.vpn.output=ACCEPT
+                $ uci set firewall.vpn.masq=1   
+            \end{lstlisting}
+
+            Aplicar la nueva configuración.
+
+            \begin{lstlisting}[language=bash]
+                $ uci commit network
+                $ /etc/init.d/network reload
+                $ uci commit firewall
+                $ /etc/init.d/firewall reload  
+            \end{lstlisting}
+
+            Configuración de OpenVPN:
+            La configuración puede ser realizada medainte los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
+
+            \begin{lstlisting}[language=bash]
+                $ echo > /etc/config/openvpn
+                $ uci set openvpn.myvpn=openvpn
+                $ uci set openvpn.myvpn.enabled=1
+                $ uci set openvpn.myvpn.verb=3
+                $ uci set openvpn.myvpn.port=1194
+                $ uci set openvpn.myvpn.proto=udp
+                $ uci set openvpn.myvpn.dev=tun
+                $ uci set openvpn.myvpn.server='10.8.0.0 255.255.255.0'
+                $ uci set openvpn.myvpn.keepalive='10 120'
+                $ uci set openvpn.myvpn.ca=/etc/openvpn/ca.crt
+                $ uci set openvpn.myvpn.cert=/etc/openvpn/my-server.crt
+                $ uci set openvpn.myvpn.key=/etc/openvpn/my-server.key
+                $ uci set openvpn.myvpn.dh=/etc/openvpn/dh2048.pem
+                $ uci commit openvpn
+            \end{lstlisting}
+
+            Iniciar OpenVPN
+            \begin{lstlisting}[language=bash]
+                $ /etc/init.d/openvpn enable
+                $ /etc/init.d/openvpn start
+            \end{lstlisting}
+
+        \subsubsection{Conexión al la VPN desde dispositivo Android}
+            Para establecer la conexión con la VPN se debe instalar la aplicación \textit{OpenVPN for Android} desde \textit{Google Play Store}
+            
+            \url{https://play.google.com/store/apps/details?id=de.blinkt.openvpn}
+
+            Una vez instalada la aplicación, añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca autmáticamente al iniciar sesión.
+
+            Finalmente entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
+
+            Después de haber configurado la aplicación, se puede establecer conección con la VPN presionando sobre el perfil creado. A partir de estre punto, todas las conexiones entre cliente y servidor serán cifradas.
+            
+    
 \section{Manual de usuario}
 
 % debe incluír requisitos mínimos, manual de instalación e de
@@ -717,50 +1003,52 @@
 \section{Tecnologías}
 \todo{debería empezar por "Es tal cosa" siempre o meejor empezar con el nombre, o sin nada?}
     \subsection{OpenWRT}
-    OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cuál permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee. 
+        OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cuál permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
 
     \subsection{C}
-    Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos. \todo{solo embebidos?}
+        Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos. \todo{solo embebidos?}
 
         \subsubsection{OpenWRT SDK}
-        El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT\todo{ref openwrt} sin tener que compilar todo el sistema desde cero.
+            El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT\todo{ref openwrt} sin tener que compilar todo el sistema desde cero.
 
         \subsubsection{uClibc}
             \todo{yewClibc}
-        Es una librería \todo{en?}C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \todo{poner estilo} glibc (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. uClibc \todo{yewClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
+            Es una librería \todo{en?}C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \todo{poner estilo} glibc (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. uClibc \todo{yewClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
 
         \subsubsection{OpenSSL}
-        Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
+            Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
 
-    
+    \subsection{OpenVPN}
+        \todo{openvpn}
+
     \subsection{sed}
-    Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida.
+        Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida.
 
     \subsection{\LaTeX}\todo{debería ir así?}
-    Es un sistema de tipografía de alta calidad, incluye mecanismos diseñados para la creación de documentación científica y técnica por lo que se ha convertido en el estándar de facto a la hora de desarrollar esta tarea. Está concebido como siftware libre, y cuenta con múltiples librerías que añaden funcionalidades comunmente necesarias para la creación de estos doumentos.
+        Es un sistema de tipografía de alta calidad, incluye mecanismos diseñados para la creación de documentación científica y técnica por lo que se ha convertido en el estándar de facto a la hora de desarrollar esta tarea. Está concebido como siftware libre, y cuenta con múltiples librerías que añaden funcionalidades comunmente necesarias para la creación de estos doumentos.
 
     \subsection{Java}
-    Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es el principal lenguaje para el desarrollo de aplicaciones móviles Android, además de ser utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc. 
+        Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es el principal lenguaje para el desarrollo de aplicaciones móviles Android, además de ser utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc.
 
     \subsection{Git}
-    Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea.
+        Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea.
 
 \section{Herramientas} \todo{Herraminetas?}
 
     \subsection{Atom}
-    Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
+        Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
 
     \subsection{Visual Studio Code}
-    Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico "edit-build-debug" \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
+        Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico "edit-build-debug" \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
 
     \subsection{TeX Live}
-    Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo además de ofrecer soporte para múltiples idiomas.
+        Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo además de ofrecer soporte para múltiples idiomas.
 
     \subsection{Android Studio}
-    Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
+        Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
 
     \subsection{GitHub}
-    Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
+        Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
 
 \bibliographystyle{plain}
 \bibliography{references}
