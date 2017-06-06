@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Wifither</string>
     <string name="sw_wifi">Enable wifi</string>
-    <string name="lbl_ip">IP Address</string>
+    <string name="lbl_ip">Server Address</string>
     <string name="lbl_port">Port</string>
     <string name="lbl_pass">Password</string>
     <string name="lbl_macfilter">MAC Filter</string>

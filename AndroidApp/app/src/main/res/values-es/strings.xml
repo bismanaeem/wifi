@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Wifither</string>
     <string name="sw_wifi">Habilitar wifi</string>
-    <string name="lbl_ip">Dirección IP</string>
+    <string name="lbl_ip">Dirección del Servidor</string>
     <string name="lbl_port">Puerto</string>
     <string name="lbl_pass">Contraseña</string>
     <string name="lbl_macfilter">Filtro MAC</string>

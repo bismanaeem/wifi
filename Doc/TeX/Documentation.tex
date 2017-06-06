@@ -770,7 +770,7 @@
             $ opkg install <ruta-paquete>
         \end{lstlisting}
 
-        Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos 8 caracteres.
+        Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos ocho caracteres.
 
         Ejemplo:
         \begin{lstlisting}[language=bash]
@@ -945,11 +945,84 @@
             
     
 \section{Manual de usuario}
+    \todo{references??????}
+    En esta sección se explican las funcionalidades que tiene la aplicación y cómo utilizarlas, en las imágenes \ref{fig:main_activity_manual} y \ref{fig:devices_activity_manual} se encuentran enumerados los elementos de la interfaz que son explicados a continuación.
 
-% debe incluír requisitos mínimos, manual de instalación e de
+    \todo{pantalla principal?}
+    \begin{figure}[h!]
+        \centering
+            \includegraphics[scale=0.5]{main_activity_manual.eps}
+            \caption*{Pantalla principal}
+            \label{fig:main_activity_manual}
+    \end{figure}
 
-% utilización.
+    \todo{Y la organización de esto???}
+    \begin{figure}[h!]
+        \centering
+            \includegraphics[scale=0.5]{devices_activity_manual.eps}
+            \caption*{Administración de dispositivos}
+            \label{fig:devices_activity_manual}
+    \end{figure}
 
+    \todo{enumerar}
+
+    1. Control de idiomas
+    Permite seleccionar el idioma con el que se muestran las opciones de la interfaz de usuario, están disponibles castellano e inglés, el idioma por defecto de la aplicación es el inglés.
+
+    2. Dirección IP/URL del rputer servidor
+    Es el campo de texto donde se especifica la dirección del router OpenWRT en el cual se ha instalado la aplicación y sobre el que se desea gestionar la red Wi-Fi. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+    3. Puerto de escucha del servicio
+    Es el puerto que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para recibir las órdenes desde el dispositivo móvil. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+    4. Contraseña establecida en el servidor
+    Es la contraseña que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para encriptar y desencriptar las órdenes enviadas desde el dispositivo móvil. La contraseña debe contener al menos ocho caracteres. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+    5. Botón para Editar/Aceptar la configuración
+    Este botón habilita la edición de los campos de configuración señalados con los números 1, 2 y 3 en la \ref{fig:main_activity_manual}. Tras ser pulsado, el texto del botón cambia a \textit{Confirmar}, y debe ser pulsado para guardar la nueva configuración.
+
+    6. Switch Wi-Fi
+    Enciende o apaga la red Wi-Fi en el router OpenWRT, la posición iquierda indica que la red Wi-Fi está apagada, la posición hacia la derecha indica que está encendida.
+
+    7. Configuración del filtro MAC
+    Permite seleccionar la configuración del filtro MAC en el router OpenWRT. El selector tiene tres posiciones: \textit{Deshabilitado}, \textit{Permitir} y \textit{Denegar}.
+    Si el filtro MAC está deshabilitado, cualquier dispositivo puede conectarse a la red Wi-Fi sin restricción de ningún tipo.
+    Si el filtro MAC está configurado para \textit{Permitir}, significa que sólo pueden acceder a la red Wi-Fi los dispositivos que hayan sido especificados para que el filtro les sea aplicado.
+    Si el filtro MAC está configurado para \textit{Denegar}, significa que tienen acceso a la red todos los dispositivos excepto los especificados para que el filtro les sea aplicado.
+
+    8. Botón para acceder a la gestión de dispositivos
+    Al pulsarlo se accede a un nuevo conjunto de opciones desde donde se pueden adicionar, editar y eliminar dispositivos, además de poder seleccionar los dispositivos con los que se desea aplicar el filtro MAC.
+
+    9. Botón de opciones
+    Permite acceder a las opciones marcadas con los puntos 12, 14 y 15 en la \ref{fig:devices_activity_manual}
+
+    10. Nombre del dispositivo
+    Es un indicador distintivo para cada dispositivo, es determinado por el usuario al añadir un nuevo dispositivo y es un campo obligatorio.
+
+    11. Dirección MAC del dispositivo
+    Identificador único del adaptador de red del dispositivo. Es especificado por el usuario al añadir un nuevo dispositivo y debe cumplir con un formato específico compuesto por seis pares de caracteres hexadecimales separados por dos puntos(:). Si el formato introducido no es correcto, el botón \textit{Añadir} queda deshabilitado.
+
+    12. Switch de estado del dispositivo
+    Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro NO se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro SÍ se aplica al dispositivo.
+
+    13. Botón para aplicar configuración
+    Aplica en el router OpenWRT la configuración que haya sido establecida.
+
+    14. Botón para optener configuración.
+    Actualiza el dispositivo móvil con la configuración actual del router OpenWRT. Esta opción es útil cuando se gestiona la red desde más de un dispositivo móvil, de esta forma cada dispositivo puede saber siempre la última configuración aplicada en el router.
+
+    15. Botón para añadir nuevo dispositivo
+    Muestra un cuadro de diálogo que permite introducir los datos del nuevo dispositivo y añadirlo a la lista de dispositivos
+
+    16. Botón para cerrar el menú de opciones
+    Cierra el menú de opciones, también puede ser cerrado presionando sobre cualquier espacio fuera del menú.
+
+    \todo{subsection??}
+    Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
+
+    Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
+
+    \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, contactar con el encargado/a de instalar y configrar la aplicación en el router OpenWRT.
 
 \section{Conclusiones y trabajo futuro}
 
