@@ -1,5 +1,8 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
 
 \usepackage{natbib}
 \usepackage{graphicx}
@@ -49,8 +52,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dedicatoria}
+A Patry, el amor de mi vida
 
 \section{Agradecimientos}
+A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisdad
 
 \clearpage
 
@@ -67,24 +72,69 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\todo{preguntar Moncho dónde va la arquitectura y si la planificación va en la introducción y eso, comparado con la lógica y lo que tengo en el TFG de cacho}
-
+\todo{márgenes iniciales de las secciones}
+\todo{hojas impares}
 \section{Introducción}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
 %traballos e materias nesta sección.*/
 
+Internet, desde su creación, ha sido un medio cada vez más accesible; actualmente cuenta con 3,731,973,423 de usuarios, cifra que representa casi el 50\% de los habitantes del planeta. 
 
-    \subsection{Objetivos}
-    \todo{debería ser subsection?}
-    % presentar o problema que se vai tratar, incluír o obxectivo principal e os
-    % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
+El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto en casa como fuera de ella. Actualmente es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Los padres de los menores normalmente toman medidas para prevenir 
 
-    \subsection{Resumen de la solución propuesta}
-    \todo{debería ser subsection?}
-    % indicarase a solución aportada para o problema
-    % presentado. Deberase incluír aquí a metodoloxía empregada.
+
+
+\section{Objetivos}
+% presentar o problema que se vai tratar, incluír o obxectivo principal e os
+% específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
+    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos y con los resultados obtenidos crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
+
+    \begin{enumerate}
+        \item El sistema debe poder ser controlado desde un dispositivo móvil:
+        \begin{itemize}
+            \item Conectado a la red Wi-Fi del propio router.
+            \item Conectado a Internet y accediendo desde la interfaz WAN. \todo{referenciar}
+        \end{itemize}
+
+        \item Incluir control para encender y apagar la red Wi-Fi de forma sencilla.
+        \item Implementar la gestión de un filtro MAC \todo{referenciar}, este debe contar con diferentes estados:
+            \begin{itemize}
+                \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
+                \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
+                \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
+            \end{itemize}
+        \item Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
+        \item Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
+        \item Añadir soporte para idiomas
+    \end{enumerate}
+
+
+\section{Resumen de la solución propuesta}
+% indicarase a solución aportada para o problema
+% presentado. Deberase incluír aquí a metodoloxía empregada.
+    Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. Se creará una App sobre Android para el control de los dispositivos conectados a la red Wi-Fi doméstica, y una aplicación que se ejecute como demonio en el router, donde se recibirán conexiones desde la App con la configuración a establecer. La conexión se realizará mediante paquetes UDP, evitando así el establecimiento de conexión y ganando en velociadad.
+
+    La funcionalidades de la aplicación se desarrollarán utilizando los propios mecanismos proporcionados por OpenWRT para el control de sus sistemas. El apagado/encendido de la red Wi-Fi se realizará a través del comando \textit{wifi} con los argumentos necesarios en cada caso, mientras que la gestión del control de accesos se llevará a cabo mediante los archivos de configuración de unicados en \textit{/etc/config}.
+
+    Para llevar a cabo la creación de este sistema, inicialmente se valoró el uso de una metodología de desarrollo en cascada, sin embargo, tras una nueva aproximación al problema, se ha llegado a la conclusión de que esta no era la solución más acertada debido a que el sistema se basa en un entorno de red, además se necesita realizar compilación cruzada utilizando un SDK específico, el cual cuenta con sus propias librerías, y la documentación de la que se dispone puede estar incompleta, desactualizada o errónea en su totalidad. Esto lleva como consecuencia que se necesite realizar pruebas de envíos de paquetes constantemente, y que debido a la diferencia de librerías se requiera realizar cambios en el código que se plantee inicialmente. También es necesario que el sistema ocupe el menor espacio posible, ya que el espacio de almacenamiento en routers suele ser limitado, lo que llevará a que el codigo deba ser refactorizado constantemente.
+    
+    Tras el análisis anterior se ha concluído que lo más adecuado sería el uso de un método ágil de desarrollo, en concreto \textit{Scrum}, que está más enfocado en la administración del desarrollo iterativo. \textit{Scrum} consta de 3 fases:
+    
+    \begin{itemize}
+        \item Planificación de un \textit{boceto} donde se establecen los objetivos generales del proyecto y el diseño de la arquitectura del software.
+        \item Una serie de ciclos \textit{sprint} donde cada ciclo desarrolla un incremento del sistema.
+        \item \textit{Cierre} del proyecto donde se completa la documentación requerida como ayudas y manuales de usuario.
+    \end{itemize}
+
+    \textit{Scrum} permite que el producto se desglose en piezas comprensibles de forma individual y que son desarrolladas de forma iterativa, recibiendo retroalimentación del usuario con cada entrega y realizando cambios en consecuencia. Para llevar a cabo el desarrollo utilizando este método, es necesario ocupar los roles imprescindibles para su funcionamiento.
+
+    \begin{itemize}
+        \item \textbf{Equipo de desarrollo:} Equipo responsable de llevar a cabo el desarrollo del sistema. Este rol estará compuesto únicamente por el alumno.
+        \item \textbf{Cliente:} Encargado de defininir los requisitos, utilizar las versiones resultantes de cada \textit{sprint} y aportar retroalimentación para la mejora del sistema. Este rol será llevado a cabo por el tutor del TFG.
+        \item \textbf{Maestro de Scrum:} Encargado de restrar el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
+    \end{itemize}
 
 \section{Planificación y seguimiento}
 % deberase incluír un diagrama de Gantt que amose tanto
@@ -101,562 +151,17 @@
 
 \section{Especificación y análisis de requisitos}
 % describiranse os requisitos necesarios, tanto funcionais como non funcionais. Incluiranse os aspectos máis relevantes correspondentes á análise do traballo realizado.
-% IEEE830
-
-    \subsection{Introducción}
-    % En este apartado se detalla la Especificación de Requisitos Software, de ahora en
-
-    % adelante ERS, del Sistema de Gestión Erasmus (EMS). La ERS facilita el mecanismo
-
-    % apropiado para comprender lo que quiere el cliente, analizando necesidades, confirmando
-
-    % su viabilidad, negociando una solución razonable, especificando la solución sin
-
-    % ambigüedad, validando la especificación y gestionando los requisitos para que se
-
-    % transformen en un sistema operacional.
-
-
-    \subsection{Propósito}
-
-    % El propósito es definir de manera clara y precisa las funcionalidades, características
-
-    % y restricciones técnicas del Sistema. Esta especificación será sometida a revisión a medida
-
-    % que avance el Sistema para corroborar que se cumple con lo estrictamente establecido.
-
-
-    \subsection{Ámbito del Sistema}
-
-    % Actualmente, tanto el personal designado para empeñar las funciones de
-
-    % coordinador Erasmus como la propia ORI no disponen de ningún sistema de manejo
-
-    % documental online que facilite todo el proceso de solicitud y seguimiento del Erasmus. En
-
-    % este apartado se especifican los requisitos necesarios para el desarrollo de una aplicación
-
-    % informática, denominada por el nombre de EMS (Sistema de Gestión Erasmus), que agilice
-
-    % el proceso de control y solicitud de plazas y requisitos específicos además de poder realizar
-
-    % una asignación automática de destinos Erasmus, facilitando y agilizando la labor que esto
-
-    % conlleva a cada coordinador.
-
-    % Es importante resaltar que el sistema controlara y manejará toda la documentación que se
-
-    % aplica en cada uno de los subprocesos de solicitud de la plaza y posteriormente de las
-
-    % etapas diferenciadas de la estancia Erasmus, para que de esta manera sea mucho más
-
-    % sencilla e intuitiva la manera de gestionar los destinos y toda la información y
-
-    % documentación necesaria, lo cual beneficia a los usuarios al momento de emplear esta
-
-    % aplicación.
-
-
-    \subsection{Definiciones, Acrónimos y Abreviaturas}
-
-    % • Definiciones:
-
-    % EMS Palabra formada por las iniciales de Erasmus
-
-    % Management System (Sistema de Gestión Erasmus).
-
-    % • Acrónimos y abreviaturas:
-
-    % ERS Especificación de Requisitos Software
-
-    % RFXXX El estándar seguido para la especificación del
-
-    % identificador de cada requisito funcional se nombrará
-
-    % de la siguiente forma:
-
-    % - R = Requisito
-
-    % - F = Funcional
-
-    % - XXX = Secuencia de hasta tres dígitos que
-
-    % servirá para la enumeración de cada requisito.
-
-    % RNFXXX El estándar seguido para la especificación del
-
-    % identificador de cada requisito no funcional se
-
-    % nombrará de la siguiente forma:
-
-    % - R = Requisito
-
-    % - NF = No Funcional
-
-    % - XXX = Secuencia de hasta tres dígitos que
-
-    % servirá para la enumeración de cada requisito.
-
-    % RIFXXX El estándar seguido para la especificación del
-
-    % identificador de cada requisito no funcional se
-
-    % nombrará de la siguiente forma:
-
-    % - R = Requisito
-
-    % - I = Interfaz
-
-    % - XXX = Secuencia de hasta tres dígitos que
-
-    % servirá para la enumeración de cada requisito.
-
-    % MVC Modelo Vista Controlador
-
-
-    \subsection{Referencias}
-
-    % Los estándares, metodología y documentación que sirven de base para la
-
-    % elaboración del Plan de Especificación de Requerimientos se hacen referencia a
-
-    % continuación:
-
-    % La Especificación de requerimientos del Software se ha diseñado basándose en normas
-
-    % dadas por el estándar IEEE Recommended Practice for Software Requirents Specification
-
-    % ANSI/IEEE 830, 1998.
-
-
-    \subsection{Visión general del documento}
-
-    % Este análisis de requisitos consta de tres apartados claramente diferenciados. En
-
-    % primer lugar este primer punto proporciona una introducción y una visión general de la
-
-    % ERS. El segundo apartado muestra la descripción general del sistema, consiguiendo así
-
-    % conocer las principales funciones que realiza así como los datos, restricciones, supuestos y
-
-    % dependencias que afectan a su desarrollo. Por último, en el tercer punto se definen de
-
-    % manera detallada los requisitos necesarios para cumplir con todas las funciones del sistema.
-
-
-    \subsection{Descripción general}
-
-        \subsubsection{Perspectiva del producto}
-
-        % Se trata de implementar una aplicación web para la gestión del proceso de petición,
-
-        % asignación y envío de documentación antes, durante y al final de la estancia erasmus. EMS
-
-        % no forma parte de ningún sistema mayor, es decir, es una aplicación totalmente
-
-        % independiente del resto de sistemas, por lo que no hay que tener en cuenta en ningún
-
-        % momento dicho aspecto.
-
-
-        \subsubsection{Funciones del producto}
-
-        % El sistema EMS permite la realización de las siguientes funciones:
-
-        % • Gestionar usuarios (Administrador):
-
-        % El sistema, que cuenta con tres tipos de usuario: administradores, coordinadores y
-
-        % alumnos, permite las altas, bajas y modificaciones de los usuarios.
-
-        % • Gestionar perfil (Administrador, Coordinador, Alumno):
-
-        % Cada uno de los tres tipos diferentes de usuarios puede consultar y modificar su
-
-        % perfil cuando deseen.
-
-        % • Gestionar contrato de estudios (
-
-        % El sistema, que cuenta con tres tipos de usuario: administradores, coordinadores y
-
-        % alumnos, permite las altas, bajas y modificaciones de los usuarios. Cada uno de los tres
-
-        % tipos diferentes de usuarios puede consultar y modificar su perfil cuando deseen.
-
-        % • Gestionar plazas erasmus:
-
-        % El sistema, que cuenta con tres tipos de usuario: administradores, coordinadores y
-
-        % alumnos, permite las altas, bajas y modificaciones de los usuarios. Cada uno de los tres
-
-        % tipos diferentes de usuarios puede consultar y modificar su perfil cuando deseen.
-
-        % • Gestionar preinscripciones
-
-        % El sistema, que cuenta con tres tipos de usuario: administradores, coordinadores y
-
-        % alumnos, permite las altas, bajas y modificaciones de los usuarios. Cada uno de los tres
-
-        % tipos diferentes de usuarios puede consultar y modificar su perfil cuando deseen.
-
-        % • Gestionar documentación
-
-        % El sistema, que cuenta con tres tipos de usuario: administradores, coordinadores y
-
-        % alumnos, permite las altas, bajas y modificaciones de los usuarios. Cada uno de los tres
-
-        % tipos diferentes de usuarios puede consultar y modificar su perfil cuando deseen.
-
-        % 7.2.3. Características de los usuarios
-
-        % Los usuarios de esta app web, que son entrenadores o bien deportistas que poseen
-
-        % la tarjeta TDU o la tarjeta PEF, no encontrarán ningún problema a la hora de moverse por
-
-        % la interfaz debido a que ésta es muy intuitiva y de fácil manejo.
-
-
-        \subsubsection{Restricciones}
-
-        % Una de las restricciones sobre el sistema es que éste debe adaptarse a los diferentes
-
-        % dispositivos móviles, ya que el uso de estos aparatos está muy extendido en los gimnasios
-
-        % últimamente. Además, el desarrollo de esta app debe realizarse únicamente con tecnologías
-
-        % que no requieran de un pago previo para poder ser usadas.
-
-        % Otra restricción se trata de la disponibilidad de ciertos servicios de cara al usuario mediante
-
-        % un control de acceso, ya que dependiendo del tipo de usuario que acceda a esta app,
-
-        % algunos servicios no serán visibles.
-
-
-        \subsubsection{Suposiciones y dependencias}
-
-        % El sistema de información EMS funciona independientemente, sin necesidades de
-
-        % comunicarse con otros sistemas externos, por lo que no hay dependencias respecto de
-
-        % otros sistemas.
-
-
-        \subsubsection{Requisitos futuros}
-
-        % En un futuro quizás se incluyan notificaciones a los clientes relacionadas con las actividades
-
-        % deportivas del gimnasio. Dichas notificaciones podrían llevarse a cabo para avisar a los
-
-        % clientes de la oferta de una nueva actividad o la cancelación de alguna sesión deportiva.
-
-
-    \subsection{Requisitos específicos}
-
-    % A continuación se presentan todos los requisitos que deberán ser realizados por el
-
-    % sistema. Todos los requisitos aquí expuestos son importantes y han sido descritos teniendo
-
-    % en cuenta el criterio de los usuarios:
-
-
-        \subsubsection{Interfaces externas}
-
-        % El sistema interactuará con el hardware de las tarjetas Deportiva Universitaria
-
-        % (TDU) y tarjetas Ponte en Forma (PEF). **** REQUITOS DE INTERFAZ///DEFINIR
-
-        % INTERFAZ EXTERNA DE HARDWARE COMO LLEGA LA INFORMACIÓN
-
-
-        \subsubsection{Funciones}
-
-        % • RF1- Gestionar usuarios (Administrador, Entrenador) RF1:
-
-        % RF1.1- El sistema permitirá el registro de un usuario no registrado. Para ello se les
-
-        % proporcionará un identificador de usuario y una contraseña. Se deberá almacenar nombre,
-
-        % apellidos, foto, dirección, email, contraseña y tipo: Deportista, Entrenador o Usuario. Sólo
-
-        % el administrador podrá editar el campo tipo de usuario y realizar el registro de un
-
-        % Entrenador u otro Administrador en el sistema.
-
-        % Los usuarios deportistas almacenarán además un subtipo: TDU (tarjeta deportiva
-
-        % universitaria) y PEF (programa Ponte En Forma). Los entrenadores podrán administrar a
-
-        % deportistas. Los administradores podrán administrar a todos los usuarios.
-
-        % RF1.2- Los usuarios registrados podrán modificar los datos de su cuenta a través
-
-        % del perfil de usuario.
-
-        % RF1.3- Se permitirá la consulta de los datos de los usuarios registrados y del
-
-        % administrador a través del perfil de usuario.
-
-        % RF1.4- El administrador del sistema podrá eliminar aquellas cuentas de usuarios
-
-        % que considere oportunas según sus criterios, a través de la vista de menú avanzado de
-
-        % usuario.
-
-        % RF1.5- Se visualizará la sección de perfil para usuarios registrados y administrador.
-
-        % Además se permitirá el acceso a esta sesión para modificar o consultar los datos relativos a
-
-        % sus cuentas.
-
-        % 8
-
-        % RF1.6- El acceso al sistema se realizará a través de la página de login en la que se
-
-        % solicitarán el nombre de usuario y la contraseña.
-
-        % RF1.7- El administrador del sistema dispondrá de un menú avanzado desde donde
-
-        % podrá gestionar todas las cuentas registradas en el sistema. Para acceder a este menú bastará
-
-        % con utilizar su login y contraseña.
-
-        % • RF2- Consultar perfil (todos):
-
-        % Se mostrará el nombre, apellidos, foto y dirección email.
-
-        % • RF3- Consultar información pública (todos):
-
-        % Se mostrará instalaciones, localización, contacto, actividades y horarios.
-
-        % • RF4- Gestionar actividades (Entrenador, Administrador):
-
-        % RF4.1- Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el
-
-        % alta de una actividad en el sistema. Cada actividad incluye nombre, horario, entrenador
-
-        % responsable, sesiones y tipo de actividad. Hay dos tipos de actividad: en grupo e
-
-        % individuales.
-
-        % RF4.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán modificar
-
-        % los datos de las actividades (nombre, horario, entrenador responsable, sesiones y tipo de
-
-        % actividad).
-
-        % RF4.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar las
-
-        % actividades que consideren oportunas.
-
-        % • RF5- Gestionar entrenamientos (Administrador, Entrenador):
-
-        % Se entiende por entrenamiento la asignación de una o varias tablas a un deportista o
-
-        % a un grupo de deportistas.
-
-        % RF5.1- Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el
-
-        % alta de un entrenamiento. Cada entrenamiento incluye nombre de la tabla, entrenador
-
-        % responsable, varias actividades asociadas, tipo actividad: individual o en grupo, número de
-
-        % plazas disponibles, deportistas reservados, lugar, horario, y sesiones.
-
-        % RF5.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán modificar
-
-        % los datos de los entrenamientos (nombre de la tabla, entrenador responsable, varias
-
-        % actividades asociadas, tipo actividad: individual o en grupo, número de plazas disponibles,
-
-        % deportistas reservados, lugar, horario, tipo actividad: individual o en grupo, entrenador
-
-        % responsable y sesiones).
-
-        % RF5.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar los
-
-        % entrenamientos que consideren oportunos.
-
-        % • RF6- Gestionar plazas reservadas (Administrador, Entrenador):
-
-        % RF6.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán asignar
-
-        % deportistas a entrenamientos.
-
-        % RF6.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar
-
-        % deportistas asociados a entrenamientos según su criterio.
-
-        % • RF7- Control de asistencia (Deportista):
-
-        % Entrenamientos a los que ha asistido el deportista y plazas libres en actividades
-
-        % individuales o grupales
-
-        % • RF8- Consultar entrenamientos (Deportista):
-
-        % Se presentarán los entrenamientos a los que está asociado el deportista.
-
-        % • RF9- Imprimir tabla de entrenamiento (Deportista):
-
-        % Se presentarán los entrenamientos a los que esté asociado el deportista, incluyendo
-
-        % ejercicios.
-
-        % • RF10- Gestionar sesiones (Entrenador, Administrador):
-
-        % RF10.1- Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el
-
-        % alta de una sesión. Cada sesión incluye nombre, tipo y tabla de ejercicios. Hay tres tipos de
-
-        % sesiones: muscular, cardio y estiramientos.
-
-        % 9
-
-        % RF10.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán modificar
-
-        % los datos de las sesiones (nombre, tipo y tabla de ejercicios).
-
-        % RF10.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar las
-
-        % sesiones que consideren oportunas.
-
-        % • RF11- Gestionar tabla de ejercicios (Entrenador, Administrador):
-
-        % RF11.1- Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el
-
-        % alta de tabla de ejercicios. Cada tabla incluye varios ejercicios y tipo de tabla. Hay dos tipos
-
-        % de tabla: estándar y personalizada. A cada tabla de ejercicio se le asignaran varios
-
-        % deportistas. A los deportistas TDU se les asignará tablas estándar. A los deportistas PEF se
-
-        % les asignará tablas personalizadas.
-
-        % RF11.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán modificar
-
-        % los datos de las tablas de ejercicios (ejercicios y tipo de tabla).
-
-        % RF11.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar las
-
-        % tablas de ejercicios que consideren oportunas.
-
-        % • RF12- Gestionar ejercicios (Entrenador, Administrador):
-
-        % RF12.1- Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el
-
-        % alta de ejercicios. Cada ejercicio incluye nombre, imagen, video, comentarios y tipo
-
-        % (muscular, cardio o estiramiento). Los ejercicios en cada sesión deberán tener el mismo tipo
-
-        % que la sesión: ejercicios musculares sólo en sesiones de tipo muscular, etc.
-
-        % - Los ejercicios de tipo muscular tendrán repeticiones y carga.
-
-        % - Los ejercicios de tipo cardio tendrán tiempo o distancia.
-
-        % - Los ejercicios de tipo estiramiento tendrán repeticiones o tiempo.
-
-        % RF12.2- Sólo los usuarios de tipo Entrenador y el Administrador podrán modificar
-
-        % los datos de los ejercicios (nombre, imagen, video y tipo (muscular, cardio o estiramiento).).
-
-        % RF12.3- Sólo los usuarios de tipo Entrenador y Administrador podrán eliminar los
-
-        % ejercicios que consideren oportunas.
-
-        % • RF13- Gestión de ejercicios realizados (Deportista):
-
-        % RF13.1- Almacenamiento de los ejercicios asociados al deportista, y si han sido
-
-        % realizados o están por realizar. El deportista podrá marcar los ejercicios por realizar como
-
-        % ya realizados.
-
-        % RF13.2- El deportista podrá consultar sus ejercicios asociados, realizados o por
-
-        % realizar.
-
-        % • RF14- Gestionar revisiones médico-deportivas (Entrenador, Administrador):
-
-        % Sólo los usuarios de tipo Entrenador y el Administrador podrán realizar el alta de
-
-        % las revisiones médico-deportivas. Cada revisión incluye lugar, horario y serán asignadas a
-
-        % uno o más deportistas de tipo PEF.
-
-        % • RF15- Consultar historial de entrenamientos (Deportista):
-
-        % Consultar estadísticas de los entrenamientos.
-
-        % • RF16- Consultar estadísticas (Entrenador, Administrador):
-
-        % Se consultarán según deportista y en general para todo el sistema.
-
-        % • RF17- Gestión de notificaciones (Entrenador, Administrador):
-
-        % Se informará vía email de las notificaciones que sean de interés para los deportistas.
-
-
-        \subsubsection{Requisitos de rendimiento}
-
-        % El sistema deberá soportar el acceso de la administración, así como de los
-
-        % entrenadores y deportistas situados fuera de las instalaciones. Como referencia, se
-
-        % considerará un rendimiento aceptable si el 95% de las transacciones se realizan en menos
-
-        % de un minuto. El 95% de las acciones en las que el deportista puede marcar su asistencia a
-
-        % un ejercicio deberán completarse en menos de medio minuto, al ser especialmente
-
-        % importantes.
-
-
-        \subsubsection{Restricciones de Diseño}
-
-        % En la restricción de diseño se tendrá en cuenta que la aplicación debe ser responsive para
-
-        % adaptarse a dispositivos móviles ya que la mayoría de usuarios utilizarán su móvil mientras
-
-        % están en el gimnasio y luego podrán consultarlo desde su pc en casa.
-
-
-        \subsubsection{Atributos de Sistema}
-
-        % • Fiabilidad: La aplicación pasará las pruebas estipuladas tanto en alpha como en beta
-
-        % para asegurar la estabilidad en la versión 1.0.
-
-        % • Seguridad: Se utilizará encriptado de contraseñas en el servidor y el montaje del
-
-        % mismo en un CPD con todas las medidas de seguridad.
-
-        % Además se cuenta con 3 tipos de usuarios con distintos permisos: administradores,
-
-        % entrenadores y deportistas. También se tendrá una vista pública a la que puede acceder
-
-        % cualquiera sin usuario.
-
-        % • Mantenimiento: El mantenimiento de la aplicación se intentará hacer lo más
-
-        % sencillo posible ya que se usará el MVC y cualquier cambio que se quiera realizar.
-
-        % • Portabilidad: El sistema será fácilmente ejecutable y accesible desde web.
-
-
-        \subsubsection{Otros requisitos}
-
-        % No contaremos con otros requisitos en este proyecto por el momento.
-
 
 \section{Diseño de software}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
-
+% estatico -> diagrama de clases
+% dinamico -> diagrama de secuencia, 
 
 \section{Gestión de datos e información}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
+El sistema a diseñar no cuenta con bases de datos para almacenar datos o configuraciones, sin embargo, al utilizar las funcionalidades que brinda OpenWRT para la gestión de sus sistemas, se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial se hace uso del fichero \textit{wireless}, donde se almacena toda la configuración aplicada a la red Wi-Fi.
 
+Los principales mecanismos utilizados en el sistema para controlar la 
 
 \section{Pruebas llevadas a cabo}
 
@@ -664,22 +169,19 @@
 
 % garantir o correcto funcionamento do software ou do hardware.
 
-\todo{Requisitos mínimos}
-\section{Manual técnico}
+\section{Manual de usuario}
     \subsection{Requisitos mínimos}
-        Para poder utilizar el sistema \textbf{Wifither} se debe cumplir un conjunto de requisitos, los cuáles están especificados a continuación.
+        Para poder utilizar el sistema \textbf{Wifither} se debe cumplir un conjunto de requisitos, los cuales están especificados a continuación.
 
-        \todo{puntos}
-        Equipo con una distrubución GNU/Linux para compilar paquete. Ubuntu como subsistema de Windows, BSD o MacOS no están oficialmente soportados, aunque suelen dar buenos resultados. Cygwin no está soportado debido al sistema de archivos que utiliza, que no es capaz de distinguir entre mayúsculas y minúsculas.
+        \begin{itemize}
+            \item Equipo con una distrubución GNU/Linux para compilar paquete. Ubuntu como subsistema de Windows, BSD o MacOS no están oficialmente soportados, aunque suelen dar buenos resultados. Cygwin no está soportado debido al sistema de archivos que utiliza, que no es capaz de distinguir entre mayúsculas y minúsculas.
+            \item Router con sistema operativo OpenWRT donde se ejecutará el servicio servidor.
+            \item Dispositivo móvil con sistema operativo Android donde se instalará la aplicación cliente.
+            \item Conexión a Internet tanto en el router como en el dispositivo móvil.
+        \end{itemize}
 
-        Router con sistema operativo OpenWRT donde se ejecutará el servicio servidor.
-
-        Dispositivo móvil con sistema operativo Android donde se instalará la aplicación cliente.
-
-        Conexión a Internet tanto en el router como en el dispositivo móvil.
-
-    \subsection{Compilar el paquete Wifither para OpenWRT}
-        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} \todo{style + modificar dependiendo de la tabla}
+        \todo{redactar mejor}
+        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} \todo{modificar dependiendo de la tabla}
 
         \todo{debería poner toda la tabla? o quitar arch? o quitar todo?}
         %\begin{table}
@@ -724,7 +226,7 @@
             \end{tabular}
         %\end{table}
 
-        Para instalar paquetes en distribuciones \textit{Debian-like} \todo{style} su utiliza el sieguiente comando.
+        Para instalar paquetes en distribuciones \textit{Debian-like} su utiliza el siguiente comando.
         Es necesario que el usuario desde el que se ejecute el comando de instalación cuente con los permisos necesarios para llevar a cabo dicha acción.
 
         \todo{Estilos de estos códigos}
@@ -739,290 +241,292 @@
             $ apt-get install libncurses5-dev subversion gawk
         \end{lstlisting}
 
-        Para preparar la compilación cruzada, descargar desde la página web oficial de OpenWRT \url{https://downloads.openwrt.org} el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, descomprimir el archivo y se copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
+    \subsection{Manual de instalación}
+    
+        
+        \subsubsection{Compilar el paquete Wifither para OpenWRT}
+            Para preparar la compilación cruzada, descargar desde la página web oficial de OpenWRT \url{https://downloads.openwrt.org} el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, descomprimir el archivo y se copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
 
-        \begin{lstlisting}[language=bash]
-            $ ./scripts/feeds update
-            $ ./scripts/feeds install uclibcxx
-            $ ./scripts/feeds install libopenssl
-        \end{lstlisting}
+            \begin{lstlisting}[language=bash]
+                $ ./scripts/feeds update
+                $ ./scripts/feeds install uclibcxx
+                $ ./scripts/feeds install libopenssl
+            \end{lstlisting}
 
-        \todo{arreglar}
-        Una vez esté todo preparado, ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither_1_<modelo-router>.ipk}.
-
-
-    \subsection{Instalación del servicio servidor} \todo{este nombre? demonio? servicio demonio? en el router?}
-        En este apartado se explica cómo instalar el paquete \textit{.ipk} resultante de la compilación, en el router con OpwenWRT, cómo arrancar \todo{arrancar?} el servicio y cómo configurarlo para que inicie automáticamente cada vez que inicie el router.
-
-        Primeramente se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y equipo remoto al que se desea copiar, y la ruta donde se desea almacenar en ese equipo.
-
-        \begin{lstlisting}[language=bash]
-            $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
-        \end{lstlisting}
-
-        Un ejemplo de la ejecución del comando:
-        \begin{lstlisting}[language=bash]
-            $ scp bin/brcm63xx/packages/base/wifither_1_brcm63xx.ipk root@192.168.0.4:/root/wifither
-        \end{lstlisting}
-
-        Una vez el paquete está en el router, este podrá ser instalado utilizando el gestor de paquetes de OpenWRT \textit{opkg}
-        \begin{lstlisting}[language=bash]
-            $ opkg install <ruta-paquete>
-        \end{lstlisting}
-
-        Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos ocho caracteres.
-
-        Ejemplo:
-        \begin{lstlisting}[language=bash]
-            $ wifither 4848 Potato12
-        \end{lstlisting}
-
-        Para configurar el equipo, de forma que Wifither siempre se inicie al arrancar el sistema, se debe editar el archivo \textit{/etc/rc.local} añadiendo la ejecución del servicio antes de la línea \textit{exit 0}
-
-        \begin{lstlisting}[language=bash]
-            # Put your custom commands here that should be executed once
-            # the system init finished. By default this file does nothing.
-
-            wifither 4848 Potato12
-
-            exit 0
-        \end{lstlisting}
+            Una vez esté todo preparado, ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither 1 <modelo-router>.ipk}.
 
 
-    \subsection{Instalación de la aplicación móvil}
-        Para realizar la instalación de la aplicación en el móvil existen dos opciones, utilizar la aplicación ya compilada \textit{.apk} o compilarla e instalarla directamente desde \textit{Android Studio}
+        \subsubsection{Instalación del servicio servidor en e router}
+            En este apartado se explica cómo instalar el paquete \textit{.ipk} resultante de la compilación, en el router con OpwenWRT, cómo arrancar iniciar el servicio y configurarlo para que inicie automáticamente cada vez que inicie el router.
 
-        \subsubsection{Instalación del .apk}
-            Es necesario que el archivo \textit{.apk} debe estar almacenado en el dispositivo móvil, para esto se puede conectar el dispositivo directamente al ordenador utilizando un cable USB.
+            Primeramente se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y equipo remoto al que se desea copiar, y la ruta donde se desea almacenar en ese equipo.
 
-            Para llevar a cabo la instalación debe estar activada la opción \textit{Fuentes desconocidas}, que se encuentra en el apartado \textit{Seguridad} de los ajustes del sistema Android. Esto hace que sea posible la instalación de aplicaciones que provengan de fuentes no oficiales.
+            \begin{lstlisting}[language=bash]
+                $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
+            \end{lstlisting}
 
-            Una vez realizados los pasos anteriores, ir hasta la ubicación del archivo \textit{.apk}, pulsar sobre él y aceptar la instalación.
+            Un ejemplo de la ejecución del comando:
+            \begin{lstlisting}[language=bash]
+                $ scp bin/brcm63xx/packages/base/wifither_1_brcm63xx.ipk root@192.168.0.4:/root/wifither
+            \end{lstlisting}
 
-        \subsubsection{Compilar e instalar desde Android Studio}
-            Para pider instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajuste del sistema Android.
-            \textbf{NOTA:} Las opciones de desarrollador están deshabilitadas por defecto en la mayoría de dispositivos Android, para habilitarla es necesario pulsar diez (10) veces sobre el \textit{Número de compilación}, que se encuentra en el apartado \textit{Acerca del dispositivo} de los ajuste del sistema Android.
+            Una vez el paquete está en el router, este podrá ser instalado utilizando el gestor de paquetes de OpenWRT \textit{opkg}
+            \begin{lstlisting}[language=bash]
+                $ opkg install <ruta-paquete>
+            \end{lstlisting}
 
-            En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run 'app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
-            
-            \textbf{NOTA:} Es importante aceptar en el dispositivo la clave RSA, esto permite que Android Studio pueda conectarse al dispositivo.
-
-            Tras realizar los pasos anteriores, el código fuente debe haber quedado compilado, instalado y ejecutado en el dispositivo conectado.
-
-    \todo{ddns, segundo router o router principal?}
-
-    \subsection{Configuración de una VPN} \todo{cómo poner opcional?}
-        En este apartado se explica la creación y configuración de una VPN en modo tunel entre el router y el dispositivo móvil mediante la utilización de OpenVPN. Esto paso es totalmente opcional ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servido sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
-
-        \subsubsection{Creación de VPN en el router}
-            Inicialmente se debe comprobar que los repositorios desde los que descargan los paquetes y librerías estén bien configurados en el router. Esto se puede observar en el archivo de configutación \textit{/etc/opkg/dist-feeds.conf}. Las rutas a los diferentes repocitorios dependerán de la versión del sistema y el modelo del router.
+            Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos ocho caracteres.
 
             Ejemplo:
-            \url{https://downloads.openwrt.org}
-
             \begin{lstlisting}[language=bash]
-                src/gz designated_driver http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
-                src/gz designated_base http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/base
-                src/gz designated_packages http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
-                src/gz designated_luci http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/luci
-                src/gz designated_routing http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/routing
-                src/gz designated_telephony http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/telephony
-                src/gz designated_management http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/management
-            \end{lstlisting}
-            
-            Con los repositorios bien configurados, instalar \textit{openvpn-openssl} y \textit{openvpn-easy-rsa}
-            
-            \begin{lstlisting}[language=bash]
-                $ opkg update
-                $ opkg install openvpn-openssl openvpn-easy-rsa
+                $ wifither 4848 Potato12
             \end{lstlisting}
 
-            \todo{Cómo funciona esto? Privado público?}
-            A continuación se deben crear los certificados de seguridad para cliente y servidor. El siguiente código crea un certificado servidor con el nombre \textit{my-server} y un ccertificado cliente con el nombre \textit{my-client}. Se peuden crear tantos certificados clientes como sean necesarios ejecutando el mismo comando de creación \textit{build-key-pkcs12} varias veces especificando diferentes nombres.
+            Para configurar el equipo, de forma que Wifither siempre se inicie al arrancar el sistema, se debe editar el archivo \textit{/etc/rc.local} añadiendo la ejecución del servicio antes de la línea \textit{exit 0}
 
             \begin{lstlisting}[language=bash]
-                $ build-ca
-                $ build-dh
-                $ build-key-server <nombre-clave-servidor>
-                $ build-key-pkcs12 <nombre-clave-cliente>
+                # Put your custom commands here that should be executed once
+                # the system init finished. By default this file does nothing.
+
+                wifither 4848 Potato12
+
+                exit 0
             \end{lstlisting}
 
-            Una vez generadas las claves:
+
+        \subsubsection{Instalación de la aplicación móvil}
+            Para realizar la instalación de la aplicación en el móvil existen dos opciones, utilizar la aplicación ya compilada \textit{.apk} o compilarla e instalarla directamente desde \textit{Android Studio}
             
-            \todo{punto}
-                Copiar las perteneciantes al servidor servidor en el directorio \textit{/etc/openvpn}
-            
-                \begin{lstlisting}[language=bash]
-                    $ cp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-servidor.* /etc/easy-rsa/keys/dh2048.pem /etc/openvpn
-                \end{lstlisting}
+            \begin{enumerate}
+                \item Instalación del .apk
+                Es necesario que el archivo \textit{.apk} debe estar almacenado en el dispositivo móvil, para esto se puede conectar el dispositivo directamente al ordenador utilizando un cable USB.
 
-                Copiar las pertenecientes al cliente en el dispositivo móvil mediante cualquier método disponible, puede ser a través de un dispositivo USB, un eMail, scp, etc.
+                Para llevar a cabo la instalación debe estar activada la opción \textit{Fuentes desconocidas}, que se encuentra en el apartado \textit{Seguridad} de los ajustes del sistema Android. Esto hace que sea posible la instalación de aplicaciones que provengan de fuentes no oficiales.
 
-                Ejemplo: Copiar las claves al equipo desde el que se compiló el paquete y conectar allí el dispositivo móvil
-                \begin{lstlisting}[language=bash]
-                    $ scp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-cliente.* root@192.168.0.100:/etc/openvpn
-                \end{lstlisting}
+                Una vez realizados los pasos anteriores, ir hasta la ubicación del archivo \textit{.apk}, pulsar sobre él y aceptar la instalación.
 
-            A continuación se muestran los comandos a ejecutar para la creación y configuración de una nueva red en el router por la que se realizarán las conexiones de la VPN y la configuración del cortafuegos correspondiente.
+                \item Compilar e instalar desde Android Studio
+                Para poder instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajuste del sistema Android.
+                \textbf{NOTA:} Las opciones de desarrollador están deshabilitadas por defecto en la mayoría de dispositivos Android, para habilitarla es necesario pulsar diez (10) veces sobre el \textit{Número de compilación}, que se encuentra en el apartado \textit{Acerca del dispositivo} de los ajuste del sistema Android.
 
-            \todo{enumerar}
-            Crear la nueva interfaz de la VPN con el nombre vpn0
+                En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run 'app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
                 
-            \begin{lstlisting}[language=bash]
-                $ uci set network.vpn0=interface
-                $ uci set network.vpn0.ifname=tun0
-                $ uci set network.vpn0.proto=none
-                $ uci set network.vpn0.auto=1        
-            \end{lstlisting}
+                \textbf{NOTA:} Es importante aceptar en el dispositivo la clave RSA, esto permite que Android Studio pueda conectarse al dispositivo.
 
-            Configurar el cortafuegos para permitir conexiones entrantes al puerto \textit{1194} (puerto por defecto).
+                Tras realizar los pasos anteriores, el código fuente debe haber quedado compilado, instalado y ejecutado en el dispositivo conectado.
+            \end{enumerate}
 
-            \begin{lstlisting}[language=bash]
-                $ uci set firewall.Allow_OpenVPN_Inbound=rule
-                $ uci set firewall.Allow_OpenVPN_Inbound.target=ACCE  PT
-                $ uci set firewall.Allow_OpenVPN_Inbound.src=*
-                $ uci set firewall.Allow_OpenVPN_Inbound.proto=udp
-                $ uci set firewall.Allow_OpenVPN_Inbound.dest_port=1194    
-            \end{lstlisting}
+        \todo{ddns, segundo router o router principal?}
 
-            Crear nueva zona nombrada \textit{vpn} para la red vpn0. Esto permitirá las conexiones relacionadas con el tunel VPN, tanto entrantes como salientes.
+        \subsubsection{Configuración de una VPN} \todo{cómo poner opcional?}
+            En este apartado se explica la creación y configuración de una VPN en modo tunel entre el router y el dispositivo móvil mediante la utilización de OpenVPN. Esto paso es totalmente opcional ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servido sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
 
-            \begin{lstlisting}[language=bash]
-                $ uci set firewall.vpn=zone
-                $ uci set firewall.vpn.name=vpn
-                $ uci set firewall.vpn.network=vpn0
-                $ uci set firewall.vpn.input=ACCEPT
-                $ uci set firewall.vpn.forward=REJECT
-                $ uci set firewall.vpn.output=ACCEPT
-                $ uci set firewall.vpn.masq=1   
-            \end{lstlisting}
+            \begin{enumerate}
+                \item Creación de VPN en el router
+                    Inicialmente se debe comprobar que los repositorios desde los que descargan los paquetes y librerías estén bien configurados en el router. Esto se puede observar en el archivo de configutación \textit{/etc/opkg/dist-feeds.conf}. Las rutas a los diferentes repocitorios dependerán de la versión del sistema y el modelo del router.
 
-            Aplicar la nueva configuración.
+                    Ejemplo:
+                    \url{https://downloads.openwrt.org}
 
-            \begin{lstlisting}[language=bash]
-                $ uci commit network
-                $ /etc/init.d/network reload
-                $ uci commit firewall
-                $ /etc/init.d/firewall reload  
-            \end{lstlisting}
+                    \begin{lstlisting}[language=bash]
+                        src/gz designated_driver http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+                        src/gz designated_base http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/base
+                        src/gz designated_packages http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+                        src/gz designated_luci http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/luci
+                        src/gz designated_routing http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/routing
+                        src/gz designated_telephony http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/telephony
+                        src/gz designated_management http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/management
+                    \end{lstlisting}
+                    
+                    Con los repositorios bien configurados, instalar \textit{openvpn-openssl} y \textit{openvpn-easy-rsa}
+                    
+                    \begin{lstlisting}[language=bash]
+                        $ opkg update
+                        $ opkg install openvpn-openssl openvpn-easy-rsa
+                    \end{lstlisting}
 
-            Configuración de OpenVPN:
-            La configuración puede ser realizada medainte los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
+                    \todo{Cómo funciona esto? Privado público?}
+                    A continuación se deben crear los certificados de seguridad para cliente y servidor. El siguiente código crea un certificado servidor con el nombre \textit{my-server} y un ccertificado cliente con el nombre \textit{my-client}. Se peuden crear tantos certificados clientes como sean necesarios ejecutando el mismo comando de creación \textit{build-key-pkcs12} varias veces especificando diferentes nombres.
 
-            \begin{lstlisting}[language=bash]
-                $ echo > /etc/config/openvpn
-                $ uci set openvpn.myvpn=openvpn
-                $ uci set openvpn.myvpn.enabled=1
-                $ uci set openvpn.myvpn.verb=3
-                $ uci set openvpn.myvpn.port=1194
-                $ uci set openvpn.myvpn.proto=udp
-                $ uci set openvpn.myvpn.dev=tun
-                $ uci set openvpn.myvpn.server='10.8.0.0 255.255.255.0'
-                $ uci set openvpn.myvpn.keepalive='10 120'
-                $ uci set openvpn.myvpn.ca=/etc/openvpn/ca.crt
-                $ uci set openvpn.myvpn.cert=/etc/openvpn/my-server.crt
-                $ uci set openvpn.myvpn.key=/etc/openvpn/my-server.key
-                $ uci set openvpn.myvpn.dh=/etc/openvpn/dh2048.pem
-                $ uci commit openvpn
-            \end{lstlisting}
+                    \begin{lstlisting}[language=bash]
+                        $ build-ca
+                        $ build-dh
+                        $ build-key-server <nombre-clave-servidor>
+                        $ build-key-pkcs12 <nombre-clave-cliente>
+                    \end{lstlisting}
 
-            Iniciar OpenVPN
-            \begin{lstlisting}[language=bash]
-                $ /etc/init.d/openvpn enable
-                $ /etc/init.d/openvpn start
-            \end{lstlisting}
+                    Una vez generadas las claves:
+                    
+                        \begin{itemize}
 
-        \subsubsection{Conexión al la VPN desde dispositivo Android}
-            Para establecer la conexión con la VPN se debe instalar la aplicación \textit{OpenVPN for Android} desde \textit{Google Play Store}
+                            \item Copiar las perteneciantes al servidor servidor en el directorio \textit{/etc/openvpn}
+                            \begin{lstlisting}[language=bash]
+                                $ cp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-servidor.* /etc/easy-rsa/keys/dh2048.pem /etc/openvpn
+                            \end{lstlisting}
+
+                            \item Copiar las pertenecientes al cliente en el dispositivo móvil mediante cualquier método disponible, puede ser a través de un dispositivo USB, un eMail, scp, etc.
+                            Ejemplo: Copiar las claves al equipo desde el que se compiló el paquete y conectar allí el dispositivo móvil
+                            \begin{lstlisting}[language=bash]
+                                $ scp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-cliente.* root@192.168.0.100:/etc/openvpn
+                            \end{lstlisting}
+                        \end{itemize}   
+                    
+                    A continuación se muestran los comandos a ejecutar para la creación y configuración de una nueva red en el router por la que se realizarán las conexiones de la VPN y la configuración del cortafuegos correspondiente.
+
+                    \begin{enumerate}
+                        \item Crear la nueva interfaz de la VPN con el nombre vpn0
+                            
+                        \begin{lstlisting}[language=bash]
+                            $ uci set network.vpn0=interface
+                            $ uci set network.vpn0.ifname=tun0
+                            $ uci set network.vpn0.proto=none
+                            $ uci set network.vpn0.auto=1        
+                        \end{lstlisting}
+
+                        \item Configurar el cortafuegos para permitir conexiones entrantes al puerto \textit{1194} (puerto por defecto).
+
+                        \begin{lstlisting}[language=bash]
+                            $ uci set firewall.Allow_OpenVPN_Inbound=rule
+                            $ uci set firewall.Allow_OpenVPN_Inbound.target=ACCEPT
+                            $ uci set firewall.Allow_OpenVPN_Inbound.src=*
+                            $ uci set firewall.Allow_OpenVPN_Inbound.proto=udp
+                            $ uci set firewall.Allow_OpenVPN_Inbound.dest_port=1194    
+                        \end{lstlisting}
+
+                        \item Crear nueva zona nombrada \textit{vpn} para la red vpn0. Esto permitirá las conexiones relacionadas con el tunel VPN, tanto entrantes como salientes.
+
+                        \begin{lstlisting}[language=bash]
+                            $ uci set firewall.vpn=zone
+                            $ uci set firewall.vpn.name=vpn
+                            $ uci set firewall.vpn.network=vpn0
+                            $ uci set firewall.vpn.input=ACCEPT
+                            $ uci set firewall.vpn.forward=REJECT
+                            $ uci set firewall.vpn.output=ACCEPT
+                            $ uci set firewall.vpn.masq=1
+                        \end{lstlisting}
+
+                        \item Aplicar la nueva configuración.
+
+                        \begin{lstlisting}[language=bash]
+                            $ uci commit network
+                            $ /etc/init.d/network reload
+                            $ uci commit firewall
+                            $ /etc/init.d/firewall reload  
+                        \end{lstlisting}
+
+                        \item Configuración de OpenVPN:
+                        La configuración puede ser realizada medainte los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
+
+                        \begin{lstlisting}[language=bash]
+                            $ echo > /etc/config/openvpn
+                            $ uci set openvpn.myvpn=openvpn
+                            $ uci set openvpn.myvpn.enabled=1
+                            $ uci set openvpn.myvpn.verb=3
+                            $ uci set openvpn.myvpn.port=1194
+                            $ uci set openvpn.myvpn.proto=udp
+                            $ uci set openvpn.myvpn.dev=tun
+                            $ uci set openvpn.myvpn.server='10.8.0.0 255.255.255.0'
+                            $ uci set openvpn.myvpn.keepalive='10 120'
+                            $ uci set openvpn.myvpn.ca=/etc/openvpn/ca.crt
+                            $ uci set openvpn.myvpn.cert=/etc/openvpn/my-server.crt
+                            $ uci set openvpn.myvpn.key=/etc/openvpn/my-server.key
+                            $ uci set openvpn.myvpn.dh=/etc/openvpn/dh2048.pem
+                            $ uci commit openvpn
+                        \end{lstlisting}
+
+                        \item Iniciar OpenVPN
+                        \begin{lstlisting}[language=bash]
+                            $ /etc/init.d/openvpn enable
+                            $ /etc/init.d/openvpn start
+                        \end{lstlisting}
+                    \end{enumerate}
+
+                \item Conexión al la VPN desde dispositivo Android
+                Para establecer la conexión con la VPN se debe instalar la aplicación \textit{OpenVPN for Android} desde \textit{Google Play Store}
+                
+                \url{https://play.google.com/store/apps/details?id=de.blinkt.openvpn}
+
+                Una vez instalada la aplicación, añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca autmáticamente al iniciar sesión.
+
+                Finalmente entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
+
+                Después de haber configurado la aplicación, se puede establecer conección con la VPN presionando sobre el perfil creado. A partir de estre punto, todas las conexiones entre cliente y servidor serán cifradas.
+            \end{enumerate}
+
+    \subsection{Manual de utilización}
+        \todo{references??????}
+        En esta sección se explican las funcionalidades que tiene la aplicación y cómo utilizarlas, en las imágenes \ref{fig:main_activity_manual} y \ref{fig:devices_activity_manual} se encuentran enumerados los elementos de la interfaz que son explicados a continuación.
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.5]{main_activity_manual.eps}
+                \caption*{Vista principal}
+                \label{fig:main_activity_manual}
+        \end{figure}
+
+        \todo{Y la organización de esto???}
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.5]{devices_activity_manual.eps}
+                \caption*{Administración de dispositivos}
+                \label{fig:devices_activity_manual}
+        \end{figure}
+
+        \begin{enumerate}
+
+            \item Control de idiomas
+            Permite seleccionar el idioma con el que se muestran las opciones de la interfaz de usuario, están disponibles castellano e inglés, el idioma por defecto de la aplicación es el inglés.
+
+            \item Dirección IP/URL del rputer servidor
+            Es el campo de texto donde se especifica la dirección del router OpenWRT en el cual se ha instalado la aplicación y sobre el que se desea gestionar la red Wi-Fi. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+            \item Puerto de escucha del servicio
+            Es el puerto que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para recibir las órdenes desde el dispositivo móvil. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+            \item Contraseña establecida en el servidor
+            Es la contraseña que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para encriptar y desencriptar las órdenes enviadas desde el dispositivo móvil. La contraseña debe contener al menos ocho caracteres. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
+
+            \item Botón para Editar/Aceptar la configuración
+            Este botón habilita la edición de los campos de configuración señalados con los números 1, 2 y 3 en la \ref{fig:main_activity_manual}. Tras ser pulsado, el texto del botón cambia a \textit{Confirmar}, y debe ser pulsado para guardar la nueva configuración.
+
+            \item Switch Wi-Fi
+            Enciende o apaga la red Wi-Fi en el router OpenWRT, la posición iquierda indica que la red Wi-Fi está apagada, la posición hacia la derecha indica que está encendida.
+
+            \item Configuración del filtro MAC
+            Permite seleccionar la configuración del filtro MAC en el router OpenWRT. El selector tiene tres posiciones: \textit{Deshabilitado}, \textit{Permitir} y \textit{Denegar}.
+            \begin{itemize}
+                \item Si el filtro MAC está deshabilitado, cualquier dispositivo puede conectarse a la red Wi-Fi sin restricción de ningún tipo.
+                \item Si el filtro MAC está configurado para \textit{Permitir}, significa que sólo pueden acceder a la red Wi-Fi los dispositivos que hayan sido especificados para que el filtro les sea aplicado.
+                \item Si el filtro MAC está configurado para \textit{Denegar}, significa que tienen acceso a la red todos los dispositivos excepto los especificados para que el filtro les sea aplicado.
+            \end{itemize}
             
-            \url{https://play.google.com/store/apps/details?id=de.blinkt.openvpn}
-
-            Una vez instalada la aplicación, añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca autmáticamente al iniciar sesión.
-
-            Finalmente entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
-
-            Después de haber configurado la aplicación, se puede establecer conección con la VPN presionando sobre el perfil creado. A partir de estre punto, todas las conexiones entre cliente y servidor serán cifradas.
+            \item Botón para acceder a la gestión de dispositivos
+            Al pulsarlo se accede a un nuevo conjunto de opciones desde donde se pueden adicionar, editar y eliminar dispositivos, además de poder seleccionar los dispositivos con los que se desea aplicar el filtro MAC.
+            \item Botón de opciones
+            Permite acceder a las opciones marcadas con los puntos 12, 14 y 15 en la \ref{fig:devices_activity_manual}
+            \item Nombre del dispositivo
+            Es un indicador distintivo para cada dispositivo, es determinado por el usuario al añadir un nuevo dispositivo y es un campo obligatorio.
+            \item Dirección MAC del dispositivo
+            Identificador único del adaptador de red del dispositivo. Es especificado por el usuario al añadir un nuevo dispositivo y debe cumplir con un formato específico compuesto por seis pares de caracteres hexadecimales separados por dos puntos(:). Si el formato introducido no es correcto, el botón \textit{Añadir} queda deshabilitado.
+            \item Switch de estado del dispositivo
+            Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro NO se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro SÍ se aplica al dispositivo.
+            \item Botón para aplicar configuración
+            Aplica en el router OpenWRT la configuración que haya sido establecida.
+            \item Botón para optener configuración.
+            Actualiza el dispositivo móvil con la configuración actual del router OpenWRT. Esta opción es útil cuando se gestiona la red desde más de un dispositivo móvil, de esta forma cada dispositivo puede saber siempre la última configuración aplicada en el router.
+            \item Botón para añadir nuevo dispositivo
+            Muestra un cuadro de diálogo que permite introducir los datos del nuevo dispositivo y añadirlo a la lista de dispositivos
+            \item Botón para cerrar el menú de opciones
+            Cierra el menú de opciones, también puede ser cerrado presionando sobre cualquier espacio fuera del menú.
             
-    
-\section{Manual de usuario}
-    \todo{references??????}
-    En esta sección se explican las funcionalidades que tiene la aplicación y cómo utilizarlas, en las imágenes \ref{fig:main_activity_manual} y \ref{fig:devices_activity_manual} se encuentran enumerados los elementos de la interfaz que son explicados a continuación.
+        \end{enumerate}
 
-    \todo{pantalla principal?}
-    \begin{figure}[h!]
-        \centering
-            \includegraphics[scale=0.5]{main_activity_manual.eps}
-            \caption*{Pantalla principal}
-            \label{fig:main_activity_manual}
-    \end{figure}
+        \todo{subsection??}
+        Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
 
-    \todo{Y la organización de esto???}
-    \begin{figure}[h!]
-        \centering
-            \includegraphics[scale=0.5]{devices_activity_manual.eps}
-            \caption*{Administración de dispositivos}
-            \label{fig:devices_activity_manual}
-    \end{figure}
+        Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
 
-    \todo{enumerar}
-
-    1. Control de idiomas
-    Permite seleccionar el idioma con el que se muestran las opciones de la interfaz de usuario, están disponibles castellano e inglés, el idioma por defecto de la aplicación es el inglés.
-
-    2. Dirección IP/URL del rputer servidor
-    Es el campo de texto donde se especifica la dirección del router OpenWRT en el cual se ha instalado la aplicación y sobre el que se desea gestionar la red Wi-Fi. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
-
-    3. Puerto de escucha del servicio
-    Es el puerto que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para recibir las órdenes desde el dispositivo móvil. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
-
-    4. Contraseña establecida en el servidor
-    Es la contraseña que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para encriptar y desencriptar las órdenes enviadas desde el dispositivo móvil. La contraseña debe contener al menos ocho caracteres. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
-
-    5. Botón para Editar/Aceptar la configuración
-    Este botón habilita la edición de los campos de configuración señalados con los números 1, 2 y 3 en la \ref{fig:main_activity_manual}. Tras ser pulsado, el texto del botón cambia a \textit{Confirmar}, y debe ser pulsado para guardar la nueva configuración.
-
-    6. Switch Wi-Fi
-    Enciende o apaga la red Wi-Fi en el router OpenWRT, la posición iquierda indica que la red Wi-Fi está apagada, la posición hacia la derecha indica que está encendida.
-
-    7. Configuración del filtro MAC
-    Permite seleccionar la configuración del filtro MAC en el router OpenWRT. El selector tiene tres posiciones: \textit{Deshabilitado}, \textit{Permitir} y \textit{Denegar}.
-    Si el filtro MAC está deshabilitado, cualquier dispositivo puede conectarse a la red Wi-Fi sin restricción de ningún tipo.
-    Si el filtro MAC está configurado para \textit{Permitir}, significa que sólo pueden acceder a la red Wi-Fi los dispositivos que hayan sido especificados para que el filtro les sea aplicado.
-    Si el filtro MAC está configurado para \textit{Denegar}, significa que tienen acceso a la red todos los dispositivos excepto los especificados para que el filtro les sea aplicado.
-
-    8. Botón para acceder a la gestión de dispositivos
-    Al pulsarlo se accede a un nuevo conjunto de opciones desde donde se pueden adicionar, editar y eliminar dispositivos, además de poder seleccionar los dispositivos con los que se desea aplicar el filtro MAC.
-
-    9. Botón de opciones
-    Permite acceder a las opciones marcadas con los puntos 12, 14 y 15 en la \ref{fig:devices_activity_manual}
-
-    10. Nombre del dispositivo
-    Es un indicador distintivo para cada dispositivo, es determinado por el usuario al añadir un nuevo dispositivo y es un campo obligatorio.
-
-    11. Dirección MAC del dispositivo
-    Identificador único del adaptador de red del dispositivo. Es especificado por el usuario al añadir un nuevo dispositivo y debe cumplir con un formato específico compuesto por seis pares de caracteres hexadecimales separados por dos puntos(:). Si el formato introducido no es correcto, el botón \textit{Añadir} queda deshabilitado.
-
-    12. Switch de estado del dispositivo
-    Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro NO se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro SÍ se aplica al dispositivo.
-
-    13. Botón para aplicar configuración
-    Aplica en el router OpenWRT la configuración que haya sido establecida.
-
-    14. Botón para optener configuración.
-    Actualiza el dispositivo móvil con la configuración actual del router OpenWRT. Esta opción es útil cuando se gestiona la red desde más de un dispositivo móvil, de esta forma cada dispositivo puede saber siempre la última configuración aplicada en el router.
-
-    15. Botón para añadir nuevo dispositivo
-    Muestra un cuadro de diálogo que permite introducir los datos del nuevo dispositivo y añadirlo a la lista de dispositivos
-
-    16. Botón para cerrar el menú de opciones
-    Cierra el menú de opciones, también puede ser cerrado presionando sobre cualquier espacio fuera del menú.
-
-    \todo{subsection??}
-    Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
-
-    Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
-
-    \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, contactar con el encargado/a de instalar y configrar la aplicación en el router OpenWRT.
+        \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, contactar con el encargado/a de instalar y configrar la aplicación en el router OpenWRT.
 
 \section{Conclusiones y trabajo futuro}
 
@@ -1045,6 +549,7 @@
 
 \section{Referencias}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
+https://www.internetworldstats.com/stats.htm \citep{hola}
 % deberanse citar todas as fontes de información empregadas para a realización do traballo.
 
 % 1. Autor/a/es/as.
