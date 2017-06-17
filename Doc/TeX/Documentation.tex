@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm]{geometry}
 
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
@@ -9,6 +10,7 @@
 \usepackage{imakeidx}
 \usepackage{caption}
 \usepackage{listings}
+%\usepackage[parfill]{parskip}  lineas entre párrafos
 
 \usepackage{hyperref}
 \hypersetup{
@@ -24,6 +26,8 @@
 
 \usepackage{todonotes}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\lstlistingname}{Archivo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \graphicspath{ {images/} }
@@ -57,8 +61,6 @@ A Patry, el amor de mi vida
 \section{Agradecimientos}
 A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisdad
 
-\clearpage
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ÍNDICE
@@ -73,7 +75,9 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \todo{márgenes iniciales de las secciones}
-\todo{hojas impares}
+\todo{espacio entre párrafos}
+\todo{saltos de líneas en enumereates e itemizes}
+\todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
 \section{Introducción}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
@@ -95,7 +99,7 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
         \item El sistema debe poder ser controlado desde un dispositivo móvil:
         \begin{itemize}
             \item Conectado a la red Wi-Fi del propio router.
-            \item Conectado a Internet y accediendo desde la interfaz WAN. \todo{referenciar}
+            \item Conectado a Internet y accediendo desde la interfaz WAN.\todo{referenciar}
         \end{itemize}
 
         \item Incluir control para encender y apagar la red Wi-Fi de forma sencilla.
@@ -159,9 +163,61 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
 
 \section{Gestión de datos e información}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
-El sistema a diseñar no cuenta con bases de datos para almacenar datos o configuraciones, sin embargo, al utilizar las funcionalidades que brinda OpenWRT para la gestión de sus sistemas, se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial se hace uso del fichero \textit{wireless}, donde se almacena toda la configuración aplicada a la red Wi-Fi.
+    Ya que el objetivo es crear un mecanismo de control para accesos a la red Wi-Fi, el sistema que se plantea no cuenta con bases de datos para almacenar información, sin embargo, se necesita una forma de guardar las configuraciones utilizadas.
+    
+    \subsection{Servidor}
+        En el dispositivo servidor, para hacer uso de los mecanismos que brinda OpenWRT para la gestión de sus funcionalidades, se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial se hace uso del fichero \textit{wireless}, donde se almacenan las configuraciones hardware y software que son utilizadas para el funcionamiento la red Wi-Fi. \todo{referenciar archivo} A continuación se muestra un ejemplo de este.
+        \todo{mirar si hay un paquete para bash}
+        \todo{modificar comillas}
+        \todo{modificar titulo: Eliminar listing 1}
+        \todo{márgenes superiores e inferiores de textos y fotos}
+        \begin{lstlisting}[caption=/etc/config/wireless, language=bash]
+            config wifi-device `radio0'
+                    option type `mac80211'
+                    option hwmode `11g'
+                    option path `pci0000:00/0000:00:01.0/ssb0:0'
+                    option disabled `0'
+                    option channel `4'
+                    option txpower `20'
+                    option country `00'
 
-Los principales mecanismos utilizados en el sistema para controlar la 
+            config wifi-iface
+                    option network `wwan'
+                    option encryption `psk2'
+                    option device `radio0'
+                    option ssid `TFG_AccessPoint'
+                    option mode `ap'
+                    option key `wifitesting'
+
+                    option macfilter `deny'
+                    list maclist `B1:EE:A1:04:23:4E'
+                    list maclist `B4:5D:83:4A:1B:50'
+                    list maclist `0E:00:C1:FA:4E:98'
+        \end{lstlisting}
+
+        El parámetro \textit{wifi-device} indica la configuración de un dispositivo físico conectado al sistema, y al cual se le aplican las opciones que se definen debajo. En estas opciones se especifican parámetros como el tipo de dispositivo, la potencia y el canal que utilizará.
+
+        El parámetro \textit{wifi-iface} indica la configuración de una interfaz inalámbrica, especificando en las opciones el dispositivo físico y la red OpenWRT (ya definidos) a la que estará vinculada. Además, también se definen opciones como el mecanismo de seguridad y el modo de operación del controlador de red. El sistema que se desarrolla, hace uso de las funciones que se encuentran al final del ejemplo.
+        
+        \begin{itemize}
+            \item \textbf{mactiflter}: Indica la configuración a adoptar por el filtro MAC, esta se especifica entre comillas simples, y puede ser \textit{deny} o \textit{allow}. Para indicar que el filtro debe está desactivado se elimina toda la línea.
+            \item \textbf{list maclist}: Es utilizada para especificar las direcciones MAC a las que se les va a aplicar el filtro, se pueden definir tantas opciones \textit{list maclist} como sea necesario.
+        \end{itemize}
+
+    \subsection{Cliente}
+        En el dispositivo cliente, las configuraciones que se almacenan son las relacionadas a la conexión: \textit{Dirección IP}, \textit{Puerto} y \textit{Contraseña}, así como los \textit{Dispositivos} añadidos a la aplicación para gestionar el filtro MAC. También son almacenados los \textit{Estados} de los elementos de la interfaz de usuario que son utilizados para controlar el sistema.
+
+        Para gestionar estos datos se utiliza \textit{SharedPreferences}, una forma de almacenamiento \textit{Clave-Valor} ofrecida por Android. Un objeto de este tipo tiene asociado un archivo donde se almacenan y proporciona métodos simples para leer y escribir dichos pares.
+        
+        Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La imagen \ref{fig:androidlifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
+        
+        \todo{que esto no quede solo}
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.7]{android_lifecycle.eps}
+                \caption*{Ciclo de vida de actividades Android}
+                \label{fig:androidlifecycle}
+        \end{figure}
 
 \section{Pruebas llevadas a cabo}
 
@@ -309,7 +365,7 @@ Los principales mecanismos utilizados en el sistema para controlar la
                 Para poder instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajuste del sistema Android.
                 \textbf{NOTA:} Las opciones de desarrollador están deshabilitadas por defecto en la mayoría de dispositivos Android, para habilitarla es necesario pulsar diez (10) veces sobre el \textit{Número de compilación}, que se encuentra en el apartado \textit{Acerca del dispositivo} de los ajuste del sistema Android.
 
-                En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run 'app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
+                En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run `app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
                 
                 \textbf{NOTA:} Es importante aceptar en el dispositivo la clave RSA, esto permite que Android Studio pueda conectarse al dispositivo.
 
@@ -322,7 +378,7 @@ Los principales mecanismos utilizados en el sistema para controlar la
             En este apartado se explica la creación y configuración de una VPN en modo tunel entre el router y el dispositivo móvil mediante la utilización de OpenVPN. Esto paso es totalmente opcional ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servido sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
 
             \begin{enumerate}
-                \item Creación de VPN en el router
+                \item Creación de VPN en el router \todo{Añadir un enter y revisar el resto}
                     Inicialmente se debe comprobar que los repositorios desde los que descargan los paquetes y librerías estén bien configurados en el router. Esto se puede observar en el archivo de configutación \textit{/etc/opkg/dist-feeds.conf}. Las rutas a los diferentes repocitorios dependerán de la versión del sistema y el modelo del router.
 
                     Ejemplo:
@@ -509,7 +565,7 @@ Los principales mecanismos utilizados en el sistema para controlar la
             \item Dirección MAC del dispositivo
             Identificador único del adaptador de red del dispositivo. Es especificado por el usuario al añadir un nuevo dispositivo y debe cumplir con un formato específico compuesto por seis pares de caracteres hexadecimales separados por dos puntos(:). Si el formato introducido no es correcto, el botón \textit{Añadir} queda deshabilitado.
             \item Switch de estado del dispositivo
-            Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro NO se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro SÍ se aplica al dispositivo.
+            Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro \textbf{NO} se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro \textbf{NO} se aplica al dispositivo.
             \item Botón para aplicar configuración
             Aplica en el router OpenWRT la configuración que haya sido establecida.
             \item Botón para optener configuración.
@@ -579,7 +635,7 @@ https://www.internetworldstats.com/stats.htm \citep{hola}
 % mellor comprensión do mesmo.
 
 \section{Tecnologías}
-\todo{debería empezar por "Es tal cosa" siempre o meejor empezar con el nombre, o sin nada?}
+\todo{debería empezar por ``Es tal cosa'' siempre o meejor empezar con el nombre, o sin nada?}
     \subsection{OpenWRT}
         OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cuál permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
 
@@ -617,7 +673,7 @@ https://www.internetworldstats.com/stats.htm \citep{hola}
         Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
 
     \subsection{Visual Studio Code}
-        Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico "edit-build-debug" \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
+        Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico ``edit-build-debug'' \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
 
     \subsection{TeX Live}
         Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.

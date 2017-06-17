@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="809"
+   height="567"
+   version="1.1"
+   content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot; version=&quot;6.8.3&quot; editor=&quot;www.draw.io&quot; type=&quot;device&quot;&gt;&lt;diagram name=&quot;Page-1&quot; id=&quot;2617a349-a2a9-b39f-8ecc-9c101749b0d6&quot;&gt;7Vpdj5s4FP01kXYfKoENJHkMmaS70lQaNZX22QUP8Q5g1phk0l9fG8w3mZAMYbYq5CHm+vP6HB9fAzO4Dl4/MxTtv1AX+zOgua8z+DADQDeAJf6k5ZRZrKUyeIy4qlBp2JEfWBk1ZU2Ii+NaQU6pz0lUNzo0DLHDazbEGD3Wiz1Tv95rhDzcMuwc5Let/xCX7zPrIndL2v/CxNvnPevWMsv5jpwXj9EkVP3NAHxOryw7QHlbytF4j1x6rJjgZgbXjFKepYLXNfbl3ObTltXbnsktxs1wyPtUUMOO+Sl3HbtiJtRtSEPxZ6f+YFlDE3d7HvgiqYskDt2VnG1x6/gojomTGbfEz4v8izk/KYBRwqkwUcb31KMh8h8pjVS5mDP6Ukw2LCxr6lOWjgwuwMreWCKn7aTyW469YlAuf8Y0wJydRAGGfcTJoY4yUmTxinJF1SdKRBdAU8Q2NAWborVuafUmYpowB6ta1Wm/0BCAjYY4Yh7mrYZEouJPaUpR7UYYZA0fkJ8ot3eicU5CrwV9ibNE5LgnHO8i5Mjco1jndeyfBcZd4LRg21jy14LYkG3QkFdKbtNL2bcoIL6cHuEu8whSZkUlCZHto+/Yf6Ix4YSGkoOCD1i0ZR+wcFCs5sdGgYC4rnTWRj7xOmusVEZRMu1TTZF2lniyOn59k3oqF4I68gt1eyxlpmDVviIxc+08WWvseIMKubr+X1b7efpUdeDjVvuysUjn5m2r3TLqDcFlv9UuZhudKsUiWSA+P+BmP/mAS3pkLd4qJUZLSr4mYTi0kqw22/lyfaWSFPuo5Kwn2anSDg0kT9P0W3JT1ZW35OeOUgCMMbXAmLTgCi0wzTpWhr4YZucvSDCwFjT7yQc8lBbo5sSf9/AH3riXgEsNDRc56tYE8RUQN3dfY3Hr4aARd5jLfhC/N1zI+xlKIsxWuPCEklhQZchoYbu1oTXyuWPoQMC0GszRRgwErBZKD1jO2GlgoLT0+rWBakZsBXCjRGxgkuMr5Fi3Lhy6+sox1C8cAweS4+aAhz696fOJP+/gz83beZM/99rOmwMeejuftzaKHadRNPA28bAxxG/AbeIDDvaLD9zO83NpBSYarhlGHP/x5wxYvujLdslBJD2ZpGH6OLjMEx1UsjtrfMVxEuDzVRp0uECAXo9uWmxYLdfGxm6xAbQZpd6/9Aka9A4yWelVeWbs42fpZiwcIqH3mN496Fpp+pYK3SfzDswyAKxRS+8KQLR7UWvZQa0dOuC/w5ij0BFbyXmWpaH/RJnxKWM1HhiAfPu5pEbmAJTJ4+UaZUr5+B1RB+MIhV4XCmh2CIXegXrzReRNqOsdqPcVChlUTDoxPmNg/i1AHrV0Mcaa30knQIsxAnMUSDxTHkSMOljAB7QXAYGMOVXuxIuR9w9T69g/4L2UBHYoiXo+1dCPCvzWf4n8fsYWHvJPag5XooR621/kF6LDege/17Hyd9Sw4pOKOlvHCXaaz+e6Tl7gTuFxx+vxNNapH6+mo9cvGkf3CaMHOnmJ2/ILwOxJTfmZJdz8BA==&lt;/diagram&gt;&lt;/mxfile&gt;"
+   id="svg5126"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="FlujoEjecucion.svg">
+  <metadata
+     id="metadata5258">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview5256"
+     showgrid="false"
+     inkscape:zoom="1.028519"
+     inkscape:cx="284.99817"
+     inkscape:cy="314.12648"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5126" />
+  <defs
+     id="defs5128" />
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5132"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 391.5,91.5 0,59.9" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5134"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 391.5,158.15 -4.5,-9 4.5,2.25 4.5,-2.25 z" />
+  <rect
+     style="fill:#82abe6;stroke:#e6e6e6;stroke-width:4"
+     id="rect5136"
+     pointer-events="none"
+     ry="10.5"
+     rx="10.5"
+     height="70"
+     width="160"
+     y="11.5"
+     x="311.5" />
+  <g
+     id="g5138"
+     transform="translate(351,34)">
+    <switch
+       id="switch5140">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="24"
+         width="79"
+         pointer-events="all"
+         style="overflow:visible;">
+        <xhtml:div
+           style="display: inline-block; font-size: 22px; font-family: Georgia; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 79px; white-space: nowrap; word-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Starting</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-size:22px;font-family:Georgia;text-anchor:middle;fill:#ffffff"
+         id="text5142"
+         font-size="22px"
+         y="23"
+         x="40">Starting</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5144"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 481.5,206.5 150,0 0,104.9" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5146"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 631.5,318.15 -4.5,-9 4.5,2.25 4.5,-2.25 z" />
+  <rect
+     style="fill:#aef79c;stroke:#e6e6e6;stroke-width:4"
+     id="rect5148"
+     pointer-events="none"
+     ry="10.5"
+     rx="10.5"
+     height="70"
+     width="160"
+     y="171.5"
+     x="311.5" />
+  <g
+     id="g5150"
+     transform="translate(348,194)">
+    <switch
+       id="switch5152">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="24"
+         width="85"
+         pointer-events="all"
+         style="overflow:visible;">
+        <xhtml:div
+           style="display: inline-block; font-size: 22px; font-family: Georgia; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 85px; white-space: nowrap; word-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Running</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-size:22px;font-family:Georgia;text-anchor:middle;fill:#ffffff"
+         id="text5154"
+         font-size="22px"
+         y="23"
+         x="43">Running</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5156"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 541.5,349.5 -150,0 0,-87.9" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5158"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 391.5,254.85 4.5,9 -4.5,-2.25 -4.5,2.25 z" />
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5160"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 541.5,366.5 -289.9,0" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5162"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 244.85,366.5 9,-4.5 -2.25,4.5 2.25,4.5 z" />
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5164"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 631.5,411.5 0,115 -139.9,0" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5166"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 484.85,526.5 9,-4.5 -2.25,4.5 2.25,4.5 z" />
+  <rect
+     style="fill:#ffb366;stroke:#e6e6e6;stroke-width:4"
+     id="rect5168"
+     pointer-events="none"
+     ry="10.5"
+     rx="10.5"
+     height="70"
+     width="160"
+     y="331.5"
+     x="551.5" />
+  <g
+     id="g5170"
+     transform="translate(596,354)">
+    <switch
+       id="switch5172">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="24"
+         width="69"
+         pointer-events="all"
+         style="overflow:visible;">
+        <xhtml:div
+           style="display: inline-block; font-size: 22px; font-family: Georgia; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 71px; white-space: nowrap; word-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Paused</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-size:22px;font-family:Georgia;text-anchor:middle;fill:#ffffff"
+         id="text5174"
+         font-size="22px"
+         y="23"
+         x="35">Paused</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#000000;stroke:#e6e6e6;stroke-width:4"
+     id="rect5176"
+     pointer-events="none"
+     ry="10.5"
+     rx="10.5"
+     height="70"
+     width="160"
+     y="491.5"
+     x="311.5" />
+  <g
+     id="g5178"
+     transform="translate(341,514)">
+    <switch
+       id="switch5180">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="24"
+         width="99"
+         pointer-events="all"
+         style="overflow:visible;">
+        <xhtml:div
+           style="display: inline-block; font-size: 22px; font-family: Georgia; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 101px; white-space: nowrap; word-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Destroyed</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-size:22px;font-family:Georgia;text-anchor:middle;fill:#ffffff"
+         id="text5182"
+         font-size="22px"
+         y="23"
+         x="50">Destroyed</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5184"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 151.5,321.5 0,-115 139.9,0" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5186"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 298.15,206.5 -9,4.5 2.25,-4.5 -2.25,-4.5 z" />
+  <path
+     style="fill:none;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5188"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 151.5,411.5 0,115 139.9,0" />
+  <path
+     style="fill:#82abe6;stroke:#82abe6;stroke-width:3;stroke-miterlimit:10"
+     inkscape:connector-curvature="0"
+     id="path5190"
+     pointer-events="none"
+     stroke-miterlimit="10"
+     d="m 298.15,526.5 -9,4.5 2.25,-4.5 -2.25,-4.5 z" />
+  <rect
+     style="fill:#de4e4e;stroke:#e6e6e6;stroke-width:4"
+     id="rect5192"
+     pointer-events="none"
+     ry="10.5"
+     rx="10.5"
+     height="70"
+     width="160"
+     y="331.5"
+     x="71.5" />
+  <g
+     id="g5194"
+     transform="translate(110,354)">
+    <switch
+       id="switch5196">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="24"
+         width="81"
+         pointer-events="all"
+         style="overflow:visible;">
+        <xhtml:div
+           style="display: inline-block; font-size: 22px; font-family: Georgia; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 81px; white-space: nowrap; word-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Stopped</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-size:22px;font-family:Georgia;text-anchor:middle;fill:#ffffff"
+         id="text5198"
+         font-size="22px"
+         y="23"
+         x="41">Stopped</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5200"
+     pointer-events="none"
+     height="70"
+     width="100"
+     y="91.5"
+     x="414.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5208"
+     pointer-events="none"
+     height="50"
+     width="160"
+     y="226.5"
+     x="641.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5216"
+     pointer-events="none"
+     height="30"
+     width="110"
+     y="281.5"
+     x="404.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5224"
+     pointer-events="none"
+     height="50"
+     width="167"
+     y="381.5"
+     x="320.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5232"
+     pointer-events="none"
+     height="30"
+     width="130"
+     y="436.5"
+     x="641.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5240"
+     pointer-events="none"
+     height="70"
+     width="120"
+     y="431.5"
+     x="11.5" />
+  <rect
+     style="fill:#ffffff;stroke:#a9c4eb;stroke-width:2"
+     id="rect5248"
+     pointer-events="none"
+     height="70"
+     width="100"
+     y="226.5"
+     x="41.5" />
+  <g
+     id="g5250"
+     transform="translate(44,239)" />
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(0,-4)"><flowRegion
+       id="flowRegion5926"><rect
+         id="rect5928"
+         width="85.073784"
+         height="54.690308"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5930"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onRestart()</flowPara><flowPara
+       id="flowPara5932"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onStart()</flowPara><flowPara
+       id="flowPara5934"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onResume()</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-2"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(372.65747,-139.93586)"><flowRegion
+       id="flowRegion5926-5"><rect
+         id="rect5928-4"
+         width="85.073784"
+         height="54.690308"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5930-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onCreate()</flowPara><flowPara
+       id="flowPara5932-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onStart()</flowPara><flowPara
+       id="flowPara5934-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onResume()</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(595.34497,-5.123356)"><flowRegion
+       id="flowRegion5926-3"><rect
+         id="rect5928-6"
+         width="159.32378"
+         height="42.315292"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5932-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onSaveInstanceState()</flowPara><flowPara
+       id="flowPara5934-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onPause()</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-7"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(368.40747,48.173519)"><flowRegion
+       id="flowRegion5926-4"><rect
+         id="rect5928-7"
+         width="83.698776"
+         height="21.002792"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5934-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onResume()</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5-3"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(278.39892,149.07679)"><flowRegion
+       id="flowRegion5926-3-8"><rect
+         id="rect5928-6-2"
+         width="159.32378"
+         height="42.315292"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5932-1-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onSaveInstanceState()</flowPara><flowPara
+       id="flowPara5934-7-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">onStop()</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5-38"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(600.2209,202.89197)"><flowRegion
+       id="flowRegion5926-3-2"><rect
+         id="rect5928-6-8"
+         width="113.62701"
+         height="21.897585"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5934-7-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1">&lt;process killed&gt;</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot6047"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+       id="flowRegion6049"><rect
+         id="rect6051"
+         width="43.752232"
+         height="13.611806"
+         x="643.64392"
+         y="440.60468" /></flowRegion><flowPara
+       id="flowPara6053"></flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5-38-5"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(-34.191162,219.51043)"><flowRegion
+       id="flowRegion5926-3-2-9"><rect
+         id="rect5928-6-8-3"
+         width="113.62701"
+         height="21.897585"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5934-7-8-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"></flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"
+       id="flowPara6081">&lt;process killed&gt;onDestroy()or</flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"
+       id="flowPara6083" /></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5-38-0"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(-34.191162,200.94793)"><flowRegion
+       id="flowRegion5926-3-2-5"><rect
+         id="rect5928-6-8-1"
+         width="113.62701"
+         height="21.897585"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5934-7-8-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"></flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"
+       id="flowPara6113">&lt;process killed&gt;onDestroy()or</flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1"
+       id="flowPara6115" /></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot5924-5-38-3"
+     style="font-style:normal;font-weight:normal;font-size:6.25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(-34.191162,198.88543)"><flowRegion
+       id="flowRegion5926-3-2-1"><rect
+         id="rect5928-6-8-11"
+         width="111.5645"
+         height="57.647598"
+         x="51.530407"
+         y="237.39986"
+         style="fill:#666666;fill-opacity:1" /></flowRegion><flowPara
+       id="flowPara5934-7-8-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1;text-anchor:middle;text-align:center">onDestroy()</flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1;text-anchor:middle;text-align:center"
+       id="flowPara6131">or</flowPara><flowPara
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#666666;fill-opacity:1;text-anchor:middle;text-align:center"
+       id="flowPara6129">&lt;process killed&gt;</flowPara></flowRoot></svg>
