@@ -158,7 +158,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 
     \subsection{Planificación inicial}
         \subsubsection{Diagrama de fases y tareas}
-        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fase, entre las cuales se incluyen cinco sprints de implementación y la elaboraciónde la documentación, la cuál incluye la fase de cierre, fundamental en \textit{SCRUM}.
+        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fase, entre las cuales se incluyen cinco sprints de implementación y la elaboraciónde la documentación, la cual incluye la fase de cierre, fundamental en \textit{SCRUM}.
 
         \todo{arreglar tabla}
         \begin{tabular}{|l|c|}
@@ -221,7 +221,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 
         \subsubsection{Descripción de las fases}
             \todo{Investigación}
-            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet.
+            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -235,8 +235,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
 
-            \todo{Boceto}
-            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción.
+            \todo{T: Boceto}
+            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -250,8 +250,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
             
-            \todo{Compilación cruzada}
-            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints.
+            \todo{T: Compilación cruzada}
+            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \todo{referenciar} pueden encontrarse las tareas que incluye esta fase.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -265,8 +265,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
 
-            \todo{Sprint 1: Implementación de la aplicación Android base}
-            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2} \todo{referenciar}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado.
+            \todo{T: Sprint 1: Implementación de la aplicación Android base}
+            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2} \todo{referenciar}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -279,12 +279,12 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 Implementar cliente                                                         &   0.6                                 \\
                 Implementar servidor de confirmación                                        &   2                                   \\
                 Implementar servidor de actualización                                       &   2                                   \\
-                Validación de pruebas y corrección de errores                                &   0.5                                 \\
+                Validación de pruebas y corrección de errores                               &   0.5                                 \\
                 \hline
             \end{tabular}
 
-            \todo{Sprint 2: Implementación del servidor}
-            El objetivo de segundo sprint es desarrollar el sistema servidor, este debe contener un socket que le permita recibir peticiones y responder a estas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada.
+            \todo{T: Sprint 2: Implementación del servidor}
+            El objetivo de segundo sprint es desarrollar el sistema servidor, este debe contener un socket que le permita recibir peticiones y responder a estas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \todo{referenciar} muestra las tareas de esta fase.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -295,12 +295,12 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 Implementación del socket                                                   &   2                                   \\
                 Implementación de funcionalidades                                           &   2                                   \\
                 Demonizar                                                                   &   1                                   \\
-                Validación de pruebas y corrección de errores                                &   0.5                                 \\
+                Validación de pruebas y corrección de errores                               &   0.5                                 \\
                 \hline
             \end{tabular}
 
-            \todo{Sprint 3: Implementación de sistemas de seguridad}
-            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desdencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente.
+            \todo{T: Sprint 3: Implementación de sistemas de seguridad}
+            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desdencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -314,8 +314,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
 
-            \todo{Sprint 4: Implementación de la interfaz gráfica de la aplicación}
-            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas.
+            \todo{T: Sprint 4: Implementación de la interfaz gráfica de la aplicación}
+            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \todo{referenciar} indica las tareas relacionadas con esta fase.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -332,8 +332,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
 
-            \todo{Sprint 5: Integración de sistemas}
-            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inclyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado.
+            \todo{T: Sprint 5: Integración de sistemas}
+            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inclyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondiente a esta fase pueden econtrarse en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -346,18 +346,34 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 \hline
             \end{tabular}
 
-            \todo{Documentación}
-            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usurio. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. 
+            \todo{T: Documentación}
+            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usurio. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
                 \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\         
                 \hline
                 Elaboración de la memoria                                                   &   38                                  \\
                 Cierre                                                                      &   2                                   \\
                 \hline
             \end{tabular}
+
+    \subsection{Desviaciones de la planificación inicial}
+        La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o el surgimiento de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos \ref{key}\todo{referenciar} y las principales desviaciones de este proyecto están detalladas a continuación.
+
+        \todo{T: Compilación cruzada}
+        La primera desviación que surge en el proyecto es al intentar realizar la compilación cruzada. La documentación aportada por OpenWRT para realizar este proceso es muy escueta e incomprensible, y la información relacionada que pudo ser encontrada en Internet estaba desactualizadada desde 2007. Esto llevó a un largo porceso de prueba y error a partir de los antiguos procesos de compilación y la información obtenida de la página oficial, lo que provocó un retraso en todo el proyecto.
+
+        \todo{T: Implementación de sistemas de seguridad}
+        La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de encriptación DES, sin embargo, siguiendo la docuementación al pie de la letra y obteniendo información de Iternet no se obetienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y validar las primeras prubas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, determinar que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
+
+        La tercera desviación fue el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras la varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
+
+        \todo{T: Implementación de la interfaz gráfica de la aplicación}
+        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo del esperado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
+        
+
 
 \section{Arquitectura y tecnologías}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
@@ -862,7 +878,7 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 \section{Tecnologías}
 \todo{debería empezar por ``Es tal cosa'' siempre o mejor empezar con el nombre?}
     \subsection{OpenWRT}
-        OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cuál permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
+        OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cual permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
 
     \subsection{C}
         Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos. \todo{solo embebidos?}
