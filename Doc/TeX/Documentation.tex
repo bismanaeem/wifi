@@ -130,7 +130,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 % presentar o problema que se vai tratar, incluír o obxectivo principal e os
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
     Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
-
+    \todo{tengo una imagen hecha}
     \begin{enumerate}
         \item El sistema debe poder ser controlado desde un dispositivo móvil:
         \begin{itemize}
@@ -327,7 +327,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
             \end{tabular}
 
             \todo{T: Sprint 3: Implementación de sistemas de seguridad}
-            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desdencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
+            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -387,28 +387,215 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
             \end{tabular}
 
     \subsection{Desviaciones de la planificación inicial}
-        La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o el surgimiento de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos \ref{key}\todo{referenciar} y las principales desviaciones de este proyecto están detalladas a continuación.
+        La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o el surgimiento de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos \ref{fig:deviations_gantt} y las principales desviaciones de este proyecto están detalladas a continuación.
 
         \todo{T: Compilación cruzada}
         La primera desviación que surge en el proyecto es al intentar realizar la compilación cruzada. La documentación aportada por OpenWRT para realizar este proceso es muy escueta e incomprensible, y la información relacionada que pudo ser encontrada en Internet estaba desactualizadada desde 2007. Esto llevó a un largo porceso de prueba y error a partir de los antiguos procesos de compilación y la información obtenida de la página oficial, lo que provocó un retraso en todo el proyecto.
 
         \todo{T: Implementación de sistemas de seguridad}
-        La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de encriptación DES, sin embargo, siguiendo la docuementación al pie de la letra y obteniendo información de Iternet no se obetienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y validar las primeras prubas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, determinar que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
+        La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de decriptación DES, sin embargo, siguiendo la docuementación al pie de la letra y obteniendo información de Iternet no se obetienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y validar las primeras prubas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, determinar que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
 
         La tercera desviación fue el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras la varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
 
         \todo{T: Implementación de la interfaz gráfica de la aplicación}
         La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo del esperado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
         
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.7]{deviations_gantt.eps}
+                \caption*{Diagrama de Gantt de las desviaciones}
+                \label{fig:deviations_gantt}
+        \end{figure}
 
+        La arquitectura del servidor 
 
 \section{Arquitectura y tecnologías}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
 
     \subsection{Arquitectura del sistema}
 
+        \subsubsection{Componentes del sistema}
+            En este apartado se detallan las diferentes partes que componen el sistema, así como la forma en la que se comunican entre ellos
+
+            \todo{T: Servidor}
+            El servidor es el encargado de recibir todas las peticiones desde el cliente y modificar los archivos de configuración de acuerdo a los parámetros de control que le hayan sido enviados. Al ser desarrollado en C no está compuesto por clases, sino por métodos que son interpretados como componentes, donde cada uno realiza una función específica. En la imagen \ref{fig:server_diagram} se puede ver la estructura del servidor.
+
+            \todo{revisar estos diagramas}
+            \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.4]{server_diagram.eps}
+                \caption*{Diagrama de componentes del servidor}
+                \label{fig:server_diagram}
+            \end{figure}
+
+            La arquitectura del servidor está dividida en varios componentes que interactúan entre sí, estos componentes están diferenciados por su utilidad, entre ellos se pueden encontrar los encargados de gestionar la seguridad, los que gestionan las opciones del sistema OpenWRT en función de la información recibida, y los encargados de la comunicación con el cliente.
+
+            A excepción del socket, cada uno de estos componentes se divide a su vez en subcomponentes individuales con su propia funcionalidad:
+
+            \begin{enumerate}
+                \item Sistema de seguridad
+                    \begin{itemize}
+                        \item \textbf{Decodificador Base64} \\
+                            Este componente se encarga de decodificar los datos recibidos en \textit{Base64} a través del socket, para obtener la información cifrada con \textit{DES} en el cliente.
+                        \item \textbf{Decodificador DES} \\ 
+                            Sistema encargado de decodificar la información resultante del \textit{Decodificador Base64} utilizando la contraseña proporcionada por el usuario
+                    \end{itemize}
+                \item Funciones del sistema
+                    \begin{itemize}
+                        \item \textbf{Funciones de configuración} \\ 
+                            Ejecutan comandos del sistema o modifican el fichero de configuración adecuado, dependiendo de la orden de control recibida desde el cliente.
+                        \item \textbf{Sistema de respuesta} \\
+                            En caso de que la orden sea ejecutada correctamente en el \textit{Sistema de funciones de configuración}, manda un mensaje de confirmación específico dependiendo de la orden que haya sido recibida y procesada.
+                    \end{itemize}
+                \item Socket
+                    El socket es el encargado de recibir y enviar la información desde y hacia el sistema cliente.
+            \end{enumerate}
+
+            \todo{T: Cliente}
+            El sistema cliente es desde donde se realizan las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la imagen \ref{fig:client_diagram} se puede ver la estructura del cliente.
+
+            \todo{revisar estos diagramas}
+            \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.4]{client_diagram.eps}
+                \caption*{Diagrama de componentes del cliente}
+                \label{fig:client_diagram}
+            \end{figure}
+
+            La arquitectura del cliente está dividida en tres componentes siguiendo el patrón de arquitectura MVC. Los \textit{Layouts} son renderizados desde el componente \textit{Actividades}, este es el encargado de gestionar la interacción con el usuario, haciendo uso de los componentes \textit{AsyncTask} siempre que sea necesario. El componente \textit{SharedPreferences} es utilizado para el almacenamiento de la configuración del cliente.
+
+            A continuación se explica la función de cada uno de los subcomponentes del sistema:
+
+            \begin{enumerate}
+                \item Interfaz de usuario
+                    \begin{itemize}
+                        \item \textbf{Actividades} \\
+                            Realiza función de controlador, es el componente encargado de renderizar las vistas haciendo uso de los \textit{Resources} necesarios. Gestiona las entradas del usuario, y a partir de estas se comunica con el sistema servidor a través de los \textit{AsyncTask}.
+                        \item \textbf{Resources} \\ 
+                            Es el componente que representa el conjunto de recursos necesarios para renderizar las vistas de forma correcta, y que estas a su vez, puedan ser gestionadas por las \textit{Actividades}.
+                    \end{itemize}
+                \item SharedPreferences
+                    \begin{itemize}
+                        \item \textbf{Editor} \\ 
+                            Permite almacenar elementos de forma sencilla como elementos clave-valor sin necesidad de utilizar una base de datos.
+                        \item \textbf{Loader} \\
+                            Permiten recuperar los elementos clave-valor almacenados con el \textit{Editor}
+                    \end{itemize}
+                \item AsynckTask Servidor
+                    \begin{itemize}
+                        \item \textbf{Socket} \\ 
+                            Componente mediante el cual se recibe información desde el servidor y provoca cambios parciales en las vistas a detravés del \textit{Sistema rollback}.
+                        \item \textbf{Sistema rollback} \\
+                            Realiza cambios parciales en las vistas a través de las \textit{Actividades}, bloqueando los elementos modificados y devolviéndolos a su estado original en caso de fallo.
+                    \end{itemize}
+                \item AsynckTask Cliente
+                    \begin{itemize}
+                        \item \textbf{Codificador DES} \\
+                            Utilizando la contraseña especificada por el usuario, aplica cifrado \textit{DES} a la información de control que luego es enviada al sistema servidor.
+                        \item \textbf{Codificador Base64} \\
+                            Este componente es el encargado de cifrar en \textit{Base64} los datos obtenidos del \textit{Codificador DES}para que puedan ser enviados al sistema servidor a través del \textit{Socket}.
+                        \item \textbf{Socket} \\ 
+                            Componente mediante el cual se envían los mensajes de control al sistema servidor en función de la entrada del usuario.
+                    \end{itemize}
+                    Componente que envía mensajes de control al sistema servidor, provoca cambios parciales en las vistas a través de la \textit{Actividad} desde la que es invocado
+            \end{enumerate}
+
+            \todo{T: Estructura del paquete}
+            Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabacera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es rellenado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la imagen \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
+
+            \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.4]{ip_packet.eps}
+                \caption*{Estructura del paquete}
+                \label{fig:ip_packet}
+            \end{figure}
+
+            El contenido que viaja cifrado dentro de cada paquete varía en función de la acción que se elige realizar desde el sistema cliente, esta contiene un mensaje de control, y adicionalmente puede contener información necesaria para la acción a realizar. En la tabla \ref{key} \todo{referenciar} se muestra el contenido de los mensajes de control enviados por el cliente.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|c|}
+                \hline
+                \textbf{Acción}                                     &   \textbf{Contenido}      \\         
+                \hline
+                Reiniciar red Wi-Fi                                 &   0                       \\
+                Apagar red Wi-Fi                                    &   1                       \\
+                Encender red Wi-Fi                                  &   2                       \\
+                Deshabilitar filtro MAC                             &   3                       \\
+                Establecer filtro MAC en ``denegar''                &   4                       \\
+                Establecer filtro MAC en ``permitir''               &   5\ll dirección mac\gg   \\
+                Añadir dispositivo al filtro MAC                    &   6\ll dirección mac\gg   \\
+                Eliminar dispositivo del filtro MAC                 &   7                       \\
+                Actualizar configuración                            &   8                       \\
+                Actualizar lista de dispositivos                    &   9                       \\
+                \hline
+            \end{tabular}
+
+            La estructura del mensaje de confirmación es similar, pero en este se omite el cifrado y solamente se envía el mensaje de control, de esta forma se confirma que la acción se ha realizado correctamente. En los casos de ``Actualización'' el componente \textit{AsyncTask Servidor} se mantiene escuchando en el \textit{Socket} determinado hasta que se reciba el mensaje ``done'', que indica que ya han sido enviados todos los paquetes necesarios.
+
     \subsection{Tecnologías e integración de productos de terceros}
     % describiranse adecuadamente as tecnoloxías utilizadas para o desenvolvemento do traballo, así coma os diversos productos que non son da autoría do/da estudante, xustificando a súa utilización.
+        \todo{debería empezar por ``Es tal cosa'' siempre o mejor empezar con el nombre?}
+        \todo{acomodar esto}
+        \subsubsection{OpenWRT}
+            OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cual permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee. Además,este sistema operativo se ha convertido prácticamente en un estándar, soportado por múchos de los dispositivos actuales del mercado, por lo que se utiliza como base para desarrollar esta aplicación.
+
+        \subsubsection{C}
+            Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos, y la razón por la que es utilizado en este proyecto.
+
+            \todo{acomodar esto}
+            \subsubsection{OpenWRT SDK}
+                El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT sin tener que compilar todo el sistema desde cero.
+
+            \subsubsection{uClibc}
+                Es una librería C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \textit{glibc} (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. \textit{uClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
+
+            \subsubsection{OpenSSL}
+                Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
+
+        \subsubsection{OpenVPN}
+            \todo{openvpn}
+
+        \subsubsection{sed}
+            Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida. En este sistema \textit{sed} es utilizado para llevar a cabo los cambios en los archivos de configuración proporcionados por OpenWRT.
+
+        \subsubsection{Latex}
+            Es un sistema de tipografía de alta calidad, incluye mecanismos diseñados para la creación de documentación científica y técnica por lo que se ha convertido en el estándar de facto a la hora de desarrollar esta tarea. Está concebido como software libre, y cuenta con múltiples librerías que añaden funcionalidades comunmente necesarias para la creación de estos doumentos. La documentación del desarrollo de este sistema está desarrollado con esta tecnología debido al conjunto de ventajas de estilo y edición que ofrece frente a otras tecnologías libres.
+
+        \subsubsection{Java}
+            Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc. además de ser el principal lenguaje para el desarrollo de aplicaciones móviles Android, razón por la que es utilizado en el desarrollo de este sistema.
+
+        \subsubsection{Git}
+            Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea. Su uso en el desarrollo de este sistema viene justificado por las diferentes iteraciones/sprints que se llevan a cabo y el control de versiones necesarios para su gestión.
+
+    \subsection{Herramientas} 
+        \todo{Herraminetas?}
+        \todo{justificación de la utilización?}
+        \todo{no llega con explicar las caracterísiticas?}
+        \subsubsection{Atom}
+            Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
+
+        \subsubsection{Visual Studio Code}
+            Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico ``edit-build-debug'' \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
+
+        \subsubsection{TeX Live}
+            Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
+
+        \subsubsection{Android Studio}
+            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
+
+        \subsubsection{GitHub}
+            Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
+
+        \subsubsection{Lucidchart}
+            Es una aplicación online enfocada a la creación de diagramas profesionales desde una interfaz web. Es una herramienta realmente cómoda a la hora de documentar proyectos grandes debido a lo sencillo y amigable de su entorno. Además, brinda integración con diferentes aplicaciones externas como Dropbox, Slack y Microsoft Office. 
+
+        \subsubsection{Inkscape}
+            Es un editor profesional de gráficos vectoriales disponible para Windows, Mac OS X y Linux. Es de código abierto y soporta una gran variedad de formatos, entre los que se incluye \textit{.eps}, el formato utilizado por latex. Además brinda una amplia variedad de herramientas para realizar trazado vectorial, manipulación de objetos y edición de textos.
+            \todo{revisar}
+
+        \subsubsection{OpenVPN for Andorid}
+        \todo{hacer}
+
 
 \section{Especificación y análisis de requisitos}
 % describiranse os requisitos necesarios, tanto funcionais como non funcionais. Incluiranse os aspectos máis relevantes correspondentes á análise do traballo realizado.
@@ -874,6 +1061,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 https://www.internetworldstats.com/stats.htm \citep{hola}
 http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 % http://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259925528782&p=1254735110672&pagename=ProductosYServicios\%2FPYSLayout \citep{\citep{Internet por edades}
+% wikipedia.com (Paquetes IP)
+
 % deberanse citar todas as fontes de información empregadas para a realización do traballo.
 
 % 1. Autor/a/es/as.
@@ -901,67 +1090,6 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 % incluiranse outros elementos de interese no TFG que se consideren necesarios para a
 
 % mellor comprensión do mesmo.
-
-\section{Tecnologías}
-\todo{debería empezar por ``Es tal cosa'' siempre o mejor empezar con el nombre?}
-    \subsection{OpenWRT}
-        OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cual permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
-
-    \subsection{C}
-        Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos. \todo{solo embebidos?}
-
-        \subsubsection{OpenWRT SDK}
-            El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT\todo{ref openwrt} sin tener que compilar todo el sistema desde cero.
-
-        \subsubsection{uClibc}
-            Es una librería C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \todo{poner estilo} glibc (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. uClibc \todo{yewClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
-
-        \subsubsection{OpenSSL}
-            Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
-
-    \subsection{OpenVPN}
-        \todo{openvpn}
-
-    \subsection{sed}
-        Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida.
-
-    \subsection{\LaTeX}\todo{debería ir así?}
-        Es un sistema de tipografía de alta calidad, incluye mecanismos diseñados para la creación de documentación científica y técnica por lo que se ha convertido en el estándar de facto a la hora de desarrollar esta tarea. Está concebido como siftware libre, y cuenta con múltiples librerías que añaden funcionalidades comunmente necesarias para la creación de estos doumentos.
-
-    \subsection{Java}
-        Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es el principal lenguaje para el desarrollo de aplicaciones móviles Android, además de ser utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc.
-
-    \subsection{Git}
-        Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea.
-
-\section{Herramientas} 
-    \todo{Herraminetas?}
-    \todo{justificación de la utilización?}
-    \todo{no llega con explicar las caracterísiticas?}
-    \subsection{Atom}
-        Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
-
-    \subsection{Visual Studio Code}
-        Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico ``edit-build-debug'' \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
-
-    \subsection{TeX Live}
-        Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
-
-    \subsection{Android Studio}
-        Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
-
-    \subsection{GitHub}
-        Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
-
-    \subsection{Lucidchart}
-        Es una aplicación online enfocada a la creación de diagramas profesionales desde una interfaz web. Es una herramienta realmente cómoda a la hora de documentar proyectos grandes debido a lo sencillo y amigable de su entorno. Además, brinda integración con diferentes aplicaciones externas como Dropbox, Slack y Microsoft Office. 
-
-    \subsection{Inkscape}
-        Es un editor profesional de gráficos vectoriales disponible para Windows, Mac OS X y Linux. Es de código abierto y soporta una gran variedad de formatos, entre los que se incluye \textit{.eps}, el formato utilizado por latex. Además brinda una amplia variedad de herramientas para realizar trazado vectorial, manipulación de objetos y edición de textos.
-        \todo{revisar}
-
-    \subsection{OpenVPN for Andorid}
-    \todo{hacer}
 
 \bibliographystyle{plain}
 \bibliography{references}
