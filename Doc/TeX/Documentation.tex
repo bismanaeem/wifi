@@ -84,16 +84,25 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
 %traballos e materias nesta sección.*/
 
-Internet, desde su creación, ha sido un medio cada vez más accesible; actualmente cuenta con 3,731,973,423 de usuarios, cifra que representa casi el 50\% de los habitantes del planeta. 
+Internet, desde su creación, ha sido un medio cada vez más accesible. Capaz de brindar información en cualquier lugar, facilitar las comunicaciones y compartir recursos, entre otras funcionalidades. Se ha convertido en el pilar fundamental de la mayor revolución tecnológica de la historia y actualmente cuenta con 3,731,973,423 de usuarios , cifra que representa casi el 50\% de los habitantes del planeta\todo{referenciar}. 
 
-El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto en casa como fuera de ella. Actualmente es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Los padres de los menores normalmente toman medidas para prevenir 
+La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto dentro de casa como en el exterior. Esto es un innegable avance, sobre todo para las personas que han vivido durante estas dos últimas décadas siendo testigos de su abrumador desarrollo, pero no tan significativo para las nuevas generaciones, las cuales han nacido en la ``Era de la tecnología", y donde el disponer de una conexión a Internet está más cerca de ser una necesidad que una opción. De acuerdo al Instituto Nacional de Estadísitica, en el año 2016, el uso de Internet en España estuvo cerca de alcanzar la totalidad de la población en prácticamente todas las edades, como se puede apreciar en la imagen \ref{fig:internet_ages}.\todo{referenciar?} Es importante destacar, que el uso de Internet por los menores se elevó a un 95.2\% en 2016, sin embargo, sólo el 94.9\% utilizó un ordenador.
 
+\begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.5]{internet_ages.eps}
+        \caption*{Uso de internet en función de la edad}
+        \label{fig:internet_ages}
+\end{figure}
 
+Actualmente es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones en casa, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Además, es muy importante tener en cuenta que Internet no solo está lleno de ventajas, sino también de peligros. Un medio con tanto alcance y facilidad para las comunicaciones, hace que lograr el anonimato no sea un problema para cualquier persona con un mínimo de conocimientos técnicos, por lo que no es extremadamente raro escuchar casos donde un menor ha sido víctima de acoso, intimidación o incluso secuestro.
+
+Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias. \todo{Vincular esto con mi proyecto?}
 
 \section{Objetivos}
 % presentar o problema que se vai tratar, incluír o obxectivo principal e os
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
-    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos y con los resultados obtenidos crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
+    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
 
     \begin{enumerate}
         \item El sistema debe poder ser controlado desde un dispositivo móvil:
@@ -124,7 +133,7 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
 
     Para llevar a cabo la creación de este sistema, inicialmente se valoró el uso de una metodología de desarrollo en cascada, sin embargo, tras una nueva aproximación al problema, se ha llegado a la conclusión de que esta no era la solución más acertada debido a que el sistema se basa en un entorno de red, además se necesita realizar compilación cruzada utilizando un SDK específico, el cual cuenta con sus propias librerías, y la documentación de la que se dispone puede estar incompleta, desactualizada o errónea en su totalidad. Esto lleva como consecuencia que se necesite realizar pruebas de envíos de paquetes constantemente, y que debido a la diferencia de librerías se requiera realizar cambios en el código que se plantee inicialmente. También es necesario que el sistema ocupe el menor espacio posible, ya que el espacio de almacenamiento en routers suele ser limitado, lo que llevará a que el codigo deba ser refactorizado constantemente.
     
-    Tras el análisis anterior se ha concluído que lo más adecuado sería el uso de un método ágil de desarrollo, en concreto \textit{Scrum}, que está más enfocado en la administración del desarrollo iterativo. \textit{Scrum} consta de 3 fases:
+    Tras el análisis anterior se ha concluído que lo más adecuado sería el uso de un método ágil de desarrollo, en concreto \textit{SCRUM}, que está más enfocado en la administración del desarrollo iterativo. \textit{SCRUM} consta de tres fases:
     
     \begin{itemize}
         \item Planificación de un \textit{boceto} donde se establecen los objetivos generales del proyecto y el diseño de la arquitectura del software.
@@ -132,18 +141,223 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
         \item \textit{Cierre} del proyecto donde se completa la documentación requerida como ayudas y manuales de usuario.
     \end{itemize}
 
-    \textit{Scrum} permite que el producto se desglose en piezas comprensibles de forma individual y que son desarrolladas de forma iterativa, recibiendo retroalimentación del usuario con cada entrega y realizando cambios en consecuencia. Para llevar a cabo el desarrollo utilizando este método, es necesario ocupar los roles imprescindibles para su funcionamiento.
+    \textit{SCRUM} permite que el producto se desglose en piezas comprensibles de forma individual y que son desarrolladas de forma iterativa, recibiendo retroalimentación del usuario con cada entrega y realizando cambios en consecuencia. Para llevar a cabo el desarrollo utilizando este método, es necesario ocupar los roles imprescindibles para su funcionamiento.
 
     \begin{itemize}
         \item \textbf{Equipo de desarrollo:} Equipo responsable de llevar a cabo el desarrollo del sistema. Este rol estará compuesto únicamente por el alumno.
         \item \textbf{Cliente:} Encargado de defininir los requisitos, utilizar las versiones resultantes de cada \textit{sprint} y aportar retroalimentación para la mejora del sistema. Este rol será llevado a cabo por el tutor del TFG.
-        \item \textbf{Maestro de Scrum:} Encargado de restrar el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
+        \item \textbf{Maestro de SCRUM:} Encargado de restrar el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
     \end{itemize}
 
 \section{Planificación y seguimiento}
 % deberase incluír un diagrama de Gantt que amose tanto
 % a planificación do traballo, coa súa distribución de fases e tarefas, e a súa comparación cos
 % datos reais obtidos tras o desenvolvemento do traballo.
+    \todo{debería llevar fases de análisis, diseño y todo eso?}
+    Como se expone en el apartado \todo{referenciar}, la metodología de desarrollo empleada para llevar a cabo en este proyecto es \textit{SCRUM}. Por tanto, una vez conocida la solución a realizar, se realiza una planificación que incluye todo el trabajo necesario para el desarrollo del sistema dividiéndolo en sprints, que a su vez están compuestos por subtareas.
+
+    \subsection{Planificación inicial}
+        \subsubsection{Diagrama de fases y tareas}
+        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fase, entre las cuales se incluyen cinco sprints de implementación y la elaboraciónde la documentación, la cuál incluye la fase de cierre, fundamental en \textit{SCRUM}.
+
+        \todo{arreglar tabla}
+        \begin{tabular}{|l|c|}
+            \hline
+            \textbf{Fase}  & \textbf{Estimación temporal} (Días) \\           
+            \hline
+            Investigación                                                       &   2    \\
+            Boceto                                                              &   2    \\
+            Compilación cruzada                                                 &   4    \\
+            Sprint 1: Implementaciónde la aplicación Android base               &   5    \\
+            Sprint 2: Implementación del servidor                               &   5    \\
+            Sprint 3: Implementación de sistemas de seguridad                   &   5    \\
+            Sprint 4: Implementación de la interfaz gráfica de la aplicación    &   10   \\
+            Sprint 5: Integración de sistemas                                   &   5    \\
+            Documentación                                                       &   52   \\
+            \hline
+        \end{tabular}
+
+        En las imágenes \ref{fig:fases} y \ref{fig:fases_gantt} se puede apreciar la planificación de las nueve fases.
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.7]{fases.eps}
+                \caption*{Planificación de las fases del proyecto}
+                \label{fig:fases}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.7]{fases_gantt.eps}
+                \caption*{Diagrama de Gantt de las fases}
+                \label{fig:fases_gantt}
+        \end{figure}
+
+        Las imágenes \ref{tasks}, \ref{tasks_gantt0} y \ref{tasks_gantt1} muestran la planificación de las tareas del proyecto. Es importante destacar el intervalo de dieciocho días de la planificación donde se detienen las actividades, esto es debido a que equipo de desarrollo no se encuentra disponible en este período.
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.7]{tasks.eps}
+                \caption*{Planificación de las tareas del proyecto}
+                \label{fig:tasks}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.5]{tasks_gantt0.eps}
+                \caption*{Diagrama de Gantt de las tareas}
+                \label{fig:tasks_gantt0}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.5]{tasks_gantt1.eps}
+                \caption*{Diagrama de Gantt de las tareas}
+                \label{fig:tasks_gantt1}
+        \end{figure}
+
+        \todo{comprobar esto luego}
+        \clearpage
+
+        \subsubsection{Descripción de las fases}
+            \todo{Investigación}
+            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Investigación acerca de las necesidades de control en redes Wi-Fi           &   0.5                                 \\
+                Análisis de routers actuales                                                &   0.5                                 \\
+                Comparativa de las soluciones aportadas por los proveedores de Internte     &   0.5                                 \\
+                Análisis de las características del sistema a desarrollar                   &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Boceto}
+            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Análisis de los objetivos generales del sistema                             &   0.25                                \\
+                Análisis detallado de los subobjetivos                                      &   0.25                                \\
+                Diseño de la arquitectura del sistema                                       &   1                                   \\
+                Planificación de los sprints de desarrollo                                  &   0.5                                 \\
+                \hline
+            \end{tabular}
+            
+            \todo{Compilación cruzada}
+            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Desarrollo de un sistema de prueba                                          &   0.2                                 \\
+                Compilación utilizando el toolchain de OpenWRT                              &   1                                   \\
+                Compilación utilizando el SDK de OpenWRT                                    &   2                                   \\
+                Realización de pruebas de funcionamiento en el router                       &   0.8                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Sprint 1: Implementación de la aplicación Android base}
+            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2} \todo{referenciar}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Diseño de pruebas                                                           &   0.5                                 \\
+                Implementar interfaz base                                                   &   0.2                                 \\
+                Implementar configuraciones Android                                         &   0.2                                 \\
+                Implementar cliente                                                         &   0.6                                 \\
+                Implementar servidor de confirmación                                        &   2                                   \\
+                Implementar servidor de actualización                                       &   2                                   \\
+                Validación de pruebas y corrección de errores                                &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Sprint 2: Implementación del servidor}
+            El objetivo de segundo sprint es desarrollar el sistema servidor, este debe contener un socket que le permita recibir peticiones y responder a estas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Diseño de pruebas                                                           &   0.5                                 \\
+                Implementación del socket                                                   &   2                                   \\
+                Implementación de funcionalidades                                           &   2                                   \\
+                Demonizar                                                                   &   1                                   \\
+                Validación de pruebas y corrección de errores                                &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Sprint 3: Implementación de sistemas de seguridad}
+            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desdencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Encriptación DES en cliente                                                 &   0.5                                 \\
+                Encriptación Base64 en cliente                                              &   0.5                                 \\
+                Decriptación Base64 en servidor                                             &   2                                   \\
+                Decriptación DES en servidor                                                &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Sprint 4: Implementación de la interfaz gráfica de la aplicación}
+            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Diseño de pruebas unitarias                                                 &   0.5                                 \\
+                Desarrollo de la actividad principal                                        &   0.2                                 \\
+                Modelo de dispositivos personalizados                                       &   0.2                                 \\
+                Adaptador de dispositivos personalizado                                     &   0.6                                 \\
+                Desarrollo de diálogos y menús                                              &   2                                   \\
+                Implementación de la gestión de idiomas                                     &   2                                   \\
+                Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Sprint 5: Integración de sistemas}
+            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inclyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado.
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Integración de la interfaz gráfica y los sistemas de conexión               &   3                                   \\
+                Integración de los sistemas de seguridad                                    &   2                                   \\
+                Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                \hline
+            \end{tabular}
+
+            \todo{Documentación}
+            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usurio. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. 
+
+            \todo{arreglar tabla}
+            \begin{tabular}{|l|c|}
+                \hline
+                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                \hline
+                Elaboración de la memoria                                                   &   38                                  \\
+                Cierre                                                                      &   2                                   \\
+                \hline
+            \end{tabular}
 
 \section{Arquitectura y tecnologías}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
@@ -170,7 +384,7 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
         \todo{mirar si hay un paquete para bash}
         \todo{modificar comillas}
         \todo{modificar titulo: Eliminar listing 1}
-        \todo{márgenes superiores e inferiores de textos y fotos}
+        \todo{márg superiores e inferiores de textos y fotos}
         \begin{lstlisting}[caption=/etc/config/wireless, language=bash]
             config wifi-device `radio0'
                     option type `mac80211'
@@ -209,21 +423,32 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
 
         Para gestionar estos datos se utiliza \textit{SharedPreferences}, una forma de almacenamiento \textit{Clave-Valor} ofrecida por Android. Un objeto de este tipo tiene asociado un archivo donde se almacenan y proporciona métodos simples para leer y escribir dichos pares.
         
-        Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La imagen \ref{fig:androidlifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
+        Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La imagen \ref{fig:android_lifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
         
         \todo{que esto no quede solo}
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{android_lifecycle.eps}
                 \caption*{Ciclo de vida de actividades Android}
-                \label{fig:androidlifecycle}
+                \label{fig:android_lifecycle}
         \end{figure}
 
 \section{Pruebas llevadas a cabo}
-
 % describiranse as probas realizadas aos distintos niveis para
-
 % garantir o correcto funcionamento do software ou do hardware.
+    \subsection{Explicación de las pruebas}
+    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y son ejecutadas al final de este junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
+
+    \subsection{Pruebas de conectividad}
+    \todo{hay que hacer estass pruebas}
+    Debido a que en este proyecto se lleva a cabo el desarrollo de dos aplicaciones diferentes que deben intercambiar paquetes UDP entre sí, es necesario un conjunto de pruebas que permita verificar la conectividad entre ambas. Por tanto, se ha decidido utilizar pruebas unitarias desarrolladas en Android Studio que comprueben, mediante el propio sistema de confirmación de la aplicación cliente, su funcionamiento, y permitan así verificar si el paquete es enviado, recibido y respondido.
+
+    \subsection{Pruebas de entrada}
+    Las pruebas en las aplicaciones independientes se realiza de forma manual, introduciendo valores correctos e incorrectos en los campos a comprobar. En el servidor se introducen estos valores como parámetros durante su proceso de inicio, y en el cliente se comprueban los campos de texto, tanto los encargados de la configuración de la conexión, como los de gestión de dispositivos.
+
+    \subsection{Pruebas de encriptación}
+    El funcinamiento del sistema de encriptación entre cliente y servidor es verificado mediente la prueba unitaria de conectividad, especificando valores correctos e incorrectos para el campo contraseña tanto de la aplicación como del servidor. Para realizar pruebas en los sistemas por separado se hace uso de la librería \textit{OpenSSL}, los valores obtenidos como resultado de la aplicación deben ser iguales a los generados con esta librería desde la consola de comandos, siempre y cuando los parámetros utilizados sean los mismos. 
+    \todo{Pruebas en el anexo}
 
 \section{Manual de usuario}
     \subsection{Requisitos mínimos}
@@ -298,8 +523,6 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
         \end{lstlisting}
 
     \subsection{Manual de instalación}
-    
-        
         \subsubsection{Compilar el paquete Wifither para OpenWRT}
             Para preparar la compilación cruzada, descargar desde la página web oficial de OpenWRT \url{https://downloads.openwrt.org} el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, descomprimir el archivo y se copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
 
@@ -354,7 +577,7 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
             Para realizar la instalación de la aplicación en el móvil existen dos opciones, utilizar la aplicación ya compilada \textit{.apk} o compilarla e instalarla directamente desde \textit{Android Studio}
             
             \begin{enumerate}
-                \item Instalación del .apk
+                \item Instalación del .apk \todo{espacio}
                 Es necesario que el archivo \textit{.apk} debe estar almacenado en el dispositivo móvil, para esto se puede conectar el dispositivo directamente al ordenador utilizando un cable USB.
 
                 Para llevar a cabo la instalación debe estar activada la opción \textit{Fuentes desconocidas}, que se encuentra en el apartado \textit{Seguridad} de los ajustes del sistema Android. Esto hace que sea posible la instalación de aplicaciones que provengan de fuentes no oficiales.
@@ -606,6 +829,8 @@ El uso de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibili
 \section{Referencias}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
 https://www.internetworldstats.com/stats.htm \citep{hola}
+http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
+% http://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259925528782&p=1254735110672&pagename=ProductosYServicios\%2FPYSLayout \citep{\citep{Internet por edades}
 % deberanse citar todas as fontes de información empregadas para a realización do traballo.
 
 % 1. Autor/a/es/as.
@@ -635,7 +860,7 @@ https://www.internetworldstats.com/stats.htm \citep{hola}
 % mellor comprensión do mesmo.
 
 \section{Tecnologías}
-\todo{debería empezar por ``Es tal cosa'' siempre o meejor empezar con el nombre, o sin nada?}
+\todo{debería empezar por ``Es tal cosa'' siempre o mejor empezar con el nombre?}
     \subsection{OpenWRT}
         OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cuál permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee.
 
@@ -646,8 +871,7 @@ https://www.internetworldstats.com/stats.htm \citep{hola}
             El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT\todo{ref openwrt} sin tener que compilar todo el sistema desde cero.
 
         \subsubsection{uClibc}
-            \todo{yewClibc}
-            Es una librería \todo{en?}C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \todo{poner estilo} glibc (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. uClibc \todo{yewClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
+            Es una librería C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \todo{poner estilo} glibc (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. uClibc \todo{yewClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
 
         \subsubsection{OpenSSL}
             Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
@@ -667,8 +891,10 @@ https://www.internetworldstats.com/stats.htm \citep{hola}
     \subsection{Git}
         Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea.
 
-\section{Herramientas} \todo{Herraminetas?}
-    \todo{justificación de la utilización? no llega con explicar las caracterísiticas que lo distinguen?}
+\section{Herramientas} 
+    \todo{Herraminetas?}
+    \todo{justificación de la utilización?}
+    \todo{no llega con explicar las caracterísiticas?}
     \subsection{Atom}
         Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
 
