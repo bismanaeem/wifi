@@ -101,6 +101,7 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 \todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
 \todo{añadir palabra figura al referenciar}
 \todo{cambiar WIFI por Wi-Fi}
+\todo{Cabeceras y pies de páginas (tutorial tesis)}
 \section{Introducción}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
@@ -122,7 +123,7 @@ Actualmente es común que los menores de edad dispongan de dispositivos móviles
 
 Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias. \todo{Vincular esto con mi proyecto?}
 
-No obstante, muchas de las herramientas disponibles para este control educativo precisan de conocimientos relativamente avanzados de informática y redes, como conocer las direcciones MAC de los dispositivos conectados, navegar por menús web con terminología demasiado técnica o aplicar y habilitar filtros basados en campos y criterios en su mayor parte desconocidos, por citar sólo alguno de ellos, cuando la mayoría de las veces lo único que se pretende es habilitar o nó la conexión a Internet a un dispositivo concreto. Además, una buena parte de las herramientas que permiten este tipo de control sólo son accesibles en entorno web, accesible a su vez sólo desde el interior de los locales donde se encuentra la pasarela de acceso a Internet (conocida popularmente con el término de ``Router'').
+No obstante, muchas de las herramientas disponibles para este control educativo precisan de conocimientos relativamente avanzados de informática y redes, como conocer las direcciones MAC de los dispositivos conectados, navegar por menús web con terminología demasiado técnica o aplicar y habilitar filtros basados en campos y criterios en su mayor parte desconocidos, por citar sólo alguno de ellos, cuando la mayoría de las veces lo único que se pretende es habilitar o no la conexión a Internet a un dispositivo concreto. Además, una buena parte de las herramientas que permiten este tipo de control sólo son accesibles en entorno web, accesible a su vez sólo desde el interior de los locales donde se encuentra la pasarela de acceso a Internet (conocida popularmente con el término de ``Router'').
 
 Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wifi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de una gran utilidad y disponer de una gran demanda.
 
@@ -153,7 +154,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \end{description}
 
     \todo{introducir esto}
-    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
+    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres puedan limitar el uso de Internet a los menores forma sencilla y sin necesitar conocimientos avanzados de informática.
     \todo{tengo una imagen hecha}
     \begin{enumerate}
         \item El sistema debe poder ser controlado desde un dispositivo móvil:
@@ -1076,20 +1077,42 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
 
     \subsection{Principales aportaciones}
-
+    \todo{hacer esto}
     % deberanse destacar entre 3 e 5 aportacións importantes do
 
     % traballo realizado, tendo en conta os obxectivos fixados.
 
 
     \subsection{Conclusiones}
-
     % incluiranse todas as conclusións de tipo técnico e persoal.
+    Mantenter control del tiempo que pasan los menores en Internet es un problema que presentan todos los padres hoy en día. En este proyecto de fin de grado se ha intentado facilitar esta tarea de forma que cualquier persona, sin la necesidad de conocimientos técnicos, pudiese realizarlo rápidamente. 
+    
 
+    \todo{hacer esto}
+    El planteamiento inicial del proyecto 
+     sin la necesidad de una gran inversión en infraestructura ni software especializado por parte de los adultos.
+
+    Se ha creado 
+
+    La idea inicial para el planteamiento de este proyecto fue llevar a los hogares donde hay menores, un mecanismo de control que les proporcionase seguridad y buenas prácticas de navegación, 
+
+    Personalmente siento que gracias al desarrollo de este proyecto he podido afianzar y ampliar mis conocimientos en un campo que siempre ha captado mi atención y al que me gustaría dedicarme el día de mañana, las redes informáticas; por lo que intentaré que no quede aquí y llevarlo adelante tanto como pueda. Durante todo el desarrollo de este proyecto he mantenido dos cosas en mi cabeza, intentar aplicar todo lo que he aprendido durante estos últimos cuatro años, y unas palabras que me dijo mi tutor al comenzar a trabajar juntos: ``Haz un proyecto del que te sientas orgullosos...'' En estos momentos, creo que lo he conseguido.
 
     \subsection{Trabajo futuro}
     % presentaranse posible ampliacións e traballos relacionados por facer.
+        \subsubsection{Gestión de horarios}
+        Dado que todos los seres humanos normalmente seguimos rutinas, incuídos los menores, sería interesante crear un macanismo que permita planificar los horarios en los que cierto dispositivo tiene acceso a Internet. Esta es una forma simple de evitar problemas por olvidos y facilitar la gestión diaria de la conectividad en el hogar.
 
+        \subsubsection{Cuotas de navegación}
+        Aunque la educación por recompensa conlleve sus desventajas, está claro que siempre incita al esfuerzo. Por esto, una posible ampliación sería un sistema que permita configurar cuotas de navegación para los dispositivos en función de las notas obtenidas desde una secretaría virtual.
+
+        Esto requeriría un estudio de viabilidad, teniendo en cuenta que no todos los colegios disponen de secretarías virtuales para la entrega de notas, ni todas las secretarías virtuales poseen las mismas características.
+
+        \subsubsection{Integración de OpenVPN}
+        La solución planteada en este proyecto incluye el uso de un túnel utilizando la aplicación móvil OpenVPN for Android como mecanismo de seguridad para evitar que los paquetes enviados desde el dispositivo cliente puedan ser replicados. Una mejora a este sistema sería integrar OpenVPN como una opción dentro de la propia aplicación móvil desarrollada, brindando más facilidad de configuración y evitando la instalación de aplicaciones de terceros.
+
+        \subsubsection{Filtrado de MACS para dispositivos clientes}
+        Implementar un filtro que permita identificar los clientes autorizados a modificar la configuración del router sería una buena medida de seguridad adicional que no pudo ser implementada durante el desarrollo del proyecto debido a los retrasos que provocaría.
 
 \section{Referencias}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
