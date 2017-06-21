@@ -55,6 +55,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\lstlistingname}{Archivo}
+\renewcommand{\figurename}{Figura}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \graphicspath{ {images/} }
@@ -68,13 +69,6 @@
 
 \begin{document}
 \maketitle
-
-%\begin{figure}[h!]
-%    \centering
-%        \includegraphics[scale=0.2]{logo_uvigo.png}
-%        \caption*{Universidad de Vigo}
-%        \label{fig:uvigo}
-%\end{figure}
 
 \clearpage
 
@@ -105,20 +99,22 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 \todo{espacio entre párrafos}
 \todo{saltos de líneas en enumereates e itemizes}
 \todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
+\todo{añadir palabra figura al referenciar}
+\todo{cambiar WIFI por Wi-Fi}
 \section{Introducción}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
 %traballos e materias nesta sección.*/
 
-Internet, desde su creación, ha sido un medio cada vez más accesible. Capaz de brindar información en cualquier lugar, facilitar las comunicaciones y compartir recursos, entre otras funcionalidades. Se ha convertido en el pilar fundamental de la mayor revolución tecnológica de la historia y actualmente cuenta con 3,731,973,423 de usuarios , cifra que representa casi el 50\% de los habitantes del planeta\todo{referenciar}. 
+Internet, desde su creación, ha sido un medio cada vez más accesible. Capaz de brindar información en cualquier lugar, facilitar las comunicaciones y compartir recursos, entre otras funcionalidades. Se ha convertido en el pilar fundamental de la mayor revolución tecnológica de la historia y actualmente cuenta con un número de usuarios que representa casi el 50\% de los habitantes del planeta \cite{InternetUsage}.  \todo{cita no funiona}
 
-La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto dentro de casa como en el exterior. Esto es un innegable avance, sobre todo para las personas que han vivido durante estas dos últimas décadas siendo testigos de su abrumador desarrollo, pero no tan significativo para las nuevas generaciones, las cuales han nacido en la ``Era de la tecnología", y donde el disponer de una conexión a Internet está más cerca de ser una necesidad que una opción. De acuerdo al Instituto Nacional de Estadísitica, en el año 2016, el uso de Internet en España estuvo cerca de alcanzar la totalidad de la población en prácticamente todas las edades, como se puede apreciar en la imagen \ref{fig:internet_ages}.\todo{referenciar?} Es importante destacar, que el uso de Internet por los menores se elevó a un 95.2\% en 2016, sin embargo, sólo el 94.9\% utilizó un ordenador.
+La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto dentro de casa como en el exterior. Esto es un innegable avance, sobre todo para las personas que han vivido durante estas dos últimas décadas siendo testigos de su abrumador desarrollo, pero no tan significativo para las nuevas generaciones, las cuales han nacido en la ``Era de la tecnología", y donde el disponer de una conexión a Internet está más cerca de ser una necesidad que una opción. De acuerdo al Instituto Nacional de Estadísitica, en el año 2016, el uso de Internet en España estuvo cerca de alcanzar la totalidad de la población en prácticamente todas las edades, como se puede apreciar en la figura \ref{fig:internet_ages}.\todo{cita no funciona} Es importante destacar, que el uso de Internet por los menores se elevó a un 95.2\% en 2016, sin embargo, sólo el 94.9\% utilizó un ordenador \cite{EncuestaTIC}.
 
 \begin{figure}[h!]
     \centering
         \includegraphics[scale=0.5]{internet_ages.eps}
-        \caption*{Uso de internet en función de la edad}
+        \caption{Uso de internet en función de la edad}
         \label{fig:internet_ages}
 \end{figure}
 
@@ -126,9 +122,37 @@ Actualmente es común que los menores de edad dispongan de dispositivos móviles
 
 Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias. \todo{Vincular esto con mi proyecto?}
 
+No obstante, muchas de las herramientas disponibles para este control educativo precisan de conocimientos relativamente avanzados de informática y redes, como conocer las direcciones MAC de los dispositivos conectados, navegar por menús web con terminología demasiado técnica o aplicar y habilitar filtros basados en campos y criterios en su mayor parte desconocidos, por citar sólo alguno de ellos, cuando la mayoría de las veces lo único que se pretende es habilitar o nó la conexión a Internet a un dispositivo concreto. Además, una buena parte de las herramientas que permiten este tipo de control sólo son accesibles en entorno web, accesible a su vez sólo desde el interior de los locales donde se encuentra la pasarela de acceso a Internet (conocida popularmente con el término de ``Router'').
+
+Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wifi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de una gran utilidad y disponer de una gran demanda.
+
+En este trabajo se ha creado una aplicación para dispositivos móviles Android que cubre esta demanda para un tipo de pasarela doméstica concreta, aunque el modelo puede ser exportado para cualquier otra que tenga posibilidad de desarrollo de servicios software dentro del sistema operativo que la ejecuta. Particularmente la tecnología de acceso a Internet controlada es la tecnología 802.11, mas conocida como Wifi, aplicable en el ámbito doméstico donde las pasarelas cuentan con esa tecnología (la inmensa mayoría) y los dispositivos se conectan a Internet a través de ella.
+
+A pesar de que la parte visible del sistema es sólo la aplicación Android, deliberadamente sencilla, el sistema consta de un servicio instalado en la pasarela que recibe las instrucciones de la aplicación Android y ejecuta las acciones pertinentes en la pasarela de filtrado o habilitación/deshabilitación de accesos. \todo{Pasarelas/routers}
+
 \section{Objetivos}
 % presentar o problema que se vai tratar, incluír o obxectivo principal e os
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
+    Se presenta en la figura \ref{fig:red_soho} un esquema general de una red doméstica donde se incluye la terminología empleada.
+
+    \begin{figure}[hp]
+    \centering
+        \includegraphics[scale=0.2]{soho_network.eps}
+        \caption{Topología de una red doméstica}
+        \label{fig:red_soho}
+    \end{figure}
+
+    Básicamente una red doméstica de acceso a Internet consta de un dispositivo central, comúnmente conocido como ``Router'' pero con funcionalidades mas amplias y adaptadas a este tipo de redes, y a su vez con menos capacidad de proceso en general que un Router profesional. En adelante a este dispositivo se le llamará ``Pasarela'' o ``Gateway'' (en su terminología en inglés). Además de la Pasarela, una red doméstica puede contar con una instalación básica de cableado horizontal tipo par-trenzado de diferentes categorías, y elementos repetidores como conmutadores o incluso elementos repetidores de radio-frecuencia.
+
+    La pasarela dispone fundamentalmente de tres interfaces (aunque una buena parte de ellas añaden una nueva interfaz para la conexión cableada de periféricos a través del bus USB): 
+
+    \begin{description}
+        \item[Interfaz WAN] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz la suele realizar remotamente el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
+        \item[Interfaz LAN] Es una interfaz en su inmensa mayoría con conector RJ45 que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
+        \item[Interfaz WIFI] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiendose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
+    \end{description}
+
+    \todo{introducir esto}
     Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres y madres puedan limitar el uso de Internet a los menores y las menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
     \todo{tengo una imagen hecha}
     \begin{enumerate}
@@ -156,7 +180,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 % presentado. Deberase incluír aquí a metodoloxía empregada.
     Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. Se creará una App sobre Android para el control de los dispositivos conectados a la red Wi-Fi doméstica, y una aplicación que se ejecute como demonio en el router, donde se recibirán conexiones desde la App con la configuración a establecer. La conexión se realizará mediante paquetes UDP, evitando así el establecimiento de conexión y ganando en velociadad.
 
-    La funcionalidades de la aplicación se desarrollarán utilizando los propios mecanismos proporcionados por OpenWRT para el control de sus sistemas. El apagado/encendido de la red Wi-Fi se realizará a través del comando \textit{wifi} con los argumentos necesarios en cada caso, mientras que la gestión del control de accesos se llevará a cabo mediante los archivos de configuración de unicados en \textit{/etc/config}.
+    La funcionalidades de la aplicación se desarrollarán utilizando los propios mecanismos proporcionados por OpenWRT para el control de sus sistemas. El apagado/encendido de la red Wi-Fi se realizará a través del comando \textit{wifi} con los argumentos necesarios en cada caso, mientras que la gestión del control de accesos se llevará a cabo mediante los archivos de configuración de ubicados en \textit{/etc/config}.
 
     Para llevar a cabo la creación de este sistema, inicialmente se valoró el uso de una metodología de desarrollo en cascada, sin embargo, tras una nueva aproximación al problema, se ha llegado a la conclusión de que esta no era la solución más acertada debido a que el sistema se basa en un entorno de red, además se necesita realizar compilación cruzada utilizando un SDK específico, el cual cuenta con sus propias librerías, y la documentación de la que se dispone puede estar incompleta, desactualizada o errónea en su totalidad. Esto lleva como consecuencia que se necesite realizar pruebas de envíos de paquetes constantemente, y que debido a la diferencia de librerías se requiera realizar cambios en el código que se plantee inicialmente. También es necesario que el sistema ocupe el menor espacio posible, ya que el espacio de almacenamiento en routers suele ser limitado, lo que llevará a que el codigo deba ser refactorizado constantemente.
     
@@ -209,37 +233,37 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{fases.eps}
-                \caption*{Planificación de las fases del proyecto}
+                \caption{Planificación de las fases del proyecto}
                 \label{fig:fases}
         \end{figure}
 
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{fases_gantt.eps}
-                \caption*{Diagrama de Gantt de las fases}
+                \caption{Diagrama de Gantt de las fases}
                 \label{fig:fases_gantt}
         \end{figure}
 
-        Las imágenes \ref{tasks}, \ref{tasks_gantt0} y \ref{tasks_gantt1} muestran la planificación de las tareas del proyecto. Es importante destacar el intervalo de dieciocho días de la planificación donde se detienen las actividades, esto es debido a que equipo de desarrollo no se encuentra disponible en este período.
+        Las figuras \ref{fig:tasks}, \ref{fig:tasks_gantt0} y \ref{fig:tasks_gantt1} muestran la planificación de las tareas del proyecto. Es importante destacar el intervalo de dieciocho días de la planificación donde se detienen las actividades, esto es debido a que equipo de desarrollo no se encuentra disponible en este período.
 
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{tasks.eps}
-                \caption*{Planificación de las tareas del proyecto}
+                \caption{Planificación de las tareas del proyecto}
                 \label{fig:tasks}
         \end{figure}
 
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.5]{tasks_gantt0.eps}
-                \caption*{Diagrama de Gantt de las tareas}
+                \caption{Diagrama de Gantt de las tareas}
                 \label{fig:tasks_gantt0}
         \end{figure}
 
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.5]{tasks_gantt1.eps}
-                \caption*{Diagrama de Gantt de las tareas}
+                \caption{Diagrama de Gantt de las tareas}
                 \label{fig:tasks_gantt1}
         \end{figure}
 
@@ -403,7 +427,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{deviations_gantt.eps}
-                \caption*{Diagrama de Gantt de las desviaciones}
+                \caption{Diagrama de Gantt de las desviaciones}
                 \label{fig:deviations_gantt}
         \end{figure}
 
@@ -414,17 +438,28 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 
     \subsection{Arquitectura del sistema}
 
+        La arquitectura general del sistema está basada en el modelo \textit{Cliente-Servidor} de dos capas, la cual se define como un servicio o conjuntos de servicios a los que acceden y usan clientes. En este caso la aplicación móvil Android es la que realiza la función de cliente, enviando mensajes de control al router OpenWRT servidor, que se mantiene a la espera de mensajes para cambiar la configuración de la red de acuerdo lo que le sea indicado.
+
+        Es importante destacar que el modelo utilizado es un modelo de \textit{cliente grueso}, ya que es el que lleva prácticamente toda la carga de procesamiento del sistema, este gestiona tanto el almacenamiento de configuraciones como el de dispositivos, además de los sistemas de confirmación. El servidor solamente es consultado desde el cliente para modificar archivos de configuración.
+
         \subsubsection{Componentes del sistema}
-            En este apartado se detallan las diferentes partes que componen el sistema, así como la forma en la que se comunican entre ellos
+            En este apartado se detallan las diferentes partes que componen el sistema, así como la forma en la que se comunican entre ellos. En la figura \ref{system_diagramkey} se muestra un diagrama de la arquitectura utilizada con los principales componentes del sistema.
+
+            \begin{figure}[h!]
+            \centering
+                \includegraphics[scale=0.5]{system_diagram.eps}
+                \caption{Diagrama de la arquitectura del sistema}
+                \label{fig:system_diagram}
+            \end{figure}
 
             \todo{T: Servidor}
-            El servidor es el encargado de recibir todas las peticiones desde el cliente y modificar los archivos de configuración de acuerdo a los parámetros de control que le hayan sido enviados. Al ser desarrollado en C no está compuesto por clases, sino por métodos que son interpretados como componentes, donde cada uno realiza una función específica. En la imagen \ref{fig:server_diagram} se puede ver la estructura del servidor.
+            El servidor es el encargado de recibir todas las peticiones desde el cliente y modificar los archivos de configuración de acuerdo a los parámetros de control que le hayan sido enviados. Al ser desarrollado en C no está compuesto por clases, sino por métodos que son interpretados como componentes, donde cada uno realiza una función específica. En la figura \ref{fig:server_diagram} se puede ver la estructura del servidor.
 
             \todo{revisar estos diagramas}
             \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.4]{server_diagram.eps}
-                \caption*{Diagrama de componentes del servidor}
+                \caption{Diagrama de componentes del servidor}
                 \label{fig:server_diagram}
             \end{figure}
 
@@ -452,13 +487,13 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
             \end{enumerate}
 
             \todo{T: Cliente}
-            El sistema cliente es desde donde se realizan las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la imagen \ref{fig:client_diagram} se puede ver la estructura del cliente.
+            El sistema cliente es desde donde se realizan las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la figura \ref{fig:client_diagram} se puede ver la estructura del cliente.
 
             \todo{revisar estos diagramas}
             \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.4]{client_diagram.eps}
-                \caption*{Diagrama de componentes del cliente}
+                \caption{Diagrama de componentes del cliente}
                 \label{fig:client_diagram}
             \end{figure}
 
@@ -501,12 +536,12 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
             \end{enumerate}
 
             \todo{T: Estructura del paquete}
-            Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabacera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es rellenado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la imagen \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
+            Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabacera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es rellenado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la figura \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
 
             \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.4]{ip_packet.eps}
-                \caption*{Estructura del paquete}
+                \caption{Estructura del paquete}
                 \label{fig:ip_packet}
             \end{figure}
 
@@ -522,8 +557,8 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
                 Encender red Wi-Fi                                  &   2                       \\
                 Deshabilitar filtro MAC                             &   3                       \\
                 Establecer filtro MAC en ``denegar''                &   4                       \\
-                Establecer filtro MAC en ``permitir''               &   5\ll dirección mac\gg   \\
-                Añadir dispositivo al filtro MAC                    &   6\ll dirección mac\gg   \\
+                Establecer filtro MAC en ``permitir''               &   5$<$dirección mac$>$    \\
+                Añadir dispositivo al filtro MAC                    &   6$<$dirección mac$>$    \\
                 Eliminar dispositivo del filtro MAC                 &   7                       \\
                 Actualizar configuración                            &   8                       \\
                 Actualizar lista de dispositivos                    &   9                       \\
@@ -653,13 +688,13 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 
         Para gestionar estos datos se utiliza \textit{SharedPreferences}, una forma de almacenamiento \textit{Clave-Valor} ofrecida por Android. Un objeto de este tipo tiene asociado un archivo donde se almacenan y proporciona métodos simples para leer y escribir dichos pares.
         
-        Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La imagen \ref{fig:android_lifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
+        Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La figura \ref{fig:android_lifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
         
         \todo{que esto no quede solo}
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{android_lifecycle.eps}
-                \caption*{Ciclo de vida de actividades Android}
+                \caption{Ciclo de vida de actividades Android}
                 \label{fig:android_lifecycle}
         \end{figure}
 
@@ -692,7 +727,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
         \end{itemize}
 
         \todo{redactar mejor}
-        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} \todo{modificar dependiendo de la tabla}
+        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} y \textit{Arch-Linux} \todo{referenciar}
 
         \todo{debería poner toda la tabla? o quitar arch? o quitar todo?}
         %\begin{table}
@@ -969,7 +1004,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.5]{main_activity_manual.eps}
-                \caption*{Vista principal}
+                \caption{Vista principal}
                 \label{fig:main_activity_manual}
         \end{figure}
 
@@ -977,7 +1012,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.5]{devices_activity_manual.eps}
-                \caption*{Administración de dispositivos}
+                \caption{Administración de dispositivos}
                 \label{fig:devices_activity_manual}
         \end{figure}
 
@@ -1035,7 +1070,7 @@ Para evitar estos problemas, los padres deben educar a los menores con buenas pr
 
         Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
 
-        \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, contactar con el encargado/a de instalar y configrar la aplicación en el router OpenWRT.
+        \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, se recomienda el restablecimiento de la conexión con el dispositivo conectado al router desde Internet en lugar de desde la red Wi-Fi.
 
 \section{Conclusiones y trabajo futuro}
 
@@ -1092,6 +1127,6 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 % mellor comprensión do mesmo.
 
 \bibliographystyle{plain}
-\bibliography{references}
+\bibliography{wifither}
 
 \end{document}
