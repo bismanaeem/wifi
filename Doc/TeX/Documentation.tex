@@ -148,31 +148,34 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     La pasarela dispone fundamentalmente de tres interfaces (aunque una buena parte de ellas añaden una nueva interfaz para la conexión cableada de periféricos a través del bus USB): 
 
     \begin{description}
-        \item[Interfaz WAN] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz la suele realizar remotamente el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
-        \item[Interfaz LAN] Es una interfaz en su inmensa mayoría con conector RJ45 que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
-        \item[Interfaz WIFI] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiendose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
+        \item[Interfaz WAN:] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz la suele realizar remotamente el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
+        \item[Interfaz LAN:] Es una interfaz en su inmensa mayoría con conector RJ45 que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
+        \item[Interfaz WIFI:] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiendose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
     \end{description}
 
     \todo{introducir esto}
     Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres puedan limitar el uso de Internet a los menores forma sencilla y sin necesitar conocimientos avanzados de informática.
     \todo{tengo una imagen hecha}
     \begin{enumerate}
-        \item El sistema debe poder ser controlado desde un dispositivo móvil:
-        \begin{itemize}
-            \item Conectado a la red Wi-Fi del propio router.
-            \item Conectado a Internet y accediendo desde la interfaz WAN.\todo{referenciar}
-        \end{itemize}
+        \item \textbf{Control desde dispositivos móviles:} \\
+            El sistema debe ser capaz de ser controlado desde dispositivos móviles con los que se tenga accesso al router, el control deberá ser posible desde el exterior, mediante la interfaz WAN, y desde dentro de la propia red doméstica, ya sea mediante la interfaz LAN, o la prropia interfaz Wi-Fi.
+        
+        \item \textbf{Encender y apagar red Wi-Fi:} \\
+            Se debe implementar un mecanismo de control que permita encender o apagar la red Wi-Fi desde el dispositivo cliente de forma sencilla e inmediata.
 
-        \item Incluir control para encender y apagar la red Wi-Fi de forma sencilla.
-        \item Implementar la gestión de un filtro MAC \todo{referenciar}, este debe contar con diferentes estados:
+        \item \textbf{Filtro MAC:} \\
+            Se busca implementar la gestión de un filtro MAC de tres estado, los cuales permitan gestionar los dispositivos a la red Wi-Fi, los diferentes estados con los que debe contar el filtro son:
             \begin{itemize}
                 \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
                 \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
                 \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
             \end{itemize}
-        \item Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
-        \item Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
-        \item Añadir soporte para idiomas
+        \item \textbf{Seguridad contra dispositivos no autorrizados:} \\
+            Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
+        \item \textbf{Seguridad contra la réplica de paquetes:} \\
+            Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
+        \item \textbf{Soporte para idiomas:}
+            La aplicación cliente debe ser multilingüe, con soporte para los idiomas español e inglés, donde este último sea el idioma configurado por defecto al ser instalada.
     \end{enumerate}
 
 
@@ -635,11 +638,57 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
 \section{Especificación y análisis de requisitos}
 % describiranse os requisitos necesarios, tanto funcionais como non funcionais. Incluiranse os aspectos máis relevantes correspondentes á análise do traballo realizado.
+    
+    \subsection{Casos de uso}
+        En la figura \ref{fig:case_use_diagram} se muestra el diagrama de casos de uso del que dispone el sistema.
+        \begin{figure}[h!]
+        \centering
+            \includegraphics[scale=0.35]{case_use_diagram.eps}
+            \caption{Diagrama de casos de uso}
+            \label{fig:case_use_diagram}
+        \end{figure}
+    
+    \todo{Revisar}
+    \subsection{Requisitos funcionales}
+    \begin{description}
+        \item[Apagado y encendido de la red Wi-Fi:] Enciende y apaga el red Wi-Fi del router servidor. 
+        \item[Configuración del filtro MAC:] Gestiona el estado del filtro de direcciones MAC.
+        \item[Gestión de dispositivos:] Permite añadir, eliminar y modificar dispositivos al sistema.
+        \item[Soporte de idiomas:] Cambiar el idioma de la interfaz.
+    \end{description}
+    
+
+    \subsection{Requisitos no funcionales}
+    La aplicación debe cumplir un conjunto de requisitos necesarios para su correcto funcionamiento, entre estos se encuentran 
+    El usuario debe contar con un router con el sistema operativo OpenWRT.
+    El usuario debe disponer de un dispositivo móvil Android con la versión 4.4 o superior.
+    El usuario debe disponer de una conexión a internet para poder acceder al router desde la Interfaz WAN
+
+    Seguridad:
+    El sistema cuenta con mecanismos de cifrado DES y el uso de túneles VPN capaces de restringir el acceso de ls dispositivos no autorizados y evitar las replicación de paquetes.
+    \todo{o esto?}
+    Se evita que el sistema servidor reciba órdenes desde dispositivos La seguridad del sistema está garantizada mediante métodos de cifrado DES y el uso de túneles VPN.
+    
+    Disponibilidad:
+    El sistema se mantiene a la espera de peticiones de los clientes en todo momento, tanto desde la Interfaz Wi-Fi como de la interfaz WAN.
+
+    Accesibilidad:
+    El sistema cuenta con una interfaz gráfica sencilla e intuitiva que permite su uso a los usuarios más inexpertos
+
+    Portabilidad:
+    El sistema puede ser utilizado en dispositivos móviles Android, con los que se pueden acceder desde cualquier parte del mundo siempre que exista conectividad con internet.
+
+    Usabilidad:
+    El sistema mantiene un tiempo de respuesta rápido, tentiendo en cuenta la velocidad de la conexión a Internet, brinda toda la información necesaria y mantiene un conjunto de tonalidades discreto.
+
+    Rendimiento:
+    El sistema funciona de forma fluida, mantenienndo un bajo consumo de recursos en los dispositivos.
 
 \section{Diseño de software}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
 % estatico -> diagrama de clases
 % dinamico -> diagrama de secuencia, 
+\todo{casos de uso?? donde va??}
 
 \section{Gestión de datos e información}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
@@ -1074,12 +1123,34 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, se recomienda el restablecimiento de la conexión con el dispositivo conectado al router desde Internet en lugar de desde la red Wi-Fi.
 
 \section{Conclusiones y trabajo futuro}
-
-
     \subsection{Principales aportaciones}
-    \todo{hacer esto}
     % deberanse destacar entre 3 e 5 aportacións importantes do
+    Este proyecto contiene un conjunto de aportaciones a la soluciones inalámbricas disponibles actualmente en los hogares.
+    
+    
+    Gestión del router a distancia
+    Encendido y apagado de la red con la facilidad de presionar un boton
+    Filtrado de dispositivos
+    Mecanismos de seguridad capaces 
 
+
+\item Control desde dispositivos móviles:
+        El sistema debe ser capaz de ser controlado desde dispositivos 
+        \begin{itemize}
+            \item Conectado a la red Wi-Fi del propio router.
+            \item Conectado a Internet y accediendo desde la interfaz WAN.\todo{referenciar}
+        \end{itemize}
+
+        \item Incluir control para encender y apagar la red Wi-Fi de forma sencilla.
+        \item Implementar la gestión de un filtro MAC \todo{referenciar}, este debe contar con diferentes estados:
+            \begin{itemize}
+                \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
+                \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
+                \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
+            \end{itemize}
+        \item Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
+        \item Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
+        \item Añadir soporte para idiomas
     % traballo realizado, tendo en conta os obxectivos fixados.
 
 
@@ -1087,14 +1158,9 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     % incluiranse todas as conclusións de tipo técnico e persoal.
     Mantenter control del tiempo que pasan los menores en Internet es un problema que presentan todos los padres hoy en día. En este proyecto de fin de grado se ha intentado facilitar esta tarea de forma que cualquier persona, sin la necesidad de conocimientos técnicos, pudiese realizarlo rápidamente. 
     
+    Luego de un largo proceso de desarrollo, este proyecto concluye con resultados satisfactorios, y, pese a los problemas surgidos desde sus inicios, donde la fase de investigación propuso un cambio significativo a la propuesta inicial, se considera que todos los objetivos propuestos durante su creación, han sido alcanzados. El desarrollo del proyecto ha suponido más tiempo del planificado, pero este tiempo ha sido empleado en la creación de un sistema robusto y al alcance de cualquier hogar, brindando un mecanismo de control que no requiere de una gran inversión en infraestructira ni software especializado.
 
-    \todo{hacer esto}
-    El planteamiento inicial del proyecto 
-     sin la necesidad de una gran inversión en infraestructura ni software especializado por parte de los adultos.
-
-    Se ha creado 
-
-    La idea inicial para el planteamiento de este proyecto fue llevar a los hogares donde hay menores, un mecanismo de control que les proporcionase seguridad y buenas prácticas de navegación, 
+    \todo{esto se podría alargar}
 
     Personalmente siento que gracias al desarrollo de este proyecto he podido afianzar y ampliar mis conocimientos en un campo que siempre ha captado mi atención y al que me gustaría dedicarme el día de mañana, las redes informáticas; por lo que intentaré que no quede aquí y llevarlo adelante tanto como pueda. Durante todo el desarrollo de este proyecto he mantenido dos cosas en mi cabeza, intentar aplicar todo lo que he aprendido durante estos últimos cuatro años, y unas palabras que me dijo mi tutor al comenzar a trabajar juntos: ``Haz un proyecto del que te sientas orgullosos...'' En estos momentos, creo que lo he conseguido.
 
@@ -1113,6 +1179,9 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         \subsubsection{Filtrado de MACS para dispositivos clientes}
         Implementar un filtro que permita identificar los clientes autorizados a modificar la configuración del router sería una buena medida de seguridad adicional que no pudo ser implementada durante el desarrollo del proyecto debido a los retrasos que provocaría.
+
+        \subsubsection{Aplicación iOS}
+        Dado que el número de dispositivos iOS aumenta cada año, es una buena idea portar el código de la aplicación Android desarrollada para que esté disponible en este sistema operativo.
 
 \section{Referencias}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
