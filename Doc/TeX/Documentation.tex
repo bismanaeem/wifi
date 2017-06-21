@@ -10,6 +10,7 @@
 \usepackage{imakeidx}
 \usepackage{caption}
 \usepackage{listings}
+\usepackage{appendix}
 %\usepackage[parfill]{parskip}  lineas entre párrafos
 
 \usepackage{hyperref}
@@ -95,6 +96,7 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo{indices de tablas y figuras}
 \todo{márgenes iniciales de las secciones}
 \todo{espacio entre párrafos}
 \todo{saltos de líneas en enumereates e itemizes}
@@ -119,15 +121,15 @@ La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor dispo
         \label{fig:internet_ages}
 \end{figure}
 
-Actualmente es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones en casa, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Además, es muy importante tener en cuenta que Internet no solo está lleno de ventajas, sino también de peligros. Un medio con tanto alcance y facilidad para las comunicaciones, hace que lograr el anonimato no sea un problema para cualquier persona con un mínimo de conocimientos técnicos, por lo que no es extremadamente raro escuchar casos donde un menor ha sido víctima de acoso, intimidación o incluso secuestro.
+Actualmente, es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones en casa, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Además, es muy importante tener en cuenta que Internet no solo está lleno de ventajas, sino también de peligros. Un medio con tanto alcance y facilidad para las comunicaciones, hace que lograr el anonimato no sea un problema para cualquier persona con un mínimo de conocimientos técnicos, por lo que no es extremadamente raro escuchar casos donde un menor ha sido víctima de acoso, intimidación o incluso secuestro.
 
 Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias. \todo{Vincular esto con mi proyecto?}
 
 No obstante, muchas de las herramientas disponibles para este control educativo precisan de conocimientos relativamente avanzados de informática y redes, como conocer las direcciones MAC de los dispositivos conectados, navegar por menús web con terminología demasiado técnica o aplicar y habilitar filtros basados en campos y criterios en su mayor parte desconocidos, por citar sólo alguno de ellos, cuando la mayoría de las veces lo único que se pretende es habilitar o no la conexión a Internet a un dispositivo concreto. Además, una buena parte de las herramientas que permiten este tipo de control sólo son accesibles en entorno web, accesible a su vez sólo desde el interior de los locales donde se encuentra la pasarela de acceso a Internet (conocida popularmente con el término de ``Router'').
 
-Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wifi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de una gran utilidad y disponer de una gran demanda.
+Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wifi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de gran utilidad y disponer de una gran demanda.
 
-En este trabajo se ha creado una aplicación para dispositivos móviles Android que cubre esta demanda para un tipo de pasarela doméstica concreta, aunque el modelo puede ser exportado para cualquier otra que tenga posibilidad de desarrollo de servicios software dentro del sistema operativo que la ejecuta. Particularmente la tecnología de acceso a Internet controlada es la tecnología 802.11, mas conocida como Wifi, aplicable en el ámbito doméstico donde las pasarelas cuentan con esa tecnología (la inmensa mayoría) y los dispositivos se conectan a Internet a través de ella.
+En este trabajo se ha creado una aplicación para dispositivos móviles Android que cubre esta demanda para un tipo de pasarela doméstica concreta, aunque el modelo puede ser exportado para cualquier otra que tenga posibilidad de desarrollo de servicios software dentro del sistema operativo que la ejecuta. Particularmente la tecnología de acceso a Internet controlada es la tecnología 802.11, más conocida como Wifi, aplicable en el ámbito doméstico donde las pasarelas cuentan con esa tecnología (la inmensa mayoría) y los dispositivos se conectan a Internet a través de ella.
 
 A pesar de que la parte visible del sistema es sólo la aplicación Android, deliberadamente sencilla, el sistema consta de un servicio instalado en la pasarela que recibe las instrucciones de la aplicación Android y ejecuta las acciones pertinentes en la pasarela de filtrado o habilitación/deshabilitación de accesos. \todo{Pasarelas/routers}
 
@@ -143,38 +145,37 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{fig:red_soho}
     \end{figure}
 
-    Básicamente una red doméstica de acceso a Internet consta de un dispositivo central, comúnmente conocido como ``Router'' pero con funcionalidades mas amplias y adaptadas a este tipo de redes, y a su vez con menos capacidad de proceso en general que un Router profesional. En adelante a este dispositivo se le llamará ``Pasarela'' o ``Gateway'' (en su terminología en inglés). Además de la Pasarela, una red doméstica puede contar con una instalación básica de cableado horizontal tipo par-trenzado de diferentes categorías, y elementos repetidores como conmutadores o incluso elementos repetidores de radio-frecuencia.
+    Básicamente una red doméstica de acceso a Internet consta de un dispositivo central (comúnmente conocido como ``Router'') pero con funcionalidades mas amplias y adaptadas a este tipo de redes, y a su vez con menos capacidad de proceso en general que un Router profesional. En adelante a este dispositivo se le llamará ``Pasarela'' o ``Gateway'' (en su terminología en inglés). Además de la Pasarela, una red doméstica puede contar con una instalación básica de cableado horizontal tipo par-trenzado de diferentes categorías, y elementos repetidores como conmutadores o incluso elementos repetidores de radio-frecuencia.
 
-    La pasarela dispone fundamentalmente de tres interfaces (aunque una buena parte de ellas añaden una nueva interfaz para la conexión cableada de periféricos a través del bus USB): 
+    La pasarela dispone fundamentalmente de tres interfaces (aunque la mayoría añade una nueva interfaz para la conexión cableada de periféricos a través del bus USB): 
 
     \begin{description}
-        \item[Interfaz WAN:] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz la suele realizar remotamente el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
-        \item[Interfaz LAN:] Es una interfaz en su inmensa mayoría con conector RJ45 que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
-        \item[Interfaz WIFI:] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiendose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
+        \item[\underline{Interfaz WAN:}] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz suele realizarse remotamente desde el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
+        \item[\underline{Interfaz LAN:}] Es una interfaz (en su inmensa mayoría con conector RJ45) que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
+        \item[\underline{Interfaz WIFI:}] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiéndose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
     \end{description}
 
-    \todo{introducir esto}
-    Realizar un estudio de necesidades generales teniendo en cuenta las características de los routers domésticos, y con los resultados obtenidos, crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares, de forma que los padres puedan limitar el uso de Internet a los menores forma sencilla y sin necesitar conocimientos avanzados de informática.
+    Teniendo en cuenta todo lo mencionado anteriormente, se decide realizar un estudio de necesidades generales analizando las características de los routers domésticos. Con los resultados obtenidos se debe crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares. De esta forma  los padres pueden limitar el uso de Internet a los menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
     \todo{tengo una imagen hecha}
     \begin{enumerate}
-        \item \textbf{Control desde dispositivos móviles:} \\
-            El sistema debe ser capaz de ser controlado desde dispositivos móviles con los que se tenga accesso al router, el control deberá ser posible desde el exterior, mediante la interfaz WAN, y desde dentro de la propia red doméstica, ya sea mediante la interfaz LAN, o la prropia interfaz Wi-Fi.
+        \item \textbf{\underline{Control desde dispositivos móviles:}} \\
+            El sistema debe ser capaz de ser controlado desde dispositivos móviles con los que se tenga accesso al router, el control deberá ser posible desde el exterior, mediante la interfaz WAN y desde dentro de la propia red doméstica, ya sea mediante la interfaz LAN, o la prropia interfaz Wi-Fi.
         
-        \item \textbf{Encender y apagar red Wi-Fi:} \\
+        \item \textbf{\underline{Encender y apagar red Wi-Fi:}} \\
             Se debe implementar un mecanismo de control que permita encender o apagar la red Wi-Fi desde el dispositivo cliente de forma sencilla e inmediata.
 
-        \item \textbf{Filtro MAC:} \\
-            Se busca implementar la gestión de un filtro MAC de tres estado, los cuales permitan gestionar los dispositivos a la red Wi-Fi, los diferentes estados con los que debe contar el filtro son:
+        \item \textbf{\underline{Filtro MAC:}} \\
+            Se busca implementar la gestión de un filtro MAC de tres estados, los cuales permitan gestionar los dispositivos a la red Wi-Fi, los diferentes estados con los que debe contar el filtro son:
             \begin{itemize}
                 \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
                 \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
                 \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
             \end{itemize}
-        \item \textbf{Seguridad contra dispositivos no autorrizados:} \\
+        \item \textbf{\underline{Seguridad contra dispositivos no autorizados:}} \\
             Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
-        \item \textbf{Seguridad contra la réplica de paquetes:} \\
-            Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
-        \item \textbf{Soporte para idiomas:}
+        \item \textbf{\underline{Seguridad contra la réplica de paquetes:}} \\
+            Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones en el router de forma desautorizada.
+        \item \textbf{\underline{Soporte para idiomas:}} \\
             La aplicación cliente debe ser multilingüe, con soporte para los idiomas español e inglés, donde este último sea el idioma configurado por defecto al ser instalada.
     \end{enumerate}
 
@@ -182,18 +183,20 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 \section{Resumen de la solución propuesta}
 % indicarase a solución aportada para o problema
 % presentado. Deberase incluír aquí a metodoloxía empregada.
-    Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. Se creará una App sobre Android para el control de los dispositivos conectados a la red Wi-Fi doméstica, y una aplicación que se ejecute como demonio en el router, donde se recibirán conexiones desde la App con la configuración a establecer. La conexión se realizará mediante paquetes UDP, evitando así el establecimiento de conexión y ganando en velociadad.
+    Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. 
+    
+    Se creará una aplicación sobre Android para el control de los dispositivos conectados a la red Wi-Fi doméstica, y una servicio que se ejecute como demonio en el router, donde se recibirán conexiones desde la aplicación con la configuración a establecer. La conexión se realizará mediante paquetes UDP, evitando así el establecimiento de conexión y ganando en velocidad.
 
     La funcionalidades de la aplicación se desarrollarán utilizando los propios mecanismos proporcionados por OpenWRT para el control de sus sistemas. El apagado/encendido de la red Wi-Fi se realizará a través del comando \textit{wifi} con los argumentos necesarios en cada caso, mientras que la gestión del control de accesos se llevará a cabo mediante los archivos de configuración de ubicados en \textit{/etc/config}.
 
-    Para llevar a cabo la creación de este sistema, inicialmente se valoró el uso de una metodología de desarrollo en cascada, sin embargo, tras una nueva aproximación al problema, se ha llegado a la conclusión de que esta no era la solución más acertada debido a que el sistema se basa en un entorno de red, además se necesita realizar compilación cruzada utilizando un SDK específico, el cual cuenta con sus propias librerías, y la documentación de la que se dispone puede estar incompleta, desactualizada o errónea en su totalidad. Esto lleva como consecuencia que se necesite realizar pruebas de envíos de paquetes constantemente, y que debido a la diferencia de librerías se requiera realizar cambios en el código que se plantee inicialmente. También es necesario que el sistema ocupe el menor espacio posible, ya que el espacio de almacenamiento en routers suele ser limitado, lo que llevará a que el codigo deba ser refactorizado constantemente.
+    Para llevar a cabo la creación de este sistema, inicialmente se valoró el uso de una metodología de desarrollo en cascada, sin embargo, tras una nueva aproximación al problema, se llegó a la conclusión de que esta no era la solución más acertada debido a que el sistema se basa en un entorno de red, además se necesita realizar compilación cruzada utilizando un SDK específico, el cual cuenta con sus propias librerías, y la documentación de la que se dispone puede estar incompleta, desactualizada o errónea en su totalidad. Esto lleva como consecuencia que se necesite realizar pruebas de envíos de paquetes constantemente, y que, debido a la diferencia de librerías, se requiera realizar cambios en el código que se plantee inicialmente. También es necesario que el sistema ocupe el menor espacio posible, ya que el espacio de almacenamiento en routers suele ser limitado, lo que llevará a que el codigo deba ser refactorizado constantemente.
     
-    Tras el análisis anterior se ha concluído que lo más adecuado sería el uso de un método ágil de desarrollo, en concreto \textit{SCRUM}, que está más enfocado en la administración del desarrollo iterativo. \textit{SCRUM} consta de tres fases:
+    Tras el análisis anterior, se ha concluído que lo más adecuado sería el uso de un método ágil de desarrollo, en concreto \textit{SCRUM}, que está más enfocado a la administración del desarrollo iterativo. \textit{SCRUM} consta de tres fases:
     
     \begin{itemize}
-        \item Planificación de un \textit{boceto} donde se establecen los objetivos generales del proyecto y el diseño de la arquitectura del software.
-        \item Una serie de ciclos \textit{sprint} donde cada ciclo desarrolla un incremento del sistema.
-        \item \textit{Cierre} del proyecto donde se completa la documentación requerida como ayudas y manuales de usuario.
+        \item Planificación de un \textit{boceto}, donde se establecen los objetivos generales del proyecto y el diseño de la arquitectura del software.
+        \item Una serie de ciclos \textit{sprint}, donde cada ciclo desarrolla un incremento del sistema.
+        \item \textit{Cierre} del proyecto, fase en la cual se completa la documentación requerida como ayudas y manuales de usuario.
     \end{itemize}
 
     \textit{SCRUM} permite que el producto se desglose en piezas comprensibles de forma individual y que son desarrolladas de forma iterativa, recibiendo retroalimentación del usuario con cada entrega y realizando cambios en consecuencia. Para llevar a cabo el desarrollo utilizando este método, es necesario ocupar los roles imprescindibles para su funcionamiento.
@@ -687,8 +690,38 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 \section{Diseño de software}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
 % estatico -> diagrama de clases
-% dinamico -> diagrama de secuencia, 
-\todo{casos de uso?? donde va??}
+% dinamico -> diagrama de secuencia
+    \subsection{Diseño estático}
+        Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:fig:server_diagram}, ya expuesta en la sección \ref{key} \todo{referenciar}.
+
+        El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{key} muestra el diagrama de clases del sistema cliente.
+        
+        \todo{Papel A3}
+        \begin{figure}[h!]
+        \centering
+            \includegraphics[scale=0.2]{class_diagram.eps}
+            \caption{Diagrama de clases del sistema}
+            \label{fig:class_diagram}
+        \end{figure}
+
+    \subsection{Diseño dinámico}
+    \todo{mirar posicionamiento de las imágenes}
+    En la imagen \ref{fig:main_activity_sequence_diagram} se puede observar el diagrama de secuencia general del sistema, donde se muestra la interacción entre los objetos que lo componen. En esta representación pueden variar el mensaje enviado, la actividad y el servidor de configuración, manteniendo la misma forma en la que interactúan.
+
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.32]{main_activity_sequence_diagram.eps}
+        \caption{Diagrama secuencia de actividades}
+        \label{fig:main_activity_sequence_diagram}
+    \end{figure}
+
+    En la imagen \ref{fig:device_management_sequence_diagram} se muestra un diagrama de secuencia que representa la interacción de las clases para los casos de uso de gestión de dispositivos.
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.35]{device_management_sequence_diagram.eps}
+        \caption{Diagrama de secuencia de gestión de dispositivos}
+        \label{fig:device_management_sequence_diagram}
+    \end{figure}
 
 \section{Gestión de datos e información}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
@@ -752,11 +785,11 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 % describiranse as probas realizadas aos distintos niveis para
 % garantir o correcto funcionamento do software ou do hardware.
     \subsection{Explicación de las pruebas}
-    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y son ejecutadas al final de este junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
+    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de este junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
 
     \subsection{Pruebas de conectividad}
     \todo{hay que hacer estass pruebas}
-    Debido a que en este proyecto se lleva a cabo el desarrollo de dos aplicaciones diferentes que deben intercambiar paquetes UDP entre sí, es necesario un conjunto de pruebas que permita verificar la conectividad entre ambas. Por tanto, se ha decidido utilizar pruebas unitarias desarrolladas en Android Studio que comprueben, mediante el propio sistema de confirmación de la aplicación cliente, su funcionamiento, y permitan así verificar si el paquete es enviado, recibido y respondido.
+    Debido a que en este proyecto se lleva a cabo el desarrollo de dos aplicaciones diferentes que deben intercambiar paquetes UDP entre sí, es necesario un conjunto de pruebas que permita verificar la conectividad entre ambas. Por tanto, se ha decidido utilizar pruebas unitarias desarrolladas en Android Studio que comprueben, mediante el propio sistema de confirmación de la aplicación cliente, su funcionamiento, y permitan así verificar si el paquete es enviado, recibido y confirmado.
 
     \subsection{Pruebas de entrada}
     Las pruebas en las aplicaciones independientes se realiza de forma manual, introduciendo valores correctos e incorrectos en los campos a comprobar. En el servidor se introducen estos valores como parámetros durante su proceso de inicio, y en el cliente se comprueban los campos de texto, tanto los encargados de la configuración de la conexión, como los de gestión de dispositivos.
@@ -1211,9 +1244,13 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 % toda a sección.
 
 % Deberase empregar un estilo uniforme para todas elas e aportarase, en cada caso:
-
+\appendix
 \section{Anexos}
+sdasd
 
+
+\section{prueba}
+fcdsf
 % incluiranse outros elementos de interese no TFG que se consideren necesarios para a
 
 % mellor comprensión do mesmo.
