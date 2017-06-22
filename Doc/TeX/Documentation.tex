@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm]{geometry}
+\usepackage[spanish]{babel}
 
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
@@ -59,7 +60,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{todonotes}
-
+\usepackage{lscape}                     %allow certain pages to be formatted in landscape orientation
+\usepackage[paper=A4,pagesize]{typearea}
+\usepackage{afterpage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\lstlistingname}{Archivo}
 \renewcommand{\figurename}{Figura}
@@ -285,7 +288,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \end{figure}
 
         \subsubsection{Descripción de las fases}
-            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fase_inv}.
+            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fases_inv}.
 
             
             \begin{table}[!htbp]
@@ -306,7 +309,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_inv}
             \end{table}
 
-            \todo{T: Boceto}
+            \paragraph{ Boceto}
             En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \ref{tab:fases_boc}.
 
             \begin{table}[!htbp]             
@@ -327,8 +330,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_boc}
             \end{table}
             
-            \todo{T: Compilación cruzada}
-            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
+            \paragraph{ Compilación cruzada}
+            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT \ref{SDK} y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
 
             \begin{table}[!htbp]             
                 \centering                  
@@ -348,7 +351,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_cc}
             \end{table}
 
-            \todo{T: Sprint 1: Implementación de la aplicación Android base}
+            \paragraph{ Sprint 1: Implementación de la aplicación Android base}
             En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \ref{tab:fases_sp1}.
 
             \begin{table}[!htbp]             
@@ -372,8 +375,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_sp1}
             \end{table}
 
-            \todo{T: Sprint 2: Implementación del servidor}
-            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
+            \paragraph{ Sprint 2: Implementación del servidor}
+            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas \ref{Socket}. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
 
             \begin{table}[!htbp]             
                 \centering                  
@@ -394,7 +397,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_sp2}
             \end{table}
 
-            \todo{T: Sprint 3: Implementación de sistemas de seguridad}
+            \paragraph{ Sprint 3: Implementación de sistemas de seguridad}
             En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \ref{tab:fases_sp3}.
 
             \begin{table}[!htbp]             
@@ -415,8 +418,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_sp3}
             \end{table}
 
-            \todo{T: Sprint 4: Implementación de la interfaz gráfica de la aplicación}
-            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
+            \paragraph{ Sprint 4: Implementación de la interfaz gráfica de la aplicación}
+            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador \cite{ArrayAdapter}, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
 
             \begin{table}[!htbp]             
                 \centering                  
@@ -439,7 +442,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fases_sp4}
             \end{table}
 
-            \todo{T: Sprint 5: Integración de sistemas}
+            \paragraph{ Sprint 5: Integración de sistemas}
             El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \ref{tab:fase_sp5}.
 
             \begin{table}[!htbp]             
@@ -459,7 +462,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{tab:fase_sp5}
             \end{table}
 
-            \todo{T: Documentación}
+            \paragraph{ Documentación}
             La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \ref{tab:fase_doc}.
 
             \begin{table}[!htbp]             
@@ -481,16 +484,16 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \subsection{Desviaciones de la planificación inicial}
         La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o la aparición de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos (figura \ref{fig:deviations_gantt}) y las principales desviaciones de este proyecto están detalladas a continuación.
 
-        \todo{T: Compilación cruzada}
+        \paragraph{ Compilación cruzada}
         La primera desviación que surge en el proyecto aparece al intentar realizar la compilación cruzada. La documentación aportada por OpenWRT para realizar este proceso es muy escueta e incomprensible, y la información relacionada que pudo ser encontrada en Internet estaba desactualizadada desde 2007. Esto llevó a un largo proceso de prueba y error a partir de los antiguos procesos de compilación y la información obtenida de la página oficial, lo que provocó un retraso en todo el proyecto.
 
-        \todo{T: Implementación de sistemas de seguridad}
+        \paragraph{ Implementación de sistemas de seguridad}
         La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de decriptación DES, sin embargo, siguiendo la documentación al pie de la letra y obteniendo información de Internet no se obtienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y tras la validación de las primeras pruebas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, se determina que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
 
         La tercera desviación surge en el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en el sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
 
-        \todo{T: Implementación de la interfaz gráfica de la aplicación}
-        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo al inicialmente planificado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
+        \paragraph{ Implementación de la interfaz gráfica de la aplicación}
+        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android \ref{Color}, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo al inicialmente planificado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
         
         \begin{figure}[h!]
             \centering
@@ -511,7 +514,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         Es importante destacar que el modelo utilizado es un modelo de \textit{cliente grueso}, ya que es el que lleva prácticamente toda la carga de procesamiento del sistema, este gestiona tanto el almacenamiento de configuraciones como el de dispositivos, además de los sistemas de confirmación. El servidor solamente es consultado desde el cliente para modificar archivos de configuración.
 
         \subsubsection{Componentes del sistema}
-            En este apartado se detallan las diferentes partes que componen el sistema, así como la forma en la que se comunican entre ellos. En la figura \ref{system_diagramkey} se muestra un diagrama de la arquitectura utilizada con los principales componentes del sistema.
+            En este apartado se detallan las diferentes partes que componen el sistema, así como la forma en la que se comunican entre ellos. En la figura \ref{fig:system_diagram} se muestra un diagrama de la arquitectura utilizada con los principales componentes del sistema.
 
             \begin{figure}[h!]
             \centering
@@ -520,7 +523,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:system_diagram}
             \end{figure}
 
-            \todo{T: Servidor}
+            \paragraph{ Servidor}
             El servidor es el encargado de recibir todas las peticiones desde el cliente y modificar los archivos de configuración de acuerdo a los parámetros de control que le hayan sido enviados. Al ser desarrollado en C no está compuesto por clases, sino por métodos que son interpretados como componentes, donde cada uno realiza una función específica. En la figura \ref{fig:server_diagram} se puede ver la estructura del servidor.
 
             \begin{figure}[h!]
@@ -553,7 +556,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                     El socket es el encargado de recibir y enviar la información desde y hacia el sistema cliente.
             \end{enumerate}
 
-            \todo{T: Cliente}
+            \paragraph{ Cliente}
             El sistema cliente es el encargado de realizar las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la figura \ref{fig:client_diagram} se puede ver la estructura del cliente.
 
             \begin{figure}[h!]
@@ -601,7 +604,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                     Componente que envía mensajes de control al sistema servidor, provoca cambios parciales en las vistas a través de la \textit{Actividad} desde la que es invocado
             \end{enumerate}
 
-            \todo{T: Estructura del paquete}
+            \paragraph{ Estructura del paquete}
             Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabecera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es completado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la figura \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
 
             \begin{figure}[h!]
@@ -659,7 +662,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{itemize}
             
         \subsubsection{OpenVPN}
-            \todo{openvpn}
+            Es un proyecto basado en software libre, que proporciona una solución de conectividad punto a punto, con validación gerárquica de usuarios y dispositivos conectados remotamente. Hace uso del protocolo SSL para crear redes privadas virtuales (VPN) que permiten mantener la privacidad generando un túnel entre dos dispositivos separados geográficamente.
 
         \subsubsection{Sed}
             Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida. En este sistema \textit{sed} es utilizado para llevar a cabo los cambios en los archivos de configuración proporcionados por OpenWRT.
@@ -684,7 +687,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Es un una distribución libre para los sistemas de tipografía TeX (\ref{sec:latex}). Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
 
         \subsubsection{Android Studio}
-            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida, y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
+            Es el IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida, y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
 
         \subsubsection{GitHub}
             Es una plataforma colaborativa de control de vesiones online basada en Git(\ref{sec:git}) y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git, así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
@@ -696,7 +699,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Es un editor profesional de gráficos vectoriales disponible para Windows, Mac OS X y Linux. Es de código abierto y soporta una gran variedad de formatos, entre los que se incluye \textit{.eps}, el formato utilizado por latex. Además brinda una amplia variedad de herramientas para realizar trazado vectorial, manipulación de objetos y edición de textos.
 
         \subsubsection{OpenVPN for Andorid}
-        \todo{hacer}
+            Es una aplicación gratuita disponible en la tienda online de \textit{Google}. Permite utilizar OpenVPN en dispositivos móviles para crear conexiones punto a punto de forma segura. Todo el tráfico generado entre estos puntos es transportado en paquetes cifrados, haciendo uso de certificados SSL.
 
 
 \section{Especificación y análisis de requisitos} \label{sec:req}
@@ -744,17 +747,27 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 % estatico -> diagrama de clases
 % dinamico -> diagrama de secuencia
     \subsection{Diseño estático}
-        Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:fig:server_diagram}, ya expuesta en la sección \ref{sec:arq}.
+        Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:server_diagram}, ya expuesta en la sección \ref{sec:arq}.
 
-        El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{key} muestra el diagrama de clases del sistema cliente.
+        El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{fig:class_diagram} muestra el diagrama de clases del sistema cliente.
         
-        \todo{Papel A3}
+    \afterpage{% Insert after the current page
+    \clearpage
+    \KOMAoptions{paper=A3,paper=landscape,pagesize}
+    \recalctypearea
+
         \begin{figure}[h!]
         \centering
-            \includegraphics[scale=0.2]{class_diagram.eps}
+            \includegraphics[scale=0.38]{class_diagram.eps}
             \caption{Diagrama de clases del sistema}
             \label{fig:class_diagram}
         \end{figure}
+
+    \clearpage
+    \KOMAoptions{paper=A4,pagesize}
+    \recalctypearea
+    }
+    \pagebreak
 
     \subsection{Diseño dinámico}
     
@@ -781,7 +794,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     
     \subsection{Servidor}
         En el dispositivo servidor, para hacer uso de los mecanismos que brinda OpenWRT (orientados la gestión de sus funcionalidades), se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial, se hace uso del fichero \textit{wireless}, donde se almacenan las configuraciones hardware y software que son utilizadas para el funcionamiento la red Wi-Fi. A continuación se muestra un ejemplo de este:
-        \todo{márg superiores e inferiores de textos y fotos}
+
         \begin{lstlisting}[caption=/etc/config/wireless, language=bash]
     config wifi-device 'radio0'
             option type 'mac80211'
@@ -828,7 +841,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \caption{Ciclo de vida de actividades Android}
                 \label{fig:android_lifecycle}
         \end{figure}
-\todo{comprobar idioma de las separaciones de palabras}
+
 \section{Pruebas llevadas a cabo} \label{sec:pru}
 % describiranse as probas realizadas aos distintos niveis para
 % garantir o correcto funcionamento do software ou do hardware.
@@ -836,7 +849,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de éste, junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento.
 
     \subsection{Pruebas de conectividad}
-    \todo{hay que hacer estass pruebas}
     Debido a que en este proyecto se lleva a cabo el desarrollo de dos aplicaciones diferentes que deben intercambiar paquetes UDP entre sí, es necesario un conjunto de pruebas que permita verificar la conectividad entre ambas. Por tanto, se ha decidido utilizar pruebas unitarias desarrolladas en Android Studio que comprueben, mediante el propio sistema de confirmación de la aplicación cliente, su funcionamiento, y permitan así verificar si el paquete es enviado, recibido y confirmado.
 
     \subsection{Pruebas de entrada}
@@ -1297,6 +1309,65 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
     \end{table}
 
 
+    \begin{table}[!htbp]             
+        \centering                  
+            \resizebox{\textwidth}{!}{   
+                \begin{tabular}{|l|l|l|}
+                    \hline
+                    \textbf{Prueba realizada}  & \textbf{Resultado esperado}   & \textbf{Resultado de la prueba}             \\           
+                    \hline
+                    Envío de paquete a una servidor no existente & Fallo          & Éxito                  \\
+                    Envío de un paquete al servidor correcto sin ejecutar el servicio    & Fallo              & Éxito                      \\
+                    Envío de un paquete sin contenido de control                  & Fallo                & Éxito                        \\
+                    Envío de un paquete válido            & Éxito          & Éxito                  \\
+                    \hline
+                \end{tabular}
+            }
+        \caption{Pruebas de conectividad}
+        \label{tab:conectivity_tests}
+    \end{table}
+
+    \begin{table}[!htbp]             
+        \centering                  
+            \resizebox{\textwidth}{!}{   
+                \begin{tabular}{|l|l|l|}
+                    \hline
+                    \textbf{Prueba realizada}  & \textbf{Resultado esperado}   & \textbf{Resultado de la prueba}             \\           
+                    \hline
+                    Campo IP vacío                & Fallo          & Éxito                  \\
+                    Campo puerto vacío                & Fallo          & Éxito                  \\
+                    Campo contraseña vacío                & Fallo          & Éxito                  \\
+                    Campo contraseña conn menos de 8 dígitos                & Fallo          & Éxito                  \\
+                    Campo IP con una dirección incorrecta                & Fallo          & Éxito                  \\
+                    Campo puerto con un valor incorrecto                & Fallo          & Éxito                  \\
+                    Campos con datos correctos                & Éxito          & Éxito                  \\
+                    \hline
+                \end{tabular}
+            }
+        \caption{Pruebas de entrada}
+        \label{tab:input_tests}
+    \end{table}
+
+        \begin{table}[!htbp]             
+        \centering                  
+            \resizebox{\textwidth}{!}{   
+                \begin{tabular}{|l|l|l|}
+                    \hline
+                    \textbf{Prueba realizada}  & \textbf{Resultado esperado}   & \textbf{Resultado de la prueba}             \\           
+                    \hline
+                    Campo contraseña vacío en el cliente               & Fallo          & Éxito                  \\
+                    Campo contraseña vacío en el servidor               & Fallo          & Éxito                  \\
+                    Campo contraseña conn menos de 8 dígitos en el cliente               & Fallo          & Éxito                  \\
+                    Campo contraseña conn menos de 8 dígitos en el servidor               & Fallo          & Éxito                  \\
+                    Comparaciones realizadas durante el desarrollo con la librería OpenSSL                & Exito          & Éxito                  \\
+                    Campo contraseña con el mismo valor correcto en cliente y servidor                & Éxito          & Éxito                  \\
+                    \hline
+                \end{tabular}
+            }
+        \caption{Pruebas de encriptación}
+        \label{tab:cripto_tests}
+    \end{table}
+
 \section{prueba}
 fcdsf
 % incluiranse outros elementos de interese no TFG que se consideren necesarios para a
@@ -1304,6 +1375,6 @@ fcdsf
 % mellor comprensión do mesmo.
 
 \bibliographystyle{plain}
-\bibliography{wifither}
+\bibliography{biblio}
 
 \end{document}
