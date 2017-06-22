@@ -11,6 +11,12 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{indentfirst}
+
+\pagestyle{fancy}
+\rhead{}
 %\usepackage[parfill]{parskip}  lineas entre párrafos
 
 \usepackage{hyperref}
@@ -43,9 +49,9 @@
         showspaces=false,
         showstringspaces=false,
         identifierstyle=\ttfamily,
-        keywordstyle=\color[rgb]{0,0,1},
-        commentstyle=\color[rgb]{0.133,0.545,0.133},
-        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        %keywordstyle=\color[rgb]{0,0,1},
+        %commentstyle=\color[rgb]{0.133,0.545,0.133},
+        %stringstyle=\color[rgb]{0.627,0.126,0.941},
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,6 +63,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\lstlistingname}{Archivo}
 \renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \graphicspath{ {images/} }
@@ -89,30 +96,29 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand\contentsname{Índice}
+\renewcommand\listfigurename{Índice de figuras}
+\renewcommand\listtablename{Índice de tablas}
+
+\setlength{\parskip}{1em}
+
 \tableofcontents
 \printindex
-
+\listoffigures
+\listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\todo{indices de tablas y figuras}
-\todo{márgenes iniciales de las secciones}
-\todo{espacio entre párrafos}
-\todo{saltos de líneas en enumereates e itemizes}
 \todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
-\todo{añadir palabra figura al referenciar}
-\todo{cambiar WIFI por Wi-Fi}
-\todo{Cabeceras y pies de páginas (tutorial tesis)}
-\section{Introducción}
+\section{Introducción}\label{sec:int}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
 %traballos e materias nesta sección.*/
 
-Internet, desde su creación, ha sido un medio cada vez más accesible. Capaz de brindar información en cualquier lugar, facilitar las comunicaciones y compartir recursos, entre otras funcionalidades. Se ha convertido en el pilar fundamental de la mayor revolución tecnológica de la historia y actualmente cuenta con un número de usuarios que representa casi el 50\% de los habitantes del planeta \cite{InternetUsage}.  \todo{cita no funiona}
+Internet, desde su creación, ha sido un medio cada vez más accesible. Capaz de brindar información en cualquier lugar, facilitar las comunicaciones y compartir recursos, entre otras funcionalidades. Se ha convertido en el pilar fundamental de la mayor revolución tecnológica de la historia y actualmente cuenta con un número de usuarios que representa casi el 50\% de los habitantes del planeta \cite{InternetUsage}.
 
-La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto dentro de casa como en el exterior. Esto es un innegable avance, sobre todo para las personas que han vivido durante estas dos últimas décadas siendo testigos de su abrumador desarrollo, pero no tan significativo para las nuevas generaciones, las cuales han nacido en la ``Era de la tecnología", y donde el disponer de una conexión a Internet está más cerca de ser una necesidad que una opción. De acuerdo al Instituto Nacional de Estadísitica, en el año 2016, el uso de Internet en España estuvo cerca de alcanzar la totalidad de la población en prácticamente todas las edades, como se puede apreciar en la figura \ref{fig:internet_ages}.\todo{cita no funciona} Es importante destacar, que el uso de Internet por los menores se elevó a un 95.2\% en 2016, sin embargo, sólo el 94.9\% utilizó un ordenador \cite{EncuestaTIC}.
+La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor disponibilidad de la conexión a Internet llevándola a sus dispositivos móviles, tanto dentro de casa como en el exterior. Esto es un innegable avance, sobre todo para las personas que han vivido durante estas dos últimas décadas siendo testigos de su abrumador desarrollo, pero no tan significativo para las nuevas generaciones, las cuales han nacido en la ``Era de la tecnología", y donde el disponer de una conexión a Internet está más cerca de ser una necesidad que una opción. De acuerdo al Instituto Nacional de Estadísitica, en el año 2016, el uso de Internet en España estuvo cerca de alcanzar la totalidad de la población en prácticamente todas las edades, como se puede apreciar en la figura \ref{fig:internet_ages}. Es importante destacar, que el uso de Internet por los menores se elevó a un 95.2\% en 2016, sin embargo, sólo el 94.9\% utilizó un ordenador \cite{EncuestaTIC}.
 
 \begin{figure}[h!]
     \centering
@@ -123,17 +129,17 @@ La creación de redes Wi-Fi ha permitido que los usuarios tengan una mayor dispo
 
 Actualmente, es común que los menores de edad dispongan de dispositivos móviles desde los cuales puedan acceder a Internet, sin embargo, esto conlleva a que debido a su inmadurez y falta de experiencia, terminen pasando más tiempo del recomendado frente a una pantalla, sin dedicarle el tiempo necesario a sus obligaciones en casa, desatendiendo sus estudios o directamente perdiendo la comunicación con los seres que lo rodean. Además, es muy importante tener en cuenta que Internet no solo está lleno de ventajas, sino también de peligros. Un medio con tanto alcance y facilidad para las comunicaciones, hace que lograr el anonimato no sea un problema para cualquier persona con un mínimo de conocimientos técnicos, por lo que no es extremadamente raro escuchar casos donde un menor ha sido víctima de acoso, intimidación o incluso secuestro.
 
-Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias. \todo{Vincular esto con mi proyecto?}
+Para evitar estos problemas, los padres deben educar a los menores con buenas prácticas de navegación. Controlar la información que dan en Internet, las personas que conocen y el tiempo que pasan ``en línea" es fundamental para evitar malas experiencias.
 
 No obstante, muchas de las herramientas disponibles para este control educativo precisan de conocimientos relativamente avanzados de informática y redes, como conocer las direcciones MAC de los dispositivos conectados, navegar por menús web con terminología demasiado técnica o aplicar y habilitar filtros basados en campos y criterios en su mayor parte desconocidos, por citar sólo alguno de ellos, cuando la mayoría de las veces lo único que se pretende es habilitar o no la conexión a Internet a un dispositivo concreto. Además, una buena parte de las herramientas que permiten este tipo de control sólo son accesibles en entorno web, accesible a su vez sólo desde el interior de los locales donde se encuentra la pasarela de acceso a Internet (conocida popularmente con el término de ``Router'').
 
-Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wifi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de gran utilidad y disponer de una gran demanda.
+Por tanto, la disponibilidad de una aplicación adaptada para dispositivos móviles, accesible desde cualquier punto de Internet y que permita la realización de las funciones básicas de control de una red Wi-Fi doméstica de forma sencilla y transparente y en un lenguaje adaptado al perfil de un usuario básico (como habilitar la conexión Wifi a un móvil A, deshabilitar el acceso a la consola de juegos o al ordenador de la habitación de los niños), puede ser de gran utilidad y disponer de una gran demanda.
 
 En este trabajo se ha creado una aplicación para dispositivos móviles Android que cubre esta demanda para un tipo de pasarela doméstica concreta, aunque el modelo puede ser exportado para cualquier otra que tenga posibilidad de desarrollo de servicios software dentro del sistema operativo que la ejecuta. Particularmente la tecnología de acceso a Internet controlada es la tecnología 802.11, más conocida como Wifi, aplicable en el ámbito doméstico donde las pasarelas cuentan con esa tecnología (la inmensa mayoría) y los dispositivos se conectan a Internet a través de ella.
 
-A pesar de que la parte visible del sistema es sólo la aplicación Android, deliberadamente sencilla, el sistema consta de un servicio instalado en la pasarela que recibe las instrucciones de la aplicación Android y ejecuta las acciones pertinentes en la pasarela de filtrado o habilitación/deshabilitación de accesos. \todo{Pasarelas/routers}
+A pesar de que la parte visible del sistema es sólo la aplicación Android, deliberadamente sencilla, el sistema consta de un servicio instalado en la pasarela que recibe las instrucciones de la aplicación Android y ejecuta las acciones pertinentes en la pasarela de filtrado o habilitación/deshabilitación de accesos.
 
-\section{Objetivos}
+\section{Objetivos} \label{sec:obj}
 % presentar o problema que se vai tratar, incluír o obxectivo principal e os
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
     Se presenta en la figura \ref{fig:red_soho} un esquema general de una red doméstica donde se incluye la terminología empleada.
@@ -152,11 +158,10 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \begin{description}
         \item[\underline{Interfaz WAN:}] Es la interfaz de acceso a Internet, llamada técnicamente \textit{interfaz a la red de acceso}. Esta interfaz puede tener un conector coaxial o de fibra óptica, aunque en muchas ocasiones utiliza también un conector RJ45 diferenciado de las interfaces LAN mediante un indicador, color o por estar en una posición diferente. En el caso de que la red de acceso sea inalámbrica, la interfaz WAN se muestra mediante una antena, mas o menos diferenciada de otras que pueda contener la Pasarela. La configuración de esta interfaz suele realizarse remotamente desde el operador de la red de acceso, ya que el correcto funcionamiento de la misma es su responsabilidad. El otro extremo del medio de transmisión conectado a ella (cable, fibra óptica o radio-frecuencia) se encuentra en las dependencias del operador. Por ello, se puede decir que la interfaz WAN es el enlace a Internet de la red doméstica.
         \item[\underline{Interfaz LAN:}] Es una interfaz (en su inmensa mayoría con conector RJ45) que permite la conexión de equipos domésticos cableados a la Pasarela. Aunque físicamente aparezcan varios conectores RJ45 para esta labor, a nivel lógico la interfaz LAN es sólo una. A los diferentes conectores de la interfaz LAN se les llama ``puertos'' y la conexión entre ellos se dice que es conmutada. El hecho de que lógicamente sólo sea una interfaz implica que no se pueden bloquear o desbloquear puertos individuales; cualquier operación lógica que se realice sobre la LAN, tendrá efectos sobre todos los puertos de la misma.
-        \item[\underline{Interfaz WIFI:}] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente WIFI (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiéndose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
+        \item[\underline{Interfaz WIFI:}] La interfaz WIFI es una antena, exterior o interior. Aunque suele estar internamente conectada a la interfaz LAN (puente LAN-WIFI) tiene características especiales, pues suele habilitar a un segmento de red diferenciado de la interfaz LAN. El segmento al que da acceso es inalámbrico por tecnología 802.11 b/g/n, llamada popularmente Wifi (de ahí el nombre de la interfaz). Los dispositivos a los que da acceso esta interfaz son dispositivos inalámbricos, como ordenadores portátiles, consolas, teléfonos móviles o tablets. Últimamente también se pueden encontrar dispositivos domóticos con interfaz WIFI compatible. La habilitación del acceso a Internet a través de esta interfaz es altamente configurable, pudiéndose individualizar los accesos de los dispositivos por su dirección MAC u otras características. El proceso de configuración tanto de la interfaz WIFI como de los dispositivos que se pueden conectar a ella será el objetivo principal de este proyecto.
     \end{description}
 
     Teniendo en cuenta todo lo mencionado anteriormente, se decide realizar un estudio de necesidades generales analizando las características de los routers domésticos. Con los resultados obtenidos se debe crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares. De esta forma  los padres pueden limitar el uso de Internet a los menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
-    \todo{tengo una imagen hecha}
     \begin{enumerate}
         \item \textbf{\underline{Control desde dispositivos móviles}} \\
             El sistema debe ser capaz de ser controlado desde dispositivos móviles con los que se tenga accesso al router, el control deberá ser posible desde el exterior, mediante la interfaz WAN y desde dentro de la propia red doméstica, ya sea mediante la interfaz LAN, o la prropia interfaz Wi-Fi.
@@ -180,7 +185,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \end{enumerate}
 
 
-\section{Resumen de la solución propuesta}
+\section{Resumen de la solución propuesta} \label{sec:sol}
 % indicarase a solución aportada para o problema
 % presentado. Deberase incluír aquí a metodoloxía empregada.
     Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. 
@@ -207,33 +212,38 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \item \textbf{Maestro de SCRUM:} Encargado de rastrear el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
     \end{itemize}
 
-\section{Planificación y seguimiento}
+\section{Planificación y seguimiento} \label{sec:plan}
 % deberase incluír un diagrama de Gantt que amose tanto
 % a planificación do traballo, coa súa distribución de fases e tarefas, e a súa comparación cos
 % datos reais obtidos tras o desenvolvemento do traballo.
-    \todo{debería llevar fases de análisis, diseño y todo eso?}
-    Como se expone en el apartado \todo{referenciar}, la metodología de desarrollo empleada para llevar a cabo en este proyecto es \textit{SCRUM}. Por tanto, una vez conocida la solución a realizar, se realiza una planificación que incluye todo el trabajo necesario para el desarrollo del sistema dividiéndolo en sprints, que a su vez están compuestos por subtareas.
+    Como se expone en el apartado \ref{sec:sol}, la metodología de desarrollo empleada para llevar a cabo en este proyecto es \textit{SCRUM}. Por tanto, una vez conocida la solución a realizar, se realiza una planificación que incluye todo el trabajo necesario para el desarrollo del sistema dividiéndolo en sprints, que a su vez están compuestos por subtareas.
 
     \subsection{Planificación inicial}
         \subsubsection{Diagrama de fases y tareas}
-        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fases, entre las cuales se incluyen cinco sprints de implementación y la elaboración de la documentación, que incluye la fase de cierre, fundamental en \textit{SCRUM}.
+        Como se muestra en la \ref{tab:fases_planif} el desarrollo del sistema se llevará a cabo durante nueve fases, entre las cuales se incluyen cinco sprints de implementación y la elaboración de la documentación, que incluye la fase de cierre, fundamental en \textit{SCRUM}.
 
-        \todo{arreglar tabla}
-        \begin{tabular}{|l|c|}
-            \hline
-            \textbf{Fase}  & \textbf{Estimación temporal} (Días) \\           
-            \hline
-            Investigación                                                       &   2    \\
-            Boceto                                                              &   2    \\
-            Compilación cruzada                                                 &   4    \\
-            Sprint 1: Implementaciónde la aplicación Android base               &   5    \\
-            Sprint 2: Implementación del servidor                               &   5    \\
-            Sprint 3: Implementación de sistemas de seguridad                   &   5    \\
-            Sprint 4: Implementación de la interfaz gráfica de la aplicación    &   10   \\
-            Sprint 5: Integración de sistemas                                   &   5    \\
-            Documentación                                                       &   52   \\
-            \hline
-        \end{tabular}
+        \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Fase}  & \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Investigación                                                       &   2    \\
+                            Boceto                                                              &   2    \\
+                            Compilación cruzada                                                 &   4    \\
+                            Sprint 1: Implementaciónde la aplicación Android base               &   5    \\
+                            Sprint 2: Implementación del servidor                               &   5    \\
+                            Sprint 3: Implementación de sistemas de seguridad                   &   5    \\
+                            Sprint 4: Implementación de la interfaz gráfica de la aplicación    &   10   \\
+                            Sprint 5: Integración de sistemas                                   &   5    \\
+                            Documentación                                                       &   52   \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Planificación de las fases}
+                \label{tab:fases_planif}
+            \end{table}
 
         En las imágenes \ref{fig:fases} y \ref{fig:fases_gantt} se puede apreciar la planificación de las nueve fases.
 
@@ -274,148 +284,199 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:tasks_gantt1}
         \end{figure}
 
-        \todo{comprobar esto luego}
-        \clearpage
-
         \subsubsection{Descripción de las fases}
-            \todo{Investigación}
-            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \todo{referenciar}.
+            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fase_inv}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Investigación acerca de las necesidades de control en redes Wi-Fi           &   0.5                                 \\
-                Análisis de routers actuales                                                &   0.5                                 \\
-                Comparativa de las soluciones aportadas por los proveedores de Internte     &   0.5                                 \\
-                Análisis de las características del sistema a desarrollar                   &   0.5                                 \\
-                \hline
-            \end{tabular}
+            
+            \begin{table}[!htbp]
+                \centering
+                    \resizebox{\textwidth}{!}{
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Investigación acerca de las necesidades de control en redes Wi-Fi           &   0.5                                 \\
+                            Análisis de routers actuales                                                &   0.5                                 \\
+                            Comparativa de las soluciones aportadas por los proveedores de Internte     &   0.5                                 \\
+                            Análisis de las características del sistema a desarrollar                   &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción de la fase de investigación}
+                \label{tab:fases_inv}
+            \end{table}
 
             \todo{T: Boceto}
-            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \todo{referenciar}.
+            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \ref{tab:fases_boc}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Análisis de los objetivos generales del sistema                             &   0.25                                \\
-                Análisis detallado de los subobjetivos                                      &   0.25                                \\
-                Diseño de la arquitectura del sistema                                       &   1                                   \\
-                Planificación de los sprints de desarrollo                                  &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Análisis de los objetivos generales del sistema                             &   0.25                                \\
+                            Análisis detallado de los subobjetivos                                      &   0.25                                \\
+                            Diseño de la arquitectura del sistema                                       &   1                                   \\
+                            Planificación de los sprints de desarrollo                                  &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción de la face Boceto}
+                \label{tab:fases_boc}
+            \end{table}
             
             \todo{T: Compilación cruzada}
-            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \todo{referenciar} pueden encontrarse las tareas que incluye esta fase.
+            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Desarrollo de un sistema de prueba                                          &   0.2                                 \\
-                Compilación utilizando el toolchain de OpenWRT                              &   1                                   \\
-                Compilación utilizando el SDK de OpenWRT                                    &   2                                   \\
-                Realización de pruebas de funcionamiento en el router                       &   0.8                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{                      
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Desarrollo de un sistema de prueba                                          &   0.2                                 \\
+                            Compilación utilizando el toolchain de OpenWRT                              &   1                                   \\
+                            Compilación utilizando el SDK de OpenWRT                                    &   2                                   \\
+                            Realización de pruebas de funcionamiento en el router                       &   0.8                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción de la fase de compilación cruzada}
+                \label{tab:fases_cc}
+            \end{table}
 
             \todo{T: Sprint 1: Implementación de la aplicación Android base}
-            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2} \todo{referenciar}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \todo{referenciar}.
+            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \ref{tab:fases_sp1}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Diseño de pruebas                                                           &   0.5                                 \\
-                Implementar interfaz base                                                   &   0.2                                 \\
-                Implementar configuraciones Android                                         &   0.2                                 \\
-                Implementar cliente                                                         &   0.6                                 \\
-                Implementar servidor de confirmación                                        &   2                                   \\
-                Implementar servidor de actualización                                       &   2                                   \\
-                Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Diseño de pruebas                                                           &   0.5                                 \\
+                            Implementar interfaz base                                                   &   0.2                                 \\
+                            Implementar configuraciones Android                                         &   0.2                                 \\
+                            Implementar cliente                                                         &   0.6                                 \\
+                            Implementar servidor de confirmación                                        &   2                                   \\
+                            Implementar servidor de actualización                                       &   2                                   \\
+                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción del sprint 1}
+                \label{tab:fases_sp1}
+            \end{table}
 
             \todo{T: Sprint 2: Implementación del servidor}
-            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \todo{referenciar} muestra las tareas de esta fase.
+            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Diseño de pruebas                                                           &   0.5                                 \\
-                Implementación del socket                                                   &   2                                   \\
-                Implementación de funcionalidades                                           &   2                                   \\
-                Demonizar                                                                   &   1                                   \\
-                Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Diseño de pruebas                                                           &   0.5                                 \\
+                            Implementación del socket                                                   &   2                                   \\
+                            Implementación de funcionalidades                                           &   2                                   \\
+                            Demonizar                                                                   &   1                                   \\
+                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción del sprint 2}
+                \label{tab:fases_sp2}
+            \end{table}
 
             \todo{T: Sprint 3: Implementación de sistemas de seguridad}
-            En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
+            En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \ref{tab:fases_sp3}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Encriptación DES en cliente                                                 &   0.5                                 \\
-                Encriptación Base64 en cliente                                              &   0.5                                 \\
-                Decriptación Base64 en servidor                                             &   2                                   \\
-                Decriptación DES en servidor                                                &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Encriptación DES en cliente                                                 &   0.5                                 \\
+                            Encriptación Base64 en cliente                                              &   0.5                                 \\
+                            Decriptación Base64 en servidor                                             &   2                                   \\
+                            Decriptación DES en servidor                                                &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción del sprint 3}
+                \label{tab:fases_sp3}
+            \end{table}
 
             \todo{T: Sprint 4: Implementación de la interfaz gráfica de la aplicación}
-            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \todo{referenciar} indica las tareas relacionadas con esta fase.
+            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Diseño de pruebas unitarias                                                 &   0.5                                 \\
-                Desarrollo de la actividad principal                                        &   0.2                                 \\
-                Modelo de dispositivos personalizados                                       &   0.2                                 \\
-                Adaptador de dispositivos personalizado                                     &   0.6                                 \\
-                Desarrollo de diálogos y menús                                              &   2                                   \\
-                Implementación de la gestión de idiomas                                     &   2                                   \\
-                Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Diseño de pruebas unitarias                                                 &   0.5                                 \\
+                            Desarrollo de la actividad principal                                        &   0.2                                 \\
+                            Modelo de dispositivos personalizados                                       &   0.2                                 \\
+                            Adaptador de dispositivos personalizado                                     &   0.6                                 \\
+                            Desarrollo de diálogos y menús                                              &   2                                   \\
+                            Implementación de la gestión de idiomas                                     &   2                                   \\
+                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción del sprint 4}
+                \label{tab:fases_sp4}
+            \end{table}
 
             \todo{T: Sprint 5: Integración de sistemas}
-            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \todo{referenciar}.
+            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \ref{tab:fase_sp5}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                \hline
-                Integración de la interfaz gráfica y los sistemas de conexión               &   3                                   \\
-                Integración de los sistemas de seguridad                                    &   2                                   \\
-                Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                            \hline
+                            Integración de la interfaz gráfica y los sistemas de conexión               &   3                                   \\
+                            Integración de los sistemas de seguridad                                    &   2                                   \\
+                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                            \hline
+                    \end{tabular}
+                    }
+                \caption{Descripción del sprint 5}
+                \label{tab:fase_sp5}
+            \end{table}
 
             \todo{T: Documentación}
-            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \todo{referenciar}.
+            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \ref{tab:fase_doc}.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|}
-                \hline
-                \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\         
-                \hline
-                Elaboración de la memoria                                                   &   38                                  \\
-                Cierre                                                                      &   2                                   \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]             
+                \centering                  
+                    \resizebox{\textwidth}{!}{   
+                        \begin{tabular}{|l|c|}
+                            \hline
+                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\         
+                            \hline
+                            Elaboración de la memoria                                                   &   38                                  \\
+                            Cierre                                                                      &   2                                   \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Descripción de la fase de documentación}
+                \label{tab:fase_doc}
+            \end{table}
 
     \subsection{Desviaciones de la planificación inicial}
         La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o la aparición de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos (figura \ref{fig:deviations_gantt}) y las principales desviaciones de este proyecto están detalladas a continuación.
@@ -440,7 +501,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         La arquitectura del servidor 
 
-\section{Arquitectura y tecnologías}
+\section{Arquitectura y tecnologías} \label{sec:arq}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
 
     \subsection{Arquitectura del sistema}
@@ -462,7 +523,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \todo{T: Servidor}
             El servidor es el encargado de recibir todas las peticiones desde el cliente y modificar los archivos de configuración de acuerdo a los parámetros de control que le hayan sido enviados. Al ser desarrollado en C no está compuesto por clases, sino por métodos que son interpretados como componentes, donde cada uno realiza una función específica. En la figura \ref{fig:server_diagram} se puede ver la estructura del servidor.
 
-            \todo{revisar estos diagramas}
             \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.4]{server_diagram.eps}
@@ -496,7 +556,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \todo{T: Cliente}
             El sistema cliente es el encargado de realizar las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la figura \ref{fig:client_diagram} se puede ver la estructura del cliente.
 
-            \todo{revisar estos diagramas}
             \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.4]{client_diagram.eps}
@@ -552,25 +611,31 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:ip_packet}
             \end{figure}
 
-            El contenido que viaja cifrado dentro de cada paquete varía en función de la acción que se elige realizar desde el sistema cliente, esta contiene un mensaje de control, y adicionalmente puede contener información necesaria para la acción a realizar. En la tabla \ref{key} \todo{referenciar} se muestra el contenido de los mensajes de control enviados por el cliente.
+            El contenido que viaja cifrado dentro de cada paquete varía en función de la acción que se elige realizar desde el sistema cliente, esta contiene un mensaje de control, y adicionalmente puede contener información necesaria para la acción a realizar. En la tabla \ref{tab:packet_content} se muestra el contenido de los mensajes de control enviados por el cliente.
 
-            \todo{arreglar tabla}
-            \begin{tabular}{|l|c|c|}
-                \hline
-                \textbf{Acción}                                     &   \textbf{Contenido}      \\         
-                \hline
-                Reiniciar red Wi-Fi                                 &   0                       \\
-                Apagar red Wi-Fi                                    &   1                       \\
-                Encender red Wi-Fi                                  &   2                       \\
-                Deshabilitar filtro MAC                             &   3                       \\
-                Establecer filtro MAC en ``denegar''                &   4                       \\
-                Establecer filtro MAC en ``permitir''               &   5$<$dirección mac$>$    \\
-                Añadir dispositivo al filtro MAC                    &   6$<$dirección mac$>$    \\
-                Eliminar dispositivo del filtro MAC                 &   7                       \\
-                Actualizar configuración                            &   8                       \\
-                Actualizar lista de dispositivos                    &   9                       \\
-                \hline
-            \end{tabular}
+            \begin{table}[!htbp]
+                \centering
+                    \resizebox{\textwidth}{!}{
+                        \begin{tabular}{|l|c|c|}
+                            \hline
+                            \textbf{Acción}                                     &   \textbf{Contenido}      \\         
+                            \hline
+                            Reiniciar red Wi-Fi                                 &   0                       \\
+                            Apagar red Wi-Fi                                    &   1                       \\
+                            Encender red Wi-Fi                                  &   2                       \\
+                            Deshabilitar filtro MAC                             &   3                       \\
+                            Establecer filtro MAC en ``denegar''                &   4                       \\
+                            Establecer filtro MAC en ``permitir''               &   5$<$dirección mac$>$    \\
+                            Añadir dispositivo al filtro MAC                    &   6$<$dirección mac$>$    \\
+                            Eliminar dispositivo del filtro MAC                 &   7                       \\
+                            Actualizar configuración                            &   8                       \\
+                            Actualizar lista de dispositivos                    &   9                       \\
+                            \hline
+                        \end{tabular}
+                    }
+                \caption{Contenido del paquete}
+                \label{tab:packet_content}
+            \end{table}
 
             La estructura del mensaje de confirmación es similar, pero en este se omite el cifrado y solamente se envía el mensaje de control, de esta forma se confirma que la acción se ha realizado correctamente. En los casos de ``Actualización'' el componente \textit{AsyncTask Servidor} se mantiene escuchando en el \textit{Socket} determinado hasta que se reciba el mensaje ``done'', que indica que ya han sido enviados todos los paquetes necesarios.
 
@@ -599,13 +664,13 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \subsubsection{Sed}
             Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida. En este sistema \textit{sed} es utilizado para llevar a cabo los cambios en los archivos de configuración proporcionados por OpenWRT.
 
-        \subsubsection{Latex}
+        \subsubsection{Latex} \label{sec:latex}
             Es un sistema de tipografía de alta calidad, incluye mecanismos diseñados para la creación de documentación científica y técnica por lo que se ha convertido en el estándar de facto a la hora de desarrollar esta tarea. Está concebido como software libre, y cuenta con múltiples librerías que añaden funcionalidades comunmente necesarias para la creación de estos doumentos. La documentación del desarrollo de este sistema está desarrollado con esta tecnología debido al conjunto de ventajas de estilo y edición que ofrece frente a otras tecnologías libres.
 
         \subsubsection{Java}
             Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc. además de ser el principal lenguaje para el desarrollo de aplicaciones móviles Android, razón por la que es utilizado en el desarrollo de este sistema.
 
-        \subsubsection{Git}
+        \subsubsection{Git} \label{sec:git}
             Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea. Su uso en el desarrollo de este sistema viene justificado por las diferentes iteraciones/sprints que se llevan a cabo y el control de versiones necesario para su gestión.
 
     \subsection{Herramientas} 
@@ -616,26 +681,25 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico \textit{``edit-build-debug''}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
 
         \subsubsection{TeX Live}
-            Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
+            Es un una distribución libre para los sistemas de tipografía TeX (\ref{sec:latex}). Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
 
         \subsubsection{Android Studio}
-            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida, y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
+            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida, y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
 
         \subsubsection{GitHub}
-            Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
+            Es una plataforma colaborativa de control de vesiones online basada en Git(\ref{sec:git}) y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git, así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
 
         \subsubsection{Lucidchart}
             Es una aplicación online enfocada a la creación de diagramas profesionales desde una interfaz web. Es una herramienta realmente cómoda a la hora de documentar proyectos grandes debido a lo sencillo y amigable de su entorno. Además, brinda integración con diferentes aplicaciones externas como Dropbox, Slack y Microsoft Office. 
 
         \subsubsection{Inkscape}
             Es un editor profesional de gráficos vectoriales disponible para Windows, Mac OS X y Linux. Es de código abierto y soporta una gran variedad de formatos, entre los que se incluye \textit{.eps}, el formato utilizado por latex. Además brinda una amplia variedad de herramientas para realizar trazado vectorial, manipulación de objetos y edición de textos.
-            \todo{revisar}
 
         \subsubsection{OpenVPN for Andorid}
         \todo{hacer}
 
 
-\section{Especificación y análisis de requisitos}
+\section{Especificación y análisis de requisitos} \label{sec:req}
 % describiranse os requisitos necesarios, tanto funcionais como non funcionais. Incluiranse os aspectos máis relevantes correspondentes á análise do traballo realizado.
     
     \subsection{Casos de uso}
@@ -675,12 +739,12 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             El sistema funciona de forma fluida, mantenienndo un bajo consumo de recursos en los dispositivos.
         \end{itemize}
 
-\section{Diseño de software}
+\section{Diseño de software} \label{sec:dis}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
 % estatico -> diagrama de clases
 % dinamico -> diagrama de secuencia
     \subsection{Diseño estático}
-        Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:fig:server_diagram}, ya expuesta en la sección \ref{key} \todo{referenciar}.
+        Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:fig:server_diagram}, ya expuesta en la sección \ref{sec:arq}.
 
         El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{key} muestra el diagrama de clases del sistema cliente.
         
@@ -693,7 +757,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \end{figure}
 
     \subsection{Diseño dinámico}
-    \todo{mirar posicionamiento de las imágenes}
+    
     En la imagen \ref{fig:main_activity_sequence_diagram} se puede observar el diagrama de secuencia general del sistema, donde se muestra la interacción entre los objetos que lo componen. En esta representación pueden variar el mensaje enviado, la actividad y el servidor de configuración, manteniendo la misma forma en la que interactúan.
 
     \begin{figure}[h!]
@@ -711,38 +775,35 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{fig:device_management_sequence_diagram}
     \end{figure}
 
-\section{Gestión de datos e información}
+\section{Gestión de datos e información} \label{sec:dat}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
     Ya que el objetivo es la creación un mecanismo de control para accesos a la red Wi-Fi, el sistema que se plantea no cuenta con bases de datos para almacenar información, sin embargo, se necesita una forma de guardar las configuraciones utilizadas.
     
     \subsection{Servidor}
         En el dispositivo servidor, para hacer uso de los mecanismos que brinda OpenWRT (orientados la gestión de sus funcionalidades), se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial, se hace uso del fichero \textit{wireless}, donde se almacenan las configuraciones hardware y software que son utilizadas para el funcionamiento la red Wi-Fi. A continuación se muestra un ejemplo de este:
-        \todo{mirar si hay un paquete para bash}
-        \todo{modificar comillas}
-        \todo{modificar titulo: Eliminar listing 1}
         \todo{márg superiores e inferiores de textos y fotos}
         \begin{lstlisting}[caption=/etc/config/wireless, language=bash]
-            config wifi-device `radio0'
-                    option type `mac80211'
-                    option hwmode `11g'
-                    option path `pci0000:00/0000:00:01.0/ssb0:0'
-                    option disabled `0'
-                    option channel `4'
-                    option txpower `20'
-                    option country `00'
+    config wifi-device 'radio0'
+            option type 'mac80211'
+            option hwmode '11g'
+            option path 'pci0000:00/0000:00:01.0/ssb0:0'
+            option disabled '0'
+            option channel '4'
+            option txpower '20'
+            option country '00'
 
-            config wifi-iface
-                    option network `wwan'
-                    option encryption `psk2'
-                    option device `radio0'
-                    option ssid `TFG_AccessPoint'
-                    option mode `ap'
-                    option key `wifitesting'
+    config wifi-iface
+            option network 'wwan'
+            option encryption 'psk2'
+            option device 'radio0'
+            option ssid 'TFG_AccessPoint'
+            option mode 'ap'
+            option key 'wifitesting'
 
-                    option macfilter `deny'
-                    list maclist `B1:EE:A1:04:23:4E'
-                    list maclist `B4:5D:83:4A:1B:50'
-                    list maclist `0E:00:C1:FA:4E:98'
+            option macfilter `deny'
+            list maclist 'B1:EE:A1:04:23:4E'
+            list maclist 'B4:5D:83:4A:1B:50'
+            list maclist '0E:00:C1:FA:4E:98'
         \end{lstlisting}
 
         El parámetro \textit{wifi-device} indica la configuración de un dispositivo físico conectado al sistema, y al cual se le aplican las opciones que se definen debajo. En estas opciones se especifican parámetros como el tipo de dispositivo, la potencia y el canal que utilizará.
@@ -761,7 +822,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         
         Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La figura \ref{fig:android_lifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
         
-        \todo{que esto no quede solo}
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.7]{android_lifecycle.eps}
@@ -769,11 +829,11 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:android_lifecycle}
         \end{figure}
 \todo{comprobar idioma de las separaciones de palabras}
-\section{Pruebas llevadas a cabo}
+\section{Pruebas llevadas a cabo} \label{sec:pru}
 % describiranse as probas realizadas aos distintos niveis para
 % garantir o correcto funcionamento do software ou do hardware.
     \subsection{Explicación de las pruebas}
-    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de éste, junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
+    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de éste, junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento.
 
     \subsection{Pruebas de conectividad}
     \todo{hay que hacer estass pruebas}
@@ -784,9 +844,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
     \subsection{Pruebas de encriptación}
     El funcinamiento del sistema de encriptación entre cliente y servidor es verificado mediente la prueba unitaria de conectividad, especificando valores correctos e incorrectos para el campo contraseña tanto de la aplicación como del servidor. Para realizar pruebas en los sistemas por separado se hace uso de la librería \textit{OpenSSL}, los valores obtenidos como resultado de la aplicación deben ser iguales a los generados con esta librería desde la consola de comandos, siempre y cuando los parámetros utilizados sean los mismos. 
-    \todo{Pruebas en el anexo}
 
-\section{Manual de usuario}
+\section{Manual de usuario} \label{sec:man}
     \subsection{Requisitos mínimos}
         Para poder utilizar el sistema \textbf{Wifither} se debe cumplir un conjunto de requisitos, los cuales están especificados a continuación.
 
@@ -797,65 +856,20 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \item Conexión a Internet tanto en el router como en el dispositivo móvil.
         \end{itemize}
 
-        \todo{redactar mejor}
-        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. A continuación se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} y \textit{Arch-Linux} \todo{referenciar}
-
-        \todo{debería poner toda la tabla? o quitar arch? o quitar todo?}
-        %\begin{table}
-            \begin{tabular}{|l|l|l|}
-                \hline
-                \textbf{Prerequisitos}  & \textbf{Debian}   & \textbf{Arch}             \\           
-                \hline
-                asciidoc                & asciidoc          & asciidoc                  \\
-                GNU Bash                & bash              & bash                      \\
-                GNU bc                  & bc                & bc                        \\
-                GNU Binutils            & binutils          & binutils                  \\
-                bzip2                   & bzip2             & bzip2                     \\
-                fastjar                 & fastjar           & fastjar                   \\
-                flex                    & flex              & flex                      \\
-                git                     & git-core          & git                       \\
-                GNU C++ Compiler        & g gcc-c           & -                         \\
-                GNU C Compiler          & gcc               & gcc                       \\
-                getopt                  & util-linux        & util-linux                \\
-                GNU awk                 & gawk              & gawk                      \\
-                gtk2.0-dev              & libgtk2.0-dev     & gtk2                      \\
-                intltool-update         & intltool          & intltool                  \\
-                jikes                   & jikespg           & -                         \\
-                libz, libz-dev          & zlib1g-dev        & zlib                      \\
-                Mercurial / hg          &                   & mercurial                 \\
-                make                    & make              & make                      \\
-                mkisofs                 & genisoimage       & cdrkit                    \\
-                ncurses                 & libncurses5-dev   & ncurses                   \\
-                openssl/ssl.h           & libssl-dev        & openssl                   \\
-                patch                   & patch             & patch                     \\
-                perl-ExtUtils-MakeMaker & perl-modules      & perl-extutils-makemaker   \\
-                python2.6-dev           & python2.6-dev     & python2                   \\
-                rsync                   & rsync             & rsync                     \\
-                ruby                    & ruby              & ruby                      \\
-                sdcc                    & sdcc              & sdcc                      \\
-                subversion              & subversion        & subversion                \\
-                unzip                   & unzip             & unzip                     \\
-                GNU Wget                & wget              & wget                      \\
-                xgettext                & gettext           & gettext                   \\
-                xsltproc                & xsltproc          & libxslt                   \\
-                zlib, zlib-static       & zlib1g-dev        & zlib                      \\
-                \hline
-            \end{tabular}
-        %\end{table}
+        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. En el anexo \todo{referenciar} se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} y \textit{Arch-Linux}.
 
         Para instalar paquetes en distribuciones \textit{Debian-like} su utiliza el siguiente comando.
         Es necesario que el usuario desde el que se ejecute el comando de instalación cuente con los permisos necesarios para llevar a cabo dicha acción.
 
-        \todo{Estilos de estos códigos}
         \begin{lstlisting}[language=bash]
-            $ apt-get install <paquete>
+    $ apt-get install <paquete>
         \end{lstlisting}
 
         Varios paquetes pueden ser instalados a la vez utilizando el comando solo una vez.
         Ejemplo:
 
         \begin{lstlisting}[language=bash]
-            $ apt-get install libncurses5-dev subversion gawk
+    $ apt-get install libncurses5-dev subversion gawk
         \end{lstlisting}
 
     \subsection{Manual de instalación}
@@ -863,12 +877,12 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Para preparar la compilación cruzada, se debedescargar desde la página web oficial de OpenWRT (\url{https://downloads.openwrt.org}) el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, se debe descomprimir el archivo y copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, se procede ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
 
             \begin{lstlisting}[language=bash]
-                $ ./scripts/feeds update
-                $ ./scripts/feeds install uclibcxx
-                $ ./scripts/feeds install libopenssl
+    $ ./scripts/feeds update
+    $ ./scripts/feeds install uclibcxx
+    $ ./scripts/feeds install libopenssl
             \end{lstlisting}
 
-            Una vez esté todo preparado, se debe ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither 1 <modelo-router>.ipk}.
+            Una vez esté todo preparado, se debe ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/$<$modelo-router$>$/packages/base} con el nombre \textit{wifither 1 $<$modelo-router$>$.ipk}.
 
 
         \subsubsection{Instalación del servicio servidor en e router}
@@ -877,35 +891,35 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             En primer lugar se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y el equipo remoto al que se desea copiar, además de la ruta donde se desea almacenar en ese equipo.
 
             \begin{lstlisting}[language=bash]
-                $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
+    $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
             \end{lstlisting}
 
             Un ejemplo de la ejecución del comando:
             \begin{lstlisting}[language=bash]
-                $ scp bin/brcm63xx/packages/base/wifither_1_brcm63xx.ipk root@192.168.0.4:/root/wifither
+    $ scp bin/brcm63xx/packages/base/wifither_1_brcm63xx.ipk root@192.168.0.4:/root/wifither
             \end{lstlisting}
 
             Una vez el paquete está en el router, este podrá ser instalado utilizando el gestor de paquetes de OpenWRT \textit{opkg}
             \begin{lstlisting}[language=bash]
-                $ opkg install <ruta-paquete>
+    $ opkg install <ruta-paquete>
             \end{lstlisting}
 
             Para iniciar el servicio después de haberlo instalado se ejecutará \textit{wifiter} especificando el puerto en el que se desea recibir los paquetes y una contraseña que contenga al menos ocho caracteres.
 
             Ejemplo:
             \begin{lstlisting}[language=bash]
-                $ wifither 4848 Potato12
+    $ wifither 4848 Potato12
             \end{lstlisting}
 
             Para configurar el equipo, de forma que Wifither siempre se inicie al arrancar el sistema, se debe editar el archivo \textit{/etc/rc.local} añadiendo la ejecución del servicio antes de la línea \textit{exit 0}
 
             \begin{lstlisting}[language=bash]
-                # Put your custom commands here that should be executed once
-                # the system init finished. By default this file does nothing.
+    # Put your custom commands here that should be executed once
+    # the system init finished. By default this file does nothing.
 
-                wifither 4848 Potato12
+    wifither 4848 Potato12
 
-                exit 0
+    exit 0
             \end{lstlisting}
 
 
@@ -932,9 +946,32 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 Tras realizar los pasos anteriores, el código fuente debe haber quedado compilado, instalado y ejecutado en el dispositivo conectado.
             \end{enumerate}
 
-        \todo{ddns, segundo router o router principal?}
+        \subsubsection{DNS Dinámico}
+            El DNS dinámico o DDNS, como suele ser llamado es un servicio que permite la actualización en tiempo real de la información sobre nombres de dominio situada en un servidor de nombres, en otras palabras, permite asociar a un nombre de dominio una dirección IP estática, para esto es necesario utilizar un proveedor de direcciones dinámicas, es este caso se hará uso de \url{no-ip.org}.
 
-        \subsubsection{Configuración de una VPN} \todo{cómo poner opcional?}
+            El paso incial es la creación de un a cuenta de usuario en la web, esto se realiza rellenando el formulario de registro con los datos necesarios. Posteriormente se debe acceder al apartado \textit{Dinamic-DNS}, donde se selecconará un nombre de domino y se especificará la dirección IP pública asignada a la interfaz WAN del router servidor.
+
+            En el router será necesaria la instalación de un paquete de gestión de DDNS, para realizarlo se ejecutan los siguientes comandos desde la consola del:
+
+            \begin{lstlisting}[language=bash]
+    opkg update
+    opkg install ddns-scripts
+    opkg install ddns-scripts_xxxxx
+            \end{lstlisting}
+
+            Una vez haya sido instalado el paquete se deberá proceder a su configuración, ésta será la que permita que el router informe al servidor de nombres en caso de un cambio de IP por parte del proveedor de Internet. Para realizar la configuración se ejecutan los siguientes comandos, indicando la información necesaria en cada caso
+            
+            \begin{lstlisting}[language=bash]
+    uci set ddns.myddns.service_name='<proveedor ddns>'
+    uci set ddns.myddns.domain='<nombre de dominio seleccionado>'
+    uci set ddns.myddns.username='<nombre de usuario>'
+    uci set ddns.myddns.password='<contrasena>'
+    uci set ddns.myddns.interface='wan'
+    uci set ddns.myddns.enabled='1'
+    uci commit ddns	
+            \end{lstlisting}
+
+        \subsubsection{Configuración de una VPN}
             En este apartado se explica la creación y configuración de una VPN en modo túnel entre el router y el dispositivo móvil, mediante la utilización de OpenVPN. Este paso es totalmente opcional, ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servidor sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
 
             \begin{enumerate}
@@ -945,30 +982,29 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                     \url{https://downloads.openwrt.org}
 
                     \begin{lstlisting}[language=bash]
-                        src/gz designated_driver http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
-                        src/gz designated_base http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/base
-                        src/gz designated_packages http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
-                        src/gz designated_luci http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/luci
-                        src/gz designated_routing http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/routing
-                        src/gz designated_telephony http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/telephony
-                        src/gz designated_management http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/management
+    src/gz designated_driver http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+    src/gz designated_base http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/base
+    src/gz designated_packages http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/packages
+    src/gz designated_luci http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/luci
+    src/gz designated_routing http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/routing
+    src/gz designated_telephony http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/telephony
+    src/gz designated_management http://downloads.openwrt.org/snapshots/trunk/brcm63xx/smp/packages/management
                     \end{lstlisting}
                     
                     Con los repositorios bien configurados, instalar \textit{openvpn-openssl} y \textit{openvpn-easy-rsa}
                     
                     \begin{lstlisting}[language=bash]
-                        $ opkg update
-                        $ opkg install openvpn-openssl openvpn-easy-rsa
+    $ opkg update
+    $ opkg install openvpn-openssl openvpn-easy-rsa
                     \end{lstlisting}
 
-                    \todo{Cómo funciona esto? Privado público?}
                     A continuación se deben crear los certificados de seguridad para cliente y servidor. El siguiente código crea un certificado servidor con el nombre \textit{my-server} y un ccertificado cliente con el nombre \textit{my-client}. Se peuden crear tantos certificados clientes como sean necesarios ejecutando el mismo comando de creación \textit{build-key-pkcs12} varias veces especificando diferentes nombres.
 
                     \begin{lstlisting}[language=bash]
-                        $ build-ca
-                        $ build-dh
-                        $ build-key-server <nombre-clave-servidor>
-                        $ build-key-pkcs12 <nombre-clave-cliente>
+    $ build-ca
+    $ build-dh
+    $ build-key-server <nombre-clave-servidor>
+    $ build-key-pkcs12 <nombre-clave-cliente>
                     \end{lstlisting}
 
                     Una vez generadas las claves:
@@ -977,13 +1013,13 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
                             \item Copiar las perteneciantes al servidor servidor en el directorio \textit{/etc/openvpn}
                             \begin{lstlisting}[language=bash]
-                                $ cp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-servidor.* /etc/easy-rsa/keys/dh2048.pem /etc/openvpn
+    $ cp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-servidor.* /etc/easy-rsa/keys/dh2048.pem /etc/openvpn
                             \end{lstlisting}
 
                             \item Copiar las pertenecientes al cliente en el dispositivo móvil mediante cualquier método disponible, puede ser a través de un dispositivo USB, un eMail, scp, etc.
                             Ejemplo: Copiar las claves al equipo desde el que se compiló el paquete y conectar allí el dispositivo móvil
                             \begin{lstlisting}[language=bash]
-                                $ scp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-cliente.* root@192.168.0.100:/etc/openvpn
+    $ scp /etc/easy-rsa/keys/ca.crt /etc/easy-rsa/keys/clave-cliente.* root@192.168.0.100:/etc/openvpn
                             \end{lstlisting}
                         \end{itemize}   
                     
@@ -993,67 +1029,67 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                         \item Crear la nueva interfaz de la VPN con el nombre vpn0
                             
                         \begin{lstlisting}[language=bash]
-                            $ uci set network.vpn0=interface
-                            $ uci set network.vpn0.ifname=tun0
-                            $ uci set network.vpn0.proto=none
-                            $ uci set network.vpn0.auto=1        
+    $ uci set network.vpn0=interface
+    $ uci set network.vpn0.ifname=tun0
+    $ uci set network.vpn0.proto=none
+    $ uci set network.vpn0.auto=1        
                         \end{lstlisting}
 
                         \item Configurar el cortafuegos para permitir conexiones entrantes al puerto \textit{1194} (puerto por defecto).
 
                         \begin{lstlisting}[language=bash]
-                            $ uci set firewall.Allow_OpenVPN_Inbound=rule
-                            $ uci set firewall.Allow_OpenVPN_Inbound.target=ACCEPT
-                            $ uci set firewall.Allow_OpenVPN_Inbound.src=*
-                            $ uci set firewall.Allow_OpenVPN_Inbound.proto=udp
-                            $ uci set firewall.Allow_OpenVPN_Inbound.dest_port=1194    
+    $ uci set firewall.Allow_OpenVPN_Inbound=rule
+    $ uci set firewall.Allow_OpenVPN_Inbound.target=ACCEPT
+    $ uci set firewall.Allow_OpenVPN_Inbound.src=*
+    $ uci set firewall.Allow_OpenVPN_Inbound.proto=udp
+    $ uci set firewall.Allow_OpenVPN_Inbound.dest_port=1194    
                         \end{lstlisting}
 
                         \item Crear nueva zona nombrada \textit{vpn} para la red vpn0. Esto permitirá las conexiones relacionadas con el tunel VPN, tanto entrantes como salientes.
 
                         \begin{lstlisting}[language=bash]
-                            $ uci set firewall.vpn=zone
-                            $ uci set firewall.vpn.name=vpn
-                            $ uci set firewall.vpn.network=vpn0
-                            $ uci set firewall.vpn.input=ACCEPT
-                            $ uci set firewall.vpn.forward=REJECT
-                            $ uci set firewall.vpn.output=ACCEPT
-                            $ uci set firewall.vpn.masq=1
+    $ uci set firewall.vpn=zone
+    $ uci set firewall.vpn.name=vpn
+    $ uci set firewall.vpn.network=vpn0
+    $ uci set firewall.vpn.input=ACCEPT
+    $ uci set firewall.vpn.forward=REJECT
+    $ uci set firewall.vpn.output=ACCEPT
+    $ uci set firewall.vpn.masq=1
                         \end{lstlisting}
 
                         \item Aplicar la nueva configuración.
 
                         \begin{lstlisting}[language=bash]
-                            $ uci commit network
-                            $ /etc/init.d/network reload
-                            $ uci commit firewall
-                            $ /etc/init.d/firewall reload  
+    $ uci commit network
+    $ /etc/init.d/network reload
+    $ uci commit firewall
+    $ /etc/init.d/firewall reload  
                         \end{lstlisting}
 
                         \item Configuración de OpenVPN:
                         La configuración puede ser realizada mediante los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
 
                         \begin{lstlisting}[language=bash]
-                            $ echo > /etc/config/openvpn
-                            $ uci set openvpn.myvpn=openvpn
-                            $ uci set openvpn.myvpn.enabled=1
-                            $ uci set openvpn.myvpn.verb=3
-                            $ uci set openvpn.myvpn.port=1194
-                            $ uci set openvpn.myvpn.proto=udp
-                            $ uci set openvpn.myvpn.dev=tun
-                            $ uci set openvpn.myvpn.server='10.8.0.0 255.255.255.0'
-                            $ uci set openvpn.myvpn.keepalive='10 120'
-                            $ uci set openvpn.myvpn.ca=/etc/openvpn/ca.crt
-                            $ uci set openvpn.myvpn.cert=/etc/openvpn/my-server.crt
-                            $ uci set openvpn.myvpn.key=/etc/openvpn/my-server.key
-                            $ uci set openvpn.myvpn.dh=/etc/openvpn/dh2048.pem
-                            $ uci commit openvpn
+    $ echo > /etc/config/openvpn
+    $ uci set openvpn.myvpn=openvpn
+    $ uci set openvpn.myvpn.enabled=1
+    $ uci set openvpn.myvpn.verb=3
+    $ uci set openvpn.myvpn.port=1194
+    $ uci set openvpn.myvpn.proto=udp
+    $ uci set openvpn.myvpn.dev=tun
+    $ uci set openvpn.myvpn.server='10.8.0.0 255.255.255.0'
+    $ uci set openvpn.myvpn.keepalive='10 120'
+    $ uci set openvpn.myvpn.ca=/etc/openvpn/ca.crt
+    $ uci set openvpn.myvpn.cert=/etc/openvpn/my-server.crt
+    $ uci set openvpn.myvpn.key=/etc/openvpn/my-server.key
+    $ uci set openvpn.myvpn.dh=/etc/openvpn/dh2048.pem
+    $ uci commit openvpn
                         \end{lstlisting}
 
                         \item Iniciar OpenVPN
                         \begin{lstlisting}[language=bash]
-                            $ /etc/init.d/openvpn enable
-                            $ /etc/init.d/openvpn start
+    $ /etc/init.d/openvpn enable
+    $ /etc/init.d/openvpn start
                         \end{lstlisting}
                     \end{enumerate}
 
@@ -1062,7 +1098,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 
                 \url{https://play.google.com/store/apps/details?id=de.blinkt.openvpn}
 
-                Una vez instalada la aplicación, se debe añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, se debe seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca automáticamente al iniciar sesión.
+                Una vez instalada la aplicación, se debe añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, se debe seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{$<$nombre-clave-cliente$>$.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca automáticamente al iniciar sesión.
 
                 Finalmente se debe entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
 
@@ -1079,7 +1115,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:main_activity_manual}
         \end{figure}
 
-        \todo{Y la organización de esto???}
         \begin{figure}[h!]
             \centering
                 \includegraphics[scale=0.5]{devices_activity_manual.eps}
@@ -1136,33 +1171,30 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             
         \end{enumerate}
 
-        \todo{subsection??}
         Para editar la información de un dispositivo, se debe mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
 
         Para editar la información de un dispositivo, se debe mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
 
         \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, se recomienda el restablecimiento de la conexión con el dispositivo conectado al router desde Internet en lugar de desde la red Wi-Fi.
 
-\section{Conclusiones y trabajo futuro}
+\section{Conclusiones y trabajo futuro} \label{sec:conc}
     \subsection{Principales aportaciones}
-    \todo{hacer}
     % deberanse destacar entre 3 e 5 aportacións importantes do
     % traballo realizado, tendo en conta os obxectivos fixados.
     Este proyecto contiene un conjunto de aportaciones a la soluciones inalámbricas disponibles actualmente en los hogares.
     
+    \begin{itemize}
+        \item Gestión del router a distancia
+        \item Encendido y apagado de la red con la facilidad de presionar un boton
+        \item Filtrado de dispositivos
+        \item Mecanismos de seguridad capaces de soportar replicas de paquetes y dispositivos no autorizados
+    \end{itemize}
     
-    Gestión del router a distancia
-    Encendido y apagado de la red con la facilidad de presionar un boton
-    Filtrado de dispositivos
-    Mecanismos de seguridad capaces 
-
     \subsection{Conclusiones}
     % incluiranse todas as conclusións de tipo técnico e persoal.
     Mantenter control del tiempo que pasan los menores en Internet es un problema que presentan todos los padres hoy en día. En este Trabajo de Fin de Grado se ha intentado facilitar esta tarea de forma que cualquier persona, sin la necesidad de conocimientos técnicos, pudiese realizarlo rápidamente. 
     
     Después de un largo proceso de desarrollo, este proyecto concluye con resultados satisfactorios, y, pese a los problemas surgidos desde sus inicios, donde la fase de investigación propuso un cambio significativo a la propuesta inicial, se considera que todos los objetivos propuestos durante su creación, han sido alcanzados. El desarrollo del proyecto ha supuesto más tiempo del planificado, pero este tiempo ha sido empleado en la creación de un sistema robusto y al alcance de cualquier hogar, brindando un mecanismo de control que no requiere de una gran inversión en infraestructira ni software especializado.
-
-    \todo{esto se podría alargar}
 
     Personalmente siento que gracias al desarrollo de este proyecto he podido afianzar y ampliar mis conocimientos en un campo que siempre ha captado mi atención y al que me gustaría dedicarme en un futuro, las redes informáticas; por lo que intentaré que no quede aquí y seguir trabajando en mi formación tanto como pueda. Durante todo el desarrollo de este proyecto he mantenido dos pautas constantes:
     
@@ -1187,7 +1219,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \subsubsection{Aplicación iOS}
         Dado que el número de dispositivos iOS aumenta cada año, es una buena idea portar el código de la aplicación Android desarrollada para que esté disponible en este sistema operativo.
 
-\section{Referencias}
+\section{Referencias} \label{sec:ref}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
 https://www.internetworldstats.com/stats.htm \citep{hola}
 http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
@@ -1216,8 +1248,53 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 
 % Deberase empregar un estilo uniforme para todas elas e aportarase, en cada caso:
 \appendix
-\section{Anexos}
-sdasd
+\section{Anexos} \label{anx:dependences}
+    \begin{table}[!htbp]             
+        \centering                  
+            \resizebox{\textwidth}{!}{   
+                \begin{tabular}{|l|l|l|}
+                    \hline
+                    \textbf{Prerequisitos}  & \textbf{Debian}   & \textbf{Arch}             \\           
+                    \hline
+                    asciidoc                & asciidoc          & asciidoc                  \\
+                    GNU Bash                & bash              & bash                      \\
+                    GNU bc                  & bc                & bc                        \\
+                    GNU Binutils            & binutils          & binutils                  \\
+                    bzip2                   & bzip2             & bzip2                     \\
+                    fastjar                 & fastjar           & fastjar                   \\
+                    flex                    & flex              & flex                      \\
+                    git                     & git-core          & git                       \\
+                    GNU C++ Compiler        & g gcc-c           & -                         \\
+                    GNU C Compiler          & gcc               & gcc                       \\
+                    getopt                  & util-linux        & util-linux                \\
+                    GNU awk                 & gawk              & gawk                      \\
+                    gtk2.0-dev              & libgtk2.0-dev     & gtk2                      \\
+                    intltool-update         & intltool          & intltool                  \\
+                    jikes                   & jikespg           & -                         \\
+                    libz, libz-dev          & zlib1g-dev        & zlib                      \\
+                    Mercurial / hg          &                   & mercurial                 \\
+                    make                    & make              & make                      \\
+                    mkisofs                 & genisoimage       & cdrkit                    \\
+                    ncurses                 & libncurses5-dev   & ncurses                   \\
+                    openssl/ssl.h           & libssl-dev        & openssl                   \\
+                    patch                   & patch             & patch                     \\
+                    perl-ExtUtils-MakeMaker & perl-modules      & perl-extutils-makemaker   \\
+                    python2.6-dev           & python2.6-dev     & python2                   \\
+                    rsync                   & rsync             & rsync                     \\
+                    ruby                    & ruby              & ruby                      \\
+                    sdcc                    & sdcc              & sdcc                      \\
+                    subversion              & subversion        & subversion                \\
+                    unzip                   & unzip             & unzip                     \\
+                    GNU Wget                & wget              & wget                      \\
+                    xgettext                & gettext           & gettext                   \\
+                    xsltproc                & xsltproc          & libxslt                   \\
+                    zlib, zlib-static       & zlib1g-dev        & zlib                      \\
+                    \hline
+                \end{tabular}
+            }
+        \caption{Dependencias del SDK}
+        \label{tab:sdk_dependences}
+    \end{table}
 
 
 \section{prueba}
