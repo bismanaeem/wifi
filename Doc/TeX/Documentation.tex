@@ -23,12 +23,6 @@
 
 
 \usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-}
 \usepackage{xcolor}
 \usepackage{textcomp}
 \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
@@ -137,7 +131,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
     Se presenta en la figura \ref{fig:red_soho} un esquema general de una red doméstica donde se incluye la terminología empleada.
 
-    \begin{figure}[h!][hp]
+    \begin{figure}[h!]
     \centering
         \includegraphics[scale=0.2]{soho_network.eps}
         \caption{Topología de una red doméstica}
@@ -249,7 +243,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         \begin{figure}[h!]
             \centering
-                \includegraphics[scale=0.7]{fases_gantt.eps}
+                \includegraphics[scale=0.5]{fases_gantt.eps}
                 \caption{Diagrama de Gantt de las fases}
                 \label{fig:fases_gantt}
         \end{figure}
@@ -297,8 +291,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \caption{Diagrama de Gantt de las desviaciones}
                 \label{fig:deviations_gantt}
         \end{figure}
-
-        La arquitectura del servidor 
 
 \cleardoublepage \section{Arquitectura y tecnologías} \label{sec:arq}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
@@ -646,7 +638,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \item Conexión a Internet tanto en el router como en el dispositivo móvil.
         \end{itemize}
 
-        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. En el anexo \todo{referenciar} se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} y \textit{Arch-Linux}.
+        Aunque muchas de las dependencias necesarias suelen venir por defecto instaladas en diferentes sistemas operativos, es necesario que todas estén instaladas y funcionales. En el anexo A se muestra una tabla con las dependencias y el nombre de los paquetes en distribuciones \textit{Debian-like} y \textit{Arch-Linux}.
 
         Para instalar paquetes en distribuciones \textit{Debian-like} su utiliza el siguiente comando.
         Es necesario que el usuario desde el que se ejecute el comando de instalación cuente con los permisos necesarios para llevar a cabo dicha acción.
