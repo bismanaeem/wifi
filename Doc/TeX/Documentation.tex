@@ -158,24 +158,24 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     Teniendo en cuenta todo lo mencionado anteriormente, se decide realizar un estudio de necesidades generales analizando las características de los routers domésticos. Con los resultados obtenidos se debe crear un sistema capaz de controlar redes Wi-Fi similares a las que comunmente pueden ser encontradas en los hogares. De esta forma  los padres pueden limitar el uso de Internet a los menores de forma sencilla y sin necesitar conocimientos avanzados de informática.
     \todo{tengo una imagen hecha}
     \begin{enumerate}
-        \item \textbf{\underline{Control desde dispositivos móviles:}} \\
+        \item \textbf{\underline{Control desde dispositivos móviles}} \\
             El sistema debe ser capaz de ser controlado desde dispositivos móviles con los que se tenga accesso al router, el control deberá ser posible desde el exterior, mediante la interfaz WAN y desde dentro de la propia red doméstica, ya sea mediante la interfaz LAN, o la prropia interfaz Wi-Fi.
         
-        \item \textbf{\underline{Encender y apagar red Wi-Fi:}} \\
+        \item \textbf{\underline{Encender y apagar red Wi-Fi}} \\
             Se debe implementar un mecanismo de control que permita encender o apagar la red Wi-Fi desde el dispositivo cliente de forma sencilla e inmediata.
 
-        \item \textbf{\underline{Filtro MAC:}} \\
+        \item \textbf{\underline{Filtro MAC}} \\
             Se busca implementar la gestión de un filtro MAC de tres estados, los cuales permitan gestionar los dispositivos a la red Wi-Fi, los diferentes estados con los que debe contar el filtro son:
             \begin{itemize}
                 \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
                 \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
                 \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
             \end{itemize}
-        \item \textbf{\underline{Seguridad contra dispositivos no autorizados:}} \\
+        \item \textbf{\underline{Seguridad contra dispositivos no autorizados}} \\
             Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
-        \item \textbf{\underline{Seguridad contra la réplica de paquetes:}} \\
+        \item \textbf{\underline{Seguridad contra la réplica de paquetes}} \\
             Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones en el router de forma desautorizada.
-        \item \textbf{\underline{Soporte para idiomas:}} \\
+        \item \textbf{\underline{Soporte para idiomas}} \\
             La aplicación cliente debe ser multilingüe, con soporte para los idiomas español e inglés, donde este último sea el idioma configurado por defecto al ser instalada.
     \end{enumerate}
 
@@ -204,7 +204,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \begin{itemize}
         \item \textbf{Equipo de desarrollo:} Equipo responsable de llevar a cabo el desarrollo del sistema. Este rol estará compuesto únicamente por el alumno.
         \item \textbf{Cliente:} Encargado de defininir los requisitos, utilizar las versiones resultantes de cada \textit{sprint} y aportar retroalimentación para la mejora del sistema. Este rol será llevado a cabo por el tutor del TFG.
-        \item \textbf{Maestro de SCRUM:} Encargado de restrar el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
+        \item \textbf{Maestro de SCRUM:} Encargado de rastrear el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
     \end{itemize}
 
 \section{Planificación y seguimiento}
@@ -216,7 +216,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
     \subsection{Planificación inicial}
         \subsubsection{Diagrama de fases y tareas}
-        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fase, entre las cuales se incluyen cinco sprints de implementación y la elaboraciónde la documentación, la cual incluye la fase de cierre, fundamental en \textit{SCRUM}.
+        Como se muestra en la \todo{referenciar tabla siguiente} el desarrollo del sistema se llevará a cabo durante nueve fases, entre las cuales se incluyen cinco sprints de implementación y la elaboración de la documentación, que incluye la fase de cierre, fundamental en \textit{SCRUM}.
 
         \todo{arreglar tabla}
         \begin{tabular}{|l|c|}
@@ -251,7 +251,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:fases_gantt}
         \end{figure}
 
-        Las figuras \ref{fig:tasks}, \ref{fig:tasks_gantt0} y \ref{fig:tasks_gantt1} muestran la planificación de las tareas del proyecto. Es importante destacar el intervalo de dieciocho días de la planificación donde se detienen las actividades, esto es debido a que equipo de desarrollo no se encuentra disponible en este período.
+        Las figuras \ref{fig:tasks}, \ref{fig:tasks_gantt0} y \ref{fig:tasks_gantt1} muestran la planificación de las tareas del proyecto. Es importante destacar el intervalo de dieciocho días de la planificación donde se detienen las actividades, esto es debido a que el equipo de desarrollo no se encuentra disponible en este período.
 
         \begin{figure}[h!]
             \centering
@@ -342,7 +342,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{tabular}
 
             \todo{T: Sprint 2: Implementación del servidor}
-            El objetivo de segundo sprint es desarrollar el sistema servidor, este debe contener un socket que le permita recibir peticiones y responder a estas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \todo{referenciar} muestra las tareas de esta fase.
+            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \todo{referenciar} muestra las tareas de esta fase.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -358,7 +358,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{tabular}
 
             \todo{T: Sprint 3: Implementación de sistemas de seguridad}
-            En el tercer sprint se procede con el desarrollo de los sistemas de seguridd planteados durante el análisis. Se implementa los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor una vez son recibidos los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
+            En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -391,7 +391,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{tabular}
 
             \todo{T: Sprint 5: Integración de sistemas}
-            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inclyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondiente a esta fase pueden econtrarse en la tabla \todo{referenciar}.
+            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -405,7 +405,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{tabular}
 
             \todo{T: Documentación}
-            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usurio. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \todo{referenciar}.
+            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \todo{referenciar}.
 
             \todo{arreglar tabla}
             \begin{tabular}{|l|c|}
@@ -418,18 +418,18 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \end{tabular}
 
     \subsection{Desviaciones de la planificación inicial}
-        La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o el surgimiento de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos \ref{fig:deviations_gantt} y las principales desviaciones de este proyecto están detalladas a continuación.
+        La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o la aparición de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos (figura \ref{fig:deviations_gantt}) y las principales desviaciones de este proyecto están detalladas a continuación.
 
         \todo{T: Compilación cruzada}
-        La primera desviación que surge en el proyecto es al intentar realizar la compilación cruzada. La documentación aportada por OpenWRT para realizar este proceso es muy escueta e incomprensible, y la información relacionada que pudo ser encontrada en Internet estaba desactualizadada desde 2007. Esto llevó a un largo porceso de prueba y error a partir de los antiguos procesos de compilación y la información obtenida de la página oficial, lo que provocó un retraso en todo el proyecto.
+        La primera desviación que surge en el proyecto aparece al intentar realizar la compilación cruzada. La documentación aportada por OpenWRT para realizar este proceso es muy escueta e incomprensible, y la información relacionada que pudo ser encontrada en Internet estaba desactualizadada desde 2007. Esto llevó a un largo proceso de prueba y error a partir de los antiguos procesos de compilación y la información obtenida de la página oficial, lo que provocó un retraso en todo el proyecto.
 
         \todo{T: Implementación de sistemas de seguridad}
-        La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de decriptación DES, sin embargo, siguiendo la docuementación al pie de la letra y obteniendo información de Iternet no se obetienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y validar las primeras prubas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, determinar que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
+        La segunda y tercera desviación ocurren durante la implementación de sistemas de seguridad. Primeramente se decide utilizar la librería \textit{OpenSSL} para llevar a cabo el proceso de decriptación DES, sin embargo, siguiendo la documentación al pie de la letra y obteniendo información de Internet no se obtienen los resultados esperados. Debido a esto se decide utilizar una librería diferente que permita llevar a cabo el proceso especificado (\textit{libc}), pero tras el desarrollo de este fragmento del sistema y tras la validación de las primeras pruebas surge un problema al compilar, debido a que en OpenWRT \textit{libc} es sustituido por la versión reducida \textit{uClibc}, incompleta en este sentido, ya que solamente dispone de las cabeceras de los procesos necesarios para esta tarea, y no de su implementación. El problema es finalmente solucionado volviendo al punto de partida con \textit{OpenSSL}, y tras un proceso de prueba y error, se determina que existe un método cuyo resultado es diferente al indicado en la documentación oficial.
 
-        La tercera desviación fue el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras la varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
+        La tercera desviación surge en el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en el sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
 
         \todo{T: Implementación de la interfaz gráfica de la aplicación}
-        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo del esperado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
+        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo al inicialmente planificado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
         
         \begin{figure}[h!]
             \centering
@@ -477,24 +477,24 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \begin{enumerate}
                 \item Sistema de seguridad
                     \begin{itemize}
-                        \item \textbf{Decodificador Base64} \\
+                        \item \textbf{\underline{Decodificador Base64}} \\
                             Este componente se encarga de decodificar los datos recibidos en \textit{Base64} a través del socket, para obtener la información cifrada con \textit{DES} en el cliente.
-                        \item \textbf{Decodificador DES} \\ 
+                        \item \textbf{\underline{Decodificador DES}} \\ 
                             Sistema encargado de decodificar la información resultante del \textit{Decodificador Base64} utilizando la contraseña proporcionada por el usuario
                     \end{itemize}
                 \item Funciones del sistema
                     \begin{itemize}
-                        \item \textbf{Funciones de configuración} \\ 
+                        \item \textbf{\underline{Funciones de configuración}} \\ 
                             Ejecutan comandos del sistema o modifican el fichero de configuración adecuado, dependiendo de la orden de control recibida desde el cliente.
-                        \item \textbf{Sistema de respuesta} \\
-                            En caso de que la orden sea ejecutada correctamente en el \textit{Sistema de funciones de configuración}, manda un mensaje de confirmación específico dependiendo de la orden que haya sido recibida y procesada.
+                        \item \textbf{\underline{Sistema de respuesta}} \\
+                            En caso de que la orden sea ejecutada correctamente en el \textit{Sistema de funciones de configuración}, se envía un mensaje de confirmación específico dependiendo de la orden que haya sido recibida y procesada.
                     \end{itemize}
                 \item Socket
                     El socket es el encargado de recibir y enviar la información desde y hacia el sistema cliente.
             \end{enumerate}
 
             \todo{T: Cliente}
-            El sistema cliente es desde donde se realizan las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la figura \ref{fig:client_diagram} se puede ver la estructura del cliente.
+            El sistema cliente es el encargado de realizar las peticiones al servidor. Su implementación en Android puede ser interpretada como el uso del patrón arquitectónico Modelo Vista Controlador, separando las vistas como los \textit{Layouts}, los controladores como las \textit{Actividades} y el modelo como las \textit{SharedPreferences} y los \textit{AsyncTasks}. En la figura \ref{fig:client_diagram} se puede ver la estructura del cliente.
 
             \todo{revisar estos diagramas}
             \begin{figure}[h!]
@@ -511,39 +511,39 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \begin{enumerate}
                 \item Interfaz de usuario
                     \begin{itemize}
-                        \item \textbf{Actividades} \\
+                        \item \textbf{\underline{Actividades}} \\
                             Realiza función de controlador, es el componente encargado de renderizar las vistas haciendo uso de los \textit{Resources} necesarios. Gestiona las entradas del usuario, y a partir de estas se comunica con el sistema servidor a través de los \textit{AsyncTask}.
-                        \item \textbf{Resources} \\ 
+                        \item \textbf{\underline{Resources}} \\ 
                             Es el componente que representa el conjunto de recursos necesarios para renderizar las vistas de forma correcta, y que estas a su vez, puedan ser gestionadas por las \textit{Actividades}.
                     \end{itemize}
                 \item SharedPreferences
                     \begin{itemize}
-                        \item \textbf{Editor} \\ 
+                        \item \textbf{\underline{Editor}} \\ 
                             Permite almacenar elementos de forma sencilla como elementos clave-valor sin necesidad de utilizar una base de datos.
-                        \item \textbf{Loader} \\
+                        \item \textbf{\underline{Loader}} \\
                             Permiten recuperar los elementos clave-valor almacenados con el \textit{Editor}
                     \end{itemize}
                 \item AsynckTask Servidor
                     \begin{itemize}
-                        \item \textbf{Socket} \\ 
+                        \item \textbf{\underline{Socket}} \\ 
                             Componente mediante el cual se recibe información desde el servidor y provoca cambios parciales en las vistas a detravés del \textit{Sistema rollback}.
-                        \item \textbf{Sistema rollback} \\
+                        \item \textbf{\underline{Sistema rollback}} \\
                             Realiza cambios parciales en las vistas a través de las \textit{Actividades}, bloqueando los elementos modificados y devolviéndolos a su estado original en caso de fallo.
                     \end{itemize}
                 \item AsynckTask Cliente
                     \begin{itemize}
-                        \item \textbf{Codificador DES} \\
+                        \item \textbf{\underline{Codificador DES}} \\
                             Utilizando la contraseña especificada por el usuario, aplica cifrado \textit{DES} a la información de control que luego es enviada al sistema servidor.
-                        \item \textbf{Codificador Base64} \\
-                            Este componente es el encargado de cifrar en \textit{Base64} los datos obtenidos del \textit{Codificador DES}para que puedan ser enviados al sistema servidor a través del \textit{Socket}.
-                        \item \textbf{Socket} \\ 
+                        \item \textbf{\underline{Codificador Base64}} \\
+                            Este componente es el encargado de cifrar en \textit{Base64} los datos obtenidos del \textit{Codificador DES} para que puedan ser enviados al sistema servidor a través del \textit{Socket}.
+                        \item \textbf{\underline{Socket}} \\ 
                             Componente mediante el cual se envían los mensajes de control al sistema servidor en función de la entrada del usuario.
                     \end{itemize}
                     Componente que envía mensajes de control al sistema servidor, provoca cambios parciales en las vistas a través de la \textit{Actividad} desde la que es invocado
             \end{enumerate}
 
             \todo{T: Estructura del paquete}
-            Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabacera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es rellenado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la figura \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
+            Dado que el protocolo utilizado para la comunicación ente los sistemas cliente y servidor es UDP, los paquetes utilizados portan la cabecera \textit{IP} y adicionalmente los cuatro campos pertenecientes a la cabecera UDP. El campo opcional \textit{Puerto de origen} es completado por la aplicación cliente, permitiendo recibir de vuelta un paquete de confirmación en el mismo socket desde el que ha sido enviado. En la figura \ref{fig:ip_packet} puede observarse la estructura del paquete, se marca en rojo la cabecera \textit{IP}, debajo se encuentra la cabecera UDP, y por último la forma en la que viajan los mensajes de control.
 
             \begin{figure}[h!]
             \centering
@@ -576,28 +576,27 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
     \subsection{Tecnologías e integración de productos de terceros}
     % describiranse adecuadamente as tecnoloxías utilizadas para o desenvolvemento do traballo, así coma os diversos productos que non son da autoría do/da estudante, xustificando a súa utilización.
-        \todo{debería empezar por ``Es tal cosa'' siempre o mejor empezar con el nombre?}
-        \todo{acomodar esto}
         \subsubsection{OpenWRT}
-            OpenWRT es una distribución Linux para dispositivos embebidos\todo{y routers}. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cual permite sustituir el sistema del proveedor y una mayor personalización del dispsitvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que a rodee. Además,este sistema operativo se ha convertido prácticamente en un estándar, soportado por múchos de los dispositivos actuales del mercado, por lo que se utiliza como base para desarrollar esta aplicación.
+            OpenWRT es una distribución Linux para dispositivos embebidos. En lugar de existir como un firmware estático, OpenWRT proporciona un sistema de archivos totalente modificable con gestión de paquetes, el cual permite sustituir el sistema del proveedor y una mayor personalización del dispositvo. Es el framework perfecto para el desarrollo de una aplicación sin tener que construir todo el firmware que la rodee. Además, este sistema operativo se ha convertido prácticamente en un estándar, soportado por múchos de los dispositivos actuales del mercado, por lo que se utiliza como base para desarrollar esta aplicación.
 
-        \subsubsection{C}
-            Es un lenguaje de programación imperativo de prósito general que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos, y la razón por la que es utilizado en este proyecto.
+        \subsubsection{Lenguaje C}
+            Es un lenguaje de programación imperativo de prósito general, que destaca por la eficiencia de su código y su popularidad para crear software de sistemas debido a su flexibiliadad y control a muy bajo nivel. Es la opción ideal cuando se desea ahorrar la mayor cantidad de espacio posible en la construcción del software, necesidad común de dispositivos embebidos, y la razón por la que es utilizado en este proyecto.
 
-            \todo{acomodar esto}
-            \subsubsection{OpenWRT SDK}
+            \begin{itemize}
+                \item \textbf{OpenWRT SDK} \\
                 El SDK es un conjunto de herramientas de programación reubicables y precompiladas que permiten la compilación cruzada de paquetes para el espacio de usuario de OpenWRT sin tener que compilar todo el sistema desde cero.
 
-            \subsubsection{uClibc}
-                Es una librería C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \textit{glibc} (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. \textit{uClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
+                \item \textbf{uClibc} \\
+                    Es una librería C para el desarrollo de sistemas Linux embebidos, es más pequeña que la librería \textit{glibc} (GNU C Library) y soporta prácticamente todas las aplicaciones que son desarrolladas con esta. \textit{uClibc} es capaz de gestionar librerías compartidas e hilos, además de funcionar con procesadores de varias arquitectura, entre las que se incluyen amd64, ARM, mips/mipsel, alpha, PowerPC y SH.
 
-            \subsubsection{OpenSSL}
-                Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
-
+                \item \textbf{OpenSSL} \\
+                    Es un proyecto de código abierto que implementa la una librería criptográfica de propósito general. Provee un conjuto de herramientas robusto, de nivel comercial, para los protocolos SSL/TLS.
+            \end{itemize}
+            
         \subsubsection{OpenVPN}
             \todo{openvpn}
 
-        \subsubsection{sed}
+        \subsubsection{Sed}
             Es una utilidad unix, un editor de flujo capaz de analizar y transformar textos utilizando un simple y compacto lenguaje de programación. Permite el uso de expresiones regulares y tratamiento de archivos con un gran número de líneas de forma rápida. En este sistema \textit{sed} es utilizado para llevar a cabo los cambios en los archivos de configuración proporcionados por OpenWRT.
 
         \subsubsection{Latex}
@@ -607,23 +606,20 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Es un lenguaje de programación orientado a objetos, compilado, de propósito general y alto nivel. Es utilizado para soluciones web, cliente-servidor, sistemas distribuidos, etc. además de ser el principal lenguaje para el desarrollo de aplicaciones móviles Android, razón por la que es utilizado en el desarrollo de este sistema.
 
         \subsubsection{Git}
-            Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea. Su uso en el desarrollo de este sistema viene justificado por las diferentes iteraciones/sprints que se llevan a cabo y el control de versiones necesarios para su gestión.
+            Es un sistema de control versiones distribuido diseñado para controlar proyectos de cualquier tamaño con rapidez y eficacia. Es de código abierto y ofrece medios para guardar, analizar y revertir cambios realizados en versiones actuales y anteriores, además del control de ramas que permite mantener y trabajar en más de una versión de un proyecto de forma simultánea. Su uso en el desarrollo de este sistema viene justificado por las diferentes iteraciones/sprints que se llevan a cabo y el control de versiones necesario para su gestión.
 
     \subsection{Herramientas} 
-        \todo{Herraminetas?}
-        \todo{justificación de la utilización?}
-        \todo{no llega con explicar las caracterísiticas?}
         \subsubsection{Atom}
-            Es un editor de texto de código abierto desarrollado por GitHub Inc.,\todo{Qué hago aquí?} escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
+            Es un editor de texto de código abierto desarrollado por GitHub Inc., escrito en JavaScript, moderno, accesible y modificable en su totalidad. Es completamente personalizable, de forma que brinda el entorno de trabajo más cómodo y productivo posible, sin necesidad de modificar ningún archivo de configuración durante el desarrollo de proyectos. Cuenta con una muy amplia gama de paquetes, también de código abierto, que añaden y mejoran funcionalidades del editor.
 
         \subsubsection{Visual Studio Code}
-            Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico ``edit-build-debug'' \todo{style}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
+            Es una herramienta desarrollada por Microsoft que combina las simplicidad de un editor de texto con lo que necesitan los desarrolladores para su ciclo básico \textit{``edit-build-debug''}. Visual Studio Code provee soporte exhaustivo para la creación y depuración de código, además de un modelo extendible y una integración de bajo consumo de recursos con las herramientas existentes.
 
         \subsubsection{TeX Live}
             Es un una distribución libre para los sistemas de tipografía TeX\todo{ref latex}. Está disponible para Linux y Windows incluyendo la mayoría de programas, micro paquetes y fuentes que son software libre. Actualmente es la distribución por defecto de esta tecnología en múltiples distribuciones Linux como openSUSE, Fedora, Debian, Ubuntu y Gentoo, además de ofrecer soporte para múltiples idiomas.
 
         \subsubsection{Android Studio}
-            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
+            Es el \todo{estilo}IDE (Integrated development environment) oficial para la creación aplicaciones Android. Ofrece herramientas para la edición de códigos de primer nivel, depuración, control de rendimiento y compilación instantánea. \todo{releer}Provee de un emulador Android que permite comprobar el funcionamiento del código de forma rápida, y brinda un conjunto de opciones dinámicamente configurables en cuanto a tamaño, prestaciones y control de sensores. Posee integración condiferentes sitemas actuales y cuenta con soporte para librerías externas configurables para su compilación junto con la aplicación.
 
         \subsubsection{GitHub}
             Es una plataforma colaborativa de control de vesiones online basada en Git\todo{ref git} y desarrollada por GitHub Inc. Ofrece todas las funcionalidades de gestión de códigos que ofrece Git\todo{ref git} así como sus propias características basadas en la web. Provee control de acceso y varias opciones colaborativas como el control de errores, petición de funcionalidades, gestión de tareas y wikis. La plataforma cuenta con un servicio de pago que permite la creación de repositorios privados, este servicio está disponible de forma gratuita junto a un conjunto de herramientas de desarrollo que la empresa ofrece en un paquete para estudiantes verificados.
@@ -651,41 +647,33 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             \label{fig:case_use_diagram}
         \end{figure}
     
-    \todo{Revisar}
     \subsection{Requisitos funcionales}
-    \begin{description}
-        \item[Apagado y encendido de la red Wi-Fi:] Enciende y apaga el red Wi-Fi del router servidor. 
-        \item[Configuración del filtro MAC:] Gestiona el estado del filtro de direcciones MAC.
-        \item[Gestión de dispositivos:] Permite añadir, eliminar y modificar dispositivos al sistema.
-        \item[Soporte de idiomas:] Cambiar el idioma de la interfaz.
-    \end{description}
+        \begin{itemize}
+            \item \textbf{\underline{Apagado y encendido de la red Wi-Fi}} \\
+            Enciende y apaga el red Wi-Fi del router servidor. 
+            \item \textbf{\underline{Configuración del filtro MAC}} \\
+            Gestiona el estado del filtro de direcciones MAC.
+            \item \textbf{\underline{Gestión de dispositivos}} \\
+            Permite añadir, eliminar y modificar dispositivos al sistema.
+            \item \textbf{\underline{Soporte de idiomas}} \\
+            Cambiar el idioma de la interfaz.
+        \end{itemize}
     
-
     \subsection{Requisitos no funcionales}
-    La aplicación debe cumplir un conjunto de requisitos necesarios para su correcto funcionamiento, entre estos se encuentran 
-    El usuario debe contar con un router con el sistema operativo OpenWRT.
-    El usuario debe disponer de un dispositivo móvil Android con la versión 4.4 o superior.
-    El usuario debe disponer de una conexión a internet para poder acceder al router desde la Interfaz WAN
-
-    Seguridad:
-    El sistema cuenta con mecanismos de cifrado DES y el uso de túneles VPN capaces de restringir el acceso de ls dispositivos no autorizados y evitar las replicación de paquetes.
-    \todo{o esto?}
-    Se evita que el sistema servidor reciba órdenes desde dispositivos La seguridad del sistema está garantizada mediante métodos de cifrado DES y el uso de túneles VPN.
-    
-    Disponibilidad:
-    El sistema se mantiene a la espera de peticiones de los clientes en todo momento, tanto desde la Interfaz Wi-Fi como de la interfaz WAN.
-
-    Accesibilidad:
-    El sistema cuenta con una interfaz gráfica sencilla e intuitiva que permite su uso a los usuarios más inexpertos
-
-    Portabilidad:
-    El sistema puede ser utilizado en dispositivos móviles Android, con los que se pueden acceder desde cualquier parte del mundo siempre que exista conectividad con internet.
-
-    Usabilidad:
-    El sistema mantiene un tiempo de respuesta rápido, tentiendo en cuenta la velocidad de la conexión a Internet, brinda toda la información necesaria y mantiene un conjunto de tonalidades discreto.
-
-    Rendimiento:
-    El sistema funciona de forma fluida, mantenienndo un bajo consumo de recursos en los dispositivos.
+        \begin{itemize}
+            \item \textbf{\underline{Seguridad:}}
+            El sistema cuenta con mecanismos de cifrado DES y el uso de túneles VPN capaces de restringir el acceso de los dispositivos no autorizados y evitar las replicación de paquetes..
+            \item \textbf{\underline{Disponibilidad:}}
+            El sistema se mantiene a la espera de peticiones de los clientes en todo momento, tanto desde la Interfaz Wi-Fi como de la interfaz WAN.
+            \item \textbf{\underline{Accesibilidad:}}
+            El sistema cuenta con una interfaz gráfica sencilla e intuitiva que permite su uso a los usuarios más inexpertos
+            \item \textbf{\underline{Portabilidad:}}
+            El sistema puede ser utilizado en dispositivos móviles Android, con los que se pueden acceder desde cualquier parte del mundo siempre que exista conectividad con internet.
+            \item \textbf{\underline{Usabilidad:}}
+            El sistema mantiene un tiempo de respuesta rápido, teniendo en cuenta la velocidad de la conexión a Internet, brinda toda la información necesaria y mantiene un conjunto de tonalidades discreto.
+            \item \textbf{\underline{Rendimiento:}}
+            El sistema funciona de forma fluida, mantenienndo un bajo consumo de recursos en los dispositivos.
+        \end{itemize}
 
 \section{Diseño de software}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
@@ -725,10 +713,10 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
 \section{Gestión de datos e información}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
-    Ya que el objetivo es crear un mecanismo de control para accesos a la red Wi-Fi, el sistema que se plantea no cuenta con bases de datos para almacenar información, sin embargo, se necesita una forma de guardar las configuraciones utilizadas.
+    Ya que el objetivo es la creación un mecanismo de control para accesos a la red Wi-Fi, el sistema que se plantea no cuenta con bases de datos para almacenar información, sin embargo, se necesita una forma de guardar las configuraciones utilizadas.
     
     \subsection{Servidor}
-        En el dispositivo servidor, para hacer uso de los mecanismos que brinda OpenWRT para la gestión de sus funcionalidades, se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial se hace uso del fichero \textit{wireless}, donde se almacenan las configuraciones hardware y software que son utilizadas para el funcionamiento la red Wi-Fi. \todo{referenciar archivo} A continuación se muestra un ejemplo de este.
+        En el dispositivo servidor, para hacer uso de los mecanismos que brinda OpenWRT (orientados la gestión de sus funcionalidades), se cuenta con un conjunto de archivos de configuración ubicados en la carpeta \textit{/etc/config}. En especial, se hace uso del fichero \textit{wireless}, donde se almacenan las configuraciones hardware y software que son utilizadas para el funcionamiento la red Wi-Fi. A continuación se muestra un ejemplo de este:
         \todo{mirar si hay un paquete para bash}
         \todo{modificar comillas}
         \todo{modificar titulo: Eliminar listing 1}
@@ -762,14 +750,14 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         El parámetro \textit{wifi-iface} indica la configuración de una interfaz inalámbrica, especificando en las opciones el dispositivo físico y la red OpenWRT (ya definidos) a la que estará vinculada. Además, también se definen opciones como el mecanismo de seguridad y el modo de operación del controlador de red. El sistema que se desarrolla, hace uso de las funciones que se encuentran al final del ejemplo.
         
         \begin{itemize}
-            \item \textbf{mactiflter}: Indica la configuración a adoptar por el filtro MAC, esta se especifica entre comillas simples, y puede ser \textit{deny} o \textit{allow}. Para indicar que el filtro debe está desactivado se elimina toda la línea.
-            \item \textbf{list maclist}: Es utilizada para especificar las direcciones MAC a las que se les va a aplicar el filtro, se pueden definir tantas opciones \textit{list maclist} como sea necesario.
+            \item \textbf{\underline{mactiflter:}} Indica la configuración a adoptar por el filtro MAC, esta se especifica entre comillas simples, y puede ser \textit{deny} o \textit{allow}. Para indicar que el filtro debe está desactivado se elimina toda la línea.
+            \item \textbf{\underline{list maclist:}} Es utilizada para especificar las direcciones MAC a las que se les va a aplicar el filtro, se pueden definir tantas opciones \textit{list maclist} como sea necesario.
         \end{itemize}
 
     \subsection{Cliente}
         En el dispositivo cliente, las configuraciones que se almacenan son las relacionadas a la conexión: \textit{Dirección IP}, \textit{Puerto} y \textit{Contraseña}, así como los \textit{Dispositivos} añadidos a la aplicación para gestionar el filtro MAC. También son almacenados los \textit{Estados} de los elementos de la interfaz de usuario que son utilizados para controlar el sistema.
 
-        Para gestionar estos datos se utiliza \textit{SharedPreferences}, una forma de almacenamiento \textit{Clave-Valor} ofrecida por Android. Un objeto de este tipo tiene asociado un archivo donde se almacenan y proporciona métodos simples para leer y escribir dichos pares.
+        Para gestionar estos datos se utiliza \textit{SharedPreferences}, una forma de almacenamiento \textit{Clave-Valor} ofrecida por Android. Un objeto de este tipo tiene asociado un archivo donde se almacenan dichos pares, y proporciona métodos simples para gestionar su lectura y escritura.
         
         Los procesos de lectura y escritura se realizan dentro de \textit{onResume()} y \textit{onPause()} respectivamente. El primero es ejecutado cuando la actividad es creada, iniciada o reanudada, mientras que el segundo es ejecutado cuando la actividad por cualquier motivo quede suspendida, la aplicación sea detenida o el proceso destruido. La figura \ref{fig:android_lifecycle} muestra el orden de ejecución de los métodos en una actividad Android.
         
@@ -780,19 +768,19 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \caption{Ciclo de vida de actividades Android}
                 \label{fig:android_lifecycle}
         \end{figure}
-
+\todo{comprobar idioma de las separaciones de palabras}
 \section{Pruebas llevadas a cabo}
 % describiranse as probas realizadas aos distintos niveis para
 % garantir o correcto funcionamento do software ou do hardware.
     \subsection{Explicación de las pruebas}
-    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de este junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
+    Muchos de los paradigmas de programación ágil abarcan el concepto de prueba unitaria. Pruebas programadas en el mismo lenguaje que se escribe la aplicación y que permiten comprobar el funcionamiento de una unidad de código. La metodología \textit{SCRUM} normalmente es utilizada con pruebas automatizadas que son creadas específicamente para cada sprint, y ejecutadas al final de éste, junto con las que anteriormente hayan finalizado de forma satisfactoria. Los nuevos componentes desarrollados sólo son considerados correctos cuando todas las pruebas están validadas, permitiendo que el código resultante esté libre de errores y no comprometa el funcionamiento del resto del sistema creado hasta el momento. \todo{revisar tiempo}
 
     \subsection{Pruebas de conectividad}
     \todo{hay que hacer estass pruebas}
     Debido a que en este proyecto se lleva a cabo el desarrollo de dos aplicaciones diferentes que deben intercambiar paquetes UDP entre sí, es necesario un conjunto de pruebas que permita verificar la conectividad entre ambas. Por tanto, se ha decidido utilizar pruebas unitarias desarrolladas en Android Studio que comprueben, mediante el propio sistema de confirmación de la aplicación cliente, su funcionamiento, y permitan así verificar si el paquete es enviado, recibido y confirmado.
 
     \subsection{Pruebas de entrada}
-    Las pruebas en las aplicaciones independientes se realiza de forma manual, introduciendo valores correctos e incorrectos en los campos a comprobar. En el servidor se introducen estos valores como parámetros durante su proceso de inicio, y en el cliente se comprueban los campos de texto, tanto los encargados de la configuración de la conexión, como los de gestión de dispositivos.
+    Las pruebas en las aplicaciones independientes se realizan de forma manual, introduciendo valores correctos e incorrectos en los campos a comprobar. En el servidor se introducen estos valores como parámetros durante su proceso de inicio, y en el cliente se comprueban los campos de texto, tanto los encargados de la configuración de la conexión, como los de gestión de dispositivos.
 
     \subsection{Pruebas de encriptación}
     El funcinamiento del sistema de encriptación entre cliente y servidor es verificado mediente la prueba unitaria de conectividad, especificando valores correctos e incorrectos para el campo contraseña tanto de la aplicación como del servidor. Para realizar pruebas en los sistemas por separado se hace uso de la librería \textit{OpenSSL}, los valores obtenidos como resultado de la aplicación deben ser iguales a los generados con esta librería desde la consola de comandos, siempre y cuando los parámetros utilizados sean los mismos. 
@@ -872,7 +860,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
     \subsection{Manual de instalación}
         \subsubsection{Compilar el paquete Wifither para OpenWRT}
-            Para preparar la compilación cruzada, descargar desde la página web oficial de OpenWRT \url{https://downloads.openwrt.org} el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, descomprimir el archivo y se copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
+            Para preparar la compilación cruzada, se debedescargar desde la página web oficial de OpenWRT (\url{https://downloads.openwrt.org}) el SDK correspondiente al modelo del dispositivo y la versión del sistema en el que se desea instalar el paquete. Una vez descargado, se debe descomprimir el archivo y copiar el código fuente dentro de la carpeta \textit{build} del SDK. Luego, desde la carpeta raíz del SDK, se procede ejecutar los siguientes comandos para preparar las librerías que utiliza \textbf{Wifither}.
 
             \begin{lstlisting}[language=bash]
                 $ ./scripts/feeds update
@@ -880,13 +868,13 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 $ ./scripts/feeds install libopenssl
             \end{lstlisting}
 
-            Una vez esté todo preparado, ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither 1 <modelo-router>.ipk}.
+            Una vez esté todo preparado, se debe ejecutar el comando \textit{make} para llevar a cabo la compilación. El paquete resultante se almacena en \textit{SDK/bin/<modelo-router>/packages/base} con el nombre \textit{wifither 1 <modelo-router>.ipk}.
 
 
         \subsubsection{Instalación del servicio servidor en e router}
-            En este apartado se explica cómo instalar el paquete \textit{.ipk} resultante de la compilación, en el router con OpwenWRT, cómo arrancar iniciar el servicio y configurarlo para que inicie automáticamente cada vez que inicie el router.
+            En este apartado se explica cómo instalar el paquete \textit{.ipk} resultante de la compilación, en el router con OpwenWRT, y cómo iniciar el servicio y configurarlo para que se inicie automáticamente cada vez que arranque el router.
 
-            Primeramente se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y equipo remoto al que se desea copiar, y la ruta donde se desea almacenar en ese equipo.
+            En primer lugar se debe copiar el paquete al router donde se instalará, para ello se puede utilizar cualquier protocolo de red que permita la transferencia de archivos, en esta guía se explica cómo copiarlo mediante el uso de \textit{scp}. Para realizar este proceso, se debe especificar la ruta donde se encuetra el paquete, el usuario y el equipo remoto al que se desea copiar, además de la ruta donde se desea almacenar en ese equipo.
 
             \begin{lstlisting}[language=bash]
                 $ scp <ruta-paquete> <usuario>@<equipo-remoto>:<ruta-almacenamiento>
@@ -925,18 +913,19 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Para realizar la instalación de la aplicación en el móvil existen dos opciones, utilizar la aplicación ya compilada \textit{.apk} o compilarla e instalarla directamente desde \textit{Android Studio}
             
             \begin{enumerate}
-                \item Instalación del .apk \todo{espacio}
+                \item \textbf{\underline{Instalación del .apk}} \\
                 Es necesario que el archivo \textit{.apk} debe estar almacenado en el dispositivo móvil, para esto se puede conectar el dispositivo directamente al ordenador utilizando un cable USB.
 
                 Para llevar a cabo la instalación debe estar activada la opción \textit{Fuentes desconocidas}, que se encuentra en el apartado \textit{Seguridad} de los ajustes del sistema Android. Esto hace que sea posible la instalación de aplicaciones que provengan de fuentes no oficiales.
 
                 Una vez realizados los pasos anteriores, ir hasta la ubicación del archivo \textit{.apk}, pulsar sobre él y aceptar la instalación.
 
-                \item Compilar e instalar desde Android Studio
-                Para poder instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajuste del sistema Android.
+                \item \textbf{\underline{Compilar e instalar desde Android Studio}} \\
+                Para poder instalar aplicaciones utilizando este método es necesario que el dispositivo móvil esté conectado al ordenador mediante un cable USB y que esté activada la opción \textit{Depuración USB}, que se encuentra en el apartado \textit{Opciones de desarrollador} de los ajustes del sistema Android.
+
                 \textbf{NOTA:} Las opciones de desarrollador están deshabilitadas por defecto en la mayoría de dispositivos Android, para habilitarla es necesario pulsar diez (10) veces sobre el \textit{Número de compilación}, que se encuentra en el apartado \textit{Acerca del dispositivo} de los ajuste del sistema Android.
 
-                En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run `app'} que se encuentra en el menú \textit{Run} y seleccionar el dispositivo.
+                En la barra de menús de Android Studio, ir a \textit{File} y luego a la opción \textit{Open}, allí buscar y abrir la carpeta con el código fuente de la aplicación. Una vez haya cargado el proyecto, ir la opción \textit{Run `app'} que se encuentra en el menú \textit{Run} y se selecciona el dispositivo.
                 
                 \textbf{NOTA:} Es importante aceptar en el dispositivo la clave RSA, esto permite que Android Studio pueda conectarse al dispositivo.
 
@@ -946,10 +935,10 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \todo{ddns, segundo router o router principal?}
 
         \subsubsection{Configuración de una VPN} \todo{cómo poner opcional?}
-            En este apartado se explica la creación y configuración de una VPN en modo tunel entre el router y el dispositivo móvil mediante la utilización de OpenVPN. Esto paso es totalmente opcional ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servido sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
+            En este apartado se explica la creación y configuración de una VPN en modo túnel entre el router y el dispositivo móvil, mediante la utilización de OpenVPN. Este paso es totalmente opcional, ya que el sistema no lo necesita para su correcto funcionamiento, sin embargo, añade una capa de seguridad adicional que permite que todo el tráfico entre cliente y servidor sea encriptado en origen y desencriptado en destino, por lo que nunca se conoce el contenido real de los paquetes enviados y no pueden ser replicados.
 
             \begin{enumerate}
-                \item Creación de VPN en el router \todo{Añadir un enter y revisar el resto}
+                \item \textbf{\underline{Creación de VPN en el router}} \\
                     Inicialmente se debe comprobar que los repositorios desde los que descargan los paquetes y librerías estén bien configurados en el router. Esto se puede observar en el archivo de configutación \textit{/etc/opkg/dist-feeds.conf}. Las rutas a los diferentes repocitorios dependerán de la versión del sistema y el modelo del router.
 
                     Ejemplo:
@@ -1042,7 +1031,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                         \end{lstlisting}
 
                         \item Configuración de OpenVPN:
-                        La configuración puede ser realizada medainte los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
+                        La configuración puede ser realizada mediante los archivos \textit{.conf} de OpenVPN o a través de la interfaz \textit{uci} de OpenWRT. En esta guía se indican los comandos a ejecutar para realizarlo mediante esta última opción.
 
                         \begin{lstlisting}[language=bash]
                             $ echo > /etc/config/openvpn
@@ -1068,21 +1057,20 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                         \end{lstlisting}
                     \end{enumerate}
 
-                \item Conexión al la VPN desde dispositivo Android
+                \item \textbf{\underline{Conexión al la VPN desde dispositivo Android}} \\
                 Para establecer la conexión con la VPN se debe instalar la aplicación \textit{OpenVPN for Android} desde \textit{Google Play Store}
                 
                 \url{https://play.google.com/store/apps/details?id=de.blinkt.openvpn}
 
-                Una vez instalada la aplicación, añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca autmáticamente al iniciar sesión.
+                Una vez instalada la aplicación, se debe añadir un nuevo perfil desde la pestaña \textit{Profiles} presionando el botón \textit{Add Profile} y especificando un nombre. Después de realizar el paso anterior, en la pestaña \textit{Basic}, se debe seleccionar \textit{PKCS12 File} como el tipo de autenticación a utilizar, luego presionar el botón \textit{Select...} de la parte superior y buscar en el almacenamiento el archivo copiado al dispositivo en el apartado anterior \textit{<nombre-clave-cliente>.p12}. Opcionalmente se puede añadir la contraseña en el apartado \textit{Password} para que se introduzca automáticamente al iniciar sesión.
 
-                Finalmente entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
+                Finalmente se debe entrar en la pestaña \textit{Server List} y especificar la dirección del servidor OpenWRT en el apartado \textit{Server Address}, y en el apartado \textit{Server Port} especificar el puerto configurado en el servidor (1194 por defecto).
 
-                Después de haber configurado la aplicación, se puede establecer conección con la VPN presionando sobre el perfil creado. A partir de estre punto, todas las conexiones entre cliente y servidor serán cifradas.
+                Después de haber configurado la aplicación, se puede establecer conexión con la VPN presionando sobre el perfil creado. A partir de este punto, todas las conexiones entre cliente y servidor serán cifradas.
             \end{enumerate}
 
     \subsection{Manual de utilización}
-        \todo{references??????}
-        En esta sección se explican las funcionalidades que tiene la aplicación y cómo utilizarlas, en las imágenes \ref{fig:main_activity_manual} y \ref{fig:devices_activity_manual} se encuentran enumerados los elementos de la interfaz que son explicados a continuación.
+        En esta sección se explican las funcionalidades que tiene la aplicación y cómo utilizarlas, en las imágenes \ref{fig:main_activity_manual} y \ref{fig:devices_activity_manual} se encuentran enumerados los elementos de la interfaz explicados a continuación.
 
         \begin{figure}[h!]
             \centering
@@ -1101,25 +1089,25 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         \begin{enumerate}
 
-            \item Control de idiomas
+            \item \textbf{\underline{Control de idiomas}} \\
             Permite seleccionar el idioma con el que se muestran las opciones de la interfaz de usuario, están disponibles castellano e inglés, el idioma por defecto de la aplicación es el inglés.
 
-            \item Dirección IP/URL del rputer servidor
+            \item \textbf{\underline{Dirección IP/URL del router servidor}} \\
             Es el campo de texto donde se especifica la dirección del router OpenWRT en el cual se ha instalado la aplicación y sobre el que se desea gestionar la red Wi-Fi. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
 
-            \item Puerto de escucha del servicio
+            \item \textbf{\underline{Puerto de escucha del servicio}} \\
             Es el puerto que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para recibir las órdenes desde el dispositivo móvil. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
 
-            \item Contraseña establecida en el servidor
+            \item \textbf{\underline{Contraseña establecida en el servidor}} \\
             Es la contraseña que se indica al iniciar la aplicación en el router OpenWRT y que se utiliza para encriptar y desencriptar las órdenes enviadas desde el dispositivo móvil. La contraseña debe contener al menos ocho caracteres. La edición de este campo está deshabilitada por defecto, para cambiar su contenido se debe hacer uso del botón señalado con el número 5 en la \ref{fig:main_activity_manual}
 
-            \item Botón para Editar/Aceptar la configuración
+            \item \textbf{\underline{Botón para Editar/Aceptar la configuración}} \\
             Este botón habilita la edición de los campos de configuración señalados con los números 1, 2 y 3 en la \ref{fig:main_activity_manual}. Tras ser pulsado, el texto del botón cambia a \textit{Confirmar}, y debe ser pulsado para guardar la nueva configuración.
 
-            \item Switch Wi-Fi
+            \item \textbf{\underline{Switch Wi-Fi}} \\
             Enciende o apaga la red Wi-Fi en el router OpenWRT, la posición iquierda indica que la red Wi-Fi está apagada, la posición hacia la derecha indica que está encendida.
 
-            \item Configuración del filtro MAC
+            \item \textbf{\underline{Configuración del filtro MAC}} \\
             Permite seleccionar la configuración del filtro MAC en el router OpenWRT. El selector tiene tres posiciones: \textit{Deshabilitado}, \textit{Permitir} y \textit{Denegar}.
             \begin{itemize}
                 \item Si el filtro MAC está deshabilitado, cualquier dispositivo puede conectarse a la red Wi-Fi sin restricción de ningún tipo.
@@ -1127,37 +1115,39 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \item Si el filtro MAC está configurado para \textit{Denegar}, significa que tienen acceso a la red todos los dispositivos excepto los especificados para que el filtro les sea aplicado.
             \end{itemize}
             
-            \item Botón para acceder a la gestión de dispositivos
+            \item \textbf{\underline{Botón para acceder a la gestión de dispositivos}} \\
             Al pulsarlo se accede a un nuevo conjunto de opciones desde donde se pueden adicionar, editar y eliminar dispositivos, además de poder seleccionar los dispositivos con los que se desea aplicar el filtro MAC.
-            \item Botón de opciones
+            \item \textbf{\underline{Botón de opciones}} \\
             Permite acceder a las opciones marcadas con los puntos 12, 14 y 15 en la \ref{fig:devices_activity_manual}
-            \item Nombre del dispositivo
+            \item \textbf{\underline{Nombre del dispositivo}} \\
             Es un indicador distintivo para cada dispositivo, es determinado por el usuario al añadir un nuevo dispositivo y es un campo obligatorio.
-            \item Dirección MAC del dispositivo
+            \item \textbf{\underline{Dirección MAC del dispositivo}} \\
             Identificador único del adaptador de red del dispositivo. Es especificado por el usuario al añadir un nuevo dispositivo y debe cumplir con un formato específico compuesto por seis pares de caracteres hexadecimales separados por dos puntos(:). Si el formato introducido no es correcto, el botón \textit{Añadir} queda deshabilitado.
-            \item Switch de estado del dispositivo
+            \item \textbf{\underline{Switch de estado del dispositivo}} \\
             Añade o elimina dispositivos para que se le aplique la configuración del filtro MAC, la posición iquierda indica que la configuración del filtro \textbf{NO} se aplica al dispositivo, la posición hacia la derecha indica que la configuración del filtro \textbf{NO} se aplica al dispositivo.
-            \item Botón para aplicar configuración
+            \item \textbf{\underline{Botón para aplicar configuración}} \\
             Aplica en el router OpenWRT la configuración que haya sido establecida.
-            \item Botón para optener configuración.
+            \item \textbf{\underline{Botón para optener configuración.}} \\
             Actualiza el dispositivo móvil con la configuración actual del router OpenWRT. Esta opción es útil cuando se gestiona la red desde más de un dispositivo móvil, de esta forma cada dispositivo puede saber siempre la última configuración aplicada en el router.
-            \item Botón para añadir nuevo dispositivo
+            \item \textbf{\underline{Botón para añadir nuevo dispositivo}} \\
             Muestra un cuadro de diálogo que permite introducir los datos del nuevo dispositivo y añadirlo a la lista de dispositivos
-            \item Botón para cerrar el menú de opciones
+            \item \textbf{\underline{Botón para cerrar el menú de opciones}} \\
             Cierra el menú de opciones, también puede ser cerrado presionando sobre cualquier espacio fuera del menú.
             
         \end{enumerate}
 
         \todo{subsection??}
-        Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
+        Para editar la información de un dispositivo, se debe mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción editar. La información del dispositivo debe cumplir los siguientes requisitos: El nombre de dispositivo no puede estar vacío, y la dirección MAC debe estar compuesta por seis pares de caracteres hexadecimales separados por dos puntos(:)
 
-        Para editar la información de un dispositivo, mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
+        Para editar la información de un dispositivo, se debe mantener pulsado sobre el mismo hasta que aparezca un cuadro de diálogo y seleccionar la opción eliminar.
 
         \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, se recomienda el restablecimiento de la conexión con el dispositivo conectado al router desde Internet en lugar de desde la red Wi-Fi.
 
 \section{Conclusiones y trabajo futuro}
     \subsection{Principales aportaciones}
+    \todo{hacer}
     % deberanse destacar entre 3 e 5 aportacións importantes do
+    % traballo realizado, tendo en conta os obxectivos fixados.
     Este proyecto contiene un conjunto de aportaciones a la soluciones inalámbricas disponibles actualmente en los hogares.
     
     
@@ -1166,36 +1156,17 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     Filtrado de dispositivos
     Mecanismos de seguridad capaces 
 
-
-\item Control desde dispositivos móviles:
-        El sistema debe ser capaz de ser controlado desde dispositivos 
-        \begin{itemize}
-            \item Conectado a la red Wi-Fi del propio router.
-            \item Conectado a Internet y accediendo desde la interfaz WAN.\todo{referenciar}
-        \end{itemize}
-
-        \item Incluir control para encender y apagar la red Wi-Fi de forma sencilla.
-        \item Implementar la gestión de un filtro MAC \todo{referenciar}, este debe contar con diferentes estados:
-            \begin{itemize}
-                \item \textbf{Desactivado:} Permite que todos los dispositivos puedan tener acceso a la red Wi-Fi.
-                \item \textbf{Permitir:} Solamente permite que sean conectados a la red Wi-Fi los dispositivos explícitamente especificados. 
-                \item \textbf{Denegar:} Permite el acceso a la red Wi-Fi a todos los dispositivos excepto a los que sean explícitamente especificados.
-            \end{itemize}
-        \item Aplicar un mecanismo de seguridad que elimine la posibilidad de que se pueda tomar el control del router desde un dispositivo móvil no autorizado.
-        \item Aplicar un mecanismo de seguridad capaz de impedir la réplica de paquetes de red que permitan cambiar configuraciones een el router de forma desautorizada.
-        \item Añadir soporte para idiomas
-    % traballo realizado, tendo en conta os obxectivos fixados.
-
-
     \subsection{Conclusiones}
     % incluiranse todas as conclusións de tipo técnico e persoal.
-    Mantenter control del tiempo que pasan los menores en Internet es un problema que presentan todos los padres hoy en día. En este proyecto de fin de grado se ha intentado facilitar esta tarea de forma que cualquier persona, sin la necesidad de conocimientos técnicos, pudiese realizarlo rápidamente. 
+    Mantenter control del tiempo que pasan los menores en Internet es un problema que presentan todos los padres hoy en día. En este Trabajo de Fin de Grado se ha intentado facilitar esta tarea de forma que cualquier persona, sin la necesidad de conocimientos técnicos, pudiese realizarlo rápidamente. 
     
-    Luego de un largo proceso de desarrollo, este proyecto concluye con resultados satisfactorios, y, pese a los problemas surgidos desde sus inicios, donde la fase de investigación propuso un cambio significativo a la propuesta inicial, se considera que todos los objetivos propuestos durante su creación, han sido alcanzados. El desarrollo del proyecto ha suponido más tiempo del planificado, pero este tiempo ha sido empleado en la creación de un sistema robusto y al alcance de cualquier hogar, brindando un mecanismo de control que no requiere de una gran inversión en infraestructira ni software especializado.
+    Después de un largo proceso de desarrollo, este proyecto concluye con resultados satisfactorios, y, pese a los problemas surgidos desde sus inicios, donde la fase de investigación propuso un cambio significativo a la propuesta inicial, se considera que todos los objetivos propuestos durante su creación, han sido alcanzados. El desarrollo del proyecto ha supuesto más tiempo del planificado, pero este tiempo ha sido empleado en la creación de un sistema robusto y al alcance de cualquier hogar, brindando un mecanismo de control que no requiere de una gran inversión en infraestructira ni software especializado.
 
     \todo{esto se podría alargar}
 
-    Personalmente siento que gracias al desarrollo de este proyecto he podido afianzar y ampliar mis conocimientos en un campo que siempre ha captado mi atención y al que me gustaría dedicarme el día de mañana, las redes informáticas; por lo que intentaré que no quede aquí y llevarlo adelante tanto como pueda. Durante todo el desarrollo de este proyecto he mantenido dos cosas en mi cabeza, intentar aplicar todo lo que he aprendido durante estos últimos cuatro años, y unas palabras que me dijo mi tutor al comenzar a trabajar juntos: ``Haz un proyecto del que te sientas orgullosos...'' En estos momentos, creo que lo he conseguido.
+    Personalmente siento que gracias al desarrollo de este proyecto he podido afianzar y ampliar mis conocimientos en un campo que siempre ha captado mi atención y al que me gustaría dedicarme en un futuro, las redes informáticas; por lo que intentaré que no quede aquí y seguir trabajando en mi formación tanto como pueda. Durante todo el desarrollo de este proyecto he mantenido dos pautas constantes:
+    
+    Intentar aplicar todo lo que he aprendido durante estos últimos cuatro años, y unas palabras que me dijo mi tutor al comenzar a trabajar juntos: ``Haz un proyecto del que te sientas orgulloso...''. En estos momentos, creo que lo he conseguido.
 
     \subsection{Trabajo futuro}
     % presentaranse posible ampliacións e traballos relacionados por facer.
@@ -1203,7 +1174,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         Dado que todos los seres humanos normalmente seguimos rutinas, incuídos los menores, sería interesante crear un macanismo que permita planificar los horarios en los que cierto dispositivo tiene acceso a Internet. Esta es una forma simple de evitar problemas por olvidos y facilitar la gestión diaria de la conectividad en el hogar.
 
         \subsubsection{Cuotas de navegación}
-        Aunque la educación por recompensa conlleve sus desventajas, está claro que siempre incita al esfuerzo. Por esto, una posible ampliación sería un sistema que permita configurar cuotas de navegación para los dispositivos en función de las notas obtenidas desde una secretaría virtual.
+        Aunque la educación por recompensa conlleve sus desventajas, está claro que siempre incita al esfuerzo. Por ello, una posible ampliación sería un sistema que permita configurar cuotas de navegación para los dispositivos en función de las notas obtenidas desde una secretaría virtual.
 
         Esto requeriría un estudio de viabilidad, teniendo en cuenta que no todos los colegios disponen de secretarías virtuales para la entrega de notas, ni todas las secretarías virtuales poseen las mismas características.
 
