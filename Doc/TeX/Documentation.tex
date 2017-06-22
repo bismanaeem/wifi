@@ -1,10 +1,10 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm]{geometry}
 \usepackage[spanish]{babel}
 
 \usepackage{titlesec}
-\newcommand{\sectionbreak}{\clearpage}
+\newcommand{\cleardoublepage \sectionbreak}{\clearpage}
 
 \usepackage{natbib}
 \usepackage{graphicx}
@@ -15,10 +15,12 @@
 \usepackage{fancyhdr}
 \usepackage{array}
 \usepackage{indentfirst}
-
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{emptypage}
 \pagestyle{fancy}
 \rhead{}
 %\usepackage[parfill]{parskip}  lineas entre párrafos
+
 
 \usepackage{hyperref}
 \hypersetup{
@@ -87,10 +89,10 @@
 %% DEDICATORIA Y AGRADECIMIENTOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Dedicatoria}
+\cleardoublepage \section{Dedicatoria}
 A Patry, el amor de mi vida
 
-\section{Agradecimientos}
+\cleardoublepage \section{Agradecimientos}
 A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisdad
 
 
@@ -113,7 +115,8 @@ A mi cuñado Daniel Victor por apoyarme durante todo este tiempo en la univerisd
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
-\section{Introducción}\label{sec:int}
+
+\cleardoublepage \section{Introducción}\label{sec:int}
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
@@ -142,7 +145,7 @@ En este trabajo se ha creado una aplicación para dispositivos móviles Android 
 
 A pesar de que la parte visible del sistema es sólo la aplicación Android, deliberadamente sencilla, el sistema consta de un servicio instalado en la pasarela que recibe las instrucciones de la aplicación Android y ejecuta las acciones pertinentes en la pasarela de filtrado o habilitación/deshabilitación de accesos.
 
-\section{Objetivos} \label{sec:obj}
+\cleardoublepage \section{Objetivos} \label{sec:obj}
 % presentar o problema que se vai tratar, incluír o obxectivo principal e os
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
     Se presenta en la figura \ref{fig:red_soho} un esquema general de una red doméstica donde se incluye la terminología empleada.
@@ -188,7 +191,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \end{enumerate}
 
 
-\section{Resumen de la solución propuesta} \label{sec:sol}
+\cleardoublepage \section{Resumen de la solución propuesta} \label{sec:sol}
 % indicarase a solución aportada para o problema
 % presentado. Deberase incluír aquí a metodoloxía empregada.
     Tras realizar un análisis de los componentes con los que comunmente se cuenta en entornos domésticos, se ha concluido que no es posible crear una solución estándar para los diferentes proveedores de servicios de Internet, por tanto, se plantea la realización de un sistema de control parental sobre accesos Wi-Fi en un router con OpenWRT, un sistema operativo compatible con un gran número de los routers actuales del mercado y adaptable a la mayoría de los existentes. 
@@ -215,7 +218,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \item \textbf{Maestro de SCRUM:} Encargado de rastrear el trabajo que queda por hacer, tomar desiciones, medir el avance en función de la planificación inicial y mantener la comunicación con el cliente. Este rol será adoptado por el alumno.
     \end{itemize}
 
-\section{Planificación y seguimiento} \label{sec:plan}
+\cleardoublepage \section{Planificación y seguimiento} \label{sec:plan}
 % deberase incluír un diagrama de Gantt que amose tanto
 % a planificación do traballo, coa súa distribución de fases e tarefas, e a súa comparación cos
 % datos reais obtidos tras o desenvolvemento do traballo.
@@ -287,200 +290,6 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:tasks_gantt1}
         \end{figure}
 
-        \subsubsection{Descripción de las fases}
-            La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fases_inv}.
-
-            
-            \begin{table}[!htbp]
-                \centering
-                    \resizebox{\textwidth}{!}{
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Investigación acerca de las necesidades de control en redes Wi-Fi           &   0.5                                 \\
-                            Análisis de routers actuales                                                &   0.5                                 \\
-                            Comparativa de las soluciones aportadas por los proveedores de Internte     &   0.5                                 \\
-                            Análisis de las características del sistema a desarrollar                   &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción de la fase de investigación}
-                \label{tab:fases_inv}
-            \end{table}
-
-            \paragraph{ Boceto}
-            En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \ref{tab:fases_boc}.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Análisis de los objetivos generales del sistema                             &   0.25                                \\
-                            Análisis detallado de los subobjetivos                                      &   0.25                                \\
-                            Diseño de la arquitectura del sistema                                       &   1                                   \\
-                            Planificación de los sprints de desarrollo                                  &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción de la face Boceto}
-                \label{tab:fases_boc}
-            \end{table}
-            
-            \paragraph{ Compilación cruzada}
-            En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT \ref{SDK} y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{                      
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Desarrollo de un sistema de prueba                                          &   0.2                                 \\
-                            Compilación utilizando el toolchain de OpenWRT                              &   1                                   \\
-                            Compilación utilizando el SDK de OpenWRT                                    &   2                                   \\
-                            Realización de pruebas de funcionamiento en el router                       &   0.8                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción de la fase de compilación cruzada}
-                \label{tab:fases_cc}
-            \end{table}
-
-            \paragraph{ Sprint 1: Implementación de la aplicación Android base}
-            En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \ref{tab:fases_sp1}.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Diseño de pruebas                                                           &   0.5                                 \\
-                            Implementar interfaz base                                                   &   0.2                                 \\
-                            Implementar configuraciones Android                                         &   0.2                                 \\
-                            Implementar cliente                                                         &   0.6                                 \\
-                            Implementar servidor de confirmación                                        &   2                                   \\
-                            Implementar servidor de actualización                                       &   2                                   \\
-                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción del sprint 1}
-                \label{tab:fases_sp1}
-            \end{table}
-
-            \paragraph{ Sprint 2: Implementación del servidor}
-            El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas \ref{Socket}. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Diseño de pruebas                                                           &   0.5                                 \\
-                            Implementación del socket                                                   &   2                                   \\
-                            Implementación de funcionalidades                                           &   2                                   \\
-                            Demonizar                                                                   &   1                                   \\
-                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción del sprint 2}
-                \label{tab:fases_sp2}
-            \end{table}
-
-            \paragraph{ Sprint 3: Implementación de sistemas de seguridad}
-            En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \ref{tab:fases_sp3}.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Encriptación DES en cliente                                                 &   0.5                                 \\
-                            Encriptación Base64 en cliente                                              &   0.5                                 \\
-                            Decriptación Base64 en servidor                                             &   2                                   \\
-                            Decriptación DES en servidor                                                &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción del sprint 3}
-                \label{tab:fases_sp3}
-            \end{table}
-
-            \paragraph{ Sprint 4: Implementación de la interfaz gráfica de la aplicación}
-            Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador \cite{ArrayAdapter}, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Diseño de pruebas unitarias                                                 &   0.5                                 \\
-                            Desarrollo de la actividad principal                                        &   0.2                                 \\
-                            Modelo de dispositivos personalizados                                       &   0.2                                 \\
-                            Adaptador de dispositivos personalizado                                     &   0.6                                 \\
-                            Desarrollo de diálogos y menús                                              &   2                                   \\
-                            Implementación de la gestión de idiomas                                     &   2                                   \\
-                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción del sprint 4}
-                \label{tab:fases_sp4}
-            \end{table}
-
-            \paragraph{ Sprint 5: Integración de sistemas}
-            El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \ref{tab:fase_sp5}.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
-                            \hline
-                            Integración de la interfaz gráfica y los sistemas de conexión               &   3                                   \\
-                            Integración de los sistemas de seguridad                                    &   2                                   \\
-                            Validación de pruebas y corrección de errores                               &   0.5                                 \\
-                            \hline
-                    \end{tabular}
-                    }
-                \caption{Descripción del sprint 5}
-                \label{tab:fase_sp5}
-            \end{table}
-
-            \paragraph{ Documentación}
-            La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \ref{tab:fase_doc}.
-
-            \begin{table}[!htbp]             
-                \centering                  
-                    \resizebox{\textwidth}{!}{   
-                        \begin{tabular}{|l|c|}
-                            \hline
-                            \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\         
-                            \hline
-                            Elaboración de la memoria                                                   &   38                                  \\
-                            Cierre                                                                      &   2                                   \\
-                            \hline
-                        \end{tabular}
-                    }
-                \caption{Descripción de la fase de documentación}
-                \label{tab:fase_doc}
-            \end{table}
-
     \subsection{Desviaciones de la planificación inicial}
         La planificación inicial es utilizada como una guía a seguir para la ejecución del proyecto, pero hay ocasiones en las que se hace imposible seguirla al pie de la letra. Esos momentos en los que la ejecución real difiere de la planificación son llamados ``Desviaciones'', y pueden estar causdas por múltiples motivos. Los principales son una planificación errónea o la aparición de imprevistos. Esto no es extraño que ocurra, por tanto, siempre se debe planificar teniendo en mente los problemas que puedan surgir durante el desarrollo del proyecto. El diagrama de Gantt con los datos reales obtenidos (figura \ref{fig:deviations_gantt}) y las principales desviaciones de este proyecto están detalladas a continuación.
 
@@ -493,7 +302,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         La tercera desviación surge en el intento de añadir un mecanismo de seguridad que no estaba planificado inicialmente. Se realiza el intento de obtener la dirección MAC del dispositivo que envía peticiones al servidor en cada uno de los paquetes, con el objetivo implementar un mecanismo de control de accesos mediante el filtrado de los dispositivos autorizados. Tras varios intentos y pruebas, finalmente es descartado debido a que para realizarlo es necesario rehacer el socket desarrollado en el sprint anterior con un nuevo tipo, lo cual representa una desviación demasiado grande teniendo en cuenta las anteriores y las que aún pueden surgir a partir de este punto.
 
         \paragraph{ Implementación de la interfaz gráfica de la aplicación}
-        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android \ref{Color}, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo al inicialmente planificado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
+        La cuarta y última desviación surge con la gestión de \textit{listeners} de la interfaz gráfica durante el desarrollo de la actividad de gestión de dispositivos. Debido a que gran parte de la interfaz se realiza utilizando elementos personalizados muy diferentes de los que proporciona Android \cite{Color}, se hace difícil encontrar documentación para controlar situaciónes específicas. Los retos fundamentales, y los cuales toman una mayor cantidad de tiempo al inicialmente planificado son la vuelta atrás de la interfaz gráfica en caso de fallo, sin que sea lanzada una nueva ejecución del método; y la gestión de \textit{listeners} en los diálogos que permitan rotar la pantalla sin obtener resultados inesperados.
         
         \begin{figure}[h!]
             \centering
@@ -504,7 +313,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         La arquitectura del servidor 
 
-\section{Arquitectura y tecnologías} \label{sec:arq}
+\cleardoublepage \section{Arquitectura y tecnologías} \label{sec:arq}
 % explicarase a arquitectura empregada para alcanzar os obxectivos propostos.
 
     \subsection{Arquitectura del sistema}
@@ -702,7 +511,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             Es una aplicación gratuita disponible en la tienda online de \textit{Google}. Permite utilizar OpenVPN en dispositivos móviles para crear conexiones punto a punto de forma segura. Todo el tráfico generado entre estos puntos es transportado en paquetes cifrados, haciendo uso de certificados SSL.
 
 
-\section{Especificación y análisis de requisitos} \label{sec:req}
+\cleardoublepage \section{Especificación y análisis de requisitos} \label{sec:req}
 % describiranse os requisitos necesarios, tanto funcionais como non funcionais. Incluiranse os aspectos máis relevantes correspondentes á análise do traballo realizado.
     
     \subsection{Casos de uso}
@@ -742,7 +551,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
             El sistema funciona de forma fluida, mantenienndo un bajo consumo de recursos en los dispositivos.
         \end{itemize}
 
-\section{Diseño de software} \label{sec:dis}
+\cleardoublepage \section{Diseño de software} \label{sec:dis}
 % (estático e dinámico) ou do hardware: indicaranse os aspectos máis relevantes correspondentes ao deseño do traballo realizado
 % estatico -> diagrama de clases
 % dinamico -> diagrama de secuencia
@@ -788,7 +597,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{fig:device_management_sequence_diagram}
     \end{figure}
 
-\section{Gestión de datos e información} \label{sec:dat}
+\cleardoublepage \section{Gestión de datos e información} \label{sec:dat}
 % Xestión de datos e información: describiranse os métodos ou técnicas empregadas para xestionar tanto os datos coma o resto de información relevante.
     Ya que el objetivo es la creación un mecanismo de control para accesos a la red Wi-Fi, el sistema que se plantea no cuenta con bases de datos para almacenar información, sin embargo, se necesita una forma de guardar las configuraciones utilizadas.
     
@@ -842,7 +651,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                 \label{fig:android_lifecycle}
         \end{figure}
 
-\section{Pruebas llevadas a cabo} \label{sec:pru}
+\cleardoublepage \section{Pruebas llevadas a cabo} \label{sec:pru}
 % describiranse as probas realizadas aos distintos niveis para
 % garantir o correcto funcionamento do software ou do hardware.
     \subsection{Explicación de las pruebas}
@@ -857,7 +666,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \subsection{Pruebas de encriptación}
     El funcinamiento del sistema de encriptación entre cliente y servidor es verificado mediente la prueba unitaria de conectividad, especificando valores correctos e incorrectos para el campo contraseña tanto de la aplicación como del servidor. Para realizar pruebas en los sistemas por separado se hace uso de la librería \textit{OpenSSL}, los valores obtenidos como resultado de la aplicación deben ser iguales a los generados con esta librería desde la consola de comandos, siempre y cuando los parámetros utilizados sean los mismos. 
 
-\section{Manual de usuario} \label{sec:man}
+\cleardoublepage \section{Manual de usuario} \label{sec:man}
     \subsection{Requisitos mínimos}
         Para poder utilizar el sistema \textbf{Wifither} se debe cumplir un conjunto de requisitos, los cuales están especificados a continuación.
 
@@ -1189,7 +998,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         \textbf{IMPORTANTE:} Debe tenerse en cuenta que una mala configuración del filtro MAC puede provocar la pérdida de la conexión en el dispositivo desde el que se está gestionando la red Wi-Fi si está directamente conectado a esta. La configración establecida debe ser revisada cautelosamente antes de ser aplicada. En caso de pérdida de conexión por este motivo, se recomienda el restablecimiento de la conexión con el dispositivo conectado al router desde Internet en lugar de desde la red Wi-Fi.
 
-\section{Conclusiones y trabajo futuro} \label{sec:conc}
+\cleardoublepage \section{Conclusiones y trabajo futuro} \label{sec:conc}
     \subsection{Principales aportaciones}
     % deberanse destacar entre 3 e 5 aportacións importantes do
     % traballo realizado, tendo en conta os obxectivos fixados.
@@ -1231,12 +1040,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \subsubsection{Aplicación iOS}
         Dado que el número de dispositivos iOS aumenta cada año, es una buena idea portar el código de la aplicación Android desarrollada para que esté disponible en este sistema operativo.
 
-\section{Referencias} \label{sec:ref}
-``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
-https://www.internetworldstats.com/stats.htm \citep{hola}
-http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
-% http://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259925528782&p=1254735110672&pagename=ProductosYServicios\%2FPYSLayout \citep{\citep{Internet por edades}
-% wikipedia.com (Paquetes IP)
+\bibliographystyle{plain}
+\bibliography{biblio}
 
 % deberanse citar todas as fontes de información empregadas para a realización do traballo.
 
@@ -1260,7 +1065,7 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
 
 % Deberase empregar un estilo uniforme para todas elas e aportarase, en cada caso:
 \appendix
-\section{Anexos} \label{anx:dependences}
+\cleardoublepage \section{Anexos} \label{anx:dependences}
     \begin{table}[!htbp]             
         \centering                  
             \resizebox{\textwidth}{!}{   
@@ -1368,13 +1173,203 @@ http://www.ine.es/prensa/np991.pdf \citep{Menores que utilizan internet}
         \label{tab:cripto_tests}
     \end{table}
 
-\section{prueba}
-fcdsf
+    \subsubsection{Descripción de las fases}
+        La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fases_inv}.
+
+        
+        \begin{table}[!htbp]
+            \centering
+                \resizebox{\textwidth}{!}{
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Investigación acerca de las necesidades de control en redes Wi-Fi           &   0.5                                 \\
+                        Análisis de routers actuales                                                &   0.5                                 \\
+                        Comparativa de las soluciones aportadas por los proveedores de Internte     &   0.5                                 \\
+                        Análisis de las características del sistema a desarrollar                   &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción de la fase de investigación}
+            \label{tab:fases_inv}
+        \end{table}
+
+        \paragraph{ Boceto}
+        En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \ref{tab:fases_boc}.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Análisis de los objetivos generales del sistema                             &   0.25                                \\
+                        Análisis detallado de los subobjetivos                                      &   0.25                                \\
+                        Diseño de la arquitectura del sistema                                       &   1                                   \\
+                        Planificación de los sprints de desarrollo                                  &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción de la face Boceto}
+            \label{tab:fases_boc}
+        \end{table}
+        
+        \paragraph{ Compilación cruzada}
+        En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT \cite{SDK} y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{                      
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Desarrollo de un sistema de prueba                                          &   0.2                                 \\
+                        Compilación utilizando el toolchain de OpenWRT                              &   1                                   \\
+                        Compilación utilizando el SDK de OpenWRT                                    &   2                                   \\
+                        Realización de pruebas de funcionamiento en el router                       &   0.8                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción de la fase de compilación cruzada}
+            \label{tab:fases_cc}
+        \end{table}
+
+        \paragraph{ Sprint 1: Implementación de la aplicación Android base}
+        En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \ref{tab:fases_sp1}.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Diseño de pruebas                                                           &   0.5                                 \\
+                        Implementar interfaz base                                                   &   0.2                                 \\
+                        Implementar configuraciones Android                                         &   0.2                                 \\
+                        Implementar cliente                                                         &   0.6                                 \\
+                        Implementar servidor de confirmación                                        &   2                                   \\
+                        Implementar servidor de actualización                                       &   2                                   \\
+                        Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción del sprint 1}
+            \label{tab:fases_sp1}
+        \end{table}
+
+        \paragraph{ Sprint 2: Implementación del servidor}
+        El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas \cite{Socket}. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Diseño de pruebas                                                           &   0.5                                 \\
+                        Implementación del socket                                                   &   2                                   \\
+                        Implementación de funcionalidades                                           &   2                                   \\
+                        Demonizar                                                                   &   1                                   \\
+                        Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción del sprint 2}
+            \label{tab:fases_sp2}
+        \end{table}
+
+        \paragraph{ Sprint 3: Implementación de sistemas de seguridad}
+        En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \ref{tab:fases_sp3}.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Encriptación DES en cliente                                                 &   0.5                                 \\
+                        Encriptación Base64 en cliente                                              &   0.5                                 \\
+                        Decriptación Base64 en servidor                                             &   2                                   \\
+                        Decriptación DES en servidor                                                &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción del sprint 3}
+            \label{tab:fases_sp3}
+        \end{table}
+
+        \paragraph{ Sprint 4: Implementación de la interfaz gráfica de la aplicación}
+        Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador \cite{ArrayAdapter}, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Diseño de pruebas unitarias                                                 &   0.5                                 \\
+                        Desarrollo de la actividad principal                                        &   0.2                                 \\
+                        Modelo de dispositivos personalizados                                       &   0.2                                 \\
+                        Adaptador de dispositivos personalizado                                     &   0.6                                 \\
+                        Desarrollo de diálogos y menús                                              &   2                                   \\
+                        Implementación de la gestión de idiomas                                     &   2                                   \\
+                        Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción del sprint 4}
+            \label{tab:fases_sp4}
+        \end{table}
+
+        \paragraph{ Sprint 5: Integración de sistemas}
+        El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \ref{tab:fase_sp5}.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\           
+                        \hline
+                        Integración de la interfaz gráfica y los sistemas de conexión               &   3                                   \\
+                        Integración de los sistemas de seguridad                                    &   2                                   \\
+                        Validación de pruebas y corrección de errores                               &   0.5                                 \\
+                        \hline
+                \end{tabular}
+                }
+            \caption{Descripción del sprint 5}
+            \label{tab:fase_sp5}
+        \end{table}
+
+        \paragraph{ Documentación}
+        La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \ref{tab:fase_doc}.
+
+        \begin{table}[!htbp]             
+            \centering                  
+                \resizebox{\textwidth}{!}{   
+                    \begin{tabular}{|l|c|}
+                        \hline
+                        \textbf{Tarea}                                                              &   \textbf{Estimación temporal} (Días) \\         
+                        \hline
+                        Elaboración de la memoria                                                   &   38                                  \\
+                        Cierre                                                                      &   2                                   \\
+                        \hline
+                    \end{tabular}
+                }
+            \caption{Descripción de la fase de documentación}
+            \label{tab:fase_doc}
+        \end{table}
 % incluiranse outros elementos de interese no TFG que se consideren necesarios para a
 
 % mellor comprensión do mesmo.
 
-\bibliographystyle{plain}
-\bibliography{biblio}
+
 
 \end{document}
