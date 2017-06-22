@@ -16,6 +16,7 @@
 \usepackage{indentfirst}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage{emptypage}
+\usepackage[section]{placeins}
 \pagestyle{fancy}
 \rhead{}
 %\usepackage[parfill]{parskip}  lineas entre párrafos
@@ -80,10 +81,6 @@
 \date{Mayo, 2017}
 
 \begin{document}
-\maketitle
-
-\clearpage
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ÍNDICE
@@ -96,16 +93,17 @@
 \setlength{\parskip}{1em}
 
 \tableofcontents
-\printindex
+\clearpage
 \listoffigures
+\clearpage
 \listoftables
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENIDO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\todo{hojas impares (openright https://tex.stackexchange.com/questions/36988/regarding-the-book-report-and-article-document-classes-what-are-the-mai)}
-
 \cleardoublepage \section{Introducción}\label{sec:int}
+
 %haberá que incluír unha introdución ao problema e xustificación do
 %traballo realizado. En caso de que o TFG integre ou desenvolva traballos feitos na
 %actividade doutras materias da titulación, o/a estudante deberá especificar os devanditos
@@ -139,7 +137,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 % específicos, de ser o caso, do traballo presentado, indicando o alcance para cada un deles.
     Se presenta en la figura \ref{fig:red_soho} un esquema general de una red doméstica donde se incluye la terminología empleada.
 
-    \begin{figure}[hp]
+    \begin{figure}[h!][hp]
     \centering
         \includegraphics[scale=0.2]{soho_network.eps}
         \caption{Topología de una red doméstica}
@@ -217,7 +215,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \subsubsection{Diagrama de fases y tareas}
         Como se muestra en la \ref{tab:fases_planif} el desarrollo del sistema se llevará a cabo durante nueve fases, entre las cuales se incluyen cinco sprints de implementación y la elaboración de la documentación, que incluye la fase de cierre, fundamental en \textit{SCRUM}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
                 \centering                  
                     \resizebox{\textwidth}{!}{   
                         \begin{tabular}{|l|c|}
@@ -359,7 +357,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
             \begin{figure}[h!]
             \centering
-                \includegraphics[scale=0.4]{client_diagram.eps}
+                \includegraphics[scale=0.35]{client_diagram.eps}
                 \caption{Diagrama de componentes del cliente}
                 \label{fig:client_diagram}
             \end{figure}
@@ -414,7 +412,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
             El contenido que viaja cifrado dentro de cada paquete varía en función de la acción que se elige realizar desde el sistema cliente, esta contiene un mensaje de control, y adicionalmente puede contener información necesaria para la acción a realizar. En la tabla \ref{tab:packet_content} se muestra el contenido de los mensajes de control enviados por el cliente.
 
-            \begin{table}[!htbp]
+            \begin{table}[h!]
                 \centering
                     \resizebox{\textwidth}{!}{
                         \begin{tabular}{|l|c|c|}
@@ -549,26 +547,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{fig:class_diagram} muestra el diagrama de clases del sistema cliente.
         
-    \afterpage{% Insert after the current page
-    \clearpage
-    \KOMAoptions{paper=A3,paper=landscape,pagesize}
-    \recalctypearea
-
-        \begin{figure}[h!]
-        \centering
-            \includegraphics[scale=0.38]{class_diagram.eps}
-            \caption{Diagrama de clases del sistema}
-            \label{fig:class_diagram}
-        \end{figure}
-
-    \clearpage
-    \KOMAoptions{paper=A4,pagesize}
-    \recalctypearea
-    }
-    \pagebreak
 
     \subsection{Diseño dinámico}
-    
     En la imagen \ref{fig:main_activity_sequence_diagram} se puede observar el diagrama de secuencia general del sistema, donde se muestra la interacción entre los objetos que lo componen. En esta representación pueden variar el mensaje enviado, la actividad y el servidor de configuración, manteniendo la misma forma en la que interactúan.
 
     \begin{figure}[h!]
@@ -1053,9 +1033,11 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 % toda a sección.
 
 % Deberase empregar un estilo uniforme para todas elas e aportarase, en cada caso:
-\appendix
+
 \cleardoublepage \section{Anexos} \label{anx:dependences}
-    \begin{table}[!htbp]             
+    \appendix
+    \section{Tabla de dependencias del SDK}
+    \begin{table}[h!]             
         \centering                  
             \resizebox{\textwidth}{!}{   
                 \begin{tabular}{|l|l|l|}
@@ -1070,13 +1052,9 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
                     fastjar                 & fastjar           & fastjar                   \\
                     flex                    & flex              & flex                      \\
                     git                     & git-core          & git                       \\
-                    GNU C++ Compiler        & g gcc-c           & -                         \\
                     GNU C Compiler          & gcc               & gcc                       \\
                     getopt                  & util-linux        & util-linux                \\
                     GNU awk                 & gawk              & gawk                      \\
-                    gtk2.0-dev              & libgtk2.0-dev     & gtk2                      \\
-                    intltool-update         & intltool          & intltool                  \\
-                    jikes                   & jikespg           & -                         \\
                     libz, libz-dev          & zlib1g-dev        & zlib                      \\
                     Mercurial / hg          &                   & mercurial                 \\
                     make                    & make              & make                      \\
@@ -1102,8 +1080,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{tab:sdk_dependences}
     \end{table}
 
-
-    \begin{table}[!htbp]             
+    \section{Detalles de la planificación}
+    \begin{table}[h!]             
         \centering                  
             \resizebox{\textwidth}{!}{   
                 \begin{tabular}{|l|l|l|}
@@ -1121,7 +1099,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{tab:conectivity_tests}
     \end{table}
 
-    \begin{table}[!htbp]             
+    \begin{table}[h!]             
         \centering                  
             \resizebox{\textwidth}{!}{   
                 \begin{tabular}{|l|l|l|}
@@ -1142,7 +1120,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{tab:input_tests}
     \end{table}
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
         \centering                  
             \resizebox{\textwidth}{!}{   
                 \begin{tabular}{|l|l|l|}
@@ -1166,7 +1144,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fases_inv}.
 
         
-        \begin{table}[!htbp]
+        \begin{table}[h!]
             \centering
                 \resizebox{\textwidth}{!}{
                     \begin{tabular}{|l|c|}
@@ -1187,7 +1165,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Boceto}
         En esta fase se realiza un estudio de los objetivos generales del sistema que se desarrolla, cada uno de ellos es analizado para definir sus características fundamentales. Con los resultados obtenidos se realiza el diseño de la arquitectura que será utilizado, definiendo el sistema, los subsistemas que lo componen, y las estrategias a utilizar para su construcción. Las tareas necesarias para el desarrollo de esta fase se encuentran el la tabla \ref{tab:fases_boc}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1208,7 +1186,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Compilación cruzada}
         En esta fase se busca abarcar toda la documentación posible acerca de la compilación cruzada desde distribuciones GNU/Linux para OpenWRT. Se compila un paquete ``Hola mundo'' utilizando tanto el \textit{Toolchain} como el \textit{SDK} proporcionado por OpenWRT \cite{SDK} y se comprueba su funcionamiento en el router donde se realizarán las pruebas de desarrollo del sistema en cada uno de los sprints. En la tabla \ref{tab:fases_cc} pueden encontrarse las tareas que incluye esta fase.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{                      
                     \begin{tabular}{|l|c|}
@@ -1229,7 +1207,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Sprint 1: Implementación de la aplicación Android base}
         En el primer sprint se busca crear una aplicación sencilla para dispositivos Android. Debe tener una interfaz básica, con las opciones necesarias para la configuración del servidor resultante del \textit{Sprint 2}. También debe implementar la gestión de paquetes UDP, se envian paquetes de control y se reciben paquetes de confirmación y paquetes de actualización de estado. Las tareas de esta fase se encuentran en la tabla \ref{tab:fases_sp1}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1253,7 +1231,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Sprint 2: Implementación del servidor}
         El objetivo del segundo sprint es desarrollar el sistema servidor, éste debe contener un socket que le permita recibir peticiones y responder a éstas \cite{Socket}. También debe modificar las configuraaciones necesarias de acuerdo al mensaje de control recibido desde el cliente, y debe poder ser ejecutado como un servicio demonio, no deberá bloquear la terminal ni terminar su ejecución cuando la sesión desde la que ha sido iniciado sea finalizada. La tabla \ref{tab:fases_sp2} muestra las tareas de esta fase.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1275,7 +1253,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Sprint 3: Implementación de sistemas de seguridad}
         En el tercer sprint se procede con el desarrollo de los sistemas de seguridad planteados durante el análisis. Se implementan los métodos de encriptación \textit{DES} para los mensajes de control que son enviados al servidor, y el resultado de estos métodos, a su vez, es encriptado en \textit{Base64}, de forma que pueda ser enviado mediante datagramas. También se implementan los mecanismos de desencriptación tanto \textit{Base64} como \textit{DES} que son utilizados en el servidor tras recibir los paquetes UDP enviados desde el cliente. Las tareas relacionadas con esta fase pueden ser encontradas en la tabla \ref{tab:fases_sp3}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1296,7 +1274,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Sprint 4: Implementación de la interfaz gráfica de la aplicación}
         Durante el cuarto sprint se implementa la interfaz gráfica final de la aplicación Android. Debe disponer de una actividad principal con opciones de configuración, y una actividad para la gestión de dispositivos, donde estos puedan ser almacenados en una lista. Esta lista, mediante un adaptador \cite{ArrayAdapter}, debe permitir la visualización de los datos de cada dispositivo y su controlador de configuración. Es importante que el sistema esté disponible en múltiples idiomas. La tabla \ref{tab:fases_sp4} indica las tareas relacionadas con esta fase.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1320,7 +1298,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Sprint 5: Integración de sistemas}
         El resultado del cuarto sprint debe ser el proyecto totalmente integrado, inculyendo los resultados de los sprints anteriores, proporcionando así un sistema sólido, sin errores y listo para ser explotado. Las tareas correspondientes a esta fase pueden encontrarse en la tabla \ref{tab:fase_sp5}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
@@ -1340,7 +1318,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \paragraph{ Documentación}
         La documentación es un proceso que abarca el desarrollo de todo el proyecto salvo la fase de investigación inicial, donde no están clarificadas las bases del sistema a desarrollar. Documentar incluye tanto la memoria de proyecto, como la fase de cierre donde se completa con los manuales y guías para el usuario. Además, se debe tener en cuenta que mantener un código correctamente ordenado y comentado también es parte de la documentación. Las tareas de ésta fase pueden ser consultadas en la tabla \ref{tab:fase_doc}.
 
-        \begin{table}[!htbp]             
+        \begin{table}[h!]             
             \centering                  
                 \resizebox{\textwidth}{!}{   
                     \begin{tabular}{|l|c|}
