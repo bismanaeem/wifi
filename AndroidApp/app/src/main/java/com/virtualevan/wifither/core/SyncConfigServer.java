@@ -30,6 +30,8 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
     private ProgressBar progressBar;
     private String messageString="";
     private boolean portError;
+    private boolean switchValue = false;
+    private int spinnerValue = 0;
 
     //Receives the pressed button/switch/spinner, its status and its bound progress bar, then puts them in a local variable
     public SyncConfigServer(Switch sw_wifi, Spinner mf_spinner, ProgressBar progressBar ){
@@ -61,11 +63,24 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
             socket = new DatagramSocket( Integer.parseInt(data[1]) );
             socket.setSoTimeout(10000);
 
-            //Listen for 10 seconds
+            //Listen for 10 seconds until "done" message
+            String messageString = "";
             socket.receive(packet);
-
             messageString = new String(message, 0, packet.getLength());
-                Log.d("RECEIVED",messageString);
+            Log.d("RECEIVED", messageString);
+            //Done "end" package
+            while (!messageString.equals("done")) {
+                //If packageWifiNetwork
+                if(messageString.equals("3")){
+                    switchValue=true;
+                }//PackageMacFilter
+                else {
+                    spinnerValue = Integer.parseInt(messageString);
+                }
+                Log.d("RECEIVED", messageString);
+                socket.receive(packet);
+                messageString = new String(message, 0, packet.getLength());
+            }
         }
         catch (SocketTimeoutException ste)
         {
@@ -74,6 +89,7 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
         }
         catch (NumberFormatException nfe)
         {
+            nfe.printStackTrace();
             portError = true;
             return false;
         }
@@ -105,7 +121,9 @@ public class SyncConfigServer extends AsyncTask<String, Void, Boolean> {
         if(result){
             Log.d("CONNECTION","OK");
             try{
-                mf_spinner.setSelection( Integer.parseInt(messageString) );
+                //Set actual layout values
+                sw_wifi.setChecked( switchValue );
+                mf_spinner.setSelection( spinnerValue );
                 Toast.makeText(progressBar.getContext() , progressBar.getResources().getString(R.string.sync_successful), Toast.LENGTH_LONG).show();
             }
             catch (Exception e){

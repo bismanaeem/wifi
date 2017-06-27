@@ -260,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
         sp_macfilter.setSelection( loader.getInt( "mac_filter", 0 ) );
     }
 
+    //Prepare language menu
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
@@ -283,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //Create main menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -292,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //Manage language menu
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch( menuItem.getItemId() ) {

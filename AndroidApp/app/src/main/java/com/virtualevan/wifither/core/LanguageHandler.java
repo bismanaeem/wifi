@@ -11,10 +11,12 @@ import java.util.Locale;
  */
 
 public class LanguageHandler {
+    //Select locale
     public static void changeLocale(Resources res, String locale) {
         Configuration config;
         config = new Configuration(res.getConfiguration());
 
+        //Locale selector
         switch(locale) {
             case "es":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

@@ -91,6 +91,7 @@ public class DeviceDialogFragment extends DialogFragment {
         return dlgBuilder.create();
     }
 
+    //Keyboard on dialog start
     @Override
     public void onActivityCreated (Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -100,12 +101,14 @@ public class DeviceDialogFragment extends DialogFragment {
         }
     }
 
+    //Load/Inflate view
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          /*Loading dialog layout*/
         return inflater.inflate(R.layout.device_fragment, null);
     }
 
+    //Starting config
     @Override
     public void onStart(){
         super.onStart();
@@ -146,6 +149,7 @@ public class DeviceDialogFragment extends DialogFragment {
         });
     }
 
+    //Instance saver
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         final EditText et_name = (EditText) this.getDialog().findViewById( R.id.et_name );

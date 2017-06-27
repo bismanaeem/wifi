@@ -70,6 +70,8 @@ public class DevicesActivity extends AppCompatActivity {
             }
         });
 
+
+        //FAB Menu
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
@@ -81,7 +83,6 @@ public class DevicesActivity extends AppCompatActivity {
 
                     break;
                 case R.id.action_sync:
-                    //TODO: SYNC
                     new Client().execute( "9", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
 
                     new SyncDevicesServer( devices, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
@@ -96,6 +97,7 @@ public class DevicesActivity extends AppCompatActivity {
         });
     }
 
+    //Prepare language Menu
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
@@ -119,6 +121,7 @@ public class DevicesActivity extends AppCompatActivity {
         return true;
     }
 
+    //Create main menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -128,7 +131,7 @@ public class DevicesActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: MIRAR QUE FUNCIONE BIEN EN DEVICES ACT Y HACERLO PERMANENTE(SALIR Y ENTRAR)
+    //Manage language menu
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch( menuItem.getItemId() ) {
