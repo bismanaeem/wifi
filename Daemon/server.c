@@ -82,6 +82,7 @@ void demonize()
     close(STDERR_FILENO);
 }
 
+//Base64 decoder
 char *unbase64(unsigned char *input, int length)
 {
     BIO *b64, *bmem;
@@ -100,6 +101,7 @@ char *unbase64(unsigned char *input, int length)
     return buffer;
 }
 
+//Service core
 void process(char *port, char *pass)
 {
     int sock, length, n;
@@ -110,6 +112,7 @@ void process(char *port, char *pass)
     char command[1024];
     char mac[18] = {0};
 
+    //Security vars
     DES_cblock key;
     DES_key_schedule schedule;
     unsigned char *data;
@@ -117,6 +120,7 @@ void process(char *port, char *pass)
     FILE *fp;
   	char filter[5];
 
+    //Socket and packet vars
     sock=socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) error("Opening socket");
     length = sizeof(server);
@@ -127,9 +131,14 @@ void process(char *port, char *pass)
     if (bind(sock,(struct sockaddr *)&server,length)<0)
         error("binding");
     fromlen = sizeof(struct sockaddr_in);
+
+    //Service loop
     while (1) {
-	    memset(buf, 0, sizeof(buf));
+        //Var reset
+        memset(buf, 0, sizeof(buf));
         memset(command, 0, sizeof(command));
+
+        //Receiver
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
         data = unbase64(buf, strlen(buf));
@@ -151,19 +160,23 @@ void process(char *port, char *pass)
         DES_ecb_encrypt((DES_cblock*) data, (DES_cblock*) data, &schedule, DES_DECRYPT);
         data -= 16;
         switch(data[0]) {
+            //Wifi restart
             case '0':
                 system("wifi reload");
                 break;
 
+            //Wifi off
             case '1':
                 system("wifi off");
                 system("wifi down");
                 break;
 
+            //Wifi on
             case '2':
                 system("wifi");
                 break;
 
+            //Remove MAC filter
             case '3':
                 system("sed -i '/macfilter/d' /etc/config/wireless");
                 break;
@@ -182,6 +195,7 @@ void process(char *port, char *pass)
                 system("sed -i '/option macfilter/{h;s/'\\''.*'\\''/'\\''allow'\\''/};${x;/^$/{s//\\toption macfilter '\\''allow'\\'' /;H};x}' /etc/config/wireless");
                 break;
 
+            //Add MAC address
             case '6':
                 strncpy(mac, data+1, 17);
                 snprintf(command, sizeof(command), "sed -i '/list maclist '\\''%s'\\''/{h};${x;/^$/{s//\\tlist maclist '\\''%s'\\'' /;H};x}' /etc/config/wireless", mac, mac);
@@ -189,6 +203,7 @@ void process(char *port, char *pass)
                 memset(mac, 0, sizeof(memset));
                 break;
 
+            //Remove MAC address
             case '7':
                 strncpy(mac, data+1, 17);
                 snprintf(command, sizeof(command), "sed -i '/%s/d}' /etc/config/wireless", mac, mac);
@@ -196,7 +211,20 @@ void process(char *port, char *pass)
                 memset(mac, 0, sizeof(memset));
                 break;
 
+            //Update config
             case '8':
+                /* Open the command for reading. */
+                fp = popen("wifi status | sed -n -r 's/.*up.: (true).*/\\1/p'", "r");
+                if (fp == NULL) {
+                    printf("ERROR: Failed to fetch data\n" );
+                }
+
+                /* Read the output a line at a time - output it. */
+                if(fgets(filter, 5, fp) != NULL) {
+                    n = sendto(sock, "3", 1, 0,(struct sockaddr *)&from, fromlen);
+                    if (n  < 0) error("sendto");
+                }
+
                 /* Open the command for reading. */
                 fp = popen("sed -n -r 's/.*option macfilter '\\''(allow|deny)'\\''.*/\\1/p' /etc/config/wireless", "r");
                 if (fp == NULL) {
@@ -220,10 +248,14 @@ void process(char *port, char *pass)
                     }
                 }
 
+                n = sendto(sock, "done", 4, 0,(struct sockaddr *)&from, fromlen);
+                if (n  < 0) error("sendto");
+
                 /* Close stream */
                 pclose(fp);
                 break;
 
+            //Update devices
             case '9':
                 /* Open the command for reading. */
                 fp = popen("sed -n -r 's/.*list maclist '\\''(([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))'\\''.*/\\1/p' /etc/config/wireless", "r");
@@ -262,6 +294,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    //Detach
     demonize();
 
     //----------------
