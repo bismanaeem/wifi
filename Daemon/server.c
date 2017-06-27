@@ -198,6 +198,18 @@ void process(char *port, char *pass)
 
             case '8':
                 /* Open the command for reading. */
+                fp = popen("wifi status | sed -n -r 's/.*up.: (true).*/\\1/p'", "r");
+                if (fp == NULL) {
+                    printf("ERROR: Failed to fetch data\n" );
+                }
+
+                /* Read the output a line at a time - output it. */
+                if(fgets(filter, 5, fp) != NULL) {
+                    n = sendto(sock, "3", 1, 0,(struct sockaddr *)&from, fromlen);
+                    if (n  < 0) error("sendto");
+                }
+
+                /* Open the command for reading. */
                 fp = popen("sed -n -r 's/.*option macfilter '\\''(allow|deny)'\\''.*/\\1/p' /etc/config/wireless", "r");
                 if (fp == NULL) {
                     printf("ERROR: Failed to fetch data\n" );
@@ -219,6 +231,9 @@ void process(char *port, char *pass)
                         if (n  < 0) error("sendto");
                     }
                 }
+
+                n = sendto(sock, "done", 4, 0,(struct sockaddr *)&from, fromlen);
+                if (n  < 0) error("sendto");
 
                 /* Close stream */
                 pclose(fp);
