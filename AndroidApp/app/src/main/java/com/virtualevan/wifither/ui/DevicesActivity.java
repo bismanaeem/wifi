@@ -79,7 +79,8 @@ public class DevicesActivity extends AppCompatActivity {
                 case R.id.action_apply:
                     new Client().execute( "0", getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ), getIntent().getStringExtra( "pass" ) );
 
-                    new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
+                    Toast.makeText( DevicesActivity.this, getResources().getString( R.string.apply_sent ), Toast.LENGTH_SHORT ).show();
+                    //new Server( fabSpeedDial, 0, progressBar ).execute( getIntent().getStringExtra( "ip" ), getIntent().getStringExtra( "port" ) );
 
                     break;
                 case R.id.action_sync:

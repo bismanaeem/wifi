@@ -259,14 +259,14 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
 
         \begin{figure}[h!]
             \centering
-                \includegraphics[scale=0.5]{tasks_gantt0.eps}
+                \includegraphics[scale=0.3]{tasks_gantt0.eps}
                 \caption{Diagrama de Gantt de las tareas}
                 \label{fig:tasks_gantt0}
         \end{figure}
 
         \begin{figure}[h!]
             \centering
-                \includegraphics[scale=0.5]{tasks_gantt1.eps}
+                \includegraphics[scale=0.3]{tasks_gantt1.eps}
                 \caption{Diagrama de Gantt de las tareas}
                 \label{fig:tasks_gantt1}
         \end{figure}
@@ -537,11 +537,13 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     \subsection{Diseño estático}
         Dado que el sistema servidor está desarrollado utilizando el lenguaje C, no dispone de clases que puedan ser representadas en un diagrama de este tipo. La aproximación más cercana a un diseño estático, que puede ser obtenida de este sistema, es su representación en un diagrama de paquetes, el cual puede ser observado en la figura \ref{fig:server_diagram}, ya expuesta en la sección \ref{sec:arq}.
 
-        El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La figura \ref{fig:class_diagram} muestra el diagrama de clases del sistema cliente.
+        El sistema servidor está desarrollado en Android, por lo que sí cuenta con clases para realizar una representación en un diagrama. La siguiente figura muestra el diagrama de clases del sistema cliente.
         
 
     \subsection{Diseño dinámico}
     En la imagen \ref{fig:main_activity_sequence_diagram} se puede observar el diagrama de secuencia general del sistema, donde se muestra la interacción entre los objetos que lo componen. En esta representación pueden variar el mensaje enviado, la actividad y el servidor de configuración, manteniendo la misma forma en la que interactúan.
+
+    \cleardoublepage
 
     \begin{figure}[h!]
     \centering
@@ -553,7 +555,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
     En la imagen \ref{fig:device_management_sequence_diagram} se muestra un diagrama de secuencia que representa la interacción de las clases para los casos de uso de gestión de dispositivos.
     \begin{figure}[h!]
     \centering
-        \includegraphics[scale=0.35]{device_management_sequence_diagram.eps}
+        \includegraphics[scale=0.32]{device_management_sequence_diagram.eps}
         \caption{Diagrama de secuencia de gestión de dispositivos}
         \label{fig:device_management_sequence_diagram}
     \end{figure}
@@ -1001,6 +1003,8 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \subsubsection{Aplicación iOS}
         Dado que el número de dispositivos iOS aumenta cada año, es una buena idea portar el código de la aplicación Android desarrollada para que esté disponible en este sistema operativo.
 
+
+\cleardoublepage
 \bibliographystyle{plain}
 \bibliography{biblio}
 
@@ -1072,7 +1076,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{tab:sdk_dependences}
     \end{table}
 
-    \section{Detalles de la planificación}
+    \section{Resultados de la prueba}
     \begin{table}[h!]             
         \centering                  
             \resizebox{\textwidth}{!}{   
@@ -1132,6 +1136,7 @@ A pesar de que la parte visible del sistema es sólo la aplicación Android, del
         \label{tab:cripto_tests}
     \end{table}
 
+    \section{Detalles de la planificación}
     \subsubsection{Descripción de las fases}
         La fase de investigación tiene como propósito analizar las necesidades a solventar en cuanto al control de redes Wi-Fi en los hogares, y con ellas determinar las características que debe tener el sistema que va a ser creado. Esta fase incluye el análisis de los routers actuales y la realización de una comparativa entre las soluciones aportadas por los diferentes proveedores de Internet. Las tareas relacionadas con esta fase se pueden encontrar en la tabla \ref{tab:fases_inv}.
 

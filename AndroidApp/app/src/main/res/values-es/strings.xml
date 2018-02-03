@@ -50,4 +50,6 @@
     <string name="wrong_password">ERROR: Contraseña incorrecta</string>
     <string name="device_exists">ERROR: Ya existe el dispositivo</string>
     <string name="sync_successful">Sincronización satisfactoria</string>
+    <string name="apply_sent">Mensaje de guardado enviado</string>
+
 </resources>

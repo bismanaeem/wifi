@@ -133,6 +133,12 @@ public class Server extends AsyncTask<String, Void, Boolean> {
                 Toast.makeText(object.getContext() , messageString, Toast.LENGTH_LONG).show();
             }
             catch (NumberFormatException nfe){
+                if(object instanceof Switch){
+                    ((Switch) object).setChecked( rollback!=0 );
+                }
+                else if(object instanceof Spinner){
+                    ((Spinner) object).setSelection( rollback );
+                }
                 Snackbar.make(object , object.getResources().getString(R.string.wrong_password), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
@@ -145,7 +151,7 @@ public class Server extends AsyncTask<String, Void, Boolean> {
                 ((Spinner) object).setSelection( rollback );
             }
             if(portError){
-                Toast.makeText( object.getContext(), object.getResources().getString(R.string.port_error ), Toast.LENGTH_LONG ).show();
+                Snackbar.make(object , object.getResources().getString(R.string.port_error ), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
             else{
                 Snackbar.make(object , object.getResources().getString(R.string.timeout), Snackbar.LENGTH_SHORT).setAction("Action", null).show();

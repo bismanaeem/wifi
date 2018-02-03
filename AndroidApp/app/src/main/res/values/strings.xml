@@ -53,4 +53,5 @@
     <string name="wrong_password">ERROR: Incorrect password</string>
     <string name="device_exists">ERROR: Device already exists</string>
     <string name="sync_successful">Sync successful</string>
+    <string name="apply_sent">Apply message sent</string>
 </resources>
